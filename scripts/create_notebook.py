@@ -340,7 +340,7 @@ def create_notebook():
                     "    plt.figure(figsize=(12, 6))\n",
                     "    sns.lineplot(data=data, x='start_date', y='final_parsed_adjusted_time', \n",
                     "                hue='athlete_id', marker='o', palette='viridis', legend=None)\n",
-                    "    plt.title(f'Athlete Performance Over Season ({gender}-{\"8K\" if gender == \"M\" else \"6K\"})')\n",
+                    "    plt.title(f'Athlete Performance Over Season ({gender}-{\"8K\" if gender == \"Men\" else \"6K\"})')\n",
                     "    plt.xlabel('Date')\n",
                     "    plt.ylabel('Adjusted Time (seconds)')\n",
                     "    plt.xticks(rotation=45)\n",
