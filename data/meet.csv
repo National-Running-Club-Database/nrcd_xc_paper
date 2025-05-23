@@ -1,0 +1,1036 @@
+meet_id,sport_id,meet_name,start_date,end_date,meet_city,meet_state,elevation,external_result_link,photo_link,nirca_only,regionals,nationals,track_distance,banked_track,approved
+158,3,Frantz Invitational,2024-02-17,2024-02-17,Carrboro,North Carolina,,https://docs.google.com/spreadsheets/d/1q5iQIYvAJcWcIo3geVUMJVld0spchzuN/edit?gid=958898623#gid=958898623,,True,False,False,400.0,False,True
+366,1,UConn Invitational,2015-09-19,2015-09-19,Mansfield,Connecticut,,https://clubrunning.org/races/race_results.php?race=232,,True,False,False,,False,True
+367,1,JMU Invitational,2015-09-19,2015-09-19,Penn Laird,Virginia,,https://clubrunning.org/races/race_results.php?race=229,,True,False,False,,False,True
+316,1,Mountaineer Invitational,2021-10-16,2021-10-16,Boone,North Carolina,,https://clubrunning.org/races/race_results.php?race=933,,True,False,False,,False,True
+1,1,Irish Invitational,2023-10-06,2023-10-06,Niles,Michigan,,https://clubrunning.org/races/race_results.php?race=1135,,True,False,False,,False,True
+2,1,Winrow-Valparaiso Open,2023-09-01,2023-09-01,Valparaiso,Indiana,,https://www.tfrrs.org/results/xc/21365/Winrow-Valparaiso_Open,,False,False,False,,False,True
+3,1,University of San Francisco Invite,2023-09-01,2023-09-01,San Francisco,California,,https://www.tfrrs.org/results/xc/22410/University_of_San_Francisco_Invite,,False,False,False,,False,True
+4,1,Cyclone Preview,2023-09-01,2023-09-01,Ames,Iowa,,https://www.tfrrs.org/results/xc/22393/Cyclone_Preview,,False,False,False,,False,True
+5,1,Boiler Up Invitational,2023-09-08,2023-09-08,West Lafayette,Indiana,,https://clubrunning.org/races/race_results.php?race=1111,,True,False,False,,False,True
+6,1,Striders Invitational,2023-09-08,2023-09-08,Oxford,Ohio,,https://clubrunning.org/races/race_results.php?race=1114,,True,False,False,,False,True
+7,1,Walters State,2023-09-09,2023-09-09,Morristown,Tennessee,,https://www.tfrrs.org/results/xc/21477/Walters_State_,,False,False,False,,False,True
+8,1,Wisconsin Badger Classic,2023-09-09,2023-09-09,Madison,Wisconsin,,https://www.tfrrs.org/results/xc/22535/Wisconsin_Badger_Classic,,False,False,False,,False,True
+9,1,LVC Dutchmen Invitational,2023-09-09,2023-09-09,Annville,Pennsylvania,,https://godutchmen.com/documents/2023/9/10/2023_LVC_Dutchmen_Invitational_Overall_College.pdf,,False,False,False,,False,True
+10,1,MSU Spartan Invitational,2023-09-15,2023-09-15,East Lansing,Michigan,,https://www.tfrrs.org/results/xc/20555/MSU_Spartan_Invitational,,False,False,False,,False,True
+11,1,All-Ohio Intercollegiate Championship,2023-09-15,2023-09-15,Cedarville,Ohio,,https://www.tfrrs.org/results/xc/22267/All_Ohio_Intercollegiate_XC_Challenge,,False,False,False,,False,True
+12,1,Virginia Tech Alumni Invitational,2023-09-15,2023-09-15,Blacksburg,Virginia,,https://www.tfrrs.org/results/xc/21637/Virginia_Tech_Alumni_Invitational,,False,False,False,,False,True
+13,1,National Catholic Invitational,2023-09-15,2023-09-15,Notre Dame,Indiana,,https://www.tfrrs.org/results/xc/21972/2023_National_Catholic_Invitational_Notre_Dame,,False,False,False,,False,True
+14,1,Carolina XC Classic,2023-09-16,2023-09-16,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=1117,,True,False,False,,False,True
+15,1,Cavalier Invitational,2023-09-16,2023-09-16,Earlysville,Virginia,,https://clubrunning.org/races/race_results.php?race=1110,,True,False,False,,False,True
+16,1,Minuteman XC Invitational,2023-09-16,2023-09-16,Amherst,Massachusetts,,https://live.pctiming.com/meets/27585,,False,False,False,,False,True
+373,1,NIRCA XC Regional Championship (Mid-Atlantic),2015-10-24,2015-10-24,Princeton,New Jersey,,https://clubrunning.org/races/race_results.php?race=245,,True,True,False,,False,True
+1007,2,SPIRE College Midwest Open 2025,2025-01-25,2025-01-25,Geneva,Ohio,,https://tfrrs.org/results/87243/m/SPIRE_College_Midwest_Open_2025?team_hnd=78252,,False,False,False,,False,True
+331,3,Carolina Classic,2010-04-10,2010-04-10,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/86679/results,,False,False,False,,False,True
+333,3,Raleigh Relays,2010-03-26,2010-03-27,Raleigh,North Carolina,,https://tf.tfrrs.org/results/14102/Raleigh_Relays,,False,False,False,,False,True
+329,2,Gene Anderson UNC Invitational,2010-02-12,2010-02-12,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/88059/results,,False,False,False,200.0,False,True
+330,3,Wake Forest Open,2010-03-20,2010-03-20,Winston-Salem,North Carolina,,https://www.athletic.net/TrackAndField/meet/105549/results,,False,False,False,,False,True
+353,1,SBU Bearcat Cross Country Invite 2024,2024-09-06,2024-09-06,Bolivar,Missouri,,https://mo.milesplit.com/meets/634590-sbu-bearcat-cross-country-invite-2024/results/1068630/raw,,False,False,False,,False,True
+306,1,Carolina XC Classic,2021-09-18,2021-09-18,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=951,,True,False,False,,False,True
+332,3,Carolina Qualifier,2010-05-08,2010-05-08,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/88060/results,,False,False,False,,False,True
+354,1,Mike Baumer XC Classic,2024-09-06,2024-09-06,Fairborn,Ohio,,https://www.tfrrs.org/results/xc/23634/Mike_Baumer_XC_Classic,,False,False,False,,False,True
+355,1,2024 Holloway Park Collegiate Opener,2024-09-06,2024-09-06,Lakeland,Florida,,https://www.tfrrs.org/results/xc/23384/2024_Holloway_Park_Collegiate_Opener,,False,False,False,,False,True
+374,1,NIRCA XC Regional Championship (Great Lakes),2015-10-24,2015-10-24,Indianapolis,Indiana,,https://clubrunning.org/races/race_results.php?race=242,,True,True,False,,False,True
+375,1,NIRCA XC Regional Championship (Pacific),2015-10-24,2015-10-24,Belmont,California,,https://clubrunning.org/races/race_results.php?race=247,,True,True,False,,False,True
+365,3,NIRCA Track & Field National Championship,2023-04-15,2023-04-16,Olivet,Michigan,,https://milesplit.live/meets/541522,,True,False,True,400.0,False,True
+1024,2,The CIRCUIT,2025-01-31,2025-01-31,Chicago,Illinois,,https://www.athletic.net/TrackAndField/meet/571412/results/m/1/1mile,,False,False,False,200.0,True,True
+571,3,UNC Invitational,2011-04-16,2011-04-16,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/115723/results,,False,False,False,400.0,False,True
+1055,2,Margaret Bradley Invitational,2025-02-22,2025-02-22,Chicago,Illinois,,https://www.tfrrs.org/results/88071/f/2025_Margaret_Bradley_Invitational?team_hnd=63901,https://photos.app.goo.gl/dgqFoz6EU9sxfjsDA,False,False,False,,False,True
+376,1,Oregon Invite,2015-09-26,2015-09-26,Eugene,Oregon,,https://clubrunning.org/races/race_results.php?race=256,,True,False,False,,False,True
+377,1,Clemson Running Club Invitational,2015-09-26,2015-09-26,Spartanburg,South Carolina,,https://clubrunning.org/races/race_results.php?race=257,,True,False,False,,False,True
+378,1,BURC Open,2015-09-26,2015-09-26,Binghamton,New York,,https://clubrunning.org/races/race_results.php?race=260,,True,False,False,,False,True
+379,1,Chip Trails Invitational,2015-10-03,2015-10-03,Mt. Pleasant,Michigan,,https://clubrunning.org/races/race_results.php?race=239,,True,False,False,,False,True
+1065,2,Ashland Jud Logan Light Giver,2025-02-07,2025-02-08,Ashland,Ohio,,https://www.tfrrs.org/results/88254/Ashland_Jud_Logan_Light_Giver/,,False,False,False,300.0,False,True
+341,1,NIRCA Cross Country Southeast Regional,2021-10-24,2021-10-24,Wingate,North Carolina,,https://clubrunning.org/races/race_results.php?race=942,,True,True,False,,False,True
+1075,3,Kent Taylor Invitational,2013-03-22,2013-03-23,Chapel Hill,North Carolina,,https://nc.milesplit.com/meets/138624-kent-taylor-invitational-2013/results/238028,,False,False,False,,False,True
+17,1,MC5 Cross Country Invitational,2023-09-16,2023-09-16,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=1116,,True,False,False,,False,True
+18,1,MC5 Cross Country Invitational,2023-09-16,2023-09-16,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=1116,,True,False,False,,False,True
+19,1,Nittany Lion Invitational,2023-09-16,2023-09-16,University Park,Pennsylvania,,http://results.tfmeetpro.com/Nittany_Track_and_Field/2023_Nittany_Lion_Invitational/#event9,,True,False,False,,False,True
+20,1,Cherokee Farms XC Invitational,2023-09-16,2023-09-16,Knoxville,Tennessee,,https://my.raceresult.com/251076/,,True,False,False,,False,True
+21,1,Cherokee Farms XC Invitational,2023-09-16,2023-09-16,Knoxville,Tennessee,,https://my.raceresult.com/251076/,,True,False,False,,False,True
+22,1,Roy Griak Invitational,2023-09-23,2023-09-23,Falcon Heights,Minnesota,,https://live.pttiming.com/xc-ptt.html?mid=5803,,False,False,False,,False,True
+23,1,Mike Johnson Classic,2023-09-23,2023-09-23,Monmouth,Oregon,,https://live.athletictiming.net/meets/26753/xc-events/1021104/results,,False,False,False,,False,True
+24,1,22nd Annual LHU Invitational,2023-09-23,2023-09-23,Lock Haven,Pennsylvania,,https://www.tfrrs.org/results/xc/21602/22nd_Annual_LHU_Invitational_Open,,False,False,False,,False,True
+25,1,Berea College Mike & Mary Kay Johnson XC Invitational,2023-09-22,2023-09-22,Berea,Kentucky,,http://milesplit.live/meets/565431/events/2/results/F/M,,False,False,False,,False,True
+26,1,Codfish Bowl,2023-09-23,2023-09-23,Boston,Massachusetts,,https://www.tfrrs.org/results/xc/21267/Codfish_Bowl,,False,False,False,,False,True
+27,1,Little Tens Invitational,2023-09-23,2023-09-23,New Boston,Michigan,,https://clubrunning.org/races/race_results.php?race=1109,,True,False,False,,False,True
+28,1,Joe Piane Notre Dame Invitational,2023-09-29,2023-09-29,Notre Dame,Indiana,,https://live.pttiming.com/xc-ptt.html?mid=5818,,False,False,False,,False,True
+29,1,OWU Invitational,2023-09-29,2023-09-29,Powell,Ohio,,https://www.tfrrs.org/results/xc/22422/OWU_Invitational,,False,False,False,,False,True
+30,1,Blugold Invitational,2023-09-29,2023-09-29,Colfax,Wisconsin,,https://www.tfrrs.org/results/xc/22154/Blugold_Invitational,,False,False,False,,False,True
+31,1,Alexander Asics Invitational,2023-09-30,2023-09-30,Fairburn,Georgia,,http://milesplit.live/meets/509502/events/7/results/F/M,,False,False,False,,False,True
+32,1,Brown Bear Invitational,2023-09-30,2023-09-30,Attleboro,Massachusetts,,https://www.tfrrs.org/results/xc/21393/Brown_Bear_Invitational,,False,False,False,,False,True
+317,1,NIRCA Cross Country National Championships,2022-11-12,2022-11-12,Mechanicsville,Virginia,,https://clubrunning.org/races/race_results.php?race=1014,,True,False,True,,False,True
+320,4,The Tar Heel 10 Miler,2022-04-09,2022-04-09,Chapel Hill,North Carolina,,https://results.raceroster.com/v2/en-US/results/wqtstvtvspkzrm55/results,,False,False,False,,False,True
+356,1,2024 Walters State Senator's Invite,2024-09-07,2024-09-07,Morristown,Tennessee,,http://results.tfmeetpro.com/Slipstream_Timing/2024_Walters_State_Senators_Invitational_College/,,False,False,False,,False,True
+334,1,University of Tennessee Cross Country Invitational,2024-08-30,,Knoxville,Tennessee,,https://results.adkinstrak.com/meets/39748/events/xc/1498248,,False,False,False,,False,True
+342,1,Loras College Bob Schultz Invite,2024-08-30,2024-08-30,Dubuque,Iowa,,https://www.tfrrs.org/results/xc/23919/Loras_College_Bob_Schultz_Invite,,False,False,False,,False,True
+343,1,Wild Witt Exhibition Race,2024-08-30,2024-08-30,Springfield,Ohio,,https://www.tfrrs.org/results/xc/23347/Wild_Witt_Exhibition_Race,,False,False,False,,False,True
+293,2,Dick Taylor Carolina Challenge,2023-01-14,2023-01-14,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/75663,,False,False,False,200.0,False,True
+294,2,COROS Collegiate Challenge,2023-01-22,2023-01-22,Winston-Salem,North Carolina,,https://www.tfrrs.org/results/75256,,False,False,False,200.0,False,True
+418,1,Southeast Regional,2016-10-22,2016-10-22,Kernersville,North Carolina,,https://clubrunning.org/races/race_info.php?race=395,,True,True,False,,False,True
+307,4,KD Shamrock 'N' Run 5K,2024-02-24,2024-02-24,Chapel Hill,North Carolina,,https://d368g9lw5ileu7.cloudfront.net/races/results_d7i8pkq4oheaanpsrfwwfhhwgqdb.pdf,,False,False,False,,False,True
+368,1,Illinois State University Invitational,2015-09-19,2015-09-19,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=250,,True,False,False,,False,True
+369,1,Rutgers Invitational,2015-09-26,2015-09-26,North Brunswick Township,New Jersey,,https://clubrunning.org/races/race_results.php?race=227,,True,False,False,,False,True
+370,1,Harvard XC Invitational,2015-09-26,2015-09-26,Belmont,Massachusetts,,https://clubrunning.org/races/race_results.php?race=234,,True,False,False,,False,True
+371,1,MC5 at Ball State,2015-09-26,2015-09-26,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=233,,True,False,False,,False,True
+33,1,Paul Short Run,2023-09-30,2023-09-30,Bethlehem,Pennsylvania,,https://results.leonetiming.com/xc.html?mid=5815,,False,False,False,,False,True
+372,1,Patriot Invite,2015-09-26,2015-09-26,Lorton,Virginia,,https://clubrunning.org/races/race_results.php?race=231,,True,False,False,,False,True
+419,1,Great Lakes Regional,2016-10-22,2016-10-22,Shelbyville,Indiana,,https://clubrunning.org/races/race_info.php?race=389,,True,True,False,,False,True
+420,1,Mid-Atlantic Regional,2016-10-22,2016-10-22,Bethlehem,Pennslyvania,,https://clubrunning.org/races/race_results.php?race=392,,True,True,False,,False,True
+421,1,Great Plains Regional,2016-10-23,2016-10-23,Ames,Iowa,,https://clubrunning.org/races/race_results.php?race=390,,True,True,False,,False,True
+422,1,Northeast Regional,2016-10-29,2016-10-29,Jamesville,New York,,https://clubrunning.org/races/race_results.php?race=393,,True,True,False,,False,True
+424,1,NIRCA XC National Championship,2016-11-12,2016-11-12,Hershey,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=396,,True,False,True,,False,True
+500,1,Northeast Regional,2019-10-26,2019-10-26,Carlisle,Massachusetts,,https://clubrunning.org/races/race_results.php?race=837,,True,True,False,,False,True
+501,1,Great Lakes Regional,2019-11-02,2019-11-02,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=833,,True,True,False,,False,True
+503,1,Pacific Regional,2019-11-02,2019-11-02,San Carlos,Illinois,,https://clubrunning.org/races/race_results.php?race=838,,True,True,False,,False,True
+504,1,NIRCA XC National Championship,2019-11-16,2019-11-16,Mechanicsville,Virginia,,https://clubrunning.org/races/race_results.php?race=844,,True,False,True,,False,True
+511,1,ISU Redbird Home Meet,2021-10-02,2021-10-02,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=953,,True,False,False,,False,True
+513,1,Nittany Lion Invitational,2021-10-09,2021-10-09,University Park,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=952,,True,False,False,,False,True
+514,1,Harvard XC Invitational,2021-10-09,2021-10-09,Belmont,Masssachusetts,,https://clubrunning.org/races/race_results.php?race=931,,True,False,False,,False,True
+518,1,Mid-Atlantic Regional,2021-10-23,2021-10-23,Bethlehem,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=939,,True,True,False,,False,True
+520,1,Great Plains Regional,2021-10-23,2021-10-23,Urbana,Illinois,,https://clubrunning.org/races/race_results.php?race=937,,True,True,False,,False,True
+1008,2,SPIRE College Midwest Open,2025-01-25,2025-01-25,Geneva,Ohio,,https://tfrrs.org/results/87243/m/SPIRE_College_Midwest_Open_2025?team_hnd=78252,,False,False,False,,False,True
+443,1,Asheville Bulldog Tune Up,2017-10-14,2017-10-14,Hendersonville,North Carolina,,https://clubrunning.org/races/race_results.php?race=582,,True,False,False,,False,True
+444,1,Harvard College Running Club Fall Invitational,2017-10-14,2017-10-14,Belmont,Massachusetts,,https://clubrunning.org/races/race_results.php?race=591,,True,False,False,,False,True
+445,1,Princeton Invitational,2017-10-15,2017-10-15,Princeton,New Jersey,,https://clubrunning.org/races/race_results.php?race=572,,True,False,False,,False,True
+335,1,Mizzou Opener,2024-08-30,,Columbia,Missouri,,https://www.tfrrs.org/results/xc/24461/Mizzou_Opener,,False,False,False,,False,True
+344,1,EMU Mennonite Heritage Cross Country Invitational,2024-08-30,2024-08-30,Harrisonburg,Virginia,,https://www.tfrrs.org/results/xc/23779/EMU_Mennonite_Heritage_Cross_Country_Invitational,,False,False,False,,False,True
+345,1,Stormy Seas Opener,2024-08-30,2024-08-30,Georgetown,Texas,,https://www.tfrrs.org/results/xc/23623/Stormy_Seas_Opener,,False,False,False,,False,True
+346,1,San Francisco Invitational,2024-08-30,2024-08-30,San Francisco,California,,https://www.tfrrs.org/results/xc/24470/San_Francisco_Invitational,,False,False,False,,False,True
+446,1,Chip Trails,2017-10-21,2017-10-21,Mt Pleasant,Michigan,,https://clubrunning.org/races/race_results.php?race=585,,True,False,False,,False,True
+308,4,KD Shamrock 'N' Run 5K,2023-01-28,2023-01-28,Chapel Hill,North Carolina,,https://d368g9lw5ileu7.cloudfront.net/races/results_ydvyflplihxhhhseq6qtnenkevan.pdf,,False,False,False,,False,True
+318,4,The Tar Heel 10 Miler,2024-04-20,2024-04-20,Chapel Hill,North Carolina,,https://results.raceroster.com/v2/en-US/results/9reqc4qr5brnnjkw/results,,False,False,False,,False,True
+357,1,Miami Striders Invitational,2024-09-07,2024-09-07,Oxford,Ohio,,https://milesplit.live/meets/636885/events/1/results/F/M,,True,False,False,,False,True
+380,1,Princeton Invitational,2015-10-04,2015-10-04,Princeton,New Jersey,,https://clubrunning.org/races/race_results.php?race=258,,True,False,False,,False,True
+381,1,Cavalier Invitational,2015-10-10,2015-10-10,Charlottesville,Virginia,,https://clubrunning.org/races/race_results.php?race=253,,True,False,False,,False,True
+382,1,UB Bulls XC Invite,2015-10-10,2015-10-10,Akron,New York,,https://clubrunning.org/races/race_results.php?race=255,,True,False,False,,False,True
+383,1,Spartan Grand Classic,2015-10-10,2015-10-10,Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=237,,True,False,False,,False,True
+384,1,Nittany Lion Invitational,2015-10-17,2015-10-17,State College,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=251,,True,False,False,,False,True
+385,1,NIRCA XC Regional Championship (Southeast),2015-10-24,2015-10-24,Kernersville,North Carolina,,https://clubrunning.org/races/race_results.php?race=248,,True,True,False,,False,True
+386,1,NIRCA XC Regional Championship (Great Plains),2015-10-31,2015-10-31,Champaign,Illinois,,https://clubrunning.org/races/race_results.php?race=243,,True,True,False,,False,True
+387,1,NIRCA XC Regional Championship (Northeast),2015-10-31,2015-10-31,Carlisle,Massachusetts,,https://clubrunning.org/races/race_results.php?race=246,,True,True,False,,False,True
+388,1,NIRCA XC National Championship,2015-11-14,2015-11-14,Lexington,Kentucky,,https://clubrunning.org/races/race_results.php?race=235,,True,False,True,,False,True
+450,1,Great Plains Regional,2017-10-21,2017-10-21,Iowa City,Iowa,,https://clubrunning.org/races/race_results.php?race=533,,True,True,False,,False,True
+451,1,Great Lakes Regional,2017-10-28,2017-10-28,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=532,,True,True,False,,False,True
+452,1,Pacific Regional,2017-10-28,2017-10-28,San Carlos,California,,https://clubrunning.org/races/race_results.php?race=537,,True,True,False,,False,True
+454,1,Northeast Early Season Invitational,2018-09-08,2018-09-08,Buffalo,New York,,https://clubrunning.org/races/race_results.php?race=679,,True,False,False,,False,True
+455,1,Yolo Invitational,2018-09-15,2018-09-15,Davis,California,,https://clubrunning.org/races/race_results.php?race=700,,True,False,False,,False,True
+456,1,Boiler Up Invitational,2018-09-16,2018-09-16,West Lafayette,Indiana,,https://clubrunning.org/races/race_results.php?race=677,,True,False,False,,False,True
+457,1,MC5,2018-09-22,2018-09-22,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=658,,True,False,False,,False,True
+458,1,UConn Invitational,2018-09-22,2018-09-22,Storrs,Connecticut,,https://clubrunning.org/races/race_results.php?race=676,,True,False,False,,False,True
+459,1,BRC Open,2018-09-22,2018-09-22,Binghamton,New York,,https://clubrunning.org/races/race_results.php?race=699,,True,False,False,,False,True
+460,1,Run with the Pack,2018-09-22,2018-09-22,Cary,North Carolina,,https://clubrunning.org/races/race_results.php?race=663,,True,False,False,,False,True
+461,1,Harvard College Running Club Fall Invitational,2018-09-29,2018-09-29,Belmont,Massachusetts,,https://clubrunning.org/races/race_results.php?race=678,,True,False,False,,False,True
+462,1,Redbird XC Meet,2018-09-29,2018-09-29,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=675,,True,False,False,,False,True
+472,1,Mid-Atlantic Regional,2018-10-20,2018-10-20,Bethlehem,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=685,,True,True,False,,False,True
+473,1,Great Lakes Regional,2018-10-20,2018-10-20,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=682,,True,True,False,,False,True
+474,1,Great Plains Regional,2018-10-20,2018-10-20,Urbana,Illinois,,https://clubrunning.org/races/race_results.php?race=683,,True,True,False,,False,True
+475,1,Southeast Regional,2018-10-21,2018-10-21,Wingate,North Carolina,,https://clubrunning.org/races/race_results.php?race=688,,True,True,False,,False,True
+476,1,Northeast Regional,2018-10-27,2018-10-27,Milton,New York,,https://clubrunning.org/races/race_results.php?race=686,,True,True,False,,False,True
+477,1,Pacific Regional,2018-10-27,2018-10-27,Belmont,California,,https://clubrunning.org/races/race_results.php?race=687,,True,True,False,,False,True
+295,3,UNC Zmijewski Birthday Invitational,2023-02-25,2023-02-25,Chapel Hill,North Carolina,,https://docs.google.com/spreadsheets/d/1WgnvZu-fa1wkmZikI4QzEh__GSnMy87x/edit?gid=958898623#gid=958898623,,True,False,False,,False,True
+478,1,NIRCA XC National Championship,2018-11-10,2018-11-10,Lexington,Kentucky,,https://clubrunning.org/races/race_results.php?race=641,,True,False,True,,False,True
+480,1,Running of the Bulls,2019-09-14,2019-09-14,Buffalo,New York,,https://clubrunning.org/races/race_results.php?race=824,,True,False,False,,False,True
+481,1,Tiger Throwdown,2019-09-14,2019-09-14,Central,South Carolina,,https://clubrunning.org/races/race_results.php?race=820,,True,False,False,,False,True
+482,1,Boiler Up Invitational,2019-09-15,2019-09-15,West Lafayette,Indiana,,https://clubrunning.org/races/race_results.php?race=817,,True,False,False,,False,True
+1009,2,Happy Valley Invitational,2022-02-12,2022-02-12,State College,Pennsylvania,,https://drive.google.com/file/d/1U5LA0FNGAvBw0ae4yuZ_42WF94qgqF8Y/view,,True,False,False,,False,True
+483,1,MC5,2019-09-21,2019-09-21,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=819,,True,False,False,,False,True
+347,1,Owl Invitational,2024-08-31,2024-08-31,Canton,Georgia,,https://docs.google.com/spreadsheets/d/13LLkAxJvP7OU_FUHgnXbXji_B0IT5gZ1fNnWQ6YO5j8/edit?gid=0#gid=0,,True,False,False,,False,True
+484,1,UConn Invitational,2019-09-21,2019-09-21,Mansfield,Connecticut,,https://clubrunning.org/races/race_results.php?race=812,,True,False,False,,False,True
+303,4,NIRCA Half Marathon Championship,2024-04-06,2024-04-06,Petersburg,Virginia,,https://www.athlinks.com/event/131042/results/Event/1076873/Course/2458694/Results,,True,False,True,,False,True
+485,1,The Knoxville Invitational,2019-09-21,2019-09-21,Knoxville,Tennessee,,https://clubrunning.org/races/race_results.php?race=823,,True,False,False,,False,True
+486,1,AkRUN Invitational,2019-09-21,2019-09-21,Akron,Ohio,,https://clubrunning.org/races/race_results.php?race=818,,True,False,False,,False,True
+319,4,The Tar Heel 10 Miler,2023-04-22,2023-04-22,Chapel Hill,North Carolina,,https://results.raceroster.com/v2/en-US/results/td3zrdxc4ewcgxf3/results,,False,False,False,,False,True
+487,1,Rutgers XC Invitational,2019-09-22,2019-09-22,New Brunswick,New Jersey,,https://clubrunning.org/races/race_results.php?race=816,,True,False,False,,False,True
+296,3,Charlotte Outdoor Invite,2023-03-26,2023-03-26,Charlotte,North Carolina,,https://milesplit.live/meets/534462/events,,True,False,False,,False,True
+358,1,Boiler Up Invitational,2024-09-07,2024-09-07,West Lafayette,Indiana,,https://www.thtiming.com/2024raceresults.html,,True,False,False,,False,True
+389,1,NIRCA Cross Country Southeast Regional,2019-10-27,2019-10-27,Wingate,North Carolina,,https://clubrunning.org/races/race_results.php?race=839,,True,True,False,,False,True
+447,1,Southeast Regional,2017-10-21,2017-10-21,Spartanburg,South Carolina,,https://clubrunning.org/races/race_results.php?race=538,,True,True,False,,False,True
+448,1,Northeast Regional,2017-10-21,2017-10-21,Milton,New York,,https://clubrunning.org/races/race_results.php?race=536,,True,True,False,,False,True
+449,1,Mid-Atlantic Regional,2017-10-21,2017-10-21,Bethlehem,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=535,,True,True,False,,False,True
+466,1,University of Oregon Running Club Invitational,2018-10-06,2018-10-06,Eugene,Oregon,,https://clubrunning.org/races/race_results.php?race=704,,True,False,False,,False,True
+467,1,Nittany Lion Invitational,2018-10-06,2018-10-06,University Park,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=667,,True,False,False,,False,True
+468,1,Spartan Grand Classic,2018-10-13,2018-10-13,Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=689,,True,False,False,,False,True
+469,1,Tigertown Throwdown,2018-10-13,2018-10-13,Central,South Carolina,,https://clubrunning.org/races/race_results.php?race=674,,True,False,False,,False,True
+470,1,Princeton Invitational,2018-10-14,2018-10-14,North Brunswick,New Jersey,,https://clubrunning.org/races/race_results.php?race=680,,True,False,False,,False,True
+471,1,Cavailer Invitational,2018-10-27,2018-10-27,Charlottesville,Virginia,,https://clubrunning.org/races/race_results.php?race=690,,True,False,False,,False,True
+488,1,Little Tens Invitational,2019-09-28,2019-09-28,New Boston,Michigan,,https://clubrunning.org/races/race_results.php?race=810,,True,False,False,,False,True
+490,1,Nittany Lion Invitational,2019-09-28,2019-09-28,University Park,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=806,,True,False,False,,False,True
+491,1,Brown Bear Invitational,2019-09-29,2019-09-29,Westfield,Massachusetts,,https://clubrunning.org/races/race_results.php?race=808,,False,False,False,,False,True
+505,1,Striders Invitational,2021-09-11,2021-09-11,Oxford,Ohio,,https://www.stuartroadracing.com/crosscountry/2021-9-11%20Strider%20Invite%20Mens%208K.pdf,,True,False,False,,False,True
+538,1,NIRCA Cross Country Great Lakes Regional,2022-10-22,2022-10-22,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=1029,,True,True,False,,False,True
+550,1,Southern Showcase,2024-09-13,2024-09-13,Huntsville,Alabama,,https://www.tfrrs.org/results/xc/23393,,False,False,False,,False,True
+554,1,National Catholic Invitational,2024-09-20,2024-09-20,Notre Dame,IN,,https://www.tfrrs.org/results/xc/23985/2024_National_Catholic_Invitational_Notre_Dame,https://photos.app.goo.gl/fGBpy4gazZwdY5dY6,False,False,False,,False,True
+556,1,MC5 Cross Country Invitational,2024-09-21,2024-09-21,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=1271,,True,False,False,,False,True
+560,1,All-Ohio Intercollegiate Classic,2024-09-20,2024-09-20,Cedarville,Ohio,,https://finishtiming.trackscoreboard.com/meets/574693/events,,False,False,False,,False,True
+555,1,JSU Southern Showcase,2024-09-13,,Huntsville,Alabama,,https://live.xpresstiming.com/meets/39958/events/xc/1500931,,False,False,False,,False,True
+557,1,Cherokee Farms XC Invitational,2024-09-21,2024-09-21,Knoxville,Tennessee,,https://my.raceresult.com/251076/,,False,False,False,,False,True
+558,1,Missouri Southern Stampede,2024-09-20,2024-09-20,Joplin,Missouri,,https://milesplit.live/meets/631773/events,,False,False,False,,False,True
+559,1,UCR Invitational,2024-09-21,2024-09-21,Riverside,California,,https://finishedresults.trackscoreboard.com/meets/12394/events,,False,False,False,,False,True
+561,1,Greeno/Dirksen Cross Country Invitational,2024-09-21,2024-09-21,Lincoln,Nebraska,,https://www.tfrrs.org/results/xc/24794/2024_GREENO_DIRKSEN_CROSS-COUNTRY_INVITATIONAL,,False,False,False,,False,True
+562,1,Codfish Bowl,2024-09-21,2024-09-21,Boston,Massachusetts,,https://www.tfrrs.org/results/xc/23735/Codfish_Bowl,,False,False,False,,False,True
+563,1,Midway University XC Invitational,2024-09-20,2024-09-20,Versailles,Kentucky,,https://www.tfrrs.org/results/xc/23547/Midway_University_XC_Invitational,,False,False,False,,False,True
+564,1,Larry Young XC Invitational,2024-09-20,2024-09-20,Columbia,Missouri,,https://www.tfrrs.org/results/xc/24786/Larry_Young_XC_Invitational,,False,False,False,,False,True
+565,1,Cavalier Invitational,2024-09-21,2024-09-21,Charlottesville,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/Cavalier_Invitational_92124/,,True,False,False,,False,True
+570,3,NIRCA Track & Field National Championships,2022-04-02,2022-04-03,Olivet,Michigan,,http://live.crossroadstiming.com/meets/470756/events,,True,False,True,400.0,False,True
+573,4,NIRCA 5k Road Nationals,2022-04-09,2022-04-09,Bloomington,Indiana,,https://clubrunning.org/races/race_results.php?race=1000,,True,False,True,,False,True
+1027,2,Betty S Rogers Invitational,2025-02-09,2025-02-09,Virginia Beach,Virginia,,https://www.tfrrs.org/results/87178/m/Betty_S_Rogers_Invitational?team_hnd=111519,,False,False,False,200.0,True,True
+390,1,NIRCA Cross Country National Championships,2006-11-04,2006-11-04,Lock Haven,Pennsylvania,,https://clubrunning.org/races/2004-2006/results_nats2006.php,,True,False,True,,False,True
+453,1,NIRCA XC National Championships,2017-11-11,2017-11-11,East Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=547,,True,False,True,,False,True
+463,1,Little Tens Invitational,2018-09-29,2018-09-29,New Boston,Michigan,,https://clubrunning.org/races/race_results.php?race=691,,True,False,False,,False,True
+464,1,Charlotte McAlpine Trail Race,2018-09-29,2018-09-29,Charlotte,North Carolina,,https://clubrunning.org/races/race_results.php?race=669,,True,False,False,,False,True
+337,1,Winrow-Valparaiso Open,2024-08-30,2024-08-30,Valparaiso,Indiana,,https://www.tfrrs.org/results/xc/23820/Winrow-Valparaiso_Open,https://photos.app.goo.gl/YqBWwBkFJfHPJDTW8,False,False,False,,False,True
+348,1,Carolina XC Classic,2018-09-29,2018-09-29,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=668,,True,False,False,,False,True
+465,1,Mountaineer Classic,2018-09-30,2018-09-30,Morgantown,West Virginia,,https://clubrunning.org/races/race_results.php?race=672,,True,False,False,,False,True
+321,3,VertKlasse Meeting,2016-04-01,2016-04-02,High Point,North Carolina,,https://www.athletic.net/TrackAndField/meet/276302/results,,False,False,False,,False,True
+322,3,Appalachian Open,2016-05-07,2016-05-07,Boone,North Carolina,,https://www.athletic.net/TrackAndField/meet/282197/results,,False,False,False,,False,True
+479,1,DC Invite,2024-09-14,2024-09-14,Derwood,Maryland,,https://clubrunning.org/races/race_results.php?race=1253,,True,False,False,,False,True
+297,1,Carolina XC Classic,2022-09-17,2022-09-17,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=1011,,True,False,False,,False,True
+325,2,Art and Linda Maillet UNC Open,2016-01-16,2016-01-16,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/262317/results,,False,False,False,,False,True
+310,1,NIRCA Cross Country Southeast Regional,2022-10-29,2022-10-29,Wingate,North Carolina,,https://clubrunning.org/races/race_results.php?race=1035,,True,True,False,,False,True
+324,2,Joe Davies Open,2016-02-20,2016-02-20,Golden,Colorado,,https://www.athletic.net/TrackAndField/meet/268660/results,,False,False,False,,False,True
+323,3,Colorado College Invitational,2016-03-25,2016-03-25,Washburn Field,Colorado,,https://www.athletic.net/TrackAndField/meet/274998/results,,False,False,False,,False,True
+1028,2,URI Coaches Invitational,2025-02-09,2025-02-09,Kingston,Rhode Island,,https://www.tfrrs.org/results/87153/m/URI_Coaches_Invitational?team_hnd=99325,,False,False,False,200.0,False,True
+362,1,Badger Classic,2024-09-06,2024-09-06,Madison,Wisconsin,,https://www.tfrrs.org/results/xc/24564/Badger_Classic,,False,False,False,,False,True
+360,1,LVC Dutchmen XC Invite,2024-09-07,2024-09-07,Lebanon,Pennsylvania,,https://falconracetiming.com/racetimes/LVC%20Invite%20Overall%20College%202024.htm,,False,False,False,,False,True
+359,1,Virginia Tech Invitational,2024-09-06,2024-09-06,Blacksburg,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/Virginia_Tech_Invitational_/,,False,False,False,,False,True
+506,1,AkRUN Invitational,2021-09-11,2021-09-11,Norton,Ohio,,https://clubrunning.org/races/race_results.php?race=925,,True,False,False,,False,True
+507,1,Scarlet Invitational,2021-09-19,2021-09-19,North Brunswick,New Jersey,,https://docs.google.com/spreadsheets/d/1ZIoy1kWIhAhN9cS_V7elwv2VfWaVlzaNTe4TjKIzMOU/edit?gid=1225105428#gid=1225105428,,True,False,False,,False,True
+508,1,Little Tens Invitaitonal,2021-09-25,2021-09-25,New Boston,Michigan,,https://clubrunning.org/races/race_results.php?race=929,,True,False,False,,False,True
+509,1,Brown Bear Invitational,2021-09-25,2021-09-25,Attleboro,Massachusetts,,https://clubrunning.org/races/race_results.php?race=926,,True,False,False,,False,True
+510,1,UConn Invitational,2021-10-02,2021-10-02,Mansfield,Connecticut,,https://clubrunning.org/races/race_results.php?race=924,,True,False,False,,False,True
+512,1,Hokie Invitational,2021-10-09,2021-10-09,Blackburg,Virginia,,https://clubrunning.org/races/race_results.php?race=949,,True,False,False,,False,True
+515,1,Cavalier Invitational,2021-10-16,2021-10-16,Charlottesville,Virginia,,https://clubrunning.org/races/race_results.php?race=948,,True,False,False,,False,True
+516,1,DC Invitational,2021-10-16,2021-10-16,Centreville,Virginia,,https://clubrunning.org/races/race_results.php?race=950,,True,False,False,,False,True
+517,1,Princeton Invitational,2021-10-17,2021-10-17,Princeton,New Jersey,,https://clubrunning.org/races/race_results.php?race=934,,True,False,False,,False,True
+519,1,Great Lakes Regional,2021-10-23,2021-10-23,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=936,,True,True,False,,False,True
+521,1,Northeast Regional,2021-10-23,2021-10-23,Attleboro,Massachusetts,,https://clubrunning.org/races/race_results.php?race=940,,True,True,False,,False,True
+522,1,Pacific Regional,2021-10-23,2021-10-23,San Luis Obispo,California,,https://clubrunning.org/races/race_results.php?race=941,,True,True,False,,False,True
+523,1,Hoosier Season Opener,2022-09-03,2022-09-03,Bloomington,Indiana,,https://clubrunning.org/races/race_results.php?race=1025,,True,False,False,,False,True
+527,1,Boiler Up Invitational,2022-09-17,2022-09-17,West Lafayette,Indiana,,https://clubrunning.org/races/race_results.php?race=1012,,True,False,False,,False,True
+529,1,DC Invitational,2022-09-24,2022-09-24,Centreville,Virginia,,https://clubrunning.org/races/race_results.php?race=1022,,True,False,False,,False,True
+532,1,Spartan Grand Classic,2022-10-01,2022-10-01,Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=1024,,True,False,False,,False,True
+540,1,NIRCA Cross Country Northeast Regional,2022-10-22,2022-10-22,Attleboro,Massachusetts,,https://clubrunning.org/races/race_results.php?race=1033,,True,True,False,,False,True
+541,1,NIRCA Cross Country Pacific Regional,2022-10-22,2022-10-22,Sonoroa,California,,https://clubrunning.org/races/race_results.php?race=1034,,True,True,False,,False,True
+543,1,Carolina XC Classic,2024-09-14,2024-09-14,Chapel Hill,North Carolina,,https://docs.google.com/spreadsheets/d/1O7hKAh0pmp8VGrR6aQp_4feHsquU9zfz6NJlSPVYQ9I/edit?gid=0#gid=0,https://photos.app.goo.gl/C8BqUz4br83uQ4Dx8,True,False,False,,False,True
+566,1,Adidas XC Challenge,2024-09-20,2024-09-21,Cary,North Carolina,,https://flashresults.com/2025_Meets/xc/adidas/index.htm,,False,False,False,,False,True
+539,1,NIRCA Cross Country Great Plains Regional,2022-10-22,2022-10-22,Geneva,Illinois,,https://clubrunning.org/races/race_results.php?race=1030,,True,True,False,,False,True
+551,2,Happy Valley Invitational,2023-02-11,2023-02-11,State College,Pennsylvania,,http://results.tfmeetpro.com/Nittany_Track_and_Field/Happy_Valley_Invitational_2023/index.html,,True,False,False,200.0,True,True
+567,1,Adidas XC Challenge,2022-09-16,2022-09-17,Cary,North Carolina,,https://results.flashresults.com/2022_09-16_adidasXC/index.htm,,False,False,False,,False,True
+574,4,NIRCA Half Marathon Nationals,2019-04-14,2019-04-14,Oxford,Ohio,,https://clubrunning.org/races/race_results.php?race=726,,True,False,True,,False,True
+1029,2,Chippewa Invite,2025-02-08,2025-02-08,Lansing,Michigan,,https://www.tfrrs.org/results/88896/f/2025_Chippewa_Invite?team_hnd=63948,,False,False,False,200.0,False,True
+1030,2,Big Dawg Invite,2025-02-08,2025-02-08,Stevens Point,Wisconsin,,https://www.tfrrs.org/results/87553/Big_Dawg_Invitational,,False,False,False,200.0,False,True
+544,1,NIRCA National Cross Country Championships,2007-11-03,2007-11-03,Bloomington,Indiana,,https://clubrunning.org/races/2007/results_nats2007.php,,True,False,True,,False,True
+338,1,NIRCA Cross Country National Championship,2021-11-06,2021-11-06,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=920,,True,False,True,,False,True
+552,3,Cavalier Invitational,2023-04-01,2023-04-01,Charlottesville,Virginia,,https://results.flashresults.com/2023_04-01_VirginiaQuad/index.htm,,False,False,False,400.0,False,True
+311,4,Cooper River Bridge Run,2023-04-01,2023-04-01,Mount Pleasant,South Carolina,,https://bridgerun.com/results-awards/,,False,False,False,,False,True
+326,1,Carolina XC Classic,2019-09-14,2019-09-14,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=822,,True,False,False,,False,True
+568,1,Delaware Invitational,2024-09-20,2024-09-20,Newark,Delaware,,https://www.tfrrs.org/results/xc/24787/Delaware_Invitational,,False,False,False,,False,True
+305,2,Joe Hilton Invitational,2015-01-10,2015-01-10,Chapel Hill,North Carolina,,https://nc.milesplit.com/meets/190332-joe-hilton-invitational-2015/results,,False,False,False,200.0,False,True
+349,1,Virginia Tech Invitational,2023-09-01,2023-09-01,Blacksburg,Virginia,,https://snapresults.snaptiming.com/meets/27164/events/xc/1015808,,False,False,False,,False,True
+350,1,Hokie Open,2023-11-03,2023-11-03,Blacksburg,Virginia,,https://snapresults.snaptiming.com/meets/28841/events/xc/1032138,,False,False,False,,False,True
+363,1,Terrier XC Invitational 2015,2015-09-13,2015-09-13,Wellesley,Massachusetts,,https://clubrunning.org/races/race_results.php?race=249,,True,False,False,,False,True
+391,1,UNF 5k Cross Country Challenge,2024-09-13,2024-09-13,Jacksonville,Florida,,https://www.tfrrs.org/results/xc/23907/UNF_5K_Cross_Country_Challenge,,False,False,False,,False,True
+392,1,Auto-Owners Spartan Invitational,2024-09-13,2024-09-13,East Lansing,Michigan,,https://www.tfrrs.org/results/xc/23546/2024_Auto-Owners_Spartan_Invitational,,False,False,False,,False,True
+489,1,Dashing Dukes Invitational,2019-11-02,2019-11-02,Elkton,Virginia,,https://clubrunning.org/races/race_results.php?race=815,,True,False,False,,False,True
+524,1,Minutemen XC Invitational,2022-09-17,2022-09-17,Amherst,Massachusetts,,https://clubrunning.org/races/race_results.php?race=1023,,True,False,False,,False,True
+525,1,Cavalier Invitational,2022-09-17,2022-09-17,Charlottesville,Virginia,,http://results.tfmeetpro.com/SnapTiming/Cav_Invitational_91722/,,True,False,False,,False,True
+526,1,Nittany Lion Invitational,2022-09-17,2022-09-17,University Park,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=1013,,True,False,False,,False,True
+528,1,Little Tens Invitational,2022-09-24,2022-09-24,New Boston,Michigan,,https://clubrunning.org/races/race_results.php?race=1020,,True,False,False,,False,True
+530,1,ISU Redbird Home Meet,2022-10-01,2022-10-01,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=1043,,True,False,False,,False,True
+531,1,Knoxville Invitational,2022-10-01,2022-10-01,Knoxville,Tennessee,,https://clubrunning.org/races/race_results.php?race=1037,,True,False,False,,False,True
+533,1,UConn Autumn Invitational,2022-10-08,2022-10-08,Mansfield,Connecticut,,https://uconnrunningclubxcraces.itsyourrace.com/Results.aspx?id=15517&y=2022&eid=115448&g=undefined&undefined,,True,False,False,,False,True
+536,1,Scarlet Tiger Invite,2022-10-15,2022-10-15,Flemington,New Jersey,,https://clubrunning.org/races/race_results.php?race=1026,,True,False,False,,False,True
+537,1,BRC Open,2022-10-15,2022-10-15,Vestal,New York,,https://clubrunning.org/races/race_results.php?race=1045,,True,False,False,,False,True
+542,1,NIRCA Cross Country Mid-Atlantic Regional,2022-10-29,2022-10-29,Bethlehem,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=1032,,True,True,False,,False,True
+572,3,NCTFA National Championship,2012-04-29,2012-04-29,Richmond,Kentucky,,https://www.athletic.net/TrackAndField/meet/155443/results/f/1/100m,,True,False,True,400.0,False,True
+575,2,Kent Taylor Invitational,2015-02-21,2015-02-21,Chapel,Hill,,https://nc.milesplit.com/meets/194889-kent-taylor-invitational-2015/results,,False,False,False,,False,True
+576,2,Colorado Mines Joe Davies Classic,2017-02-17,2017-02-18,Golden,Colorado,,https://www.tfrrs.org/results/48149/f/MINES_Joe_Davies_Classic?team_hnd=85124,,False,False,False,,False,True
+577,2,Dick Taylor Carolina Challenge,2020-01-11,2020-01-11,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/63596/Dick_Taylor_Carolina_Challenge/,,False,False,False,,False,True
+578,2,JDL DMR Invitational,2023-02-17,2023-02-18,Winston-Salem,North Carolina,,https://www.tfrrs.org/results/75260/JDL_DMR_Invitational,,False,False,False,,False,True
+579,3,Duke Invitational,2010-04-02,2010-04-03,Durham,North Carolina,,https://www.tfrrs.org/results/14513/Duke_Invitational,,False,False,False,,False,True
+580,3,Mount Oliver Final Qualifier,2024-05-11,2024-05-11,Mount Olive,North Carolina,,https://www.tfrrs.org/results/83069/2024_Mount_Olive_Final_Qualifier,,False,False,False,,False,True
+581,3,Dennis Craddock Carolina Relays,2017-03-17,2017-03-18,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/49794/m/Dennis_Craddock_Carolina_Relays?team_hnd=93151,,False,False,False,,False,True
+582,3,Dennis Craddock Carolina Relays,2015-03-20,2015-03-21,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/39390.html,,False,False,False,,False,True
+583,1,Roy Griak Invitational,2024-09-20,2024-09-20,Minneapolis,Minnesota,,https://www.tfrrs.org/results/xc/24780/Roy_Griak_Invitational,,False,False,False,,False,True
+584,1,Gans Creek Classic,2024-09-27,2024-09-27,Columbia,Missouri,,https://live.pttiming.com/xc-ptt.html?mid=7431,,False,False,False,,False,True
+585,1,Nuttycombe Invitational,2024-09-27,2024-09-27,Madison,Wisconsin,,https://live.pttiming.com/xc-ptt.html?mid=7442,,False,False,False,,False,True
+586,1,Hokie Invitational,2024-09-28,2024-09-28,Blacksburg,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/Hokie_Invitational_92824/,,True,False,False,,False,True
+588,1,Mike Johnson Invitational,2024-09-27,2024-09-27,Monmouth,Oregon,,https://live.athletictiming.net/meets/40633/events/xc/1507404,,False,False,False,,False,True
+589,1,Lock Haven Invitational,2024-09-28,2024-09-28,Lock Haven,Pennsylvania,,https://lexicontiming.com/meets/39369/,,False,False,False,,False,True
+590,1,Lucian Rosa Inviational,2024-09-28,2024-09-28,Kenosha,Wisconsin,,https://runsignup.com/Race/Results/171664/TeamResults/TeamDetails-32708-739058,,False,False,False,,False,True
+591,1,Border Battle,2024-09-28,2024-09-28,Verona,Wisconsin,,https://my.raceresult.com/309636/results#1_3867D3,,True,False,False,,False,True
+592,1,Chile Pepper Invitational,2024-09-28,2024-09-28,Fayetteville,Arkansas,,https://www.flashresults.com/2025_Meets/xc/ChilePepper/002-1_compiled.htm,,False,False,False,,False,True
+593,1,Brissman-Lundeen Invitational,2024-09-28,2024-09-28,Rock Island,Illinois,,https://results.wayzatatiming.com/meets/40466/teams,,False,False,False,,False,True
+594,1,Brown Bear Invitational,2024-09-28,2024-09-28,Attleboro,Massachusetts,,https://milesplit.live/meets/640151/events/1/results/F/F,,False,False,False,,False,True
+587,1,Little Tens Invitational,2024-09-28,2024-09-28,New Boston,Michigan,,https://www.trisignup.com/Race/Results/151539#resultSetId-492721;page:2;perpage:100,https://photos.app.goo.gl/Gk6g5DfmAZ5TK3qWA,True,False,False,,False,True
+595,4,Road and Track Nationals,2012-03-30,2012-03-01,Bloomington,Indiana,,https://clubrunning.org/races/2012/results_springnats2012.php,,True,False,True,,False,True
+1089,3,High Country Classic,2025-03-01,2025-03-01,Boone,North Carolina,,https://docs.google.com/document/d/1zox5t8p7W4j5aKWGWoUa0QJjOv_xOqnceNoO9_2o_L4/edit?tab=t.0,,True,False,False,,False,True
+397,1,Nittany Lion Invitational,2024-09-14,2024-09-14,State College,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=1263,,True,False,False,,False,True
+339,3,UMass Lowell RC Rowdy Invitational,2024-04-14,2024-04-14,Lowell,Massachusetts,,https://live.sstresults.com/meets/34384,,True,False,False,,False,True
+299,2,Mondo College Invitational,2022-01-15,2022-01-15,Winston-Salem,North Carolina,,https://www.tfrrs.org/results/70454,,False,False,False,200.0,False,True
+300,2,Vince Brown Invitational,2022-01-30,2022-01-30,Newport News,Virginia,,https://www.tfrrs.org/results/70746/Vince_Brown_Invitational/,,False,False,False,200.0,False,True
+312,2,Art and Linda Maillet UNC Open,2018-02-03,2018-02-03,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/328414/results,,False,False,False,200.0,False,True
+327,1,Charlotte McAlpine Trail Race,2019-09-28,2019-09-28,Charlotte,North Carolina,,https://clubrunning.org/races/race_results.php?race=813,,True,False,False,,False,True
+351,1,Wilmington Beach Blast 5k,2024-09-06,2024-09-06,Wilmington,North Carolina,,https://www.tfrrs.org/results/xc/24094/Wilmington_Beach_Blast_5k,,False,False,False,,False,True
+364,1,Joe LaRocco 5k,2024-09-07,2024-09-07,Salem,Virginia,,https://runsignup.com/Race/Results/115300#resultSetId-485301;perpage:100,,False,False,False,,False,True
+393,1,Les Duke Invite,2024-09-14,2024-09-14,Grinnell,Iowa,,https://www.tfrrs.org/results/xc/24708/62nd_Les_Duke_Invite,,False,False,False,,False,True
+394,1,Bethany Invitational,2024-09-14,2024-09-14,Bethany,West Virginia,,https://www.tfrrs.org/results/xc/24707/2024_Bethany_Invitational,,False,False,False,,False,True
+395,1,Pioneer Gender Equity Invitational,2024-09-14,2024-09-14,Cuba City,Wisconsin,,https://www.tfrrs.org/results/xc/24543/Pioneer_Gender_Equity_Invitational,,False,False,False,,False,True
+396,1,Forest Park XC Festival,2024-09-14,2024-09-14,St. Louis,Missouri,,https://www.athlinks.com/event/60470/results/Event/1066791/Results,,False,False,False,,False,True
+399,1,Illinois State University Invitational,2016-09-17,2016-09-17,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=402,,True,False,False,,False,True
+400,1,Kasey Skinner Memorial Invitational,2016-09-17,2016-09-17,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=403,,True,False,False,,False,True
+34,1,Augustana Brissman-Lundeen XC Invitational,2023-09-30,2023-09-30,Rock Island,Illinois,,https://onlineraceresults.com/race/view_race.php?race_id=76692#racetop,,False,False,False,,False,True
+35,1,Dan Huston Invitational,2023-09-30,2023-09-30,Waverly,Iowa,,https://results.wayzatatiming.com/meets/27867/xc-events/1023053/results,,False,False,False,,False,True
+36,1,Live at Lou,2023-09-30,2023-09-30,Louisville,Kentucky,,https://www.tfrrs.org/results/xc/22862/Live_in_Lou_XC_Classic,,False,False,False,,False,True
+37,1,WLC Warrior Invitational,2023-09-30,2023-09-30,West Allis,Wisconsin,,https://my.raceresult.com/262714/results,,False,False,False,,False,True
+38,1,Charles Bowles Willamette Invitational,2023-09-30,2023-09-30,Salem,Oregon,,https://live.athletic.net/meets/27973/xc-events/1023325/live,,False,False,False,,False,True
+39,1,Scarlet Classic,2023-09-30,2023-09-30,Flemington,New Jersey,,https://clubrunning.org/races/race_results.php?race=1118,,True,False,False,,False,True
+40,1,DC Invite,2023-09-30,2023-09-30,Washington,D.C.,,https://clubrunning.org/races/race_results.php?race=1133,,True,False,False,,False,True
+41,1,Maryville College XC Invitational,2023-09-30,2023-09-30,Marville,Tennessee,,https://tn.milesplit.com/meets/570185-maryville-college-xc-invitational-2023/results,,False,False,False,,False,True
+42,1,Berry College Invitational,2023-09-30,2023-09-30,Rome,Georgia,,https://www.tfrrs.org/results/xc/21259/Berry_Invitational,,False,False,False,,False,True
+43,1,Charlotte McAlpine Trail Race,2023-09-30,2023-09-30,Charlotte,North Carolina,,https://clubrunning.org/races/race_results.php?race=1137,,True,False,False,,False,True
+44,1,Florida Running Club Invitational,2023-09-30,2023-09-30,Gainesville,Florida,,https://runsignup.com/Race/Results/133464,,False,False,False,,False,True
+401,1,Harvard XC Invite,2016-09-17,2016-09-17,Belmont,Massachusetts,,https://clubrunning.org/races/race_info.php?race=418,,True,False,False,,False,True
+402,1,MC5 Invitational,2016-09-24,2016-09-24,Anderson,Indiana,,https://clubrunning.org/races/race_info.php?race=381,,True,False,False,,False,True
+403,1,North Carolina State Invitational,2016-09-24,2016-09-24,Cary,North Carolina,,https://clubrunning.org/races/race_results.php?race=385,,True,False,False,,False,True
+404,1,JMU Invitational,2016-09-24,2016-09-24,Harrisonburg,Virginia,,https://clubrunning.org/races/race_results.php?race=409,,True,False,False,,False,True
+405,1,Terrier Invitational,2016-09-24,2016-09-24,Boston,Massachusetts,,https://clubrunning.org/races/race_results.php?race=412,,True,False,False,,False,True
+406,1,Buffalo Buffalo Buffalo XC Invite (near Buffalo),2016-10-01,2016-10-01,Akron,New York,,https://clubrunning.org/races/race_info.php?race=416,,True,False,False,,False,True
+407,1,Spartan Grand Classic,2016-10-01,2016-10-01,Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=406,,True,False,False,,False,True
+408,1,Princeton Invitational,2016-10-02,2016-10-02,Princeton,New Jersey,,https://clubrunning.org/races/race_results.php?race=401,,True,False,False,,False,True
+1031,2,Illinois College Jim Green Invite,2025-02-08,2025-02-08,Jacksonville,Illinois,,https://www.tfrrs.org/results/88802/m/Illinois_College_Jim_Green_Invite?team_hnd=63900,,False,False,False,200.0,False,True
+425,1,Tigertown Throwdown,2017-09-16,2017-09-16,Central,South Carolina,,https://clubrunning.org/races/race_results.php?race=551,,True,False,False,,False,True
+426,1,Illinois State 6k,2017-09-16,2017-09-16,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=554,,True,False,False,,False,True
+427,1,Boiler Up Invitational,2017-09-16,2017-09-16,West Lafayette,Indiana,,https://clubrunning.org/races/race_results.php?race=583,,True,False,False,,False,True
+428,1,Sneed-Alleyne Memorila Invitational,2017-09-16,2017-09-16,Chapel Hill,North Carolina,,https://clubrunning.org/races/race_results.php?race=574,,True,False,False,,False,True
+429,1,MC5,2017-09-23,2017-09-23,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=529,,True,False,False,,False,True
+430,1,Run with the Pack 5k,2017-09-23,2017-09-23,Cary,North Carolina,,https://clubrunning.org/races/race_results.php?race=569,,True,False,False,,False,True
+492,1,ISU Redbird Home Meet,2019-10-05,2019-10-05,Normal,Illinois,,https://clubrunning.org/races/race_results.php?race=829,,True,False,False,,False,True
+499,1,Mid-Atlantic Regional,2019-10-26,2019-10-26,Frederick,Maryland,,https://clubrunning.org/races/race_results.php?race=836,,True,True,False,,False,True
+502,1,Great Plains Regional,2019-11-02,2019-11-02,Urbana,Illinois,,https://clubrunning.org/races/race_results.php?race=834,,True,True,False,,False,True
+545,4,Carmel Marathon,2024-04-13,2024-04-13,Carmel,Indiana,,https://runsignup.com/Race/Results/130921/,,False,False,False,,False,True
+546,4,NIRCA Half Marathon Nationals,2022-04-09,2022-04-09,Bloomington,Indiana,,https://clubrunning.org/races/race_results.php?race=956,,True,False,True,,False,True
+547,1,UNC Invite,2007-10-06,2007-10-06,Chapel Hill,North Carolina,,https://clubrunning.org/races/2007/results_unc2007.php,,True,False,False,,False,True
+549,1,UMass Minuteman XC Invitational,2024-09-14,2024-09-14,Amherst,Massachusetts,,https://www.givesignup.org/Race/Results/170510#resultSetId-487732;perpage:100,,True,False,False,,False,True
+45,1,Bill Lennox Invite,2023-10-07,2023-10-07,New Castle,Pennsylvania,,http://www.runhigh.com/2023RESULTS/R100723HB.html,,False,False,False,,False,True
+47,1,Gene Davis Invite,2023-10-07,2023-10-07,Appleton,Wisconsin,,https://www.tfrrs.org/results/xc/23024/Gene_Davis_Invite,,False,False,False,,False,True
+48,1,Asbury Invitational,2023-10-07,2023-10-07,Wilmore,Kentucky,,https://www.tfrrs.org/results/xc/21624/Asbury_Invitational,,False,False,False,,False,True
+49,1,BRC Open,2023-10-07,2023-10-07,Vestal,New York,,https://clubrunning.org/races/race_results.php?race=1145,,True,False,False,,False,True
+50,1,Jack St. Clair College XC Invitational,2023-10-07,2023-10-07,Bryn Maw,Pennsylvania,,https://runsignup.com/Race/Results/23873,,False,False,False,,False,True
+51,1,Spartan Grand Classic,2023-10-07,2023-10-07,Waverly,Michigan,,https://clubrunning.org/races/race_results.php?race=1147,,True,False,False,,False,True
+52,1,Delaware Invitational,2023-10-13,2023-10-13,Newark,Delaware,,https://www.tfrrs.org/results/xc/21663/Delaware_Invitational,,False,False,False,,False,True
+53,1,Nuttycombe Invitational,2023-10-13,2023-10-13,Madison,Wisconsin,,https://live.pttiming.com/xc-ptt.html?mid=5839,,False,False,False,,False,True
+54,1,Bradley Pink Classic,2023-10-13,2023-10-13,Peoria,Illinois,,https://results.shazamracing.com/meets/28297/xc-events/1026572/results,,False,False,False,,False,True
+55,1,Canisius Alumni Classic,2023-10-14,2023-10-14,Buffalo,New York,,https://www.tfrrs.org/results/xc/21709/Canisius_Alumni_Classic,,False,False,False,,False,True
+56,1,Santa Clara Bronco Invitational,2023-10-14,2023-10-14,Sunnyvale,California,,https://www.tfrrs.org/results/xc/21586/Santa_Clara_Bronco_Invitational_,,False,False,False,,False,True
+57,1,Augustana Interregional,2023-10-14,2023-10-14,Rock Island,Illinois,,https://www.tfrrs.org/results/xc/22579/Augustana_Interregional,,False,False,False,,False,True
+58,1,Hokie Invitational,2023-10-14,2023-10-14,Blacksburg,Virginia,,https://clubrunning.org/races/race_results.php?race=1112,,True,False,False,,False,True
+59,1,UConn Autumn Invitational,2023-10-14,2023-10-14,Mansfield,Connecticut,,https://clubrunning.org/races/race_results.php?race=1103,,True,False,False,,False,True
+60,1,Marson Birthday Invitational,2023-10-15,2023-10-15,Holly Springs,North Carolina,,https://clubrunning.org/races/race_results.php?race=1132,,True,False,False,,False,True
+61,1,NIRCA Cross Country Mid-Atlantic Regional,2023-10-21,2023-10-21,Bethlehem,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=1126,,True,True,False,,False,True
+62,1,NIRCA Cross Country Northeast Regional,2023-10-21,2023-10-21,Attleboro,Massachusetts,,https://clubrunning.org/races/race_results.php?race=1127,,True,True,False,,False,True
+63,1,NIRCA Cross Country Pacific Regional,2023-10-21,2023-10-21,Obispo,California,,https://clubrunning.org/races/race_results.php?race=1128,,True,True,False,,False,True
+64,1,NIRCA Cross Country Great Lakes Regional,2023-10-28,2023-10-28,Carmel,Indiana,,https://clubrunning.org/races/race_results.php?race=1123,,True,True,False,,False,True
+65,1,NIRCA Cross Country Great Plains Regional,2023-10-28,2023-10-28,Urbana,Illinois,,https://clubrunning.org/races/race_results.php?race=1124,,True,True,False,,False,True
+1012,2,Gene Anderson UNC Invitational,2019-01-11,2019-01-11,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/358430/results/all,,False,False,False,200.0,False,True
+67,1,Missouri Southern Stampede,2023-09-16,2023-09-16,Joplin,Missouri,,https://mo.milesplit.com/meets/569796-missouri-southern-stampede-2023/results,,False,False,False,,False,True
+68,1,Greeno/Dirksen Cross Country Invitational,2023-09-16,2023-09-16,Lincoln,Nebraska,,https://storage.googleapis.com/huskers-com-prod/2023/09/16/MtToWdNTQZg7oAt3OEomgdqWj3dvAMMYV4eb6kUn.pdf,,False,False,False,,False,True
+69,1,Gans Creek Invitational,2023-09-29,2023-09-29,Columbia,Missouri,,https://www.tfrrs.org/results/xc/22841/Gans_Creek_Invitational,,False,False,False,,False,True
+70,1,SCC Preview,2023-10-13,2023-10-13,Lakeland,Florida,,https://fl.milesplit.com/meets/574139-ssc-preview-2023/results/979924/formatted/?type=formatted&event=,,False,False,False,,False,True
+71,1,NIRCA Cross Country National Championships,2023-11-11,2023-11-11,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=1104,,True,False,True,,False,True
+72,2,Houghton December Classic,2023-12-01,2023-12-01,Houghton,New York,,https://www.tfrrs.org/results/81636/Houghton_December_Classic,,False,False,False,200.0,False,True
+73,2,Blue & Gold Invitational,2023-12-01,2023-12-01,Notre Dame,Indiana,,https://www.tfrrs.org/results/81696/2023_Blue__Gold_Invitational_-_Notre_Dame,,False,False,False,320.0,False,True
+74,2,Suffolk Relays,2023-12-02,2023-12-02,Boston,Massachusetts,,https://www.tfrrs.org/results/81498/Suffolk_Relays,,False,False,False,200.0,True,True
+75,2,ONU Holiday Invite,2023-12-02,2023-12-02,Bourbonnais,Illinois,,https://www.tfrrs.org/results/81471/ONU_Holiday_Invite_2023/,,False,False,False,200.0,False,True
+76,2,37th Alden Invitational,2023-12-02,2023-12-02,Providence,Rhode Island,,https://www.tfrrs.org/results/82148/m/37th_Alden_Invitational,,False,False,False,200.0,False,True
+77,2,Commonwealth College Opener,2023-12-02,2023-12-02,Louisville,Kentucky,,https://www.tfrrs.org/results/81404/Commonwealth_College_Opener,,False,False,False,200.0,True,True
+78,2,Mary Grinaker Invitational,2023-12-02,2023-12-02,Northhampton,Massachusetts,,https://www.tfrrs.org/results/81808/Mary_Grinaker_Invitational,,False,False,False,200.0,False,True
+79,2,JDL Early Bird Invitational,2023-12-03,2023-12-03,Winston-Salem,North Carolina,,https://www.tfrrs.org/results/81271/JDL_Early_Bird_Invitational,,False,False,False,200.0,False,True
+80,2,GVSU Holiday Open,2023-12-08,2023-12-08,Allendale,Michigan,,https://tf.tfrrs.org/results/81412/GVSU_Holiday_Open,,False,False,False,300.0,False,True
+81,2,Indiana Early Bird,2023-12-08,2023-12-08,Bloomington,Indiana,,https://www.tfrrs.org/results/81597/Indiana_Early_Bird/,,False,False,False,200.0,True,True
+82,2,Fast Times at Lehigh,2023-12-09,2023-12-09,Bethlehem,Pennsylvania,,https://www.tfrrs.org/results/81839/,,False,False,False,200.0,False,True
+83,2,Joe Handelman Invitational,2023-12-09,2023-12-09,Princeton,New Jersey,,https://www.tfrrs.org/results/81654/Joe_Handelman_Invitational,,False,False,False,200.0,False,True
+84,2,Susquehanna Early Season Invitational,2023-12-09,2023-12-09,Selinsgrove,Pennsylvania,,https://www.tfrrs.org/results/81494/Susquehanna_Early_Season_Multi_and_Invite,,False,False,False,200.0,False,True
+85,2,UMass Boston Beacon Invitational,2023-12-10,2023-12-10,Boston,Massachusetts,,https://ma.milesplit.com/meets/584411-umass-boston-beacon-invitational-2024/results/990989/raw,,False,False,False,200.0,True,True
+86,2,GVSU Bob Eubanks Open,2024-01-13,2024-01-13,Allendale,Michigan,,https://www.tfrrs.org/results/81413/GVSU_Bob_Eubanks_Open,,False,False,False,300.0,False,True
+87,2,Mondo College Invitational,2024-01-13,2024-01-13,Winston-Salem,North Carolina,,https://live.jdlfasttrack.com/meets/26276,,False,False,False,200.0,False,True
+88,2,Southern Tier Invite,2024-01-13,2024-01-13,Ithaca,New York,,https://www.tfrrs.org/results/81814/Southern_Tier_Invite/,,False,False,False,200.0,False,True
+89,2,Virginia Tech Invitational,2024-01-13,2024-01-14,Blacksburg,Virginia,,https://flashresults.com/2024_Meets/Indoor/01-12_VTInvite/index.htm,,False,False,False,200.0,True,True
+90,2,Emory CrosShot Putlex Showdown,2024-01-14,2024-01-14,Birmingham,Alabama,,https://www.tfrrs.org/results/81376/Emory_Crossplex_Showdown_2024,,False,False,False,200.0,True,True
+46,1,Dashing Dukes Invitational,2023-10-07,2023-10-07,Elkton,Virginia,,https://va.milesplit.com/meets/578393-dashing-dukes-invitational-2023/results,,True,False,False,,False,True
+91,2,Bellarmine Open,2024-01-19,2024-01-19,Louisville,Kentucky,,https://www.tfrrs.org/results/82398/,,False,False,False,200.0,True,True
+92,2,Hokie Invitational,2024-01-19,2024-01-20,Blacksburg,Virginia,,https://flashresults.com/2024_Meets/Indoor/01-19_HokieInvite/index.htm,,False,False,False,200.0,True,True
+93,2,Indiana Invitational,2024-01-19,2024-01-20,Bloomington,Indiana,,https://in.milesplit.com/meets/590506-indiana-invitational-2024/results/993651/raw,,False,False,False,200.0,True,True
+94,2,Alvernia Winter Invite,2024-01-20,2024-01-20,Reading,Pennsylvania,,https://www.tfrrs.org/results/82449/Alvernia_Winter_Invite/,,False,False,False,200.0,False,True
+95,2,Collegeville Classic,2024-01-20,2024-01-20,Collegeville,Pennsylvania,,https://www.tfrrs.org/results/81381/2024_Collegeville_Classic,,False,False,False,200.0,False,True
+96,2,Dick Taylor Carolina Challenge,2024-01-20,2024-01-20,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/82478/Dick_Taylor_Carolina_Challenge,,False,False,False,200.0,False,True
+97,2,GVSU Mike Lints Alumni Meet,2024-01-20,2024-01-20,Allendale,Michigan,,https://milesplit.live/meets/589072,,False,False,False,300.0,False,True
+98,2,Jack Skoog Open,2024-01-20,2024-01-20,Lansing,Michigan,,https://www.tfrrs.org/results/82702/Jack_Skoog_Open/,,False,False,False,200.0,False,True
+99,2,Lake Michigan Open,2024-01-20,2024-01-20,Kenosha,Wisconsin,,https://www.tfrrs.org/results/81524/Lake_Michigan_Open,,False,False,False,200.0,False,True
+100,2,Shot PutIRE Midwest Invitational,2024-01-20,2024-01-20,Geneva,Ohio,,https://www.tfrrs.org/results/81391/SPIRE_Midwest_Invitational_2024/,,False,False,False,300.0,False,True
+101,2,Snow Bird Invite,2024-01-20,2024-01-20,Jacksonville,Illinois,,https://www.tfrrs.org/results/82557/Illinois_College_Snow_Bird_Invite,,False,False,False,200.0,False,True
+102,2,SVSU Doug Hansen Open,2024-01-20,2024-01-20,Saginaw,Michigan,,https://www.tfrrs.org/results/77003/SVSU_-_Doug_Hansen_Open/,,False,False,False,300.0,False,True
+103,2,Washburn Rust Buster,2024-01-20,2024-01-20,Topeka,Kansas,,https://www.tfrrs.org/results/83141/Washburn_Rust_Buster,,False,False,False,200.0,True,True
+104,2,Greater Boston Track Club Invitational,2024-01-21,2024-01-21,Cambridge,Massachusetts,,https://www.tfrrs.org/results/81893/2024_Greater_Boston_Track_Club_Invitational_(GBTC)/,,False,False,False,200.0,True,True
+105,2,JDL Flat is Fast Invitational,2024-01-21,2024-01-21,Winston-Salem,North Carolina,,https://www.tfrrs.org/results/81276/JDL_Flat_Is_Fast_Invitational/,,False,False,False,200.0,False,True
+106,2,Blue Demon Alumni Classic,2024-01-26,2024-01-27,Chicago,Illinois,,https://www.tfrrs.org/results/81732/5019248/2024_Blue_Demon_Alumni_Classic,,False,False,False,200.0,True,True
+107,2,GVSU Bill Clinger Classic,2024-01-26,2024-01-21,Allendale,Michigan,,https://www.tfrrs.org/results/81415/GVSU_Bill_Clinger_Classic,,False,False,False,300.0,False,True
+108,2,Riverhawk Invitational,2024-01-26,2024-01-27,Boston,Massachusetts,,https://www.tfrrs.org/results/81454/2024_Riverhawk_Invitational/,,False,False,False,200.0,False,True
+109,2,SVSU Jet's Pizza Invitational,2024-01-26,2024-01-27,Saginaw,Michigan,,https://www.tfrrs.org/results/83269/Jets_Pizza_Invitational,,False,False,False,300.0,False,True
+110,2,Terrier Classic,2024-01-26,2024-01-27,Boston,Massachusetts,,https://goterriers.com/documents/2024/1/26/terrier-m.pdf,,False,False,False,200.0,True,True
+111,2,Warren Bowlus Open,2024-01-26,2024-01-27,Mennomenie,Wisconsin,,https://www.tfrrs.org/results/82961/Warren_Bowlus_Open__Multi,,False,False,False,200.0,False,True
+112,2,Grinnell Invitational,2024-01-27,2024-01-27,Grinnel,Iowa,,https://www.tfrrs.org/results/82836/Grinnell_Invitational,,False,False,False,200.0,False,True
+113,2,Jim Wuske Invitational,2024-01-27,2024-01-27,Allaince,Ohio,,https://oh.milesplit.com/meets/591952-jim-wuske-invite-2024/results,,False,False,False,200.0,False,True
+114,2,Muskie Meet #3,2024-01-27,2024-01-27,New Concord,Ohio,,https://www.tfrrs.org/results/81310/Muskie_Meet_3,,False,False,False,200.0,False,True
+115,2,Trojan Invite,2024-01-27,2024-01-27,Upland,Indiana,,https://tfrrs.org/results/82007,,False,False,False,200.0,False,True
+116,2,Wittenberg Steemer Showcase,2024-01-27,2024-01-27,Springfield,Ohio,,https://www.tfrrs.org/results/82682/5020505/Wittenberg_Steemer_Showcase/Mens-800-Meters,,False,False,False,300.0,False,True
+117,2,Cedarville Collegiate Indoor Invite,2024-02-02,2024-02-02,Cedarville,Ohio,,https://www.tfrrs.org/results/81510/Cedarville_Collegiate_Indoor_Invite,,False,False,False,200.0,False,True
+118,2,Grand Rapids Shot Putorts Hall of Fame Classic,2024-02-02,2024-02-02,Grand Rapids,Michigan,,https://www.tfrrs.org/results/82594/Grand_Rapids_Sports_Hall_of_Fame_Classic,,False,False,False,200.0,False,True
+119,2,Lewis Invite,2024-02-02,2024-02-02,Chicago,Illinois,,https://tf.tfrrs.org/results/82521/Lewis_Invitational,,False,False,False,200.0,True,True
+120,2,Meyo Invitational,2024-02-02,2024-02-03,Notre Dame,Indiana,,https://live.enduranceracetiming.com/meets/30071,,False,False,False,320.0,False,True
+121,2,Scarlet Knight Open,2024-02-02,2024-02-03,New York,New York,,https://www.tfrrs.org/results/81587/Scarlet_Knight_Open,,False,False,False,200.0,True,True
+122,2,YSU Mid Major Invitational,2024-02-02,2024-02-02,Youngstown,Ohio,,https://ysusports.com/documents/2024/2/3/2024_mid_major_complete_results.pdf,,False,False,False,300.0,False,True
+123,2,Big Dawg Invite,2024-02-03,2024-02-03,Stevens Point,Wisconsin,,https://www.tfrrs.org/results/82415/Big_Dawg_Invite/,,False,False,False,200.0,False,True
+124,2,Blue-White Classic,2024-02-03,2024-02-03,Terre Haute,Indiana,,https://www.tfrrs.org/results/81868/m/Blue-White_Classic,,False,False,False,200.0,False,True
+125,2,Cal All Comers #1,2024-02-03,2024-02-03,Beverly,California,,https://ca.milesplit.com/meets/591929-cal-all-comers-1-2024/results/995365/raw,,False,False,False,,False,True
+126,2,Camel City Invitational,2024-02-03,2024-02-04,Winston-Salem,North Carolina,,https://live.jdlfasttrack.com/meets/26283,,False,False,False,200.0,False,True
+127,2,Gopher Classic,2024-02-03,2024-02-03,Minneapolis,Minnesota,,https://www.tfrrs.org/results/82183/Gopher_Classic,,False,False,False,200.0,False,True
+128,2,IWU Midwest Classic,2024-02-03,2024-02-03,Marion,Indiana,,https://www.tfrrs.org/results/82611/IWU_Midwest_Classic,,False,False,False,200.0,False,True
+129,2,Jim Green Invite,2024-02-03,2024-02-03,Jacksonville,Illinois,,https://tf.tfrrs.org/results/83193/Illinois_College_Jim_Green_Invite,,False,False,False,200.0,False,True
+130,2,Liberty Open,2024-02-03,2024-02-03,Lynchburg,Virginia,,https://www.tfrrs.org/results/81334/2024_Liberty_Open,,False,False,False,200.0,True,True
+131,2,Luther Invitational,2024-02-03,2024-02-03,Decorah,Iowa,,https://www.tfrrs.org/results/82841/Luther_Invitational/,,False,False,False,200.0,False,True
+132,2,YSU Mid Major Invitational,2024-02-03,2024-02-03,Youngstown,Ohio,,https://ysusports.com/documents/2024/2/3/2024_mid_major_complete_results.pdf,,False,False,False,300.0,False,True
+133,2,JDL College Team Challenge,2024-02-08,2024-02-08,Winston-Salem,North Carolina,,https://live.jdlfasttrack.com/meets/26288,,False,False,False,200.0,False,True
+134,2,Centre Indoor Invitational,2024-02-09,2024-02-10,Danville,Kentucky,,https://www.tfrrs.org/results/83410/Centre_Indoor_Invitational__Multis,,False,False,False,200.0,False,True
+135,2,Clemson Tiger Paw Invite,2024-02-09,2024-02-10,Clemson,South Carolina,,https://flashresults.com/2024_Meets/Indoor/02-09_ClemsonTigerPaw/index.htm,,False,False,False,200.0,True,True
+136,2,OWU Open,2024-02-09,2024-02-09,Delaware,Ohio,,https://www.tfrrs.org/results/82556/OWU_Open_2024/,,False,False,False,200.0,False,True
+137,2,Big Apple Invitational,2024-02-10,2024-02-10,Staten Island,New York,,https://www.tfrrs.org/results/82142/2024_Big_Apple_Invitational,,False,False,False,200.0,True,True
+138,2,Cal All Comers #2,2024-02-10,2024-02-10,Los Angeles,California,,https://ca.milesplit.com/meets/589542-ucla-all-comers-meet-2024/info,,False,False,False,,False,True
+139,2,CSB/SJU Invitational,2024-02-10,2024-02-10,Collegeville,Minnesota,,https://www.tfrrs.org/results/83270/CSB__SJU_Invitational/,,False,False,False,200.0,False,True
+140,2,DePauw Indoor Invitational,2024-02-10,2024-02-10,Greencastle,Indiana,,https://www.tfrrs.org/results/82191/DePauw_Indoor_Invitational/,,False,False,False,200.0,False,True
+141,2,Gordon Kelly Invitational,2024-02-10,2024-02-10,Cambridge,Massachusetts,,https://www.tfrrs.org/results/83075/Gordon_Kelly_Invitational,,False,False,False,200.0,False,True
+142,2,GVSU Big Meet (Saturday),2024-02-10,2024-02-10,Allendale,Michigan,,https://www.tfrrs.org/results/81419/GVSU_Big_Meet_Saturday,,False,False,False,300.0,False,True
+143,2,Happy Valley Invitational,2024-02-10,2024-02-10,State College,Pennsylvania,,http://results.tfmeetpro.com/Nittany_Track_and_Field/Happy_Valley_Invitational_2024/,,True,False,False,200.0,True,True
+144,2,IWU Titan Indoor Open,2024-02-10,2024-02-10,Bloomington,Illinois,,https://www.tfrrs.org/results/83039/IWU_Titan_Indoor_Open,,False,False,False,200.0,False,True
+145,2,SAU Tune Up,2024-02-10,2024-02-10,Davenport,Iowa,,https://www.tfrrs.org/results/82107/SAU_Tune_Up,,False,False,False,200.0,False,True
+146,2,SPIRE Collegiate Indoor Games,2024-02-10,2024-02-10,Geneva,Ohio,,https://www.tfrrs.org/results/81394/SPIRE_Indoor_Games_2024,,False,False,False,300.0,False,True
+147,2,URI Coaches Invitational,2024-02-10,2024-02-10,Kingston,Rhode Island,,https://www.tfrrs.org/results/81437/URI_Coaches_Invitational,,False,False,False,200.0,False,True
+148,2,SMAC All Comers,2024-02-11,2024-02-11,Northhampton,Massachusetts,,https://www.tfrrs.org/results/81955/SMAC_Winter_Indoor_Meet_2024_-_ADULTS,,False,False,False,200.0,False,True
+149,2,Garden State Collegiate Open,2024-02-16,2024-02-16,Staten Island,New York,,https://www.tfrrs.org/results/81572/Garden_State_Collegiate_Open,,False,False,False,200.0,True,True
+150,2,GVSU Tune-up,2024-02-16,2024-02-16,Allendale,Michigan,,https://www.tfrrs.org/results/81416/GVSU_Tune-Up,,False,False,False,300.0,False,True
+151,2,Penn State Tune-Up,2024-02-16,2024-02-16,University Park,Pennsylvania,,https://www.tfrrs.org/results/83810/Penn_State_Tune-Up,,False,False,False,200.0,True,True
+152,2,Silverston Invitational,2024-02-16,2024-02-16,Ann Arbor,Michigan,,https://www.tfrrs.org/results/83106/Silverston_Invitational_2024,,False,False,False,200.0,True,True
+153,2,Snowshoe Open,2024-02-16,2024-02-16,Minneapolis,Minnesota,,https://www.tfrrs.org/results/82184/Snowshoe_Open/,,False,False,False,200.0,False,True
+154,2,SVSU Tune Up,2024-02-16,2024-02-16,University Center,Michigan,,https://mi.milesplit.com/meets/586349-svsu-tune-up-2024/results/997007/raw,,False,False,False,300.0,False,True
+155,2,Virginia Tech Challenge,2024-02-16,2024-02-17,Blacksburg,Virginia,,https://flashresults.com/2024_Meets/Indoor/02-16_VTChallenge/index.htm,,False,False,False,200.0,True,True
+156,2,Alex Wilson Invitational,2024-02-17,2024-02-17,Notre Dame,Indiana,,https://live.enduranceracetiming.com/meets/30373,,False,False,False,320.0,False,True
+157,2,Capital OAC Tune-Up,2024-02-17,2024-02-17,Columbus,Ohio,,https://www.tfrrs.org/results/81447/Capital_OAC_Tune_Up,,False,False,False,200.0,False,True
+1032,2,Luther Invitational,2025-02-08,2025-02-08,Decorah,Iowa,,https://www.tfrrs.org/results/88693/Luther_Invitational,,False,False,False,200.0,False,True
+159,2,JDL Last Chance,2024-02-17,2024-02-17,Winston-Salem,North Carolina,,https://live.jdlfasttrack.com/meets/26289,,False,False,False,200.0,False,True
+160,2,Marc Denault Invitational,2024-02-17,2024-02-17,Ithaca,New York,,https://ny.milesplit.com/meets/587485-cornell-marc-deneault-invitational-2024/results,,False,False,False,200.0,False,True
+161,2,Margaret Bradley Invitational,2024-02-17,2024-02-17,Chicago,Illinois,,https://ny.milesplit.com/meets/587485-cornell-marc-deneault-invitational-2024/results,,False,False,False,200.0,False,True
+162,2,Panther Tune-Up,2024-02-17,2024-02-17,Milwaukee,Wiaconsin,,https://www.tfrrs.org/results/83346/PANTHER_TUNE-UP,,False,False,False,200.0,False,True
+163,3,Pomona-Pitzer All Comers,2024-02-17,2024-02-17,Claremont,California,,https://ca.milesplit.com/meets/595446-2024-pomona-pitzer-all-comers-meet-2024/results/997478,,False,False,False,,False,True
+164,2,Wittenberg Collegiate Invite,2024-02-17,2024-02-17,Springfield,Ohio,,https://finishtiming.trackscoreboard.com/meets/562498/events,,False,False,False,300.0,False,True
+165,2,Princeton Indoor Invitational,2024-02-18,2024-02-18,Princeton,New Jersey,,https://nj.milesplit.com/meets/586360-princeton-indoor-invitational-2024/results,,False,False,False,200.0,False,True
+166,2,USATF NE Indoor T&F Championship,2024-02-18,2024-02-18,Cambridge,Massachusetts,,https://newengland.usatf.org/USATF-New-England/media/USATF-New-England/2024%20results%20and%20information%20files/2024-USATF-NE-Indoor-Champs-Results-2col-prelim.pdf,,False,False,False,200.0,False,True
+167,2,Polar Track Classic,2024-02-23,2024-02-23,Knoxville,Tennessee,,https://d368g9lw5ileu7.cloudfront.net/races/results_8dddz5higmbzmsbknhoqaknmmlfk.pdf,,False,False,False,,False,True
+168,2,Capital Relays,2024-02-24,2024-02-24,Washington,DC,,https://docs.google.com/spreadsheets/d/1VF9-zPu8ZXDkIfNexqtY7aVOegF_GBKR8diG-TTEZ4I/edit?usp=sharing,,True,False,False,,False,True
+169,2,Illinois Club Relays,2024-02-24,2024-02-24,Champaign,Illinois,,https://results.shazamracing.com/meets/30575,,True,False,False,200.0,False,True
+170,2,Billy Brockmueller Invitational,2024-02-25,2024-02-25,Providence,Rhode Island,,https://www.directathletics.com/results/track/82728.html,,True,False,False,,False,True
+171,2,CNU Qualifier & Combined Events,2024-02-25,2024-02-26,Newport News,Viriginia,,https://drive.google.com/file/d/1MOEoq-0qm0yDXUzj8TkiwoAD_E_g16X-/view,,False,False,False,200.0,False,True
+172,3,Stanislaus Kim Duyst Invitational,2024-03-01,2024-03-02,Turlock,California,,https://www.tfrrs.org/results/82739/Kim_Duyst_Invitational_2024,,False,False,False,,False,True
+173,3,The Shot Putartan Classic,2024-03-01,2024-03-01,Tampa,Florida,,https://www.tfrrs.org/results/82573/m/The_Spartan_Classic,,False,False,False,,False,True
+174,3,UNCW Seahawk Invitational,2024-03-01,2024-03-02,Wilmington,North Carolina,,https://www.tfrrs.org/results/81729,,False,False,False,,False,True
+175,3,Berry Victor Ice-Breaker,2024-03-02,2024-03-02,Mount Berry,Georgia,,https://results.ptgrouponline.com/meets/29834,,False,False,False,,False,True
+176,3,Lloyd Sigler Shot Putring Meet,2024-03-02,2024-03-02,Salisbury,Maryland,,https://milesplit.live/meets/586755/scoreboard,,False,False,False,,False,True
+177,2,Harvard Running Club Indoor Invitational,2024-03-03,2024-03-03,Boston,Massachusetts,,https://live.sstresults.com/meets/31121/events,,True,False,False,200.0,True,True
+178,3,Aggie Open,2024-03-08,2024-03-09,Davis,California,,https://www.tfrrs.org/results/83777/Aggie_Open_2024,,False,False,False,,False,True
+179,3,LCC Open,2024-03-09,2024-03-09,Eugen,Oregon,,https://www.tfrrs.org/results/83658/LCC_Open_2024,,False,False,False,,False,True
+180,3,Occidental DC & SBC,2024-03-09,2024-03-09,Los Angeles,California,,https://www.tfrrs.org/results/82296/2024_Occidental_DC__SBC,,False,False,False,,False,True
+181,3,Charlotte 49er Classic,2024-03-14,2024-03-16,Charlotte,North Carolina,,https://flashresults.com/2024_Meets/Outdoor/03-14_49erClassic/index.htm,,False,False,False,,False,True
+182,3,Charleston Southern Invitational,2024-03-15,2024-03-15,Charleston,South Carolina,,http://results.tfmeetpro.com/TimingInccom/2024_Charleston_Southern_Invitational/results_1.html#round_1,,False,False,False,,False,True
+313,1,Hokie Invitational,2022-10-15,2022-10-15,Blacksburg,Virginia,,http://results.tfmeetpro.com/SnapTiming/Hokie_Invitational_101522/,,True,False,False,,False,True
+183,3,Bethany Invitational,2024-03-16,2024-03-16,Bethany,West Virginia,,https://www.tfrrs.org/results/84677/Bethany_Invitational,,False,False,False,,False,True
+184,3,Bulldog Invitational,2024-03-16,2024-03-16,San Mateo,California,,https://www.tfrrs.org/results/84129/Bulldog_Invitational,,False,False,False,,False,True
+185,3,CMU Open,2024-03-16,2024-03-16,Fayette,Missouri,,https://www.tfrrs.org/results/84672/2024_CMU_Open,,False,False,False,,False,True
+186,3,Hokie Track Invitational,2024-03-16,2024-03-16,Blacksburg,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/Hokie_Track_Invitational_31624/index.html,,True,False,False,,False,True
+187,3,LR Bears Open,2024-03-16,2024-03-16,Hickory,North Carolina,,https://www.tfrrs.org/results/84684/LR_Bears_Open,,False,False,False,,False,True
+188,3,Towson Shot Putring Opener,2024-03-16,2024-03-16,Towsand,Maryland,,https://www.tfrrs.org/results/81431/2024_Towson_Spring_Opener,,False,False,False,,False,True
+189,3,Yellow Jacket Invitational,2024-03-16,2024-03-16,Atlanta,Georgia,,https://www.tfrrs.org/results/84666/m/Yellow_Jacket_Invitational,,False,False,False,,False,True
+190,3,Amy Adams Invitational,2024-03-22,2024-03-23,New Concord,Ohio,,https://www.tfrrs.org/results/81312/Amy_Adams_Memorial,,False,False,False,,False,True
+191,3,Bob Larsen Distance Carnival,2024-03-22,2024-03-23,Los Angeles,California,,https://www.tfrrs.org/results/84395/Bob_Larsen_Distance_Carnival,,False,False,False,,False,True
+192,3,Doc Jopson Track & Field Invitational,2024-03-22,2024-03-23,Bridgewater,Virginia,,https://www.tfrrs.org/results/81513/Doc_Jopson_Track__Field_Invitational,,False,False,False,,False,True
+193,3,Dr. Jack Toms Alumni Invitational,2024-03-22,2024-03-23,Lynchburg,Virginia,,https://www.tfrrs.org/results/82086/Dr_Jack_M_Toms_Alumni_Invitational,,False,False,False,,False,True
+194,3,Fred Hardy Invitational,2024-03-22,2024-03-22,Richmond,Virginia,,https://atlantic.anet.live/meets/31985,,False,False,False,,False,True
+195,3,IWU Polar Bear Invitational,2024-03-22,2024-03-23,Marion,Indiana,,https://www.tfrrs.org/results/82709,,False,False,False,,False,True
+196,3,Lee University Invitational,2024-03-22,2024-03-23,Cleveland,Tennessee,,https://www.tfrrs.org/results/82933,,False,False,False,,False,True
+197,3,Maryland Invitational,2024-03-22,2024-03-23,College Park,Maryland,,https://www.tfrrs.org/results/83887,,False,False,False,,False,True
+198,3,Miner Invitational,2024-03-22,2024-03-23,Rolla,Missouri,,https://www.tfrrs.org/results/84107/Miner_Invitational,,False,False,False,,False,True
+199,3,Phoenix Invitational,2024-03-22,2024-03-22,Elon,North Carolina,,https://www.tfrrs.org/results/81328/Phoenix_Invitational_2024,,False,False,False,,False,True
+200,3,Stan Romanoski Open,2024-03-22,2024-03-23,Morgantown,West Virginia,,https://www.tfrrs.org/results/82951/,,False,False,False,,False,True
+201,3,UCF Knights Invite,2024-03-22,2024-03-23,Orlando,Florida,,https://www.tfrrs.org/results/81665/,,False,False,False,,False,True
+202,3,Dashing Dukes Track Meet,2024-03-23,2024-03-23,Harrisonburg,Virginia,,https://www.runroanoke.com/EventFiles/Results/2024/jmuresults_20240323124144643.pdf,,True,False,False,,False,True
+203,2,ISU Cyclone Invite,2024-03-23,2024-03-23,Ames,Iowa,,https://results.aatiming.com/meets/30989,,False,False,False,300.0,False,True
+204,3,Oregon Preview,2024-03-23,2024-03-24,Eugene,Oregon,,https://www.tfrrs.org/results/83408/Oregon_Preview,,False,False,False,,False,True
+205,3,Peyton-Shotwell Invitational,2024-03-23,2024-03-23,Tacoma,Washington,,https://www.tfrrs.org/results/82874/Peyton-Shotwell_Invitational_2024,,False,False,False,,False,True
+206,3,Purple and Gold Invitational,2024-03-23,2024-03-23,West Chester,Pennsylvania,,https://www.tfrrs.org/results/81899/,,False,False,False,,False,True
+207,3,Stan Romanoski Open,2024-03-23,2024-03-23,Morgantown,West Virginia,,https://www.tfrrs.org/results/82951/Stan_Romanoski_Open,,False,False,False,,False,True
+208,3,UCF Knights Invite,2024-03-23,2024-03-23,Orlando,Flordia,,https://www.tfrrs.org/results/81665/UCF_Knights_Invite,,False,False,False,,False,True
+209,3,UGA Bulldog Invite,2024-03-23,2024-03-23,Athens,Georgia,,https://docs.google.com/spreadsheets/d/1OBjhKBf1-HSKL8NNogjiaOl9I6dP3MR8rDlEPUYvjcQ/edit#gid=1750859364,,True,False,False,,False,True
+210,3,Husky Invite,2024-03-24,2024-03-24,Dedham,Massachusetts,,https://live.sstresults.com/meets/31988,,True,False,False,,False,True
+211,3,Mountaineer Open,2024-03-24,2024-03-24,Berea,Kentucky,,https://live.kingtiming.com/meets/606281/,,False,False,False,,False,True
+212,3,Danny Curran Invite,2024-03-29,2024-03-30,Chester,Pennsylvania,,https://live.pioneertiming.com/meets/32786,,False,False,False,,False,True
+213,3,WashU Distance Carnival,2024-03-29,2024-03-29,St. Louis,Missouri,,https://www.tfrrs.org/results/84315,,False,False,False,,False,True
+214,3,Cavalier Invitational,2024-03-30,2024-03-30,Charlottesville,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/Cavalier_Invitational_33024/index.html,,False,False,False,,False,True
+215,3,Centre College Invitational,2024-03-30,2024-03-30,Danville,Kentucky,,https://www.tfrrs.org/results/84391/,,False,False,False,,False,True
+216,3,Eastern Illinois Big Blue,2024-03-30,2024-03-30,Charleston,Illinois,,https://www.tfrrs.org/results/82842,,False,False,False,,False,True
+217,3,Florida Running Club Invitational,2024-03-30,2024-03-30,Gainesville,Florida,,https://www.directathletics.com/results/track/83846.html,,True,False,False,,False,True
+218,3,Lafayette Open,2024-03-30,2024-03-30,Easton,Pennsylvania,,https://www.tfrrs.org/results/84436/,,False,False,False,,False,True
+219,3,Livingstone Blue Bear Invitational,2024-03-30,2024-03-30,Salisbury,North Carolina,,https://www.tfrrs.org/results/82614/,,False,False,False,,False,True
+220,3,Snowflake Classic,2024-03-30,2024-03-30,Medford,Massachusetts,,https://www.tfrrs.org/results/84462,,False,False,False,,False,True
+221,3,Tiffelberg Open,2024-03-30,2024-03-30,Tiffin,Ohio,,https://www.tfrrs.org/results/84402/,,False,False,False,,False,True
+222,3,UCONN Dog Fight,2024-03-30,2024-03-30,Storrs,Connecticut,,https://www.tfrrs.org/results/84323/,,False,False,False,,False,True
+223,3,Yellow Jacket Outdoor Open,2024-03-30,2024-03-30,Cedarville,Ohio,,https://www.tfrrs.org/results/81512,,False,False,False,,False,True
+1011,2,PNC Lenny Lyles Invite,2025-01-31,2025-01-31,Louisville,KY,,https://live.dcracetiming.com/meets/43158/events/individual/1580185,,False,False,False,200.0,True,True
+225,3,George Glass Invite,2024-04-06,2024-04-06,Upland,Indiana,,https://www.tfrrs.org/results/84583/George_Glass_Invitational,,False,False,False,,False,True
+226,3,Lincoln University,2024-04-06,2024-04-06,Jefferson City,Missouri,,https://www.tfrrs.org/results/82635/Lincoln_University,,False,False,False,,False,True
+1033,2,Gopher Invitational,2025-02-08,2025-02-08,Minneapolis,Minnesota,,https://www.tfrrs.org/results/87777/f/Gopher_Classic?team_hnd=81386,,False,False,False,200.0,False,True
+228,3,Norse Invite,2024-04-06,2024-04-06,Decorah,Iowa,,https://www.tfrrs.org/results/84714/Norse_Invite,,False,False,False,,False,True
+229,3,Pomona-Pitzer T&F Invite,2024-04-06,2024-04-06,Claremont,California,,https://www.tfrrs.org/results/84447/2024_Pomona-Pitzer_TF_Invite,,False,False,False,,False,True
+230,3,Viking Olympics,2024-04-06,2024-04-06,Rock Island,Illinois,,https://www.tfrrs.org/results/84843/Viking_Olympics,,False,False,False,,False,True
+231,3,Duke Invitational,2024-04-11,2024-04-13,Durham,North Carolina,,https://www.tfrrs.org/results/83849/Chippewa_Challenge,,False,False,False,,False,True
+232,3,Berry Field Day Invitational,2024-04-12,2024-04-13,Mount Berry,Georgia,,https://www.tfrrs.org/results/81408/,,False,False,False,,False,True
+233,3,Jack Shaw Invitational,2024-04-12,2024-04-13,Kalamazoo,Michigan,,https://www.tfrrs.org/results/84281/Jack_Shaw_Invitational,,False,False,False,,False,True
+234,3,LC Larry Byerly Invite,2024-04-12,2024-04-13,Portland,Oregon,,https://www.tfrrs.org/results/84153/,,False,False,False,,False,True
+235,3,Maryville Scots Invitational,2024-04-12,2024-04-13,Maryville,Tennessee,,https://www.tfrrs.org/results/81456/Maryville_Scots_Invitational,,False,False,False,,False,True
+236,3,Mustang Distance Carnival,2024-04-12,2024-04-13,Cedar Rapids,Iowa,,https://tfrrs.org/results/84662/Mustang_Distance_Carnival__Open,,False,False,False,,False,True
+237,3,River Hawk Invite,2024-04-12,2024-04-13,Selinsgrove,Pennsylvania,,https://www.tfrrs.org/results/84809/2024_River_Hawk_Invite,,False,False,False,,False,True
+238,3,The Trojan Relays,2024-04-12,2024-04-13,Mount Olive,North Carolina,,https://www.tfrrs.org/results/81330/The_Trojan_Relays_24,,False,False,False,,False,True
+239,3,UCM Mule Relays,2024-04-12,2024-04-12,Warrensburg,Missouri,,https://www.tfrrs.org/results/84543/Un_of_Central_Missouri_Mule_Relays,,False,False,False,,False,True
+240,3,UW-Platteville Invitational,2024-04-12,2024-04-12,Platteville,Wisconsin,,https://milesplit.live/meets/608619/events,,False,False,False,,False,True
+242,3,Bethel Invitational,2024-04-13,2024-04-13,St. Paul,Minnesota,,https://www.tfrrs.org/results/82435/Bethel_Invitational,,False,False,False,,False,True
+243,3,Bill Butler Invitational,2024-04-13,2024-04-13,West Chester,Pennsylvania,,https://www.tfrrs.org/results/81902/Bill_Butler_Invitational,,False,False,False,,False,True
+244,3,Calvin Invite,2024-04-13,2024-04-13,Grand Rapids,Michigan,,https://www.tfrrs.org/results/82926/Calvin_Invite,,False,False,False,,False,True
+245,3,Cherry Blossom Invitational,2024-04-13,2024-04-13,Athens,Ohio,,https://www.tfrrs.org/results/83154/Cherry_Blossom_Invitational,,False,False,False,,False,True
+246,3,Chippewa Challenge,2024-04-13,2024-04-13,Mount Pleasant,Michigan,,https://www.tfrrs.org/results/83849/Chippewa_Challenge,,False,False,False,,False,True
+247,3,Don Kleinow Memorial Invitational,2024-04-18,2024-04-19,Adrian,Michigan,,https://www.athletic.net/TrackAndField/meet/555802/results/all,,False,False,False,,False,True
+248,3,Gibson Invitational,2024-04-18,2024-04-20,Terre Haute,Indiana,,https://live.timingmd.net/meets/34962,,False,False,False,,False,True
+249,3,GVSU AI Owens Classic,2024-04-19,2024-04-20,Allendale,Michigan,,https://www.tfrrs.org/results/81420/GVSU_Al_Owens_Classic,,False,False,False,,False,True
+250,3,Jesse Owens Classic,2024-04-19,2024-04-20,Columbus,Ohio,,https://denisonbigred.com/documents/2024/4/21/jesse_owens_classic_complete_results.pdf,,False,False,False,,False,True
+251,3,Mountaineer Twilight,2024-04-19,2024-04-20,Morgantown,West Virginia,,https://www.tfrrs.org/results/82952/Mountaineer_Twilight,,False,False,False,,False,True
+252,3,Otterbein Twilight,2024-04-19,2024-04-19,Westerville,Ohio,,https://www.tfrrs.org/results/86253/Otterbein_Twilight,,False,False,False,,False,True
+253,3,Wildcat Invitational,2024-04-19,2024-04-20,Lynchburg,Virginia,,https://snapresults.snaptiming.com/meets/34932,,False,False,False,,False,True
+254,3,Eastern Edmondson Classic,2024-04-20,2024-04-20,Willimantic,Connecticut,,https://www.tfrrs.org/results/85423/Eastern_Edmondson_Classic,,False,False,False,,False,True
+255,3,Elaine Lehigh Invite,2024-04-20,2024-04-20,Rochester,Michigan,,https://www.tfrrs.org/results/85728/Elaine_Leigh_TF_Invite,,False,False,False,,False,True
+256,3,Hammer Down Invite,2024-04-20,2024-04-20,West Lafayette,Indiana,,https://in.milesplit.com/meets/616704-hammer-down-invitational-2024/results,,False,False,False,,False,True
+257,3,Holst Invitational,2024-04-20,2024-04-20,St. Paul,Minnesota,,https://www.tfrrs.org/results/84792/Holst_Invitational,,False,False,False,,False,True
+258,3,Mason-Dixon Invitational,2024-04-20,2024-04-20,Gettysburg,Pennsylvania,,https://www.tfrrs.org/results/84992/Mason-Dixon_Track__Field_Invitational,,False,False,False,,False,True
+259,3,Terrapin Invitational,2024-04-20,2024-04-20,Landover,Maryland,,https://www.athletic.net/TrackAndField/meet/549629/register,,True,False,False,,False,True
+260,3,UB Alumni Classic,2024-04-20,2024-04-20,Getzville,New York,,https://results.leonetiming.com/?mid=7168,,False,False,False,,False,True
+261,3,Bruno's Backyard Classic,2024-04-21,2024-04-21,Providence,Rhode Island,,https://www.tfrrs.org/results/82729/Bruno%27s_Backyard_Classic_2024/,,False,False,False,,False,True
+262,3,Catamount Classic,2024-04-21,2024-04-21,Cullowhee,North Carolina,,https://snapresults.snaptiming.com/meets/34905,,False,False,False,,False,True
+263,3,DeBacker Invitational,2024-04-21,2024-04-21,Cedar Rapids,Iowa,,https://tf.tfrrs.org/results/84663/DeBacker_Invitational,,False,False,False,,False,True
+264,3,Dewey Allgood Invitational,2024-04-21,2024-04-21,Rolla,Missouri,,https://www.tfrrs.org/results/85311/Dewey_Allgood,,False,False,False,,False,True
+266,3,Drake Relays,2024-04-24,2024-04-27,Des Moines,Iowa,,https://www.tfrrs.org/results/84215/114th_Drake_Relays,,False,False,False,,False,True
+267,3,GVSU Extra Weekend Meet,2024-04-25,2024-04-25,Allendale,Michigan,,https://www.milesplit.live/meets/616740,,False,False,False,,False,True
+268,3,Janis Rider/Doug Bolstorff Invitational,2024-04-25,2024-04-27,Saint Paul,Minnesota,,https://results.wayzatatiming.com/meets/35794,,False,False,False,,False,True
+269,3,Kip Janvrin Open,2024-04-25,2024-04-26,Indianola,Iowa,,https://results.blacksquirreltiming.com/meets/35456,,False,False,False,,False,True
+270,3,UW-Whitewater Drake Alternative,2024-04-25,2024-04-25,Whitewater,Wisconsin,,https://www.athletic.net/TrackAndField/meet/557868/results/all,,False,False,False,,False,True
+271,3,App State Open,2024-04-26,2024-04-27,Boone,North Carolina,,http://live.bigkahunatiming.com/meets/618296/events,,False,False,False,,False,True
+272,3,James Barber Invitational,2024-04-26,2024-04-27,New Haven,Connecticut,,https://www.tfrrs.org/results/84484/James_Barber_Invitational,,False,False,False,,False,True
+273,3,ONU Outdoor Invitational,2024-04-26,2024-04-27,Bourbonnais,Illinois,,https://www.tfrrs.org/results/81476/ONU_Outdoor_Invitational_2024,,False,False,False,,False,True
+274,3,Oregon State High Performance,2024-04-26,2024-04-27,Corvallis,Oregon,,https://www.tfrrs.org/results/83094/Oregon_State_High_Performance,,False,False,False,,False,True
+275,3,Ashland Alumni Open,2024-04-27,2024-04-27,Ashland,Ohio,,https://www.tfrrs.org/results/79968/Ashland_Alumni_Open,,False,False,False,,False,True
+276,3,Carol and John Covert Classic,2024-04-27,2024-04-27,Bethlehem,Pennsylvania,,https://www.tfrrs.org/results/73045/Carol_and_John_Covert_Classic,,False,False,False,,False,True
+277,3,Cole Piper Open,2024-04-27,2024-04-27,Maryville,Tennessee,,https://tfrrs.org/results/86032/Cole_Piper_Open,,False,False,False,,False,True
+278,3,Paul Kaiser Classic,2024-04-27,2024-04-27,Shippensburg,Pennsylvania,,https://www.tfrrs.org/results/78829/Paul_Kaiser_Classic,,False,False,False,,False,True
+279,3,Liberty Twilight,2024-05-01,2024-05-01,Lynchburg,Virginia,,https://www.tfrrs.org/results/81336/5256195/2024_Liberty_Twilight_Qualifier/Mens-800-Meters,,False,False,False,,False,True
+280,3,Badger Challenge,2024-05-03,2024-05-03,Madison,Wisconsin,,https://www.tfrrs.org/results/86822/Badger_Challenge,,False,False,False,,False,True
+281,3,Battle in the Bluffs,2024-05-03,2024-05-03,Dubuque,Iowa,,https://tfrrs.org/results/86438/2024_Battle_in_the_Bluffs,,False,False,False,,False,True
+282,3,Billy Hayes Invitational,2024-05-03,2024-05-03,Bloomington,Indiana,,https://live.deltatiming.com/meets/36892,,False,False,False,,False,True
+283,3,Jim Thorpe Invitational,2024-05-03,2024-05-03,University Park,Pennsylvania,,https://www.tfrrs.org/results/86820/Jim_Thorpe_Invitational,,False,False,False,,False,True
+1034,2,Crimson Open,2025-02-08,2025-02-08,Cambridge,Massachusetts,,https://www.tfrrs.org/results/87570/Crimson_Open,,False,False,False,200.0,True,True
+241,3,Beloit Relays,2024-04-13,2024-04-13,Beloit,Wisconsin,,https://milesplit.live/meets/613983,,False,False,False,,False,True
+284,3,Kehoe Twilight Meet,2024-05-03,2024-05-03,College Park,Maryland,,https://results.mdtimingllc.com/meets/31272,,False,False,False,,False,True
+285,3,Meet of the UnSaintly,2024-05-03,2024-05-03,St. Paul,Minnesota,,https://results.wayzatatiming.com/meets/36858,,False,False,False,,False,True
+286,3,Oxy Invitational,2024-05-04,2024-05-04,Los Angeles,California,,https://oxyathletics.com/documents/2024/5/5/Results.pdf,,False,False,False,,False,True
+287,3,WVU Last Chance,2024-05-04,2024-05-04,Morgantown,West Virginia,,https://www.tfrrs.org/results/69090/WVU_Last_Chance,,False,False,False,,False,True
+288,3,Franson Last Chance,2024-05-09,2024-05-11,Azusa,California,,https://finishedresults.com/meets/3961,,False,False,False,,False,True
+289,3,Harrison Dillard Twilight,2024-05-09,2024-05-10,Berea,Ohio,,https://timerhub.com/get_web_index.php?page=onthemarktiming.com/past_results/results.2024/harrisonDillardO24/,,False,False,False,,False,True
+290,3,St. Francis Fighting Chance Invite,2024-05-10,2024-05-11,Joliet,Illinois,,https://il.milesplit.com/meets/609254-st-francis-fighting-chance-invite-2024/results/1048868/raw,,False,False,False,,False,True
+291,3,L&C Portland Distance Carnival,2024-05-11,2024-05-11,Portland,Oregon,,https://www.tfrrs.org/results/84154/LC_Portland_Distance_Carnival,,False,False,False,,False,True
+292,3,Eagle Open,2024-05-12,2024-05-12,La Crosse,Wisconsin,,https://live.pttiming.com/?mid=5988,,False,False,False,,False,True
+1013,2,Joe Hilton Invitational,2018-01-14,2018-01-14,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/32452/m/Joe_Hilton_Invitational,,False,False,False,200.0,False,True
+314,2,Art & Linda Maillet UNC Open,2017-01-14,2017-01-14,Chapel HIll,North Carolina,,https://www.athletic.net/TrackAndField/meet/292867/results/m/1/800m,,False,False,False,200.0,False,True
+315,2,Kent Taylor Invite,2017-02-19,2017-02-19,Chapel HIll,North Carolina,,https://www.athletic.net/TrackAndField/meet/298107/results,,False,False,False,200.0,False,True
+328,1,Friday Night Lights Elon XC Opener,2023-09-01,,Elon,North Carolina,,https://www.tfrrs.org/results/xc/21249/Friday_Night_Lights_Elon_XC_Opener,,False,False,False,,False,True
+340,1,Wolfpack Invitational,2024-08-30,2024-08-30,Youngwood,Pennsylvania,,https://live.gingerbreadtiming.com/meets/39727,,False,False,False,,False,True
+352,1,Lancer Home Open,2024-09-07,2024-09-07,Farmville,Virginia,,https://www.tfrrs.org/results/xc/23433/Lancer_Home_Open,,False,False,False,,False,True
+1035,2,GVSU Mike Lints Alumni Open,2025-02-08,2025-02-08,Allendale,Michigan,,https://www.tfrrs.org/results/87278/GVSU_Mike_Lints_Alumni_Open,,False,False,False,300.0,False,True
+409,1,BURC Open,2016-10-08,2016-10-08,Binghamton,New York,,https://clubrunning.org/races/race_info.php?race=415,,True,False,False,,False,True
+410,1,Little Tens Invitational,2016-10-08,2016-10-08,Brighton,Michigan,,https://clubrunning.org/races/race_results.php?race=387,,True,False,False,,False,True
+411,1,Cavalier Invitational,2016-10-08,2016-10-08,Charlottesville,Virginia,,https://clubrunning.org/races/race_results.php?race=384,,True,False,False,,False,True
+412,1,UO Running Club Race,2016-10-08,2016-10-08,Eugene,Oregon,,https://clubrunning.org/races/race_results.php?race=414,,True,False,False,,False,True
+413,1,Rutgers Invitational,2016-10-08,2016-10-08,North Brunswick,New Jersey,,https://clubrunning.org/races/race_results.php?race=411,,True,False,False,,False,True
+414,1,Clemson Super Taco Classic,2016-10-15,2016-10-15,Spartanburg,South Carolina,,https://clubrunning.org/races/race_results.php?race=407,,True,False,False,,False,True
+415,1,Chips Trails Invitational,2016-10-15,2016-10-15,Mt. Pleasant,Michigan,,https://clubrunning.org/races/race_results.php?race=408,,True,False,False,,False,True
+416,1,Nittany Lion Invitational,2016-10-15,2016-10-15,State College,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=410,,True,False,False,,False,True
+417,1,Mountaineer Tune-Up,2016-10-15,2016-10-15,Morgantown,West Virginia,,https://clubrunning.org/races/race_results.php?race=386,,True,False,False,,False,True
+423,1,Pacific Regional,2016-10-29,2016-10-29,Belmont,California,,https://clubrunning.org/races/race_results.php?race=394,,True,True,False,,False,True
+431,1,UConn Invitational,2017-09-23,2017-09-23,Storrs,Connecticut,,https://clubrunning.org/races/race_results.php?race=578,,True,False,False,,False,True
+432,1,Little Tens Invitational,2017-09-30,2017-09-30,New Boston,Michigan,,https://clubrunning.org/races/race_results.php?race=550,,True,False,False,,False,True
+433,1,DC Invitational,2017-09-30,2017-09-30,Washington DC,DC,,https://clubrunning.org/races/race_results.php?race=589,,True,False,False,,False,True
+434,1,Charlotte McAlpine Trail Race,2017-09-30,2017-09-30,Charlotte,North Carolina,,https://clubrunning.org/races/race_results.php?race=553,,True,False,False,,False,True
+435,1,BRC Open,2017-09-30,2017-09-30,Binghamton,New York,,https://clubrunning.org/races/race_results.php?race=579,,True,False,False,,False,True
+436,1,Mountaineer Classic,2017-09-30,2017-09-30,Morgantown,West Virginia,,https://clubrunning.org/races/race_results.php?race=575,,True,False,False,,False,True
+437,1,Rutgers Invitational,2017-10-01,2017-10-01,New Brunswick,New Jersey,,https://clubrunning.org/races/race_results.php?race=593,,True,False,False,,False,True
+438,1,Nittany Lion Invitational,2017-10-07,2017-10-07,University Park,Pennsylvania,,https://clubrunning.org/races/race_results.php?race=573,,True,False,False,,False,True
+439,1,Cavalier Invitational,2017-10-07,2017-10-07,Charlottesville,Virginia,,https://clubrunning.org/races/race_results.php?race=576,,True,False,False,,False,True
+440,1,University of Oregon Running Club Invitational,2017-10-07,2017-10-07,Eugene,Oregon,,https://clubrunning.org/races/race_results.php?race=594,,True,False,False,,False,True
+441,1,Running of the Bulls,2017-10-07,2017-10-07,Buffalo,New York,,https://clubrunning.org/races/race_results.php?race=588,,True,False,False,,False,True
+442,1,Spartan Grand Classic,2017-10-14,2017-10-14,Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=571,,True,False,False,,False,True
+493,1,UMass Amherst Invitational,2019-10-05,2019-10-05,Amherst,Massachusetts,,https://clubrunning.org/races/race_results.php?race=828,,True,False,False,,False,True
+494,1,BRC Open,2019-10-05,2019-10-05,Binghamton,New York,,https://clubrunning.org/races/race_results.php?race=842,,True,False,False,,False,True
+495,1,Spartan Grand Classic,2019-10-12,2019-10-12,Lansing,Michigan,,https://clubrunning.org/races/race_results.php?race=830,,True,False,False,,False,True
+496,1,Cavalier Invitational,2019-10-19,2019-10-19,Charlottesville,Virginia,,https://clubrunning.org/races/race_results.php?race=826,,True,False,False,,False,True
+497,1,Harvard Cross Country Invitational,2019-10-19,2019-10-19,Belmont,Massachusetts,,https://clubrunning.org/races/race_results.php?race=821,,True,False,False,,False,True
+498,1,Princeton Invitational,2019-10-20,2019-10-20,Princeton,New Jersey,,https://clubrunning.org/races/race_results.php?race=827,,True,False,False,,False,True
+534,1,Mountaineer Invitational,2022-10-08,2022-10-08,Boone,North Carolina,,https://clubrunning.org/races/race_results.php?race=1046,,True,False,False,,False,True
+535,1,MC5 Cross Country Invitational,2022-10-15,2022-10-15,Anderson,Indiana,,https://clubrunning.org/races/race_results.php?race=1027,,True,False,False,,False,True
+553,1,Hokie Invitational,2024-09-20,2024-09-20,Blacksburg,Virginia,2040.0,http://results.tfmeetpro.com/Laurence_Loesel/Hokie_Invitational/#event2,,False,False,False,,False,True
+569,1,RSCC Raider XC Invite,2024-09-13,2024-09-13,Harriman,Tennessee,,https://www.tfrrs.org/results/xc/23734/RSCC_Raider_XC_Invite,,False,False,False,,False,True
+66,1,NIRCA Cross Country Southeast Regional,2023-10-28,2023-10-28,Wingate,North Carolina,,https://clubrunning.org/races/race_results.php?race=1129,https://www.flickr.com/photos/clubrunning/albums/,True,True,False,,False,True
+227,3,NIRCA Track & Field National Championship,2024-04-06,2024-04-07,Richmond,Virginia,,https://clubrunning.org/races/race_results.php?race=1140,https://www.flickr.com/photos/clubrunning/albums/72177720316153512/,True,False,True,,False,True
+1014,2,Dick Taylor Invitational,2013-01-18,2013-01-19,Chapel Hill,North Carolina,,https://nc.milesplit.com/meets/131544-dick-taylor-invitational-2013/results/231326/raw,,False,False,False,,False,True
+596,3,UGA Club Cross Country Track Invitational,2022-03-19,2022-03-19,Athens,Georgia,,https://drive.google.com/file/d/1ACB7bZr_k_3tTBdI8y-K8xzBmZsyBuzb/view,,True,False,False,400.0,False,True
+1036,2,Boston College Showdown at The Heights,2025-02-08,2025-02-08,Boston,Massachusetts,,http://live.lancertiming.com/meets/316/events/21/Final,,False,False,False,200.0,True,True
+1044,2,Joe LaRocco Invitational,2025-02-15,2025-02-15,Roanoke,Virginia,,https://snapresults.snaptiming.com/meets/43737,,False,False,False,,False,True
+1056,3,Charlotte Outdoor Invite,2025-02-22,2025-02-22,Charlotte,North Carolina,,https://file.groupme.com/v1/106069738/files/3fb8a2d3-898f-4277-83a7-8efc8833cfcb?access_token=LwGo7o3hwMI5BtxfU83ZZVtQxmELyAJz6pNW7lZS&omit-content-disposition=true,,True,False,False,,False,True
+1066,3,UCLA Club All-Comers Meet,2025-02-08,2025-02-08,Los Angeles,California,,"https://ca.milesplit.com/meets/660936-University of California, Los Angeles-club-all-comers-meet-2025/results/1114670/raw",,False,False,False,,False,True
+1076,2,Tyson Invitational,2025-02-14,2025-02-15,Fayetteville,Arkansas,,https://www.flashresults.com/2025_Meets/Indoor/02-14_Tyson/061-1_compiled.htm,,False,False,False,,False,True
+1082,3,Capital Relays,2025-02-23,2025-02-23,Bethesda,Maryland,,https://docs.google.com/spreadsheets/d/1zuWh3nQbP7HkKmpXYM1pWBhpejFBTO8Bp7YQzERFlPQ/edit?gid=1735285129#gid=1735285129,,True,False,False,,False,True
+1090,2,Billy Brockmueller Invitational 2025,2025-03-02,2025-03-02,Providence,Rhode Island,,https://www.sstresults.com/2025Results/bbinvite32/,,False,False,False,200.0,False,True
+1095,3,Occidental DC & SBC,2025-03-08,2025-03-08,Los Angeles,California,,https://www.tfrrs.org/results/87572/2025_Occidental_DC__SBC_College_University,,False,False,False,,False,True
+1104,3,Cumberland's Early Season Meet,2025-03-14,2025-03-14,Cumberlands,Kentucky,,https://www.tfrrs.org/results/89868/Cumberlands_Early_Season_Meet,,False,False,False,,False,True
+1114,3,Willamette Opener,2023-03-04,2023-03-04,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/502107/results/all,,False,False,False,,False,True
+1120,3,University of Maryland Invitational,2013-03-30,2013-03-30,College Park,Maryland,,https://www.athletic.net/TrackAndField/meet/191147/results/all,,False,False,False,,False,True
+1165,3,Willamette Opener,2019-03-02,2019-03-02,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/367792/results/all,,False,False,False,,False,True
+1166,3,Willamette Invitational,2019-03-23,2019-03-23,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/366812/results/all,,False,False,False,,False,True
+1132,4,Rock N' Roll Half DC,2025-03-15,2025-03-15,Washington,DC,413.0,https://www.runrocknroll.com/washington-dc-results,,False,False,False,,False,True
+1135,3,Northeastern Husky Club Invitational,2025-03-22,2025-03-22,Boston,Massachusetts,,https://live.sstresults.com/meets/45959,,True,False,False,400.0,False,True
+1136,3,Oregon Preview,2025-03-21,2025-03-22,Eugene,Oregon,,https://www.tfrrs.org/results/89521/f/2025_Oregon_Preview?team_hnd=12868,,False,False,False,400.0,False,True
+1142,3,IWU Polar Bear Classic,2025-03-21,2025-03-22,Marion,Indiana,,https://www.tfrrs.org/results/87396/f/IWU_Polar_Bear_Classic?team_hnd=79053,,False,False,False,400.0,False,True
+1143,3,Hokie Invitational,2025-03-22,2025-03-22,Blacksburg,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/Hokie_Invitational_32225/,,False,False,False,400.0,False,True
+1156,3,Titan Invitational,2021-04-16,2021-04-17,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/426607/results/all,,False,False,False,,False,True
+1157,3,Portland Twilight,2021-05-08,2021-05-08,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/430307/results,,False,False,False,,False,True
+1161,3,Willamette Opener,2020-03-07,2020-03-07,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/406447/results/all,,False,False,False,,False,True
+1163,3,Richard Martin Jr Invitational,2025-03-21,2025-03-22,Conway,Arkansas,,https://www.athletic.net/TrackAndField/meet/594199/results/all,,False,False,False,,False,True
+1167,3,John Knight Twilight,2019-04-05,2019-04-05,Monmouth,Oregon,,https://www.athletic.net/TrackAndField/meet/358747/results/all,,False,False,False,,False,True
+1168,3,Titan 30th Avenue Twilight,2019-04-20,2019-04-20,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/351494/results/all,,False,False,False,,False,True
+1169,3,Portland Twilight,2019-05-03,2019-05-03,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/366821/results/all,,False,False,False,,False,True
+1171,3,Linfield Erik Anderson Memorial Icebreaker,2018-03-02,2018-03-03,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/333042/results/all,,False,False,False,,False,True
+1172,3,Willamette Opener,2018-03-03,2018-03-03,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/333041/results/all,,False,False,False,,False,True
+1173,3,40th Annual Aztec Open and Invitational,2018-03-23,2018-03-23,San Diego,California,,https://www.athletic.net/TrackAndField/meet/320727/results,,False,False,False,,False,True
+1174,3,John Knight Twilight,2018-04-06,2018-04-06,Monmouth,Oregon,,https://www.athletic.net/TrackAndField/meet/319345/results/all,,False,False,False,,False,True
+1175,3,Clackmas CC Cougar Open,2018-04-21,2018-04-21,Canby,Oregon,,https://www.athletic.net/TrackAndField/meet/320325/results/all,,False,False,False,,False,True
+1176,3,Portland Twilight,2018-05-12,2018-05-12,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/347386/results/all,,False,False,False,,False,True
+1177,3,Willamette Opener,2017-03-04,2017-03-04,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/300887/results/all,,False,False,False,,False,True
+1178,3,Lane Preview,2017-03-17,2017-03-18,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/292484/results/all,,False,False,False,,False,True
+1179,3,Willamette Invitational,2017-03-25,2017-03-25,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/292480/results/all,,False,False,False,,False,True
+1180,3,Jenn Boyman Memorial Invite,2017-04-01,2017-04-01,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/572326/results/all,,False,False,False,,False,True
+1181,3,John Knight Twilight,2017-04-07,2017-04-07,Monmouth,Oregon,,https://www.athletic.net/TrackAndField/meet/288028/results/all,,False,False,False,,False,True
+1182,3,Chico State Outdoor Twilight and Distance Festival,2017-04-07,2017-04-08,Chico,California,,https://www.athletic.net/TrackAndField/meet/291626/results/all,,False,False,False,,False,True
+1183,3,Cougar Open,2017-04-22,2017-04-22,Oregon City,Oregon,,https://www.athletic.net/TrackAndField/meet/311819/results/all,,False,False,False,,False,True
+1184,3,OSU High Performance Meet,2017-04-28,2017-04-29,Corvallis,Oregon,,https://www.athletic.net/TrackAndField/meet/292486/results/all,,False,False,False,,False,True
+1185,3,Oregon Twilight,2017-05-05,2017-05-05,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/292474/results,,False,False,False,,False,True
+1186,3,Portland Twilight Meet,2017-05-13,2017-05-13,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/315328/results/all,,False,False,False,,False,True
+597,3,Cavalier Invitational,2022-03-26,2022-03-26,Charlottesville,Virginia,,http://results.tfmeetpro.com/SnapTiming/Cavalier_Invitational_32622/index.html,,True,False,False,400.0,False,True
+598,3,Scarlet Knight Twilight,2022-04-16,2022-04-16,Edison,New Jersey,,https://docs.google.com/spreadsheets/d/1T6VULpIR_tpiFyXTZgVOvyxw7RLTgXdYNta8ZZzlmgQ/edit?gid=0#gid=0,,True,False,False,400.0,False,True
+599,1,Southeast Regionals,2014-11-01,2014-11-01,Gainesville,University of Florida,,https://clubrunning.org/races/old_results.php?key=https://docs.google.com/spreadsheets/d/1QOKQ4iM0Ut5G9hEsXNmYaSZuYAKWZKx6DwVK2AM5KTI/edit?usp=sharing,,True,True,False,,False,True
+600,1,34th Annual Greensboro XC Invitational,2017-09-30,2017-09-30,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/286140-34th-annual-greensboro-xc-invitational-2017/coverage,,False,False,False,,False,True
+601,1,Charlotte McAlpine Trail Race,2022-09-24,2022-09-24,Charlotte,North Carolina,,https://drive.google.com/file/d/1BTUdJCNrCuh23vEOxADSa9oh2mhBNjph/view,,True,False,False,,False,True
+602,1,32nd Annual Greensboro Cross Country Invitational,2015-09-26,2015-09-26,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/213463-32nd-annual-greensboro-cross-country-invitational-2015/results/396876/formatted/,,False,False,False,,False,True
+603,3,The Trojan Relays,2023-04-14,2023-04-15,Mount Olive,North Carolina,,https://www.tfrrs.org/results/75230/m/The_Trojan_Relays?team_hnd=68553,,False,False,False,,False,True
+604,3,Charlotte Outdoor Invite,2022-03-26,2022-03-26,University of North Carolina Charlotte,North Carolina,,https://static1.squarespace.com/static/5bc032e4f8135a49ac2edf9d/t/6240712d746522399c051178/1648390445482/Results.pdf,,True,False,False,,False,True
+605,1,31st Annual Greensboro Cross Country Invitational,2014-09-27,2014-09-27,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/180113-31st-annual-greensboro-cross-country-invitational-2014/results/325383/formatted/,,False,False,False,,False,True
+606,1,Georgia Tech Invitational,2024-10-04,2024-10-04,Fairburn,Georgia,,https://milesplit.live/meets/640831/events,,False,False,False,,False,True
+607,1,Joe Piane Notre Dame Invitational,2024-10-04,2024-10-04,South Bend,Indiana,,https://live.pttiming.com/xc-ptt.html?mid=7462,https://photos.app.goo.gl/o1kF6avtEZBWpwAk7,False,False,False,,False,True
+608,2,Badger St. Valentine's Invitational,2023-02-17,,Madison,Wisconsin,,https://live.pttiming.com/?mid=5429,,False,False,False,200.0,False,True
+609,2,UW Platteville Invitational,2023-02-11,,Platteville,Wisconsin,,https://wi.milesplit.com/meets/512272-uw-platteville-invitational-2023/results,,False,False,False,200.0,False,True
+610,3,WLC Green and White Invite,2023-04-15,,Milwaukee,Wisconsin,,https://wi.milesplit.com/meets/538343-wlc-green-and-white-invite-2023/results,,False,False,False,400.0,False,True
+611,3,Wisconsin Classic,2023-05-05,,Madison,Wisconsin,,https://live.pttiming.com/?mid=5606,,False,False,False,400.0,False,True
+614,1,UNC Invitational,2010-10-09,2010-10-09,Chapel Hill,North Carolina,,https://clubrunning.org/races/2010/results_unc2010.php,,True,False,False,,False,True
+612,1,UNC Invitational,2012-09-15,2012-09-15,Chapel Hill,North Carolina,,https://clubrunning.org/races/2012/results_University of North Carolina.php,,True,False,False,,False,True
+615,1,Tar Heel Invitational,2009-10-10,2009-10-10,Chapel Hill,North Carolina,,https://clubrunning.org/races/2009/results_unc2009.php,,True,False,False,,False,True
+616,1,UNC Invite,2008-10-11,2008-10-11,Chapel Hill,North Carolina,,https://clubrunning.org/races/2008/results_University of North Carolina2008.php,,True,False,False,,False,True
+631,1,Warrior Invitational,2024-10-05,2024-10-05,Milwaukee,Wisconsin,,https://www.tfrrs.org/results/xc/23604/24th_Annual_Warrior_Invitational,,False,False,False,,False,True
+613,1,Tar Heel Invitational,2012-10-27,2012-10-27,Chapel Hill,North Carolina,,https://clubrunning.org/races/2012/results_unc2.php,,True,False,False,,False,True
+617,1,Southeast Regionals,2011-10-15,2011-10-15,Spartanburg,South Carolina,,https://clubrunning.org/races/2011/results_southeast.php,,True,True,False,,False,True
+635,2,Liberty Kickoff 2020,2020-01-24,2020-01-25,Lynchburg,Virginia,,https://www.tfrrs.org/results/62830/Liberty_Kickoff_2020/,,False,False,False,200.0,True,True
+619,1,Southeast Cross Country Regionals,2010-10-23,2010-10-23,Clemson,South Carolina,,https://clubrunning.org/races/2010/results_southeast2010.php,,True,True,False,,False,True
+620,1,NCAA DIII Pre-Nats,2024-10-04,2024-10-04,Terre Haute,Indiana,,https://timingmd.net/Results/xc/rose_10_4_24/mo.htm,,False,False,False,,False,True
+621,1,OWU Invitational,2024-10-04,2024-10-04,Delaware,Ohio,,https://onthemarktiming.com/past_results/results.2024/owuXc24/,,False,False,False,,False,True
+623,1,Dashing Dukes Invitational,2024-10-05,2024-10-05,Elkton,Virginia,,https://www.runroanoke.com/EventDetails?id=1020&date=20241005&event=Dashing%20Dukes%20XC%20Invitational,,True,False,False,,False,True
+625,1,Live in Lou Classic,2024-10-05,2024-10-05,Louisville,Kentucky,,https://www.flashresults.com/2025_Meets/xc/LouisvilleClassic/005-1_compiled.htm,,False,False,False,,False,True
+626,1,Dan Huston Invite,2024-10-05,2024-10-05,Waverly,Iowa,,https://results.wayzatatiming.com/meets/40708,,False,False,False,,False,True
+628,1,The Master's University XC Invitational,2024-10-05,2024-10-05,Santa Clarita,California,,https://ca.milesplit.com/meets/641419-the-masters-university-xc-invitational-2024/results,,False,False,False,,False,True
+629,1,Williamette Invitational,2024-10-05,2024-10-05,Salem,Oregon,,https://live.athletictiming.net/meets/40607,,False,False,False,,False,True
+630,1,2014 Cross Country Nationals,2014-11-15,2014-11-17,East Lansing,Michigan,,https://clubrunning.org/races/2014/results_nats2014.php,,True,False,True,,False,True
+632,1,Daniel Mullen Memorial Invitational,2024-10-05,2024-10-05,New Concord,Ohio,,https://www.tfrrs.org/results/xc/23643/Daniel_Mullen_Memorial_Invitational,,False,False,False,,False,True
+633,1,Paul Short Run Invitational,2024-10-05,2024-10-05,Lehigh,Pennsylvania,,https://results.leonetiming.com/xc.html?mid=7449,,False,False,False,,False,True
+634,4,Domer Run,2024-10-05,2024-10-05,Notre Dame,Indiana,,https://runsignup.com/Race/Results/149523,https://photos.app.goo.gl/KdPywQpfMheG4tq77,False,False,False,,False,True
+622,1,VCU Invitational,2024-10-05,2024-10-05,Mechanicsville,Virginia,,http://results.tfmeetpro.com/Laurence_Loesel/VCU_Run_with_the_Rams_Invitational_10524/,,True,False,False,,False,True
+624,1,Irish Invitational,2024-10-05,2024-10-05,Niles,Michigan,,https://live.athletic.net/meets/40923/events/xc/1509974,https://photos.app.goo.gl/Vh8r46dCR3hZUQFo8,True,False,False,,False,True
+636,1,Adidas XC Challenge,2021-09-17,2021-09-18,Cary,North Carolina,,https://www.flashresults.com/2022_Meets/xc/adidasXC/index.htm,,False,False,False,,False,True
+637,1,Adidas XC Challenge,2019-09-20,2019-09-21,Cary,North Carolina,,https://flashresults.com/2020_Meets/xc/adidasXC/,,False,False,False,,False,True
+638,1,Adidas XC Challenge,2017-09-15,2017-09-16,Cary,North Carolina,,https://www.flashresults.com/2018_Meets/xc/adidasXC/,,False,False,False,,False,True
+639,1,Adidas XC Challenge,2016-09-16,2016-09-17,Cary,North Carolina,,https://www.flashresults.com/2017_Meets/xc/AdidasChallenge/index.htm,,False,False,False,,False,True
+640,1,Adidas XC Challenge,2015-09-18,2015-09-19,Cary,North Carolina,,https://www.flashresults.com/2016_Meets/xc/adidasXC/,,False,False,False,,False,True
+641,1,Adidas XC Challenge,2014-09-19,2014-09-20,Cary,North Carolina,,https://flashresults.com/2015_Meets/xc/adidas/index.htm,,False,False,False,,False,True
+642,1,Adidas XC Challenge,2013-09-20,2013-09-21,Cary,North Carolina,,https://www.flashresults.com/2014_Meets/xc/adidas/,,False,False,False,,False,True
+643,1,Adidas XC Challenge,2011-09-16,2011-09-17,Cary,North Carolina,,https://thexcchallenge.com/results/,,False,False,False,,False,True
+644,2,Vince Brown Invitational,2019-02-03,2019-02-03,Newport News,Virginia,,https://va.milesplit.com/meets/335409-vince-brown-invitational-2019/results/626251/raw,,False,False,False,200.0,False,True
+645,1,Charlotte McAlpine Trail Race,2021-09-25,2021-09-25,Charlotte,North Carolina,,https://www.virginia.clubrunning.org/meets,,True,False,False,,False,True
+646,4,NIRCA Half Marathon Nationals,2017-04-08,2017-04-08,Bloomington,Indiana,,https://clubrunning.org/races/race_results.php?race=496,,True,False,True,,False,True
+647,3,Duke Invitational,2011-04-08,2011-04-09,Durham,North Carolina,,https://www.tfrrs.org/results/18299/m/Duke_Invitational?team_hnd=68526,,False,False,False,,False,True
+648,1,Owls Track Club Classic,2024-10-05,2024-10-05,Ambler,Pennsylania,,https://docs.google.com/spreadsheets/d/1hXVJgQuKZlt2jwb1Snd0OlqTLUYuaWWP/htmlview#gid=1753305809,,True,False,False,,False,True
+649,1,Caldwell Cougar Chase Invite,2024-09-28,2024-09-28,Caldwell,New Jersey,,https://nj.milesplit.com/meets/634708-caldwell-cougar-chase-invite-2024/results/1083084/raw,,False,False,False,,False,True
+650,1,Spartan Grand Classic,2024-10-05,2024-10-05,Waverly,Michigan,,https://live.a2racemanagement.com/meets/40678,,True,False,False,,False,True
+651,3,NIRCA Track & Field Nationals,2019-04-13,2019-04-14,Oxford,Ohio,,https://crossroadstiming.com/results/2019/NIRCA-Track/index.html,,True,False,True,400.0,False,True
+652,1,Gene Davis Invitational,2024-10-12,2024-10-12,Appleton,Wisconsin,,https://www.tfrrs.org/results/xc/25122/13th_Annual_Gene_Davis_Invitational,,False,False,False,,False,True
+653,1,University of the Ozarks Invitational,2024-10-12,2024-10-12,Clarksville,Arkansas,,https://www.tfrrs.org/results/xc/23598/University_of_the_Ozarks_Invitational,,False,False,False,,False,True
+654,1,Ashbury Invitational,2024-10-12,2024-10-12,Wilmore,Kentucky,,https://www.tfrrs.org/results/xc/23651/Asbury_Invitational,,False,False,False,,False,True
+655,1,DeSales University Cross Country Invitational,2024-10-12,2024-10-12,Center Valley,Pennsylvania,,https://www.tfrrs.org/results/xc/23964/DeSales_University_41st_Annual_Cross_Country_Invitational,,False,False,False,,False,True
+656,1,Brian T. Simpson Invite,2024-10-12,2024-10-12,Columbia,Missouri,,https://milesplit.live/meets/597622/events/9/results/F/M,,False,False,False,,False,True
+1015,2,Gene Anderson Invitational,2013-02-02,2013-02-02,Chapel Hill,North Carolina,,https://tfrrs.org/results/28038/m/Gene_Anderson_Invitational,,False,False,False,200.0,False,True
+657,1,UAC Invite,2006-10-07,2006-10-07,Bloomington,Indiana,,https://clubrunning.org/races/2004-2006/results_uac2006.php,,True,False,False,,False,True
+661,1,Michigan Fall Classic,2006-09-30,2006-09-30,Dexter,Michigan,,https://clubrunning.org/races/2004-2006/results_mfc2006.php,,True,False,False,,False,True
+660,1,Notre Dame Interhall Cross Country,2024-10-08,2024-10-08,Notre Dame,Indiana,,https://drive.google.com/file/d/1B6dPwKniJdy27WfORSyC18PG0iMZWiy1/view,,False,False,False,,False,True
+662,1,Midwest Collegiate Club Cross Country Championship,2006-10-15,2006-10-15,Munice,Indiana,,https://clubrunning.org/races/2004-2006/results_mc52006.php,,True,False,False,,False,True
+663,1,JMU Club XC Invite,2007-09-22,2007-09-22,Harrisonburg,Virginia,,https://clubrunning.org/races/2007/results_James Madison University2007.php,,True,False,False,,False,True
+664,1,Michigan Fall Classic,2007-09-27,2007-09-27,Dearborn,Michigan,,https://clubrunning.org/races/2007/results_mfc2007.php,,True,False,False,,False,True
+665,1,Running of the Emus,2007-10-06,2007-10-06,Ypsilanti,Michigan,,https://clubrunning.org/races/2007/results_emu2007.php,,True,False,False,,False,True
+666,1,East Regional,2007-10-20,2007-10-20,Philadelphia,Pennsylvania,,https://clubrunning.org/races/2007/results_east2007.php,,True,True,False,,False,True
+667,1,MC5 Midwest Regional,2007-10-20,2007-10-20,Muncie,Indiana,,https://clubrunning.org/races/2007/results_mc52007.php,,True,True,False,,False,True
+668,1,Michigan Fall Classic,2008-09-20,2008-09-20,Dearborn,Michigan,,https://clubrunning.org/races/2008/results_mfc2008.php,,True,False,False,,False,True
+669,1,Binghamton Open,2008-09-27,2008-09-27,Binghamton,New York,,https://clubrunning.org/races/2008/results_bing2008.php,,True,False,False,,False,True
+670,1,Southeast Regional,2008-10-18,2008-10-18,Harrisonburg,Virginia,,https://clubrunning.org/races/2008/results_se2008.php,,True,True,False,,False,True
+671,1,Northeast Regional,2008-10-18,2008-10-18,Mansfield,Connecticut,,https://clubrunning.org/races/2008/results_ne2008.php,,True,True,False,,False,True
+672,1,MC5 Midwest Regional,2008-10-18,2008-10-18,Anderson,Indiana,,https://clubrunning.org/races/2008/results_mc52008.php,,True,True,False,,False,True
+673,1,WTC XC Challenge,2008-10-25,2008-10-25,Middleton,Wisconsin,,https://clubrunning.org/races/2008/results_wtc2008.php,,True,False,False,,False,True
+674,1,NIRCA Cross Country National Championships,2008-11-08,2008-11-08,State College,Pennsylvania,,https://clubrunning.org/races/2008/results_nats2008.php,,True,False,True,,False,True
+675,1,NIRCA Great Plains Regional Championships,2024-10-19,2024-10-19,Iowa City,Iowa,,https://results.truetimeracing.com/results.aspx?CId=16535&RId=1409&EId=3&dt=0,,True,True,False,,False,True
+676,1,NIRCA Mid-Atlantic Regional Championship,2024-10-19,2024-10-19,Lehigh,Pennsylvania,,https://runsignup.com/Race/Results/154924#resultSetId-501335;perpage:100,,True,True,False,,False,True
+677,1,Santa Clara University Bronco Invitational,2024-10-19,2024-10-19,Santa Clara,California,,https://timerhub.com/get_web_index.php?page=redcaptiming.com/2024/bronco/,,False,False,False,,False,True
+678,1,UTC Home CC Meet,2024-10-18,2024-10-18,Chattanooga,Tennessee,,https://www.tfrrs.org/results/xc/25140/UTC_Home_CC_Meet_2024,,False,False,False,,False,True
+679,1,Falcon Collegiate Invitational,2024-10-18,,Bowling Green,Ohio,,https://oh.milesplit.com/meets/574734-falcon-collegiate-invitational-2024/results,,False,False,False,,False,True
+680,1,Nooga at Night Invite,2024-10-12,2024-10-12,East Ridge,Tennessee,,https://www.tfrrs.org/results/xc/23453/Nooga_at_Night_Invite,,False,False,False,,False,True
+681,2,Art and Linda Maillet UNC Open,2015-01-17,2015-01-17,Chapel Hill,North Carolina,,https://www.tfrrs.org/results/37588/Art_and_Linda_Maillet_UNC_Open,,False,False,False,200.0,False,True
+682,1,UConn Autumn Invitational,2024-10-12,2024-10-12,Mansfield,Connecticut,,https://clubrunning.org/races/race_results.php?race=1244,,True,False,False,,False,True
+683,1,Embry Riddle Cross Country Classic,2024-09-21,2024-09-21,Daytona Beach,Florida,,https://www.tfrrs.org/results/xc/23641/Embry-Riddle_Cross_Country_Classic_-_Colleges,,False,False,False,,False,True
+684,1,George Oja Invitational,2024-10-19,2024-10-19,Oak Knoll,Oregon,,https://live.athletictiming.net/meets/41367/events/xc/1513193,,False,False,False,,False,True
+1045,2,DePauw Indoor Invitational,2025-02-15,2025-02-15,Greencastle,Indiana,,https://live.timingmd.net/meets/43693,,False,False,False,,False,True
+1057,2,Alex Wilson Invitational,2025-02-22,2025-02-22,Notre Dame,Indiana,,https://live.enduranceracetiming.com/meets/41846,,False,False,False,320.0,False,True
+685,1,Illinois State Invitational,2009-09-19,2009-09-19,Normal,Illinois,,https://clubrunning.org/races/2009/results_ilstu2009.php,,True,False,False,,False,True
+686,1,MC5,2009-09-26,2009-09-26,Anderson,Indiana,,https://clubrunning.org/races/2009/results_mc52009.php,,True,False,False,,False,True
+687,1,Binghamton Open,2009-09-26,2009-09-26,Binghamton,New York,,https://clubrunning.org/races/2009/results_bing2009.php,,True,False,False,,False,True
+688,1,Wuzou Invitational,2009-09-26,2009-09-26,Florissant,Missouri,,https://clubrunning.org/races/2009/results_wuzou2009.php,,True,False,False,,False,True
+689,1,Loyola Lakefront Invitational,2009-10-03,2009-10-03,Chicago,Illinois,,https://clubrunning.org/races/2009/results_loyola2009.php,,True,False,False,,False,True
+690,1,Princeton Invitational,2009-10-03,2009-10-03,Princeton,New Jersey,,https://clubrunning.org/races/2009/results_prince2009.php,,True,False,False,,False,True
+691,1,Southeast Regional Cross Country Championships,2009-10-24,2009-10-24,Penn Laird,Virginia,,https://clubrunning.org/races/2009/results_se2009.php,,True,True,False,,False,True
+692,1,Northeast Regional Cross Country Championships,2009-10-24,2009-10-24,Mansfield,Connecticut,,https://clubrunning.org/races/2009/results_ne2009.php,,True,True,False,,False,True
+693,1,Midwest Regional Cross Country Championships,2009-10-24,2009-10-24,Middleton,Wisconsin,,https://clubrunning.org/races/2009/results_mw2009.php,,True,True,False,,False,True
+694,1,NIRCA National Cross Country Championships,2009-11-14,2009-11-14,Bloomington,Indiana,,https://clubrunning.org/races/2009/results_crossnats.php,,True,False,True,,False,True
+1016,2,Notre Dame Meyo Invite,2025-01-31,2025-02-01,Notre Dame,Indiana,,https://live.enduranceracetiming.com/meets/41845/events/individual/1576743,,False,False,False,,False,True
+1039,2,Liberty Open,2025-02-07,2025-02-08,Lynchburg,Virginia,,https://www.tfrrs.org/results/87032/f/2025_Liberty_Open?team_hnd=74798,,False,False,False,200.0,True,True
+1046,2,GVSU Big Meet,2025-02-14,2025-02-14,Allendale,Michigan,,https://live.fstiming.com/meets/43661/events/individual/1602745,,False,False,False,,False,True
+1058,2,Wittenberg Collegiate Meet,2025-02-22,,Springfield,Ohio,,https://oh.milesplit.com/meets/612250-wittenberg-collegiate-meet-2025/results,,False,False,False,300.0,False,True
+1084,2,Illinois Club Relays,2025-03-01,2025-03-01,Champaign,Illinois,,https://www.athletic.net/TrackAndField/meet/570917/results/all,https://photos.app.goo.gl/e9v2SeuQDoVS4bVg9,True,False,False,200.0,False,True
+1068,3,Tampa Open 2025,2025-02-22,2025-02-22,Tampa,Florida,,https://www.tfrrs.org/results/88308/Tampa_Open_2025,,False,False,False,400.0,False,True
+1069,2,West Point Tune-Up,2025-02-22,2025-02-22,West Point,New York,,https://www.tfrrs.org/results/87612/West_Point_Tune_Up,,False,False,False,200.0,False,True
+1070,2,Marc Deneault Invitational,2025-02-22,2025-02-22,Ithaca,New York,,https://www.tfrrs.org/results/87625/Marc_Deneault_Invitational,,False,False,False,200.0,False,True
+1071,2,Panther Tune-Up,2025-02-22,2025-02-22,Milwaukee,Wisconsin,,https://www.tfrrs.org/results/89492/Panther_Tune-up,,False,False,False,200.0,False,True
+699,1,Beliot Olde English Classic,2019-05-10,2019-05-10,Beloit,Wisconsin,,https://www.accuracetiming.com/results/2019/boecc_19m.pdf,,False,False,False,,False,True
+700,2,Big Dawg Invitational,2019-08-02,2019-08-02,Stevens Point,Wisconsin,,https://www.tfrrs.org/results/63104/3949098/Big_Dawg_Invitational/Mens-3000-Meters,,False,False,False,,False,True
+697,4,Chicago Marathon,2023-10-08,2023-10-08,Chicago,Illinois,,https://chicago-history.r.mikatiming.com/2023/?content=detail&fpid=search&pid=search&idp=9TGG9638280787&lang=EN&event=MAR_9TGG963812D&lang=EN_CAP&search%5Bname%5D=Beckerman&search_event=MAR_9TGG963812D#,,False,False,False,,False,True
+702,2,Club Relays,2019-02-28,2019-02-28,Champaign,Illinois,,https://www.facebook.com/download/3017095198309372/results%20with%20captured%20splits.pdf?av=100007913198027&eav=AfbjCDuHoTzhJqIbgYE1Z-qAQpCTF8exGr528cPO2q-2tqUYCmY08aczKiO7QdOmsfA&hash=Aco8A-o0KrJRQo_N,,True,False,False,,False,True
+1067,2,USATF-NE Indoor Championship,2025-02-23,2025-02-23,Cambridge,Massachusetts,,https://www.tfrrs.org/results/89268/f/2025_USATF-NE_Indoor_Championship?team_hnd=99073,,False,False,False,200.0,True,True
+1083,3,Willamette Opener,2025-03-01,2025-03-01,Willamette,Oregon,,https://www.tfrrs.org/results/87833/m/2025_Willamette_Opener_-_COLLEGE_TEAMS?team_hnd=12867,,False,False,False,400.0,False,True
+1096,4,Little Rock Marathon Weekend,2025-03-01,2025-03-02,Little Rock,Arkansas,,https://results.raceroster.com/v2/en-US/results/a4v2cqt544cdya6x/results?subEvent=222108&page=1,,False,False,False,,False,True
+1105,3,Oregon Twilight,2023-05-05,2023-05-05,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/485510/results/all,,False,False,False,,False,True
+1106,3,Oregon Preview,2023-03-18,2023-03-18,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/483282/results/all,,False,False,False,,False,True
+1107,3,OSU HP Meet,2023-04-28,2023-04-28,Corvallis,Oregon,,https://www.athletic.net/TrackAndField/meet/501668/results/all,,False,False,False,,False,True
+1115,3,LCC Open,2023-03-11,2023-03-11,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/483267/results/all,,False,False,False,,False,True
+1121,3,Pacific University Open,2023-04-01,2023-04-01,Forest Grove,Oregon,,https://www.athletic.net/TrackAndField/meet/484641/results/all,,False,False,False,,False,True
+1122,3,John Knight Twilight,2023-04-07,2023-04-07,Monmouth,Oregon,,https://www.athletic.net/TrackAndField/meet/483841/results/all,,False,False,False,,False,True
+1123,3,Linfield Jenn Boyman Invite,2023-04-08,2023-04-08,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/483921/results,,False,False,False,,False,True
+1124,3,L&C Larry Byerly Invite,2023-04-14,2023-04-15,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/484855/results/all,,False,False,False,,False,True
+1125,3,Raider Invitational,2023-04-21,2023-04-22,Ashland,Oregon,,https://www.athletic.net/TrackAndField/meet/484860/results/all,,False,False,False,,False,True
+1126,3,Portland Twilight,2023-05-06,2023-05-06,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/486819/results/all,,False,False,False,,False,True
+1127,3,Portland Distance Carvinal,2023-05-13,2023-05-13,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/513989/results/all,,False,False,False,,False,True
+1133,3,David Go Invitational,2025-03-22,2025-03-22,Chapel Hill,North Carolina,,https://live.belllaptiming.com/meets/46092,https://photos.app.goo.gl/r17UUPQwxJSHAWVV8,True,False,False,400.0,False,True
+1017,2,SVSU Jet's Pizza Invitational,2025-01-31,2025-02-01,Saginaw,Michigan,,https://live.fstiming.com/meets/43326,,False,False,False,300.0,False,True
+1018,2,John Thomas Terrier Classic,2025-01-31,2025-02-01,Boston,Massachusetts,,https://www.tfrrs.org/results/88417/m/Boston_University_John_Thomas_Terrier_Classic,,False,False,False,200.0,True,True
+1019,2,Bast-Cregger Multi Invitational,2025-01-31,2025-02-01,Roanoke,Virginia,,https://snapresults.snaptiming.com/meets/43367,,False,False,False,200.0,False,True
+1020,2,Cedarville Collegiate Indoor Invite,2025-01-31,2025-01-31,Cedarville,Ohio,,https://finishtiming.trackscoreboard.com/meets/612239/events,,False,False,False,200.0,False,True
+1021,2,Grinnell Invitational,2025-02-01,2025-02-01,Grinnell,Iowa,,https://results.wayzatatiming.com/meets/42708,,False,False,False,200.0,False,True
+1022,2,Lake Michigan Open,2025-02-01,2025-02-01,Kenosha,Wisconsin,,https://www.tfrrs.org/results/87558/f/Lake_Michigan_Open?team_hnd=84956,,False,False,False,200.0,False,True
+1040,2,Camel City,2025-02-07,2025-02-08,Winston-Salem,North Carolina,,https://live.jdlfasttrack.com/meets/36164/teams/1065867,,False,False,False,200.0,False,True
+1047,2,SAU Tune Up,2025-02-15,2025-02-15,Davenport,Iowa,,https://www.tfrrs.org/results/87697/SAU_Tune_Up,,False,False,False,200.0,False,True
+1048,2,Mount Saint Joseph February Invite,2025-02-15,2025-02-15,Cincinnati,Ohio,,https://www.tfrrs.org/results/87173/MSJ_February_Invite,,False,False,False,200.0,False,True
+1049,2,SPIRE Collegiate Indoor Games,2025-02-15,2025-02-15,Geneva,Ohio,,https://www.tfrrs.org/results/87244/SPIRE_Collegiate_Indoor_Games_2025,,False,False,False,300.0,False,True
+1050,2,Gordon Kelly,2025-02-15,2025-02-15,Cambridge,Massachusetts,,https://www.tfrrs.org/results/89082/Gordon_Kelly_2025,,False,False,False,200.0,False,True
+1051,2,CSB/SJU Invitational,2025-02-15,2025-02-15,Collegeville,Minnesota,,https://www.tfrrs.org/results/88954/CSB___SJU_Invitational,,False,False,False,220.0,False,True
+1052,2,Centre Indoor Invitational,2025-02-15,2025-02-15,Danville,Kentucky,,https://www.tfrrs.org/results/89277/f/Centre_Indoor_Invitational?team_hnd=110477,,False,False,False,200.0,False,True
+1059,2,SVSU Tune Up,2025-02-21,2025-02-21,University Center,Michigan,,https://live.fstiming.com/meets/43927/teams/1079708,,False,False,False,300.0,False,True
+1060,2,Silverston Invitational,2025-02-21,2025-02-21,Ann Arbor,Michigan,,https://live.deltatiming.com/meets/43934,,False,False,False,200.0,True,True
+1072,4,Central Michigan Shamrock Shuffle 5K,2016-03-19,2016-03-19,Mount Pleasent,Michigan,,https://clubrunning.org/races/race_results.php?race=372,,True,False,False,,False,True
+1085,3,Cavalier Invitational,2025-03-01,2025-03-01,Charlottesville,Virginia,,https://www.goinguplive.com/brt/uva-club-track-and-field-meet/meet-315/schedule.html,,True,False,False,400.0,False,True
+1092,3,UNCW Invite,2025-03-07,2025-03-08,Wilmington,North Carolina,,https://live.timinginc.com/meets/44893,,False,False,False,,False,True
+1097,2,Harvard Club Invite,2025-03-09,2025-03-09,Boston,Massachusetts,,https://live.sstresults.com/meets/44928/events/individual/1639975,,True,False,False,,False,True
+1108,3,L&C Electric Forest Open,2025-03-08,2025-03-08,Portland,Oregon,,https://www.tfrrs.org/results/89663/5436006/LC_Electric_Forest_Open/Mens-800-Meters,,False,False,False,,False,True
+1109,4,Cowtown Half Marathon,2025-02-23,2025-02-23,Fort Worth,Texas,,https://mychiptime.com/searchevent.php?id=16298,,False,False,False,,False,True
+1116,3,L&C Friday Night Lights,2023-03-24,2023-03-24,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/488939/results/m/1/100m,,False,False,False,,False,True
+1117,3,Willamette Invite,2023-03-25,2023-03-25,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/484635/results/all,,False,False,False,,False,True
+1128,3,West Coast Invite,2025-03-15,2025-03-15,San Francisco,California,,https://www.tfrrs.org/results/89123/f/West_Coast_Invite?team_hnd=81221,,False,False,False,400.0,False,True
+1129,3,CMU Open,2025-03-15,2025-03-15,Fayette,Missouri,,https://www.tfrrs.org/results/90188/f/2025_CMU_Open?team_hnd=112590,,False,False,False,400.0,False,True
+1134,3,Charlotte 49er Classic,2025-03-20,2025-03-22,Charlotte,North Carolina,,https://www.flashresults.com/2025_Meets/Outdoor/03-20_49erClassic/025-1_compiled.htm,,False,False,False,,False,True
+1151,3,Titan Invitational,2022-04-08,2022-04-09,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/464843/results,,False,False,False,,False,True
+1152,3,OSU HP Meet,2022-04-30,2022-04-30,Corvallis,Oregon,,https://www.athletic.net/TrackAndField/meet/466849/results,,False,False,False,,False,True
+1153,3,Oregon Twilight,2022-05-06,2022-05-06,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/470068/results,,False,False,False,,False,True
+1154,3,Portland Twilight,2022-05-07,2022-05-07,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/472399/results,,False,False,False,,False,True
+1155,3,GFU Final Qualifier,2022-05-19,2022-05-19,Newberg,Oregon,,https://www.athletic.net/TrackAndField/meet/524779/results,,False,False,False,,False,True
+1158,3,Virginia Beach Spring Break Invitational,2025-03-22,2025-03-22,Norfolk,Virginia,,https://www.tfrrs.org/results/87208/f/Virginia_Beach_Spring_Break_Invitational?team_hnd=111520,,False,False,False,400.0,False,True
+1159,3,Lee University Inviational,2025-03-22,2025-03-22,Cleveland,Tennessee,,https://www.tfrrs.org/results/89110/m/Lee_University_Invitational,,False,False,False,400.0,False,True
+1160,3,Yellow Jacket Invitational,2025-03-21,2025-03-22,Atlanta,Georgia,,https://www.tfrrs.org/results/90454/m/Yellow_Jacket_Invitational,,False,False,False,400.0,False,True
+1162,3,Missouri S&T Miner Invitational,2025-03-21,2025-03-22,Rolla,Missouri,,https://www.athletic.net/TrackAndField/meet/594194/results/all,,False,False,False,,False,True
+1164,3,National Collegiate Club Track & Field Championship,2011-04-16,2011-04-16,Bowling Green,Ohio,,https://www.athletic.net/TrackAndField/meet/129377/results/m/1/100m,,True,False,True,,False,True
+1170,3,Portland Twilight,2024-05-04,2024-05-04,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/547832/results,,False,False,False,,False,True
+1023,2,YSU Mid Major Invitational,2025-01-31,2025-02-01,Youngstown,Ohio,,https://live.deltatiming.com/meets/43436,,False,False,False,300.0,False,True
+1041,2,Dick Taylor UNC Relays,2008-02-23,2008-02-23,Chapel Hill,North Carolina,,https://nc.milesplit.com/meets/33684-2008-dick-taylor-unc-relays-2008/results,,False,False,False,200.0,False,True
+1053,2,Darius Dixon Memorial Invitational,2025-02-14,2025-02-15,Lynchburg,Virginia,,https://www.tfrrs.org/results/87033/5392083/2025_Darius_Dixon_Memorial_Invitational/Mens-1000-Meters,,False,False,False,200.0,True,True
+1061,2,GVSU Tune-Up,2025-02-21,2025-02-21,Allendale,Michigan,,https://live.fstiming.com/meets/43909/teams/1079574,,False,False,False,300.0,False,True
+1062,2,Virginia Tech Challenge,2025-02-21,2025-02-22,Blacksburg,Virginia,,https://www.tfrrs.org/results/88127/m/Virginia_Tech_Challenge,,False,False,False,200.0,True,True
+1079,3,Terrapin Invitational,2018-04-07,2018-04-07,College Park,Maryland,,https://live.bullseyerunning.com/meets/970/events/individual/23368,,True,False,False,,False,True
+1086,4,Newport News One City Marathon,2025-03-02,2025-03-02,Newport News,Virginia,,https://runsignup.com/Race/Results/130443?resultSetId=440726#resultSetId-529249;perpage:100,,False,False,False,,False,True
+1093,3,Dashing Dukes Invitational,2025-03-08,2025-03-08,Harrisonburg,Virginia,,https://www.runroanoke.com/EventFiles/Results/2025/jmuresults_20250308092854527.pdf,,True,False,False,,False,True
+695,1,Beliot Olde English Classic,2019-10-05,2019-10-05,Beloit,Wisconsin,,https://www.accuracetiming.com/results/2019/boecc_19m.pdf,,False,False,False,,False,True
+696,2,Big Dawg Invitational,2019-02-08,2019-02-08,Stevens Point,Wisconsin,,https://www.tfrrs.org/results/63104/3949098/Big_Dawg_Invitational/Mens-3000-Meters,,False,False,False,,False,True
+763,1,JIM DREWS/TORI NEUBAUER INVITATIONAL,2019-10-19,2019-10-19,Ettrick,Wisconsin,,https://uwlathletics.com/documents/2019/10/19//men.pdf?id=4706,,False,False,False,,False,True
+768,3,UW-Platteville Open,2023-04-01,2023-04-01,Platteville,Wisconsin,,https://www.athletic.net/TrackAndField/meet/503034/results/m/1/10-km,,False,False,False,,False,True
+767,2,UW Platteville Last Chance Meet,2020-03-06,2020-03-06,Platteville,Wisconsin,,https://www.tfrrs.org/results/64345/3998889/UW-Platteville_Final_Qualifying_Meet/Mens-Mile,,False,False,False,,False,True
+766,1,Roy Griak Invitation,2019-09-28,2019-09-28,Minneapolis,Minnesota,,https://results.flotrack.org/XC-PTT.html?mid=1745,,False,False,False,,False,True
+765,2,Panther Tune Up,2019-02-22,2019-02-22,Milwaukee,Wisconsin,,https://www.accuracetiming.com/results/2020/tu_20m.pdf,,False,False,False,,False,True
+764,4,Madison Marathon,2022-11-13,2022-11-13,Madison,Wisconsin,,https://runsignup.com/Race/Results/26569/IndividualResult/SGLC?resultSetId=355412#U28158165,,False,False,False,,False,True
+781,1,Hagan Stone XC Classic,2014-10-04,2014-10-04,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/180115-hagan-stone-xc-classic-2014/results/327953/formatted/,,False,False,False,,False,True
+782,1,Royals XC Challenge,2014-10-11,2014-10-11,Charlotte,North Carolina,,https://nc.milesplit.com/meets/179254-royals-xc-challenge-2014/results/332248/raw,,False,False,False,,False,True
+769,1,NIRCA Southeast Regional Championships,2024-10-26,2024-10-26,Knoxville,Tennessee,,https://my.raceresult.com/314080/,,True,True,False,,False,True
+771,2,Big Dawg Invitational,2020-02-08,2020-02-08,Stevens Point,Wisconsin,,https://www.tfrrs.org/results/63104/3949098/Big_Dawg_Invitational/Mens-3000-Meters,,False,False,False,,False,True
+773,2,Panther Tune Up,2020-02-22,2020-02-22,Milwaukee,Wisconsin,,https://www.accuracetiming.com/results/2020/tu_20m.pdf,,False,False,False,,False,True
+774,1,NIRCA Pacific Regional Championships,2024-10-26,2024-10-26,Sunnyvale,California,,https://runsignup.com/Race/Info/CA/Sunnyvale/NIRCAPacificRegional,,True,True,False,,False,True
+776,1,NIRCA Northeast Regional Championship,2024-10-26,2024-10-26,Westfield,Massachusetts,,https://live.ic4atrack.com/meets/41591/events/xc/1516859,,True,True,False,,False,True
+783,3,Raleigh Relays,2012-03-31,2012-03-31,Raleigh,North Carolina,,https://www.athletic.net/TrackAndField/meet/142238/results,,False,False,False,,False,True
+770,1,NIRCA Great Lakes Regional Championships,2024-10-26,2024-10-26,Carmel,Indiana,,https://results.raceroster.com/v2/en-US/results/rtq6r45jhgcxkmhv/results?subEvent=216647&page=1&pageSize=1000,https://photos.app.goo.gl/CoUG61fX7hV1UnWU8,True,True,False,,False,True
+777,1,Hagan Stone Classic 2009,2009-10-03,2009-10-03,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/53358-hagan-stone-classic-2009/coverage,,False,False,False,,False,True
+778,1,Hagan Stone XC Classic,2011-10-01,2011-10-01,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/99913-hagan-stone-xc-classic-2011/results/173189/raw,,False,False,False,,False,True
+779,1,Hagan Stone XC Classic,2012-10-06,2012-10-06,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/113790-hagan-stone-xc-classic-2012/results/219110?type=formatted,,False,False,False,,False,True
+780,1,Hagan Stone XC Classic,2013-10-05,2013-10-05,Pleasant Garden,North Carolina,,https://nc.milesplit.com/meets/147991-hagan-stone-xc-classic-2013/results/266739/raw,,False,False,False,,False,True
+784,3,Raleigh Relays,2014-03-28,2014-03-28,Raleigh,North Carolina,,https://www.athletic.net/TrackAndField/meet/217103/results,,False,False,False,,False,True
+785,3,Aggie Invitational,2016-04-09,2016-04-09,Greensboro,North Carolina,,https://www.athletic.net/TrackAndField/meet/282200,,False,False,False,,False,True
+786,3,Dennis Craddock Carolina Relays,2016-03-18,2016-03-19,Charlotte,North Carolina,,https://www.athletic.net/TrackAndField/meet/274683,,False,False,False,,False,True
+1098,3,Lloyd Sigler Spring Meet,2025-03-08,2025-03-08,Salisbury,Maryland,,https://www.tfrrs.org/results/89442/f/2025_Lloyd_Sigler_Spring_Meet?team_hnd=70766,,False,False,False,400.0,False,True
+1099,3,Victor Ice Breaker Duals,2025-03-08,2025-03-08,Mount Berry,Georgia,,https://www.tfrrs.org/results/87798/m/Victor_Ice_Breaker_Duals?team_hnd=106435,,False,False,False,400.0,False,True
+1100,3,Embry Riddle Eagle Invite,2025-03-08,2025-03-08,Daytona Beach,Florida,,https://www.tfrrs.org/results/87782/Embry-Riddle_Eagle_Invite,,False,False,False,400.0,False,True
+1101,3,Cal Opener,2025-03-08,2025-03-08,Berkeley,California,,https://www.tfrrs.org/results/87404/Cal_Opener,,False,False,False,400.0,False,True
+1102,3,Tampa Classic,2025-03-07,2025-03-07,Tampa,Florida,,https://www.tfrrs.org/results/88310/m/Tampa_Classic?team_hnd=109693,,False,False,False,400.0,False,True
+1110,3,Hayward Premiere,2022-04-01,2022-04-02,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/462286/results/all,,False,False,False,,False,True
+1111,3,Portland Distance Carnival,2022-05-14,2022-05-14,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/473336/results/all,,False,False,False,,False,True
+1118,3,Pacific University Multi's,2023-03-30,2023-03-31,Forest Grove,Oregon,,https://www.athletic.net/TrackAndField/meet/484634/results/all,,False,False,False,,False,True
+1130,3,Aggie Open,2025-03-14,2025-03-15,Davis,California,,https://www.tfrrs.org/results/89538/Aggie_Open_2025,,False,False,False,400.0,False,True
+790,3,Beach Invitational,2014-04-19,2014-04-19,Norwalk,California,,https://www.athletic.net/TrackAndField/meet/219961/results,,False,False,False,,False,True
+787,3,Rider Invitational,2022-04-23,2022-04-23,Lawrenceville,New Jersey,,https://www.athletic.net/TrackAndField/meet/523762/results,,False,False,False,,False,True
+788,3,Occidental Distance Carnival,2013-03-15,2013-03-15,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/188057/results,,False,False,False,,False,True
+789,3,UCI Steve Scott Invitational,2013-04-27,2013-04-27,Irvine,California,,https://www.athletic.net/TrackAndField/meet/195885/results,,False,False,False,,False,True
+791,3,Oxy Invitational,2014-05-10,2014-05-10,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/221858,,False,False,False,,False,True
+792,3,San Francisco State Distance Carnival,2014-04-04,2014-04-04,San Francisco,California,,https://www.athletic.net/TrackAndField/meet/210770,,False,False,False,,False,True
+793,3,Oxy Invitational,2015-05-09,2015-05-09,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/228930,,False,False,False,,False,True
+794,3,Oxy Invitational,2016-05-07,2016-05-07,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/282191,,False,False,False,,False,True
+795,3,San Francisco State Distance Carnival,2017-04-01,2017-04-01,San Francisco,California,,https://www.athletic.net/TrackAndField/meet/291625,,False,False,False,,False,True
+796,3,Occidental Distance Carnival Spring Break Classic,2017-03-10,2017-03-10,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/302699,,False,False,False,,False,True
+797,3,Oxy Invitational,2018-05-12,2018-05-12,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/320783,,False,False,False,,False,True
+798,3,Oxy Invitational,2019-05-11,2019-05-11,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/383118,,False,False,False,,False,True
+799,3,Steve Scott Invitational,2019-04-26,2019-04-26,Irvine,California,,https://www.athletic.net/TrackAndField/meet/368759,,False,False,False,,False,True
+800,3,Mike Fanelli Track Classic,2019-03-30,2019-03-30,San Francisco,California,,https://www.athletic.net/TrackAndField/meet/366825,,False,False,False,,False,True
+801,3,Oxy Distance Carnival,2022-03-12,2022-03-12,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/464840,,False,False,False,,False,True
+802,3,Pomona-Pitzer Invitational,2022-04-09,2022-04-09,Claremont,California,,https://www.athletic.net/TrackAndField/meet/465193,,False,False,False,,False,True
+803,3,Cal Poly SLO Mustang Invitational,2022-04-22,2022-04-22,San Luis Obispo,California,,https://www.athletic.net/TrackAndField/meet/469002,,False,False,False,,False,True
+804,3,Oxy Invitational,2022-05-07,2022-05-07,Los Angeles,California,,https://www.athletic.net/TrackAndField/meet/450505,,False,False,False,,False,True
+805,3,Pomona-Pitzer Invitational,2023-04-08,2023-04-08,Claremont,California,,https://www.athletic.net/TrackAndField/meet/504912,,False,False,False,,False,True
+806,3,CSU Stanislaus Kim Duyst Invitational,2015-03-07,2015-03-07,Turlock,California,,https://www.athletic.net/TrackAndField/meet/240555,,False,False,False,,False,True
+807,3,Stanislaus Kim Duyst Invitational,2017-03-04,2017-03-04,Turlock,California,,https://www.athletic.net/TrackAndField/meet/302244,,False,False,False,,False,True
+808,3,Kim Duyst Invitational,2023-03-04,2023-03-04,Turlock,California,,https://www.athletic.net/TrackAndField/meet/495240,,False,False,False,,False,True
+809,3,SJTC Winter All-Comer #2,2023-01-28,2023-01-28,San Jose,California,,https://www.athletic.net/TrackAndField/meet/484331,,False,False,False,,False,True
+810,3,Benson/Hodge Memorial Invitational,2022-04-23,2022-04-23,Pittsburgh,Pennsylvania,,https://www.athletic.net/TrackAndField/meet/469294,,False,False,False,,False,True
+811,3,Robert Morris Mid Week PR Bonanza,2023-04-05,2023-04-05,Pittsburgh,Pennsylvania,,https://www.athletic.net/TrackAndField/meet/502639,,False,False,False,,False,True
+812,3,Illinois Twilight Invite,2010-04-30,2010-04-30,Urbana-Champaign,Illinois,,https://www.athletic.net/TrackAndField/meet/88685,,False,False,False,,False,True
+813,3,Gina Relays,2011-04-30,2011-04-30,Hillsdale,Michigan,,https://www.athletic.net/TrackAndField/meet/116295,,False,False,False,,False,True
+814,3,Gina Relays,2010-04-24,2010-04-24,Hillsdale,Michigan,,https://www.athletic.net/TrackAndField/meet/86385,,False,False,False,,False,True
+815,3,Loras Open,2010-04-24,2010-04-24,Dubuque,Iowa,,https://www.athletic.net/TrackAndField/meet/86820,,False,False,False,,False,True
+816,1,Southwestern Showdown,2024-09-14,2024-09-14,Georgetown,Texas,,https://www.tfrrs.org/results/xc/23624/Southwestern_Showdown,,False,False,False,,False,True
+818,2,GVSU Holiday Open 2020,2019-12-06,2019-12-06,Allendale,Michigan,,https://mi.milesplit.com/meets/375824-gvsu-holiday-open-2020/results/681728?type=raw,,False,False,False,,False,True
+819,1,Bethel University XC Invitational,2021-10-08,2021-10-08,South Bend,Indiana,,https://www.tfrrs.org/results/xc/18609/Bethel_Univ_XC_Invitational_,,False,False,False,,False,True
+817,2,Illinois Club Relays,2020-02-29,2020-02-29,Champaign,Illinois,,https://www.athletic.net/TrackAndField/meet/391991/results,,True,False,False,,False,True
+820,1,Bushnell Invitational,2024-10-26,2024-10-26,Springfield,Oregon,,https://www.tfrrs.org/results/xc/25218/Bushnell_Invitational,,False,False,False,,False,True
+821,1,L&C Invitational,2024-10-19,2024-10-19,Estacada,Oregon,,https://www.tfrrs.org/results/xc/25037/LC_Invite,,False,False,False,,False,True
+822,1,NIRCA Cross Country National Championships,2024-11-09,2024-11-09,Hershey,Pennsylvania,,http://results.tfmeetpro.com/MACFAT_LLC/2024_NIRCA_Cross_Country_National_Championships/,https://photos.app.goo.gl/sXsSExNp45it1biWA,True,False,True,,False,True
+824,4,Wor-Wic Community College Hero Run 5K,2024-10-05,2024-10-05,Salisbury,Maryland,,https://d368g9lw5ileu7.cloudfront.net/races/results_kjdiwtp7fdzg5ufjcsrshqggqfng.pdf,,False,False,False,,False,True
+825,4,Gary P. Lister Bottle and Cork 5K/10 mile,2024-09-07,2024-09-07,Dewey Beach,Delaware,,https://results.raceroster.com/v2/en-US/results/dj29gv6b6k5anbrs/results?subEvent=209588&page=1&genderSexId=36eda1e6-c9ff-4038-802d-2b4b178c7753,,False,False,False,,False,True
+823,1,Wor-Wic Community College Hero Run 5k,2024-10-05,,Salisbury,MD,,https://www.adventuresignup.com/Race/Results/150218#,,False,False,False,,False,True
+826,1,Oregon vs Oregon State,2024-10-12,2024-10-12,Eugene,Oregon,,https://www.uorunning.com/results24.php,,True,False,False,,False,True
+827,4,University of Oregon Run with the Duck,2024-10-25,2024-10-25,Eugene,Oregon,,https://eclecticedgeracing.overallraceresults.com/overall-results/918,,False,False,False,,False,True
+828,4,ZooRun Miami,2024-11-02,2024-11-02,Miami,Florida,,https://events.hakuapp.com/events/cdb465be850f50ef582e/event_results,,False,False,False,,False,True
+829,3,NIRCA Spring Track & Field National Championship,2018-04-14,2018-04-15,Shelbyville,Indiana,,https://clubrunning.org/races/race_results.php?race=597,,True,False,True,400.0,False,True
+830,4,Chicago Marathon,2024-10-13,2024-10-13,Chicago,Illinois,,https://results.chicagomarathon.com/2024/?pid=list,https://www.marathonfoto.com/Proofs,False,False,False,,False,True
+831,1,NXR Southeast,2024-11-23,2024-11-23,Cary,North Carolina,,https://www.flashresults.com/2025_Meets/xc/NXRSE/index.htm,,False,False,False,,False,True
+832,1,NXR Southeast,2022-11-26,2022-11-26,Cary,North Carolina,,https://flashresults.com/2023_Meets/xc/NXRSE/005-1_compiled.htm,,False,False,False,,False,True
+833,1,NXR Southeast,2023-11-19,2023-11-19,Cary,North Carolina,,https://results.flashresults.com/2023_11-19_NXRSE/005-1_compiled.htm,,False,False,False,,False,True
+834,4,Santa Scramble 5k,2024-11-23,2024-11-23,Concord,North Carolina,,https://runsignup.com/Race/Results/38866#resultSetId-512546;perpage:100,,False,False,False,,False,True
+835,4,Philadelphia Marathon,2024-11-23,2024-11-23,Philadelphia,Pennsylvania,,https://www.mychiptime.com/searchevent.php?id=16165,,False,False,False,,False,True
+836,4,Tobacco Road Half Marathon,2023-03-19,2023-03-19,Durham,North Carolina,,https://www.racetecresults.com/results.aspx?CId=16247&RId=10060&EId=2,,False,False,False,,False,True
+837,4,NIRCA Half Marathon Championships,2016-04-09,2016-04-09,Bloomington,Indiana,,https://clubrunning.org/races/race_results.php?race=373,,True,False,True,,False,True
+838,4,Spring Half Marathon Nationals,2015-04-11,2015-04-11,Bloomington,Indiana,,https://clubrunning.org/races/2015/results_tracknats.php,,True,False,True,,False,True
+839,4,Half Marathon Nationals,2013-04-05,2013-04-07,Bloomington,Indiana,,https://clubrunning.org/races/2013/results_tracknats.php,,True,False,True,,False,True
+840,2,Capital Relays,2023-02-25,2023-02-25,Washington,DC,,https://virginia.clubrunning.org/static/results/2023/capital-relays-results.pdf,,True,False,False,,False,True
+841,3,Dennis Craddock Coaches Classic,2021-04-17,2021-04-17,Lynchburg,Virginia,,https://www.tfrrs.org/results/67180/m/Dennis_Craddock_Coaches_Classic?team_hnd=78552,,False,False,False,,False,True
+842,2,Houghton December Classic,2024-12-06,2024-12-06,Houghton,New York,,https://results.leonetiming.com/?mid=7585,,False,False,False,200.0,False,True
+843,2,Blue & Gold Invitational,2024-12-06,2024-12-06,Notre Dame,Indiana,,https://www.tfrrs.org/results/87388/2024_Blue__Gold_Invitational_Notre_Dame,,False,False,False,,False,True
+844,2,GVSU Holiday Open,2024-12-06,2024-12-06,Allendale,Michigan,,https://live.fstiming.com/meets/42323/events/individual/1531710,,False,False,False,,False,True
+845,2,IWU Titan First Chance,2024-12-07,2024-12-07,Bloomington,Illinois,,https://results.adkinstrak.com/meets/41166/events/individual/1532687,,False,False,False,,False,True
+846,2,UConn Husky Challenge,2024-12-05,2024-12-06,Storrs,Connecticut,,https://live.pctiming.com/meets/42261/teams/1019519,,False,False,False,200.0,True,True
+847,2,M City Indoor Classic,2024-12-06,2024-12-07,Minneapolis,Minnesota,,https://www.tfrrs.org/results/87775/m/M_City_Indoor_Classsic,,False,False,False,200.0,True,True
+848,2,SVSU Holiday Open,2024-12-06,2024-12-06,University Center,Michigan,,https://live.fstiming.com/meets/42344/teams/1020232,,False,False,False,300.0,False,True
+849,2,Mary Grinaker Invitational,2024-12-07,2024-12-07,Northampton,Massachusetts,,https://live.sstresults.com/meets/42283/teams/1020166,,False,False,False,,False,True
+850,2,UMass Boston Beacon Season Opener,2024-12-08,2024-12-08,Boston,Massachusetts,,https://www.tfrrs.org/results/87761/m/2024_UMass_Boston_Beacon_Season_Opener?team_hnd=108873,,False,False,False,200.0,True,True
+851,2,JDL Early Bird Invitational,2024-12-08,2024-12-08,Winston-Salem,North Carolina,,https://live.jdlfasttrack.com/meets/36161,,False,False,False,200.0,False,True
+852,2,CNU Holiday Open,2024-12-08,2024-12-08,Newport News,Virginia,,https://cnutfxc.anet.live/meet-list,,False,False,False,,False,True
+853,2,Vince Brown Invitational,2020-02-09,2020-02-09,Newport News,Virginia,,https://static.cnusports.com/custompages/track/20200209/index.htm,,False,False,False,200.0,False,True
+854,2,Illinois Wesleyan Titan Indoor First Chance,2018-12-01,2018-12-01,Bloomington,Illinois,,https://www.athletic.net/TrackAndField/meet/354131,,False,False,False,,False,True
+855,2,Illinois Club Relays,2019-02-23,2019-02-23,Champaign,Illinois,,https://www.athletic.net/TrackAndField/meet/356067,,True,False,False,,False,True
+856,2,Titan First Chance,2017-12-02,2017-12-02,Bloomington,Illinois,,https://www.athletic.net/TrackAndField/meet/321487,,False,False,False,,False,True
+857,2,Titan First Chance,2016-12-03,2016-12-03,Bloomington,Illinois,,https://www.athletic.net/TrackAndField/meet/289090,,False,False,False,,False,True
+858,2,IWU Titan First Chance,2015-12-05,2015-12-05,Bloomington,Illinois,,https://www.athletic.net/TrackAndField/meet/258622,,False,False,False,,False,True
+859,2,Big Meet,2014-02-14,2014-02-14,Allendale,Michigan,,https://www.athletic.net/TrackAndField/meet/209864,,False,False,False,,False,True
+860,2,Orange and Blue Open,2012-02-04,2012-02-04,Champaign,Illinois,,https://www.athletic.net/TrackAndField/meet/146409,,False,False,False,,False,True
+861,2,Kent State Tune Up,2012-02-18,2012-02-18,Kent,Ohio,,https://www.athletic.net/TrackAndField/meet/142222,,False,False,False,,False,True
+862,2,SCSU Husky Indoor Invite,2021-03-19,2021-03-19,Saint Cloud,Minnesota,,https://www.athletic.net/TrackAndField/meet/413690,,True,False,False,,False,True
+863,2,Youree Spence-Garcia Invitational,2024-12-08,2024-12-08,Staten Island,New York,,https://milesplit.live/meets/649447/events,,False,False,False,,False,True
+864,3,Jim Thorpe Open,2012-05-05,2012-05-05,State College,Pennsylvania,,https://www.athletic.net/TrackAndField/meet/145762,,False,False,False,,False,True
+865,3,Jim Taylor Invitational,2012-03-31,2012-03-31,Selinsgrove,Pennsylvania,,https://www.athletic.net/TrackAndField/meet/149630,,False,False,False,,False,True
+866,2,Indiana Early Bird,2024-12-13,2024-12-13,Bloomington,Indiana,,https://www.tfrrs.org/results/87491/m/Indiana_Early_Bird?team_hnd=106459,,False,False,False,200.0,True,True
+867,2,Liberty Kickoff,2024-12-05,2024-12-06,Lynchburg,Virginia,,https://www.tfrrs.org/results/87031/5319862/2024_Liberty_Kickoff/Mens-3000-Meters,,False,False,False,200.0,True,True
+868,2,River Hawk Early Invite,2024-12-14,2024-12-14,Susquehanna,Pennsylvania,,https://results.leonetiming.com/?mid=7593,,False,False,False,,False,True
+870,2,Spartan Invitational,2025-01-10,2025-01-10,Staten Island,New York,,https://www.tfrrs.org/results/87264/m/Spartan_Invitational?team_hnd=67085,,False,False,False,200.0,True,True
+869,2,NCC Cardinal Opener Track & Field Invitational,2025-01-10,2025-01-10,Naperville,Illinois,,https://www.tfrrs.org/results/88414/NCC_Cardinal_Opener_Track__Field_Invitational-2025,,False,False,False,200.0,False,True
+871,2,Dick Taylor Challenge,2025-01-17,2025-01-18,Chapel Hill,North Carolina,,https://results.durhamstriders.com/meets/43040,,False,False,False,200.0,False,True
+872,2,Indiana Invitational,2025-01-17,2025-01-18,Bloomington,Indiana,,https://www.tfrrs.org/results/87767/m/Indiana_Invitational,,False,False,False,,False,True
+873,2,River Hawk Invite,2025-01-18,2025-01-18,Susquehanna,Pennsylvania,,https://tfrrs.org/results/87787/River_Hawk_Invite,,False,False,False,,False,True
+874,2,GVSU Bob Eubanks Open,2025-01-18,2025-01-18,Allendale,Michigan,,https://www.tfrrs.org/results/87275/m/GVSU_Bob_Eubanks_Open?team_hnd=108849,https://photos.app.goo.gl/uHoBEnuHrMAssww18,False,False,False,300.0,False,True
+875,2,Otterbein Invite,2025-01-18,2025-01-18,Westerville,Ohio,,https://www.tfrrs.org/results/88874/Otterbein_Invite,,False,False,False,200.0,False,True
+1025,2,Michigan Invitational,2025-02-08,2025-02-08,Ann Arbor,MI,,https://www.tfrrs.org/results/87843/5382998/2025_Michigan_Invitational/Mens-60-Meters,,False,False,False,200.0,True,True
+876,2,Collegeville Classic,2025-01-19,2025-01-19,Collegeville,Pennsylvania,,https://www.tfrrs.org/results/87655/f/2025_Collegeville_Classic?team_hnd=70766,,False,False,False,200.0,False,True
+1042,2,UNC Open,2010-01-30,2010-01-30,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/88058/results/all,,False,False,False,200.0,False,True
+1063,2,PSU Tune-Up,2025-02-21,2025-02-21,State College,Pennsylvania,,https://live.pttiming.com/?mid=7618,,False,False,False,200.0,True,True
+877,2,Jack Skoog Open,2025-01-17,2025-01-18,Lansing,Michigan,,https://www.tfrrs.org/results/87974/f/Jack_Skoog_Open?team_hnd=63948,,False,False,False,200.0,False,True
+878,2,Greater Boston Track Club Invitational,2025-01-19,2025-01-19,Cambridge,Massachusetts,,https://www.tfrrs.org/results/87218/f/2025_Greater_Boston_Track_Club_GBTC_Invitational?team_hnd=78097,,False,False,False,200.0,True,True
+880,2,Muskie Meet #2,2025-01-25,2025-01-25,New Concord,Ohio,,https://www.tfrrs.org/results/87024/m/Muskie_Meet_2?team_hnd=95483,,False,False,False,200.0,False,True
+882,2,Illinois College Snow Bird Invite,2025-01-25,2025-01-25,Jacksonville,Illinois,,https://www.tfrrs.org/results/88767/f/Illinois_College_Snow_Bird_Invite?team_hnd=63901,,False,False,False,200.0,False,True
+883,2,Indoor George Glass Invitational,2025-01-25,2025-01-25,Upland,Indiana,,https://www.tfrrs.org/results/88142/f/Indoor_George_Glass_Invitational?team_hnd=113999,,False,False,False,200.0,False,True
+884,2,Centre Indoor Showcase,2025-01-25,2025-01-25,Danville,Kentucky,,https://www.tfrrs.org/results/88492/f/Centre_Indoor_Showcase?team_hnd=110477,,False,False,False,200.0,False,True
+885,2,Tiffin University Open #2,2025-01-25,2025-01-25,Tiffin,Ohio,,https://www.tfrrs.org/results/88137/f/Tiffin_University_Open_2?team_hnd=92420,,False,False,False,200.0,False,True
+886,2,Doug Hansen Open,2025-01-25,2025-01-25,Saginaw,Michigan,,https://www.tfrrs.org/results/89047/m/Doug_Hansen_Open,,False,False,False,300.0,False,True
+887,2,GVSU Bill Clinger Classic,2025-01-24,2025-01-25,Allendale,Michigan,,https://www.tfrrs.org/results/87277/f/GVSU_Bill_Clinger_Classic?team_hnd=103315,,False,False,False,300.0,False,True
+888,4,"Classic City Marathon, Half Marathon, and Marathon Relay",2025-01-26,,Athens,GA,,https://runsignup.com/Race/Results/146894#resultSetId-524839;perpage:100,,False,False,False,,False,True
+889,2,JDL Flat is Fast Invite,2025-01-26,2025-01-26,Winston Salem,North Carolina,,https://live.jdlfasttrack.com/meets/36163/events/individual/1570065,,False,False,False,200.0,False,True
+1026,2,Happy Valley Invitational,2025-02-09,2025-02-09,State College,Pennsylvania,,http://results.tfmeetpro.com/Nittany_Track_and_Field/Happy_Valley_Invitational_2025/?fbclid=PAY2xjawIV6rJleHRuA2FlbQIxMQABpnxevfOwS7ENN-AqfH_aYz_6_egbhZEmiSTJNYfeQap6S1yOj3rs-0JN8g_aem_jzMQWBPaaL7fz_wDMSir6A,,True,False,False,200.0,True,True
+879,2,Hillsdale College Wide Track Classic,2025-01-25,2025-01-25,Hillsdale,Michigan,,https://www.tfrrs.org/results/88350/2025_Hillsdale_College_Wide_Track_Classic,https://photos.app.goo.gl/ERDzFuiJCSUmBx2r8,False,False,False,200.0,False,True
+890,2,Hoosier Open,2016-12-09,2016-12-09,Bloomington,Indiana,,https://www.athletic.net/TrackAndField/meet/289868/results,,False,False,False,,False,True
+1043,2,UNC Classic,2010-01-23,2010-01-23,Chapel Hill,North Carolina,,https://www.athletic.net/TrackAndField/meet/88057/results/all,,False,False,False,200.0,False,True
+1054,3,Florida Running Club Invite,2025-02-16,2025-02-16,Gainesville,Florida,,http://live.halfmiletiming.com/meets/734/events,,True,False,False,400.0,False,True
+1064,3,PP Salo & Crenna Collegiate T&F Invite,2025-02-15,2025-02-15,Claremont,California,,https://www.tfrrs.org/results/88708/PP_Salo__Crenna_Collegiate_TF_Invite,,False,False,False,,False,True
+1074,3,Syracuse Outdoor Track Invitational,2017-04-30,2017-04-30,Syracuse,New York,,https://docs.google.com/spreadsheets/d/13NgWAmhXL683z0ALy6UkLm7gyuSIZXm9TFzLTvYzIhQ/edit?gid=775891265#gid=775891265,,True,False,False,,False,True
+1080,2,Roanoke Maroons NCAA Final Qualifier,2017-03-04,2017-03-04,Roanoke,Virginia,,https://www.athletic.net/TrackAndField/meet/440304/results/all,,False,False,False,200.0,False,True
+1081,2,Liberty Quad,2016-02-11,2016-02-12,Lynchburg,Virginia,,https://www.athletic.net/TrackAndField/meet/273430/results/all,,False,False,False,200.0,True,True
+1087,2,Last Chance Qualifier,2025-03-02,2025-03-02,Boston,Massachusetts,,https://www.tfrrs.org/results/87219/2025_Last_Chance_Indoor_Natnl_Qualifier_at_Boston_Univ,,False,False,False,200.0,True,True
+1088,2,CNU Qualifier,2025-03-02,2025-03-02,Newport News,Virginia,,https://www.tfrrs.org/results/87329/CNU_Qualifier,,False,False,False,200.0,False,True
+1094,3,Harding Invitational,2025-03-07,2025-03-08,Searcy,Arkansas,,https://www.tfrrs.org/results/88119/Harding_Invitational,,False,False,False,,False,True
+1103,3,Dennis Craddock Coaches Classic,2022-04-15,2022-04-16,Lynchburg,Virginia,,https://www.tfrrs.org/results/72751/4504491/Dennis_Craddock_Coaches_Classic/Mens-800-Meters,,False,False,False,400.0,False,True
+1112,3,Linfield Open,2018-05-05,2018-05-05,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/333664/results/all,,False,False,False,,False,True
+1113,3,Linfield Erik Anderson Memorial Icebreaker,2019-03-01,2019-03-02,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/367775/results/all,,False,False,False,,False,True
+1119,3,LCC Open,2025-03-15,2025-03-15,Eugene,Oregon,,https://live.athletictiming.net/meets/44802/events/individual/1652146,,False,False,False,,False,True
+910,2,SPIRE College Midwest Open 2044,2025-01-25,2025-01-25,Geneva,Ohio,,https://tfrrs.org/results/87243/m/SPIRE_College_Midwest_Open_2025?team_hnd=78252,,False,False,False,,False,True
+911,2,SPIRE College Midwest Open 2045,2025-01-25,2025-01-25,Geneva,Ohio,,https://tfrrs.org/results/87243/m/SPIRE_College_Midwest_Open_2025?team_hnd=78252,,False,False,False,,False,True
+1131,4,Tobacco Road Half Marathon,2025-03-16,2025-03-16,Durham,North Carolina,,https://www.racetecresults.com/results.aspx?CId=16247&RId=10107&EId=2,,False,False,False,,False,True
+1137,3,Ed Fry Invitational,2025-03-22,2025-03-22,Indiana,Pennsylvania,,https://www.tfrrs.org/results/90457/m/IUP_Ed_Fry_Invitational?team_hnd=20232,,False,False,False,400.0,False,True
+1138,3,Mark Conover Classic,2025-03-22,2025-03-22,San Luis Obispo,California,,https://www.tfrrs.org/results/89276/f/Mark_Conover_Classic?team_hnd=96426,,False,False,False,400.0,False,True
+1139,3,Purple & Gold Open,2025-03-22,2025-03-22,West Chester,Pennsylvania,,https://www.tfrrs.org/results/87015/f/Purple__Gold_Open?team_hnd=74765,,False,False,False,400.0,False,True
+1140,3,UCF Black & Gold Challenge,2025-03-21,2025-03-22,Orlando,Florida,,https://www.tfrrs.org/results/87054/UCF_Black__Gold_Challenge,,False,False,False,400.0,False,True
+1141,3,Marty Pushkin Invitational,2025-03-21,2025-03-22,Morgantown,West Virginia,,https://www.tfrrs.org/results/88141/Marty_Pushkin_Invitational,,False,False,False,400.0,False,True
+1144,3,Erik Anderson Memorial Icebreaker,2022-03-04,2022-03-05,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/455571/results,,False,False,False,,False,True
+1145,3,Willamette Opener,2022-03-05,2022-03-05,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/455986/results/all,,False,False,False,,False,True
+1146,3,LCC Open,2022-03-12,2022-03-12,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/457556/results,,False,False,False,,False,True
+1147,3,OSU PNW Invitational,2022-03-19,2022-03-19,Corvallis,Oregon,,https://www.athletic.net/TrackAndField/meet/459380/results,,False,False,False,,False,True
+1148,3,Willamette Track & Field Invitational,2022-03-26,2022-03-26,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/462061/results/all,,False,False,False,,False,True
+1149,3,NW Distance Jamboree,2022-04-02,2022-04-02,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/461589/results,,False,False,False,,False,True
+1150,3,John Knight Twilight,2022-04-08,2022-04-08,Monmouth,Oregon,,https://www.athletic.net/TrackAndField/meet/456636/results,,False,False,False,,False,True
+1197,3,Portland Twilight,2016-05-15,2016-05-15,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/266047/results/all,,False,False,False,,False,True
+1198,3,Willamette Invitational,2015-03-28,2015-03-28,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/244371/results/all,,False,False,False,,False,True
+1199,3,Jenn Boyman Memorial Invitational,2015-04-04,2015-04-04,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/230911/results/all,,False,False,False,,False,True
+1200,3,Oregon Twilight Meet,2015-05-08,2015-05-08,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/251536/results/all,,False,False,False,,False,True
+1201,3,Portland Twilight Meet,2015-05-17,2015-05-17,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/251537/results/all,,False,False,False,,False,True
+1187,3,Erik Anderson Memorial Ice Breaker,2016-03-05,2016-03-05,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/266924/results/all,,False,False,False,,False,True
+1188,3,Willamette Opener,2016-03-05,2016-03-05,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/270012/results/all,,False,False,False,,False,True
+1189,3,Willamette Invite,2016-03-26,2016-03-26,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/274376/results/all,,False,False,False,,False,True
+1190,3,Jenn Boyman Memorial,2016-04-02,2016-04-02,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/572327/results/all,,False,False,False,,False,True
+1191,3,John Knight Twilight,2016-04-08,2016-04-08,Monmouth,Oregon,,https://www.athletic.net/TrackAndField/meet/254337/results/all,,False,False,False,,False,True
+1192,3,Oregon Relays,2016-04-15,2016-04-16,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/254127/results/all,,False,False,False,,False,True
+1193,3,Titan Twilight,2016-04-28,2016-04-28,Lane County,Oregon,,https://www.athletic.net/TrackAndField/meet/281417/results/all,,False,False,False,,False,True
+1194,3,Oregon State Outdoor High Performance,2016-04-30,2016-04-30,Corvallis,Oregon,,https://www.athletic.net/TrackAndField/meet/281411/results/all,,False,False,False,,False,True
+1195,3,Oregon Twilight,2016-05-06,2016-05-06,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/282187/results/all,,False,False,False,,False,True
+1196,3,West Coast Invitational,2016-05-12,2016-05-12,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/283563/results/all,,False,False,False,,False,True
+1202,3,Willamette Opener,2014-03-01,2014-03-01,Salem,Oregon,,https://www.athletic.net/TrackAndField/meet/213851/results/all,,False,False,False,,False,True
+1203,3,OSU Invitational,2014-03-08,2014-03-08,Corvallis,Oregon,,https://www.athletic.net/TrackAndField/meet/221863/results/all,,False,False,False,,False,True
+1204,3,Jenn Boyman Memorial Invitational,2014-04-05,2014-04-05,McMinnville,Oregon,,https://www.athletic.net/TrackAndField/meet/204150/results/all,,False,False,False,,False,True
+1205,3,Oregon Relays,2014-04-18,2014-04-19,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/201749/results/all,,False,False,False,,False,True
+1206,3,Oregon Twilight Meet,2014-05-09,2014-05-09,Eugene,Oregon,,https://www.athletic.net/TrackAndField/meet/223340/results/all,,False,False,False,,False,True
+1207,3,Portland Track Festival,2014-06-15,2014-06-15,Portland,Oregon,,https://www.athletic.net/TrackAndField/meet/221654/results/all,,False,False,False,,False,True
+1208,3,USC Trojan Invitational,2013-03-22,2013-03-23,Los Angeles,California,,https://files.12thman.com/history/track/stats/2012-2013/usc.pdf,,False,False,False,,False,True
+1209,3,OSU High Performance Meet,2013-04-26,2013-04-26,Corvallis,Oregon,,https://meet-register.runnerspace.com/gprofile.php?mgroup_id=44144&do=news&news_id=134585,,False,False,False,,False,True
+1210,4,KD Shamrock 'N' Run 5k,2025-03-29,2025-03-29,Chapel Hill,North Carolina,,https://d368g9lw5ileu7.cloudfront.net/races/results_qjdoielxlmgwgdzpmz5wt87nhnb8.pdf,,False,False,False,,False,True
+1220,3,NCC First Chance,2025-03-28,2025-03-29,Naperville,Illinois,,https://www.tfrrs.org/results/90010/f/NCC_First_Chance_-_Distance_Fling?team_hnd=63901,,False,False,False,400.0,False,True
+1212,3,Lafayette Invitational,2025-03-29,2025-03-29,Easton,Pennsylvania,,https://www.tfrrs.org/results/89452/f/2025_Lafayette_Open?team_hnd=20233,,False,False,False,400.0,False,True
+1213,3,Yellow Jacket Collegiate Outdoor Open,2025-03-29,2025-03-29,Cedarville,Ohio,,https://www.tfrrs.org/results/87270/Yellow_Jacket_Collegiate_Outdoor_open_,,False,False,False,400.0,False,True
+1214,3,Davidson Relays,2025-03-29,2025-03-29,Davidson,North Carolina,,https://www.tfrrs.org/results/87926/Davidson_Relays_,,False,False,False,400.0,False,True
+1215,3,Dr. Jack M Toms Alumni Invitational,2025-03-28,2025-03-29,Lynchburg,Virginia,,https://www.tfrrs.org/results/88223/Dr_Jack_M_Toms_Alumni_Invitational,,False,False,False,400.0,False,True
+1216,3,Osprey Open,2025-03-28,2025-03-29,Pomona,New Jersey,,https://www.tfrrs.org/results/87516/Osprey_Open,,False,False,False,400.0,False,True
+1217,3,Doc Jopson Invitational,2025-03-28,2025-03-29,Bridgewater,Virginia,,https://www.tfrrs.org/results/87805/Doc_Jopson_Track__Field_Invitational,,False,False,False,400.0,False,True
+1218,3,Amy Adams Memorial Invitational,2025-03-28,2025-03-29,Muskingum,Ohio,,https://www.tfrrs.org/results/87027/Amy_Adams_Memorial_Invitational,,False,False,False,400.0,False,True
+1219,3,Towson Invitational,2025-03-28,2025-03-29,Towson,Maryland,,https://www.tfrrs.org/results/87265/f/Towson_Invitational,,False,False,False,400.0,False,True
+1211,3,Bulldog Invitational,2025-03-29,2025-03-29,Athens,Georgia,,https://drive.google.com/file/d/1FOGQqxyZAhp1TB5ay2czJVeOU5I7Y_NQ/view,,False,False,False,400.0,False,True
+1221,3,Big Blue Alumni Invite,2025-03-29,2025-03-29,Decatur,Illinois,,https://www.athletic.net/TrackAndField/meet/590187/results,,False,False,False,400.0,False,True
+1224,4,NIRCA Half Marathon Championship,2025-04-05,2025-04-05,Richmond,Virginia,,https://runsignup.com/Race/Results/176770#resultSetId-539594;perpage:100,https://photos.app.goo.gl/4VcW4pPHo8txKNPz9 ,True,False,True,,False,True
+1223,4,Myrtle Beach Marathon,2025-03-01,2025-03-01,Myrtle Beach,South Carolina,,https://results.raceroster.com/v2/en-US/results/bzvzwv6j2wbvahgm/results?subEvent=222130&page=1,,False,False,False,,False,True
+1228,3,Duke Invitational,2025-04-10,2025-04-12,Durham,North Carolina,,https://flashresults.com/2025_Meets/Outdoor/04-10_DukeInvite/index.htm,,False,False,False,,False,True
+1222,3,Millikin Big Blue Alumni Invite,2025-03-29,2025-03-29,Decatur,Illinois,,https://www.athletic.net/TrackAndField/meet/590187/results,,False,False,False,400.0,False,True
+1225,3,Willamette Invitational,2025-03-29,2025-03-29,Salem,Oregon,,https://live.athletictiming.net/meets/44643/teams/1118042,,False,False,False,,False,True
+1226,3,Mike Fanelli Track Classic,2025-04-03,2025-04-05,San Francisco,California,,https://www.tfrrs.org/results/88841/m/Mike_Fanelli_Track_Classic?team_hnd=96425,,False,False,False,,False,True
+1230,4,The Tar Heel 10 Miler,2025-04-19,2025-04-19,Chapel Hill,North Carolina,,https://results.raceroster.com/v2/en-US/results/qwwypummvztarah6/results,,False,False,False,,False,True
+1229,3,Grinnell Dick Young Invite,2025-04-12,,Grinnell,Iowa,,https://www.tfrrs.org/results/90171/5544673/Grinnell_Dick_Young_Classic/Mens-100-Meters,,False,False,False,400.0,False,True
+1231,3,Aggie Invitational,2025-04-18,2025-04-19,Greensboro,North Carolina,,https://www.tfrrs.org/results/87069/5574114/2025_Aggie_Invitational/Mens-800-Meters,,False,False,False,,False,True
+1232,3,UW-Platteville Invitational,2025-04-11,2025-04-12,Platteville,Wisconsin,,https://wi.milesplit.com/meets/680426-uw-platteville-invitational-2025/results/1146473?type=raw,,False,False,False,,False,True
+1233,3,Pomona-Pitzer T&F Invite,2025-04-12,2025-04-12,Claremont,California,,https://www.tfrrs.org/results/89508/m/2025_Pomona-Pitzer_TF_Invite?team_hnd=96425,,False,False,False,,False,True
+1234,3,Berry Field Day Invitational,2025-04-11,2025-04-12,Rome,GA,,https://ga.milesplit.com/meets/679282-berry-field-day-invitational-2025/results,,False,False,False,400.0,False,True
+1235,3,Duke Twilight,2025-05-04,2025-05-04,Durham,North Carolina,,https://blueridgetiming.live/meets/50987/events,,False,False,False,,False,True
+1236,3,Oxy Invitational,2025-05-03,2025-05-03,Los Angeles,California,,https://www.tfrrs.org/results/87576/2025_Oxy_Invitational_CollegeUniversity/,,False,False,False,,False,True
+1237,3,NIRCA Track & Field National Championships,2025-04-05,2025-04-06,Richmond,Virginia,,http://www.cfpitiming.com/liveresults/2025_Outdoor/NIRCA_2025/index.html,,True,False,True,400.0,False,True
