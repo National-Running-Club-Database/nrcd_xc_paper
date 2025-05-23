@@ -9,4 +9,25 @@ The primary data source is the National Running Club Database (NRCD):
 - Source: https://github.com/National-Running-Club-Database/data
 - Note: Do not edit the data files directly as they are sourced from another repository
 
+## Updating the Data
+
+To update the data from the source repository:
+
+1. Navigate to the data directory:
+   ```bash
+   cd data/nrcd
+   ```
+
+2. Fetch the latest changes from the source repository:
+   ```bash
+   git fetch origin
+   ```
+
+3. Reset to the latest version:
+   ```bash
+   git reset --hard origin/main
+   ```
+
+Note: This will overwrite any local changes in the data directory. Make sure to commit any important changes before updating.
+
 
