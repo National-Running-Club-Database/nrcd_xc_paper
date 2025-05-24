@@ -587,6 +587,68 @@ def create_notebook():
                     "    plt.tight_layout()\n",
                     "    plt.show()"
                 ]
+            },
+            {
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": [
+                    "## Summary Statistics Tables"
+                ]
+            },
+            {
+                "cell_type": "code",
+                "execution_count": None,
+                "metadata": {},
+                "outputs": [],
+                "source": [
+                    "# Calculate basic summary statistics\n",
+                    "summary_data = {\n",
+                    "    'Metric': ['Total Results', 'Total Meets', 'Total Course Details', 'Total Athletes'],\n",
+                    "    'Count': [len(result_df), len(meet_df), len(course_details_df), len(athlete_df)]\n",
+                    "}\n",
+                    "summary_df = pd.DataFrame(summary_data)\n",
+                    "print(\"Summary Statistics:\")\n",
+                    "display(summary_df.style.hide(axis='index'))\n",
+                    "\n",
+                    "# Calculate results by gender, sport, and school year\n",
+                    "merged_df = pd.merge(result_df, athlete_df[['athlete_id', 'gender']], on='athlete_id')\n",
+                    "merged_df = pd.merge(merged_df, meet_df[['meet_id', 'start_date', 'sport_id']], on='meet_id')\n",
+                    "merged_df = pd.merge(merged_df, sport_df[['sport_id', 'sport_name']], on='sport_id')\n",
+                    "\n",
+                    "# Add school year column (starting August 1st)\n",
+                    "merged_df['school_year'] = merged_df['start_date'].apply(\n",
+                    "    lambda x: f\"{x.year}-{x.year + 1}\" if x.month >= 8 else f\"{x.year - 1}-{x.year}\"\n",
+                    ")\n",
+                    "\n",
+                    "# Group by school year, sport, and gender\n",
+                    "results_by_year = merged_df.groupby(['school_year', 'sport_name', 'gender']).size().reset_index(name='count')\n",
+                    "\n",
+                    "# Pivot the table for better readability\n",
+                    "results_pivot = results_by_year.pivot_table(\n",
+                    "    index=['school_year', 'sport_name'],\n",
+                    "    columns='gender',\n",
+                    "    values='count',\n",
+                    "    fill_value=0\n",
+                    ").reset_index()\n",
+                    "\n",
+                    "# Add total column\n",
+                    "results_pivot['Total'] = results_pivot['F'] + results_pivot['M']\n",
+                    "\n",
+                    "# Convert numeric columns to integers\n",
+                    "results_pivot['F'] = results_pivot['F'].astype(int)\n",
+                    "results_pivot['M'] = results_pivot['M'].astype(int)\n",
+                    "results_pivot['Total'] = results_pivot['Total'].astype(int)\n",
+                    "\n",
+                    "print(\"\\nResults by Gender, Sport, and School Year:\")\n",
+                    "display(results_pivot.style.hide(axis='index'))"
+                ]
+            },
+            {
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": [
+                    "## End of Analysis"
+                ]
             }
         ],
         "metadata": {
