@@ -489,7 +489,7 @@ def create_notebook():
                     "        hovertemplate='<b>%{location}</b><br>Meets: %{z}<extra></extra>'\n",
                     "    ))\n",
                     "    fig.update_layout(\n",
-                    "        title_text='Number of Cross Country Meets by State',\n",
+                    "        title_text='Number of NRCD Meets by State',\n",
                     "        geo=dict(\n",
                     "            scope='usa',\n",
                     "            projection=go.layout.geo.Projection(type='albers usa'),\n",
