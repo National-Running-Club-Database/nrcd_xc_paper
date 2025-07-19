@@ -57,10 +57,12 @@ def save_dataframe_to_csv(df, filename, description="Save a dataframe to CSV fil
 
 def categorize_athletes(race_counts_df):
     """Categorize athletes by race count."""
-    two_to_three = race_counts_df[(race_counts_df['race_count'] >= 2) & (race_counts_df['race_count'] <= 3)]['athlete_id'].tolist()
-    four_to_five = race_counts_df[(race_counts_df['race_count'] >= 4) & (race_counts_df['race_count'] <= 5)]['athlete_id'].tolist()
-    six_plus = race_counts_df[race_counts_df['race_count'] >= 6]['athlete_id'].tolist()
-    return two_to_three, four_to_five, six_plus
+    two_races = race_counts_df[race_counts_df['race_count'] == 2]['athlete_id'].tolist()
+    three_races = race_counts_df[race_counts_df['race_count'] == 3]['athlete_id'].tolist()
+    four_races = race_counts_df[race_counts_df['race_count'] == 4]['athlete_id'].tolist()
+    five_races = race_counts_df[race_counts_df['race_count'] == 5]['athlete_id'].tolist()
+    six_races = race_counts_df[race_counts_df['race_count'] == 6]['athlete_id'].tolist()
+    return two_races, three_races, four_races, five_races, six_races
 
 def filter_results_by_year(result_df, meet_df, year, running_event_df, athlete_df):
     """Filter results for a given season (Aug 1 - Nov 28 of the given year), and only include 8000m for men and 6000m for women."""
@@ -122,32 +124,40 @@ def process_year(year, result_df, meet_df, athlete_df, running_event_df, gender_
     male_race_counts = athlete_race_counts[athlete_race_counts['gender'] == 'M']
     female_race_counts = athlete_race_counts[athlete_race_counts['gender'] == 'F']
     # Categorize
-    male_2_3, male_4_5, male_6_plus = categorize_athletes(male_race_counts)
-    female_2_3, female_4_5, female_6_plus = categorize_athletes(female_race_counts)
+    male_2, male_3, male_4, male_5, male_6 = categorize_athletes(male_race_counts)
+    female_2, female_3, female_4, female_5, female_6 = categorize_athletes(female_race_counts)
     # Print summary
     print(f"MALE ATHLETES:")
-    print(f"2-3 races: {len(male_2_3)} athletes")
-    print(f"4-5 races: {len(male_4_5)} athletes")
-    print(f"6+ races: {len(male_6_plus)} athletes")
+    print(f"2 races: {len(male_2)} athletes")
+    print(f"3 races: {len(male_3)} athletes")
+    print(f"4 races: {len(male_4)} athletes")
+    print(f"5 races: {len(male_5)} athletes")
+    print(f"6 races: {len(male_6)} athletes")
     print(f"Total male athletes: {len(male_race_counts)}")
     print(f"FEMALE ATHLETES:")
-    print(f"2-3 races: {len(female_2_3)} athletes")
-    print(f"4-5 races: {len(female_4_5)} athletes")
-    print(f"6+ races: {len(female_6_plus)} athletes")
+    print(f"2 races: {len(female_2)} athletes")
+    print(f"3 races: {len(female_3)} athletes")
+    print(f"4 races: {len(female_4)} athletes")
+    print(f"5 races: {len(female_5)} athletes")
+    print(f"6 races: {len(female_6)} athletes")
     print(f"Total female athletes: {len(female_race_counts)}")
     # Save lists
-    save_athlete_list(male_2_3, f'male_athletes_2_3_races_{year}.txt', f"Male athletes with 2-3 races in {year}")
-    save_athlete_list(male_4_5, f'male_athletes_4_5_races_{year}.txt', f"Male athletes with 4-5 races in {year}")
-    save_athlete_list(male_6_plus, f'male_athletes_6plus_races_{year}.txt', f"Male athletes with 6+ races in {year}")
-    save_athlete_list(female_2_3, f'female_athletes_2_3_races_{year}.txt', f"Female athletes with 2-3 races in {year}")
-    save_athlete_list(female_4_5, f'female_athletes_4_5_races_{year}.txt', f"Female athletes with 4-5 races in {year}")
-    save_athlete_list(female_6_plus, f'female_athletes_6plus_races_{year}.txt', f"Female athletes with 6+ races in {year}")
+    save_athlete_list(male_2, f'male_athletes_2_races_{year}.txt', f"Male athletes with 2 races in {year}")
+    save_athlete_list(male_3, f'male_athletes_3_races_{year}.txt', f"Male athletes with 3 races in {year}")
+    save_athlete_list(male_4, f'male_athletes_4_races_{year}.txt', f"Male athletes with 4 races in {year}")
+    save_athlete_list(male_5, f'male_athletes_5_races_{year}.txt', f"Male athletes with 5 races in {year}")
+    save_athlete_list(male_6, f'male_athletes_6_races_{year}.txt', f"Male athletes with 6 races in {year}")
+    save_athlete_list(female_2, f'female_athletes_2_races_{year}.txt', f"Female athletes with 2 races in {year}")
+    save_athlete_list(female_3, f'female_athletes_3_races_{year}.txt', f"Female athletes with 3 races in {year}")
+    save_athlete_list(female_4, f'female_athletes_4_races_{year}.txt', f"Female athletes with 4 races in {year}")
+    save_athlete_list(female_5, f'female_athletes_5_races_{year}.txt', f"Female athletes with 5 races in {year}")
+    save_athlete_list(female_6, f'female_athletes_6_races_{year}.txt', f"Female athletes with 6 races in {year}")
     # Save summary
     race_count_summary = pd.DataFrame({
-        'Gender': ['Male', 'Male', 'Male', 'Female', 'Female', 'Female'],
-        'Race_Count_Category': ['2-3', '4-5', '6+', '2-3', '4-5', '6+'],
-        'Athlete_Count': [len(male_2_3), len(male_4_5), len(male_6_plus),
-                         len(female_2_3), len(female_4_5), len(female_6_plus)]
+        'Gender': ['Male', 'Male', 'Male', 'Male', 'Male', 'Female', 'Female', 'Female', 'Female', 'Female'],
+        'Race_Count_Category': ['2', '3', '4', '5', '6', '2', '3', '4', '5', '6'],
+        'Athlete_Count': [len(male_2), len(male_3), len(male_4), len(male_5), len(male_6),
+                         len(female_2), len(female_3), len(female_4), len(female_5), len(female_6)]
     })
     save_dataframe_to_csv(race_count_summary, f'athlete_race_count_summary_{year}.csv', f"Athlete race count summary {year}")
     # Save detailed
@@ -155,15 +165,24 @@ def process_year(year, result_df, meet_df, athlete_df, running_event_df, gender_
     save_dataframe_to_csv(detailed_race_counts, f'detailed_athlete_race_counts_{year}.csv', f"Detailed race counts for each athlete {year}")
     # Compute and save time differences for each group
     for group_name, athlete_ids, gender in [
-        (f'male_2_3', male_2_3, 'M'),
-        (f'male_4_5', male_4_5, 'M'),
-        (f'male_6_plus', male_6_plus, 'M'),
-        (f'female_2_3', female_2_3, 'F'),
-        (f'female_4_5', female_4_5, 'F'),
-        (f'female_6_plus', female_6_plus, 'F'),
+        (f'male_2', male_2, 'M'),
+        (f'male_3', male_3, 'M'),
+        (f'male_4', male_4, 'M'),
+        (f'male_5', male_5, 'M'),
+        (f'male_6', male_6, 'M'),
+        (f'female_2', female_2, 'F'),
+        (f'female_3', female_3, 'F'),
+        (f'female_4', female_4, 'F'),
+        (f'female_5', female_5, 'F'),
+        (f'female_6', female_6, 'F'),
     ]:
         group_results = year_results[year_results['gender'] == gender]
         time_diffs_df = get_time_diff_for_athletes(athlete_ids, group_results)
+        # Add average row to the CSV
+        if not time_diffs_df.empty:
+            avg_time_diff = time_diffs_df['time_diff_seconds'].mean()
+            avg_row = pd.DataFrame({'athlete_id': ['AVERAGE'], 'time_diff_seconds': [avg_time_diff]})
+            time_diffs_df = pd.concat([time_diffs_df, avg_row], ignore_index=True)
         save_dataframe_to_csv(time_diffs_df, f'{group_name}_time_diff_{year}.csv', f"Time difference (slowest-fastest) for {group_name} in {year}")
 
 def main():
