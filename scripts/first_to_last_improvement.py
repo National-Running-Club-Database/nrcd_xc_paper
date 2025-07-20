@@ -88,7 +88,7 @@ def plot_results(results, season_year):
     ax.axhline(0, color='gray', linestyle='--')
     ax.set_xlabel('Number of Races')
     ax.set_ylabel('First-to-Last Improvement (seconds)')
-    ax.set_title(f'First-to-Last Race Improvement (Mean ± SD) - {season_year}')
+    ax.set_title(f'First-to-Last Race Improvement (Mean ± SD, Excluding Nationals) - {season_year}')
     ax.legend()
     plt.tight_layout()
     pdf_path = os.path.join(output_dir, f'first_to_last_improvement_{season_year}.pdf')
