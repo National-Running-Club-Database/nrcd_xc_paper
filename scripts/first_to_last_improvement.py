@@ -99,7 +99,7 @@ def plot_comparison_grid(results_dict):
             ax.set_ylabel('First-to-Last Improvement (seconds, standardized to 6K/8K)')
             ax.set_title(titles[(year, mode)])
             ax.set_xticks(x)
-            ax.legend()
+            ax.legend(loc='upper right')
     plt.suptitle('First-to-Last Race Improvement Comparison\nAll times standardized and converted: Women to 6K, Men to 8K\nStandardized = weather/terrain/course adjustment; Converted = distance only', fontsize=14, y=0.98)
     plt.tight_layout(rect=[0, 0, 1, 0.96])
     pdf_path = os.path.join(output_dir, 'first_to_last_improvement_comparison.pdf')
