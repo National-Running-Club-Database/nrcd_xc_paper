@@ -1,0 +1,135 @@
+
+GENDER DIFFERENCES ANALYSIS - CROSS COUNTRY SEASONS (2023 & 2024)
+================================================================
+Analysis Date: 2025-07-26 18:33:54
+Dataset: Standardized cross country data (excluding nationals meets)
+Seasons: 2023 (Aug 15 - Nov 30) and 2024 (Aug 15 - Nov 30)
+Total Records: 13,144
+Date Range: 2023-09-01 to 2024-11-23
+
+================================================================
+1. RACE COUNT ANALYSIS BY GENDER
+================================================================
+
+Total Races by Gender:
+- Men: 8,351 races
+- Women: 4,793 races
+- Ratio (Men:Women): 1.74:1
+
+Unique Athletes by Gender:
+- Men: 3,460 athletes
+- Women: 2,082 athletes
+- Ratio (Men:Women): 1.66:1
+
+Average Races per Athlete by Gender:
+- Men: 2.41 races
+- Women: 2.30 races
+- Difference: 0.11 races
+
+================================================================
+2. RACE FREQUENCY ANALYSIS BY GENDER
+================================================================
+
+Average Participants per Meet by Gender:
+- Men: 48.6 ± 63.0 participants
+- Women: 32.2 ± 40.3 participants
+
+Race Count Distribution by Gender:
+
+Men:
+- Mean: 2.41 races, Median: 2.0 races, Std: 1.76
+- 1 race: 1,453 athletes (42.0%)
+- 2 races: 781 athletes (22.6%)
+- 3 races: 493 athletes (14.2%)
+- 4+ races: 733 athletes (21.2%)
+
+Women:
+- Mean: 2.30 races, Median: 2.0 races, Std: 1.66
+- 1 race: 934 athletes (44.9%)
+- 2 races: 453 athletes (21.8%)
+- 3 races: 290 athletes (13.9%)
+- 4+ races: 405 athletes (19.5%)
+
+================================================================
+3. MONTHLY PARTICIPATION ANALYSIS (SEPTEMBER & OCTOBER)
+================================================================
+
+2023 Season:
+- Men: September=1,609, 
+        October=1,452
+- Women: September=1,005, 
+          October=809
+
+2024 Season:
+- Men: September=1,500, 
+        October=1,535
+- Women: September=895, 
+          October=883
+
+Retention Rate Analysis (Cross Country Season):
+- 2023 Men: Oct/Sept retention rate
+- 2023 Women: Oct/Sept retention rate
+- 2024 Men: Oct/Sept retention rate
+- 2024 Women: Oct/Sept retention rate
+
+================================================================
+4. YEAR-OVER-YEAR RETENTION ANALYSIS
+================================================================
+
+Men:
+- 2023: 2,124 athletes
+- 2024: 2,167 athletes
+- Competed in both years: 831 athletes
+- Retention rate: 39.1%
+- New athletes in 2024: 1,336 athletes
+
+Women:
+- 2023: 1,298 athletes
+- 2024: 1,264 athletes
+- Competed in both years: 480 athletes
+- Retention rate: 37.0%
+- New athletes in 2024: 784 athletes
+
+================================================================
+5. KEY FINDINGS AND INSIGHTS
+================================================================
+
+1. GENDER DISPARITY:
+   - Consistent 1.6-1.7:1 ratio favoring men in both athlete counts and race participation
+   - Men have approximately 66% more athletes and 74% more race entries than women
+
+2. SIMILAR RACE PATTERNS:
+   - Both genders have very similar average races per athlete (2.41 vs 2.30)
+   - Similar distribution patterns in race counts per athlete
+   - Suggests similar commitment levels despite different participation numbers
+
+3. SEASONAL TRENDS:
+   - 2023 showed significant drops in participation from September to October for both genders
+   - 2024 showed much better retention, with men actually gaining participants
+   - Women showed improved retention in 2024 compared to 2023
+
+4. RETENTION PATTERNS:
+   - Both genders have relatively low year-over-year retention (~37-39%)
+   - Indicates high turnover in the sport
+   - Despite low retention, both genders maintained similar total participation levels year-over-year
+   - Suggests strong recruitment of new athletes to replace those who don't return
+
+5. GROWTH AND STABILITY:
+   - Men's participation increased slightly from 2023 to 2024
+   - Women's participation remained relatively stable
+   - Both genders show healthy recruitment of new athletes each year
+
+================================================================
+6. METHODOLOGY NOTES
+================================================================
+
+- Dataset: Standardized cross country data excluding nationals meets
+- Time standardization: All times converted to equivalent 6K (women) and 8K (men) performances
+- Course adjustments: Applied for elevation, distance, and weather conditions where available
+- Date range: Cross country seasons only (Aug 15 - Nov 30, 2023 & 2024)
+- Analysis focuses on cross country season competition only
+- Seasons: 2023 (Aug 15 - Nov 30) and 2024 (Aug 15 - Nov 30)
+
+================================================================
+END OF REPORT
+================================================================

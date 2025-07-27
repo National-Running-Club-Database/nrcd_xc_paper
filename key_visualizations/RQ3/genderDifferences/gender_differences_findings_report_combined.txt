@@ -1,0 +1,56 @@
+
+GENDER DIFFERENCES ANALYSIS - COMBINED CROSS COUNTRY SEASONS (2023 & 2024)
+================================================================
+Analysis Date: 2025-07-27 11:09:44
+Dataset: Standardized cross country data (excluding nationals meets)
+Seasons: 2023 and 2024 (Aug 15 - Nov 30, September & October only)
+Total Records: 12,985
+Date Range: 2023-09-01 to 2024-10-26
+
+================================================================
+1. COMBINED RACE COUNT ANALYSIS BY GENDER
+================================================================
+
+Total Races by Gender (Both Seasons):
+- Men: 8,351 races
+- Women: 4,793 races
+- Ratio (Men:Women): 1.74:1
+
+Unique Athletes by Gender (Both Seasons):
+- Men: 3,460 athletes
+- Women: 2,082 athletes
+- Ratio (Men:Women): 1.66:1
+
+Average Races per Athlete by Gender (Both Seasons):
+- Men: 2.41 races
+- Women: 2.30 races
+- Difference: 0.11 races
+
+================================================================
+2. YEAR-OVER-YEAR COMPARISON
+================================================================
+
+2023 vs 2024 Participation:
+- 2023 Total Athletes: 3,422
+- 2024 Total Athletes: 3,402
+- Change: -20
+
+2023 vs 2024 Race Entries:
+- 2023 Total Races: 6,472
+- 2024 Total Races: 6,513
+- Change: +41
+
+================================================================
+3. METHODOLOGY NOTES
+================================================================
+
+- Dataset: Standardized cross country data excluding nationals meets
+- Time standardization: All times converted to equivalent 6K (women) and 8K (men) performances
+- Course adjustments: Applied for elevation, distance, and weather conditions where available
+- Date range: Cross country seasons only (Aug 15 - Nov 30, 2023 & 2024, September & October only)
+- Analysis focuses on cross country season competition only
+- Excludes November data as requested
+
+================================================================
+END OF COMBINED REPORT
+================================================================

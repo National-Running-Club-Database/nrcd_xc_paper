@@ -1,0 +1,96 @@
+
+GENDER DIFFERENCES ANALYSIS - 2023 CROSS COUNTRY SEASON
+================================================================
+Analysis Date: 2025-07-27 11:09:44
+Dataset: Standardized cross country data (excluding nationals meets)
+Season: 2023 (Aug 15 - Nov 30, September & October only)
+Total Records: 6,472
+Date Range: 2023-09-01 to 2023-10-28
+
+================================================================
+1. RACE COUNT ANALYSIS BY GENDER
+================================================================
+
+Total Races by Gender:
+- Men: 4,113 races
+- Women: 2,359 races
+- Ratio (Men:Women): 1.74:1
+
+Unique Athletes by Gender:
+- Men: 2,124 athletes
+- Women: 1,298 athletes
+- Ratio (Men:Women): 1.64:1
+
+Average Races per Athlete by Gender:
+- Men: 1.94 races
+- Women: 1.82 races
+- Difference: 0.12 races
+
+================================================================
+2. RACE FREQUENCY ANALYSIS BY GENDER
+================================================================
+
+Race Count Distribution by Gender:
+
+Men:
+- 1 race: 967 athletes (45.5%)
+- 2 races: 556 athletes (26.2%)
+- 3 races: 388 athletes (18.3%)
+- 4+ races: 213 athletes (10.0%)
+
+Women:
+- 1 race: 657 athletes (50.6%)
+- 2 races: 332 athletes (25.6%)
+- 3 races: 206 athletes (15.9%)
+- 4+ races: 103 athletes (7.9%)
+
+================================================================
+3. MONTHLY PARTICIPATION ANALYSIS (SEPTEMBER & OCTOBER)
+================================================================
+
+2023 Season:
+- Men: September=1,609, October=1,452
+- Women: September=1,005, October=809
+
+Monthly Retention Analysis:
+- Men retention (Oct/Sept): 90.2% (1,452/1,609)
+- Women retention (Oct/Sept): 80.5% (809/1,005)
+
+================================================================
+4. KEY FINDINGS AND INSIGHTS - 2023 SEASON
+================================================================
+
+1. GENDER DISPARITY:
+   - Men have 1.74:1 ratio in race participation
+   - Men have 1.64:1 ratio in athlete participation
+
+2. RACE PATTERNS:
+   - Men average 1.94 races per athlete
+   - Women average 1.82 races per athlete
+   - Difference: 0.12 races
+
+3. SEASONAL TRENDS:
+   - Men's participation changed by -157 from September to October
+   - Women's participation changed by -196 from September to October
+   - Men's retention rate: 90.2%
+   - Women's retention rate: 80.5%
+
+4. PARTICIPATION LEVELS:
+   - Total unique athletes: 3,422
+   - Total race entries: 6,472
+   - Average races per athlete: 1.89
+
+================================================================
+5. METHODOLOGY NOTES
+================================================================
+
+- Dataset: Standardized cross country data excluding nationals meets
+- Time standardization: All times converted to equivalent 6K (women) and 8K (men) performances
+- Course adjustments: Applied for elevation, distance, and weather conditions where available
+- Date range: 2023 cross country season (Aug 15 - Nov 30, September & October only)
+- Analysis focuses on cross country season competition only
+- Excludes November data as requested
+
+================================================================
+END OF 2023 SEASON REPORT
+================================================================

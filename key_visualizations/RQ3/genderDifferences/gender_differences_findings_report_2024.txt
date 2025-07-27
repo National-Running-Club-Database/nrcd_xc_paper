@@ -1,0 +1,96 @@
+
+GENDER DIFFERENCES ANALYSIS - 2024 CROSS COUNTRY SEASON
+================================================================
+Analysis Date: 2025-07-27 11:09:44
+Dataset: Standardized cross country data (excluding nationals meets)
+Season: 2024 (Aug 15 - Nov 30, September & October only)
+Total Records: 6,513
+Date Range: 2024-09-06 to 2024-10-26
+
+================================================================
+1. RACE COUNT ANALYSIS BY GENDER
+================================================================
+
+Total Races by Gender:
+- Men: 4,124 races
+- Women: 2,389 races
+- Ratio (Men:Women): 1.73:1
+
+Unique Athletes by Gender:
+- Men: 2,148 athletes
+- Women: 1,254 athletes
+- Ratio (Men:Women): 1.71:1
+
+Average Races per Athlete by Gender:
+- Men: 1.92 races
+- Women: 1.91 races
+- Difference: 0.01 races
+
+================================================================
+2. RACE FREQUENCY ANALYSIS BY GENDER
+================================================================
+
+Race Count Distribution by Gender:
+
+Men:
+- 1 race: 1,007 athletes (46.9%)
+- 2 races: 570 athletes (26.5%)
+- 3 races: 354 athletes (16.5%)
+- 4+ races: 217 athletes (10.1%)
+
+Women:
+- 1 race: 608 athletes (48.5%)
+- 2 races: 313 athletes (25.0%)
+- 3 races: 207 athletes (16.5%)
+- 4+ races: 126 athletes (10.0%)
+
+================================================================
+3. MONTHLY PARTICIPATION ANALYSIS (SEPTEMBER & OCTOBER)
+================================================================
+
+2024 Season:
+- Men: September=1,500, October=1,535
+- Women: September=895, October=883
+
+Monthly Retention Analysis:
+- Men retention (Oct/Sept): 102.3% (1,535/1,500)
+- Women retention (Oct/Sept): 98.7% (883/895)
+
+================================================================
+4. KEY FINDINGS AND INSIGHTS - 2024 SEASON
+================================================================
+
+1. GENDER DISPARITY:
+   - Men have 1.73:1 ratio in race participation
+   - Men have 1.71:1 ratio in athlete participation
+
+2. RACE PATTERNS:
+   - Men average 1.92 races per athlete
+   - Women average 1.91 races per athlete
+   - Difference: 0.01 races
+
+3. SEASONAL TRENDS:
+   - Men's participation changed by +35 from September to October
+   - Women's participation changed by -12 from September to October
+   - Men's retention rate: 102.3%
+   - Women's retention rate: 98.7%
+
+4. PARTICIPATION LEVELS:
+   - Total unique athletes: 3,402
+   - Total race entries: 6,513
+   - Average races per athlete: 1.91
+
+================================================================
+5. METHODOLOGY NOTES
+================================================================
+
+- Dataset: Standardized cross country data excluding nationals meets
+- Time standardization: All times converted to equivalent 6K (women) and 8K (men) performances
+- Course adjustments: Applied for elevation, distance, and weather conditions where available
+- Date range: 2024 cross country season (Aug 15 - Nov 30, September & October only)
+- Analysis focuses on cross country season competition only
+- Excludes November data as requested
+
+================================================================
+END OF 2024 SEASON REPORT
+================================================================
