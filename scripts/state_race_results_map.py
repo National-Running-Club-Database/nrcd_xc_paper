@@ -149,8 +149,21 @@ def create_state_choropleth_map(results_by_state_2023, results_by_state_2024):
     state_data_2024 = pd.DataFrame(list(results_by_state_2024.items()),
                                   columns=['State', 'Results_2024'])
     
-    # Merge the data
-    state_data = pd.merge(state_data_2023, state_data_2024, on='State', how='outer').fillna(0)
+    # Create a complete list of all US states and DC
+    all_states = [
+        'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+        'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD',
+        'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ',
+        'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC',
+        'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', 'DC'
+    ]
+    
+    # Create complete state data with all states
+    complete_state_data = pd.DataFrame({'State': all_states})
+    
+    # Merge with actual results data
+    state_data = pd.merge(complete_state_data, state_data_2023, on='State', how='left').fillna(0)
+    state_data = pd.merge(state_data, state_data_2024, on='State', how='left').fillna(0)
     
     # Convert to integers
     state_data['Results_2023'] = state_data['Results_2023'].astype(int)
@@ -171,31 +184,52 @@ def create_state_choropleth_map(results_by_state_2023, results_by_state_2024):
         z=state_data['Total_Results'],
         locationmode='USA-states',
         colorscale='Viridis',
-        colorbar_title="Total Race Results (2023-2024)",
+        colorbar=dict(
+            title=dict(
+                text="Total<br>Race Results",
+                font=dict(size=28, color='black')
+            ),
+            tickfont=dict(size=28, color='black'),
+            thickness=30,
+            len=0.8
+        ),
         text=state_data['text'],
-        hovertemplate='<b>%{location}</b><br>%{text}<extra></extra>'
+        hovertemplate='<b>%{location}</b><br>%{text}<extra></extra>',
+        zmid=0,
+        zmin=0,
+        zmax=state_data['Total_Results'].max()
     ))
+    
+    # Add gray overlay for states with zero results
+    zero_states = state_data[state_data['Total_Results'] == 0]['State'].tolist()
+    if zero_states:
+        fig.add_trace(go.Choropleth(
+            locations=zero_states,
+            z=[0] * len(zero_states),
+            locationmode='USA-states',
+            colorscale=[[0, 'lightgray'], [1, 'lightgray']],
+            showscale=False,
+            hoverinfo='skip'
+        ))
     
     fig.update_layout(
         title=dict(
             text='<b>Number of Cross Country Race Results (2023-2024)</b>',
             x=0.5,
             xanchor='center',
-            font=dict(size=24, color='black')
+            y=0.98,
+            font=dict(size=28, color='black')
         ),
         geo=dict(
             scope='usa',
             projection=go.layout.geo.Projection(type='albers usa'),
-            showland=True,
-            landcolor='lightgray',
-            showocean=True,
-            oceancolor='lightblue',
-            showlakes=True,
-            lakecolor='lightblue',
-            showrivers=True,
-            rivercolor='lightblue'
+            showland=False,
+            showocean=False,
+            showlakes=False,
+            showrivers=False,
+            bgcolor='white'
         ),
-        margin=dict(l=0, r=0, t=80, b=0),
+        margin=dict(l=0, r=0, t=40, b=0),
         paper_bgcolor='white',
         plot_bgcolor='white'
     )
