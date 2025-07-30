@@ -33,7 +33,10 @@ def analyze_all(df):
                 if pd.notna(first) and pd.notna(last):
                     improvements.append(first - last)  # positive = improvement
             if improvements:
-                results[gender][n] = (np.mean(improvements), np.std(improvements), len(improvements))
+                # Calculate IQR instead of std
+                q75, q25 = np.percentile(improvements, [75, 25])
+                iqr = q75 - q25
+                results[gender][n] = (np.mean(improvements), iqr, len(improvements))
             else:
                 results[gender][n] = (np.nan, np.nan, 0)
     return results
@@ -47,23 +50,24 @@ def plot_results(results, year, subtitle, filename):
     labels = {'M': 'Men', 'F': 'Women'}
     for gender in ['M', 'F']:
         means = [results[gender][n][0] for n in x]
-        stds = [results[gender][n][1] for n in x]
+        iqrs = [results[gender][n][1] for n in x]
         counts = [results[gender][n][2] for n in x]
         # Offset x positions for men and women so error bars don't overlap
         x_offset = x + offsets[gender]
-        ax.errorbar(x_offset, means, yerr=stds, fmt='o', color=colors[gender], label=f'{labels[gender]} (N={counts})', capsize=5, elinewidth=2)
+        ax.errorbar(x_offset, means, yerr=iqrs, fmt='o', color=colors[gender], label=f'{labels[gender]} (N={counts})', capsize=5, elinewidth=2)
         # Draw horizontal lines for error bars
-        for xi, mean, std in zip(x_offset, means, stds):
+        for xi, mean, iqr in zip(x_offset, means, iqrs):
             ax.hlines(y=mean, xmin=xi-width/2, xmax=xi+width/2, color=colors[gender], alpha=0.5, linewidth=2)
     ax.axhline(0, color='gray', linestyle='--')
     ax.set_xlabel('Number of Races')
     ax.set_ylabel('First-to-Last Improvement (seconds, standardized to 6K/8K)')
-    ax.set_title(f'First-to-Last Race Improvement (Mean ± SD, Excluding Nationals) - {year}')
+    ax.set_title(f'First-to-Last Race Improvement - {year}', fontsize=12, pad=20)
     ax.set_xticks(x)
     ax.legend()
-    # Add subtitle
-    plt.suptitle(subtitle, fontsize=10, y=0.93)
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    # Add text annotation at top of plot
+    ax.text(0.5, 0.98, '± IQR excluding nationals', transform=ax.transAxes, 
+            ha='center', va='top', fontsize=10, bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+    plt.tight_layout()
     pdf_path = os.path.join(output_dir, filename)
     plt.savefig(pdf_path)
     print('Saved plot to', pdf_path)
@@ -88,11 +92,11 @@ def plot_comparison_grid(results_dict):
             results = results_dict[(year, mode)]
             for gender in ['M', 'F']:
                 means = [results[gender][n][0] for n in x]
-                stds = [results[gender][n][1] for n in x]
+                iqrs = [results[gender][n][1] for n in x]
                 counts = [results[gender][n][2] for n in x]
                 x_offset = x + offsets[gender]
-                ax.errorbar(x_offset, means, yerr=stds, fmt='o', color=colors[gender], label=f'{labels[gender]} (N={counts})', capsize=5, elinewidth=2)
-                for xi, mean, std in zip(x_offset, means, stds):
+                ax.errorbar(x_offset, means, yerr=iqrs, fmt='o', color=colors[gender], label=f'{labels[gender]} (N={counts})', capsize=5, elinewidth=2)
+                for xi, mean, iqr in zip(x_offset, means, iqrs):
                     ax.hlines(y=mean, xmin=xi-width/2, xmax=xi+width/2, color=colors[gender], alpha=0.5, linewidth=2)
             ax.axhline(0, color='gray', linestyle='--')
             ax.set_xlabel('Number of Races')
@@ -100,7 +104,7 @@ def plot_comparison_grid(results_dict):
             ax.set_title(titles[(year, mode)])
             ax.set_xticks(x)
             ax.legend(loc='upper right')
-    plt.suptitle('First-to-Last Race Improvement Comparison\nAll times standardized and converted: Women to 6K, Men to 8K\nStandardized = weather/terrain/course adjustment; Converted = distance only', fontsize=14, y=0.98)
+    plt.suptitle('First-to-Last Race Improvement Comparison\nAll times standardized and converted: Women to 6K, Men to 8K\nStandardized = weather/terrain/course adjustment; Converted = distance only\n± IQR excluding nationals', fontsize=14, y=0.98)
     plt.tight_layout(rect=[0, 0, 1, 0.96])
     pdf_path = os.path.join(output_dir, 'first_to_last_improvement_comparison.pdf')
     plt.savefig(pdf_path)
