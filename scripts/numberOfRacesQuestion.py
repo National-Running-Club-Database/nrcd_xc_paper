@@ -3,7 +3,7 @@ import os
 import sys
 
 # Create output directory if it doesn't exist
-output_dir = '/Users/ryanfryer/Documents/VS Code/National Running Club Database/jss_paper/output/NumberOfRacesQuestion'
+output_dir = 'output/NumberOfRacesQuestion'
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
@@ -51,7 +51,7 @@ def save_athlete_list(athlete_ids, filename, description):
 
 def save_dataframe_to_csv(df, filename, description="Save a dataframe to CSV file with optional description."):
     """Save a pandas DataFrame to a CSV file."""
-    filepath = os.path.join("/Users/ryanfryer/Documents/VS Code/National Running Club Database/jss_paper/output/NumberOfRacesQuestion", filename)
+    filepath = os.path.join(output_dir, filename)
     df.to_csv(filepath, index=False)
     print(f"{description} saved to: {filepath}")
 
