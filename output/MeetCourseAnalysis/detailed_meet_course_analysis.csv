@@ -1,0 +1,14 @@
+year,month,month_name,total_meets,meets_with_course_details,meets_without_course_details,gender,total_results,results_with_course_details,results_without_course_details
+2023,9,September,48,16,32,M,2110,1032,1078
+2023,9,September,48,16,32,F,1291,573,718
+2023,10,October,25,4,21,M,2005,443,1562
+2023,10,October,25,4,21,F,1068,206,862
+2023,11,November,2,1,1,M,4,3,1
+2024,8,August,10,9,1,M,104,96,8
+2024,8,August,10,9,1,F,45,43,2
+2024,9,September,55,39,16,M,2100,1945,155
+2024,9,September,55,39,16,F,1263,1175,88
+2024,10,October,42,32,10,M,2089,1984,105
+2024,10,October,42,32,10,F,1181,1146,35
+2024,11,November,4,2,2,M,18,9,9
+2024,11,November,4,2,2,F,6,1,5
