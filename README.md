@@ -2,17 +2,14 @@
 
 This repository contains the code and data analysis for the National Running Club Database (NRCD) research project, focusing on collegiate club athletes' cross country race results.
 
-## Dataset
+## Dataset Setup
 
-The NRCD aggregates 15,397 race results from 5,585 athletes across the 2023 and 2024 cross country seasons. The dataset is available in the `data/` folder and contains:
-- Athlete information and team associations
-- Meet and course details including weather and elevation data
-- Race results and performance metrics
-- Running event specifications
+**Important**: This is an anonymous submission. The dataset used in this analysis should be inserted into the `data/` folder. Please refer to the paper for the dataset source and citation.
 
-## Paper
-
-This work is published on arXiv: [National Running Club Database: Assessing Collegiate Club Athletes' Cross Country Race Results](https://arxiv.org/abs/2509.10600)
+To set up the dataset:
+1. Place the dataset files in the `data/` directory
+2. Ensure the data structure matches the expected format used by the analysis scripts
+3. The dataset should contain running event data with athlete, team, meet, and result information
 
 ## Project Structure
 
@@ -47,12 +44,12 @@ pip install -r requirements.txt
 
 ## Analysis Overview
 
-This repository contains comprehensive analysis of collegiate club cross country data, including:
-- Athlete performance trends and improvements over time
-- Gender participation patterns and performance differences
-- Course condition standardization (weather and elevation)
-- Team participation and racing frequency analysis
-- Improvement prediction modeling
+This repository contains comprehensive analysis of running event data, including:
+- Athlete performance trends and improvements
+- Gender participation patterns and differences
+- Team participation analysis
+- Race frequency and retention analysis
+- Geographic distribution of results
 
 ## Key Findings
 
