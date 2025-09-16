@@ -72,8 +72,8 @@ The dataset provides valuable insights for runners, coaches, and teams, bridging
 ## Authors
 
 **Code Authors:**
-- Jonathan A. Karr Jr - [ORCID: 0009-0000-1600-6122](https://orcid.org/0009-0000-1600-6122)
-- Ryan M. Fryer - [ORCID: 0009-0008-3591-3877](https://orcid.org/0009-0008-3591-3877)
+- Jonathan A. Karr Jr - [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1600--6122-green.svg)](https://orcid.org/0009-0000-1600-6122)
+- Ryan M. Fryer - [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--3591--3877-green.svg)](https://orcid.org/0009-0008-3591-3877)
 
 ## Reproducibility
 
