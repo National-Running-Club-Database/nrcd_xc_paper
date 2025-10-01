@@ -1,0 +1,13 @@
+Metric,Value
+Dataset Size,"3,155 athletes"
+Training Samples (2023),"2,186 athletes"
+Test Samples (2024),969 athletes
+Best Model,Gradient Boosting
+Test R² Score,0.919
+Cross-Validation R² Score,0.936
+Overfitting Score,0.017
+RMSE (seconds/day),2.165
+MAE (seconds/day),0.781
+Top Feature Importance,improvement_per_race (0.493)
+Second Most Important Feature,season_duration_squared (0.101)
+Third Most Important Feature,season_duration (0.101)
