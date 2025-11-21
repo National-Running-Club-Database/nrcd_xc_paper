@@ -5,45 +5,45 @@ Dataset Summary,Mean Improvement Rate,N/A,-0.5992126967547832,,,Overall,All,All,
 Dataset Summary,Mean Improvement Rate,N/A,-0.1917147975860988,,,Year,2023,All,2186.0,Std: 4.4059
 Dataset Summary,Mean Improvement Rate,N/A,-1.518501043073404,,,Year,2024,All,969.0,Std: 7.6333
 Dataset Summary,Total Athletes,N/A,3155.0,,,Overall,All,All,3155.0,
-Feature Importance,Importance Score,Gradient Boosting,0.4006800410851773,,,Feature,N/A,N/A,,"Feature: improvement_per_race, Rank: 1"
-Feature Importance,Importance Score,Gradient Boosting,0.1099536271090176,,,Feature,N/A,N/A,,"Feature: race_frequency, Rank: 2"
-Feature Importance,Importance Score,Gradient Boosting,0.0975134679679159,,,Feature,N/A,N/A,,"Feature: season_duration, Rank: 3"
-Feature Importance,Importance Score,Gradient Boosting,0.09532754073652021,,,Feature,N/A,N/A,,"Feature: races_duration_ratio, Rank: 4"
-Feature Importance,Importance Score,Gradient Boosting,0.08890187897538489,,,Feature,N/A,N/A,,"Feature: season_duration_squared, Rank: 5"
-Feature Importance,Importance Score,Gradient Boosting,0.08238625040948724,,,Feature,N/A,N/A,,"Feature: experience_level, Rank: 6"
-Feature Importance,Importance Score,Gradient Boosting,0.025559918200227825,,,Feature,N/A,N/A,,"Feature: progression_improvement, Rank: 7"
-Feature Importance,Importance Score,Gradient Boosting,0.02363496405828759,,,Feature,N/A,N/A,,"Feature: improvement_efficiency, Rank: 8"
-Feature Importance,Importance Score,Gradient Boosting,0.021153513979096886,,,Feature,N/A,N/A,,"Feature: cv_time, Rank: 9"
-Feature Importance,Importance Score,Gradient Boosting,0.01786067230945324,,,Feature,N/A,N/A,,"Feature: consistency_score, Rank: 10"
-Model Performance,CV R² Mean,Gradient Boosting,0.9360833088975751,0.9010900306125772,0.971076587182573,Overall,All,All,969.0,Std: 0.0350
-Model Performance,CV R² Mean,Lasso Regression,0.2882883553505745,0.11809322099549638,0.45848348970565267,Overall,All,All,969.0,Std: 0.1702
-Model Performance,CV R² Mean,Linear Regression,0.2550150024559348,0.04394296277027343,0.46608704214159613,Overall,All,All,969.0,Std: 0.2111
-Model Performance,CV R² Mean,Random Forest,0.9349133795707079,0.8841003251203569,0.9857264340210589,Overall,All,All,969.0,Std: 0.0508
-Model Performance,CV R² Mean,Ridge Regression,0.25001584060018367,0.029612750034380325,0.470418931165987,Overall,All,All,969.0,Std: 0.2204
-Model Performance,CV R² Mean,SVR,0.6635691019298032,0.49750436083805494,0.8296338430215515,Overall,All,All,969.0,Std: 0.1661
-Model Performance,MAE,Gradient Boosting,0.7805429068550911,,,Overall,All,All,969.0,
-Model Performance,MAE,Lasso Regression,2.5499031467000908,,,Overall,All,All,969.0,
-Model Performance,MAE,Linear Regression,2.431878986333656,,,Overall,All,All,969.0,
-Model Performance,MAE,Random Forest,0.5419732727129697,,,Overall,All,All,969.0,
-Model Performance,MAE,Ridge Regression,2.427019305562825,,,Overall,All,All,969.0,
-Model Performance,MAE,SVR,1.5434425216968837,,,Overall,All,All,969.0,
-Model Performance,RMSE,Gradient Boosting,2.164752923922916,,,Overall,All,All,969.0,
-Model Performance,RMSE,Lasso Regression,5.3346594521451545,,,Overall,All,All,969.0,
-Model Performance,RMSE,Linear Regression,5.170972795270693,,,Overall,All,All,969.0,
-Model Performance,RMSE,Random Forest,2.269126727247596,,,Overall,All,All,969.0,
-Model Performance,RMSE,Ridge Regression,5.157271704326776,,,Overall,All,All,969.0,
-Model Performance,RMSE,SVR,5.078847711197071,,,Overall,All,All,969.0,
-Model Performance,R² Score,Gradient Boosting,0.9194908912039352,0.8800524270457727,0.959848232826592,Overall,All,All,969.0,
-Model Performance,R² Score,Lasso Regression,0.5110755558643696,0.4675699111198995,0.5577684702141973,Overall,All,All,969.0,
-Model Performance,R² Score,Linear Regression,0.5406191835960078,0.4999900537123491,0.5844619249208508,Overall,All,All,969.0,
-Model Performance,R² Score,Random Forest,0.9115402206285877,0.8644429145908936,0.9600551039164635,Overall,All,All,969.0,
-Model Performance,R² Score,Ridge Regression,0.5430503238194235,0.5026549012018745,0.5902204138722404,Overall,All,All,969.0,
-Model Performance,R² Score,SVR,0.5568418600518363,0.4685157685020532,0.6618243064839097,Overall,All,All,969.0,
-Subgroup Analysis,MAE,Gradient Boosting,0.8416385070924135,,,Gender,All,Men,621.0,
-Subgroup Analysis,MAE,Gradient Boosting,0.671518861604007,,,Gender,All,Women,348.0,
-Subgroup Analysis,MAE,Gradient Boosting,0.7805429068550911,,,Year,2024,All,969.0,
-Subgroup Analysis,R² Score,Gradient Boosting,0.9056487756547018,0.8542420686752982,0.962052339902355,Gender,All,Men,621.0,
-Subgroup Analysis,R² Score,Gradient Boosting,0.9498412054171457,0.9103511420298225,0.9777425610496684,Gender,All,Women,348.0,
-Subgroup Analysis,R² Score,Gradient Boosting,0.9194908912039352,0.8793630956193023,0.9546274411853946,Year,2024,All,969.0,
-Subgroup Analysis,R² Score,Gradient Boosting,0.9056487756547018,0.8529822038868162,0.9578527310567283,Year × Gender,2024,Men,621.0,
-Subgroup Analysis,R² Score,Gradient Boosting,0.9498412054171457,0.910999630651411,0.9778423911409313,Year × Gender,2024,Women,348.0,
+Feature Importance,Importance Score,Gradient Boosting,0.18540966154132404,,,Feature,N/A,N/A,,"Feature: slope, Rank: 1"
+Feature Importance,Importance Score,Gradient Boosting,0.1374352688768586,,,Feature,N/A,N/A,,"Feature: experience_level, Rank: 2"
+Feature Importance,Importance Score,Gradient Boosting,0.1291061039004579,,,Feature,N/A,N/A,,"Feature: season_duration, Rank: 3"
+Feature Importance,Importance Score,Gradient Boosting,0.12289493984050634,,,Feature,N/A,N/A,,"Feature: improvement_to_variability_ratio, Rank: 4"
+Feature Importance,Importance Score,Gradient Boosting,0.10116088057216024,,,Feature,N/A,N/A,,"Feature: time_std, Rank: 5"
+Feature Importance,Importance Score,Gradient Boosting,0.05929870720120742,,,Feature,N/A,N/A,,"Feature: season_duration_squared, Rank: 6"
+Feature Importance,Importance Score,Gradient Boosting,0.039174540566588895,,,Feature,N/A,N/A,,"Feature: worst_to_avg_ratio, Rank: 7"
+Feature Importance,Importance Score,Gradient Boosting,0.03091819313763899,,,Feature,N/A,N/A,,"Feature: cv_time, Rank: 8"
+Feature Importance,Importance Score,Gradient Boosting,0.029066472316085397,,,Feature,N/A,N/A,,"Feature: race_frequency, Rank: 9"
+Feature Importance,Importance Score,Gradient Boosting,0.027965889453682925,,,Feature,N/A,N/A,,"Feature: consistency_score, Rank: 10"
+Model Performance,CV R² Mean,Gradient Boosting,0.8637063372937881,0.7724960256802729,0.9549166489073033,Overall,All,All,969.0,Std: 0.0912
+Model Performance,CV R² Mean,Lasso Regression,0.3656386128277974,0.2925177473055617,0.43875947835003315,Overall,All,All,969.0,Std: 0.0731
+Model Performance,CV R² Mean,Linear Regression,0.27003554572957567,0.030744075641091773,0.5093270158180596,Overall,All,All,969.0,Std: 0.2393
+Model Performance,CV R² Mean,Random Forest,0.9078232383305499,0.8774861791698596,0.9381602974912402,Overall,All,All,969.0,Std: 0.0303
+Model Performance,CV R² Mean,Ridge Regression,0.31325823899203453,0.1340747238941487,0.49244175408992036,Overall,All,All,969.0,Std: 0.1792
+Model Performance,CV R² Mean,SVR,0.6160507370584773,0.43219212825495995,0.7999093458619948,Overall,All,All,969.0,Std: 0.1839
+Model Performance,MAE,Gradient Boosting,0.8456303368745739,,,Overall,All,All,969.0,
+Model Performance,MAE,Lasso Regression,2.907644689896073,,,Overall,All,All,969.0,
+Model Performance,MAE,Linear Regression,2.98217733725457,,,Overall,All,All,969.0,
+Model Performance,MAE,Random Forest,0.5916877350240137,,,Overall,All,All,969.0,
+Model Performance,MAE,Ridge Regression,2.976262856277844,,,Overall,All,All,969.0,
+Model Performance,MAE,SVR,1.8038419429521795,,,Overall,All,All,969.0,
+Model Performance,RMSE,Gradient Boosting,2.1302177892135807,,,Overall,All,All,969.0,
+Model Performance,RMSE,Lasso Regression,5.650183873571175,,,Overall,All,All,969.0,
+Model Performance,RMSE,Linear Regression,5.249054767818484,,,Overall,All,All,969.0,
+Model Performance,RMSE,Random Forest,2.1915797978065994,,,Overall,All,All,969.0,
+Model Performance,RMSE,Ridge Regression,5.236626368237288,,,Overall,All,All,969.0,
+Model Performance,RMSE,SVR,5.318517916530801,,,Overall,All,All,969.0,
+Model Performance,R² Score,Gradient Boosting,0.9220391862533566,0.8781131979258804,0.9581246468188289,Overall,All,All,969.0,
+Model Performance,R² Score,Lasso Regression,0.45152919905013034,0.41516987646089687,0.492712330443721,Overall,All,All,969.0,
+Model Performance,R² Score,Linear Regression,0.5266410884176931,0.4879798375373033,0.5709595207088752,Overall,All,All,969.0,
+Model Performance,R² Score,Random Forest,0.917483095783872,0.8701340980975417,0.9586569526455726,Overall,All,All,969.0,
+Model Performance,R² Score,Ridge Regression,0.5288800168109999,0.49090043442607284,0.5699317608579751,Overall,All,All,969.0,
+Model Performance,R² Score,SVR,0.514029840636125,0.4438596768480418,0.5974061527892297,Overall,All,All,969.0,
+Subgroup Analysis,MAE,Gradient Boosting,0.8498713899071318,,,Gender,All,Men,621.0,
+Subgroup Analysis,MAE,Gradient Boosting,0.8380622508595784,,,Gender,All,Women,348.0,
+Subgroup Analysis,MAE,Gradient Boosting,0.8456303368745739,,,Year,2024,All,969.0,
+Subgroup Analysis,R² Score,Gradient Boosting,0.9166378167761687,0.8577839358517902,0.9644989638106666,Gender,All,Men,621.0,
+Subgroup Analysis,R² Score,Gradient Boosting,0.9336209503273616,0.8938707382918216,0.9678710538531053,Gender,All,Women,348.0,
+Subgroup Analysis,R² Score,Gradient Boosting,0.9220391862533566,0.8800982923293424,0.9587693710668496,Year,2024,All,969.0,
+Subgroup Analysis,R² Score,Gradient Boosting,0.9166378167761687,0.858230134361297,0.9652071755751673,Year × Gender,2024,Men,621.0,
+Subgroup Analysis,R² Score,Gradient Boosting,0.9336209503273616,0.8900649494447538,0.9668151445301887,Year × Gender,2024,Women,348.0,

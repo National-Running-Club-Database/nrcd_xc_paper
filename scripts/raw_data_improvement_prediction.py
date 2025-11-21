@@ -15,23 +15,69 @@ from scipy.stats import ttest_rel
 import warnings
 warnings.filterwarnings('ignore')
 
-import os
-from utils import standardize_convert_exclude_nationals_df, convert_exclude_nationals
+try:
+    from tqdm import tqdm
+    TQDM_AVAILABLE = True
+except ImportError:
+    TQDM_AVAILABLE = False
+    print("Note: tqdm not available. Install with 'pip install tqdm' for progress bars.")
 
-def load_raw_data():
-    """Load raw athlete data for improvement prediction."""
-    print("Loading raw data...")
+import os
+from utils import standardize_convert_exclude_nationals_df, convert_exclude_nationals, parse_time
+
+def load_raw_data(mode='standardized'):
+    """
+    Load raw athlete data for improvement prediction.
     
-    # Load standardized data (this includes all the raw athlete records)
-    df = standardize_convert_exclude_nationals_df()
+    Parameters:
+    -----------
+    mode : str
+        'standardized' - Full standardization (weather, terrain, distance)
+        'converted' - Distance conversion only (no weather/terrain)
+        'original' - Raw times (no adjustments)
+    """
+    print(f"Loading raw data ({mode})...")
+    
+    if mode == 'standardized':
+        # Full standardization: weather, terrain, distance adjustments
+        df = standardize_convert_exclude_nationals_df()
+        time_col = 'standardized_to_target'
+    elif mode == 'converted':
+        # Distance conversion only: no weather/terrain adjustments
+        df = convert_exclude_nationals()
+        time_col = 'standardized_to_target'
+    elif mode == 'original' or mode == 'raw':
+        # Raw/Original: No adjustments at all - just parse the raw times
+        # Note: This doesn't convert distances, so times from different distances aren't directly comparable
+        # This demonstrates why standardization is necessary
+        import os
+        results_df = pd.read_csv(os.path.join('data/jss_data', 'result.csv'))
+        meet_df = pd.read_csv(os.path.join('data/jss_data', 'meet.csv'))
+        athlete_df = pd.read_csv(os.path.join('data/jss_data', 'athlete.csv'))
+        running_event_df = pd.read_csv(os.path.join('data/jss_data', 'running_event.csv'))
+        
+        # Exclude nationals
+        non_nationals_meets = meet_df[~meet_df['nationals'].astype(bool)]['meet_id']
+        df = results_df[results_df['meet_id'].isin(non_nationals_meets)].copy()
+        
+        # Merge with other data
+        df = df.merge(athlete_df[['athlete_id', 'gender']], on='athlete_id', how='left')
+        df = df.merge(running_event_df[['running_event_id', 'event_name']], on='running_event_id', how='left')
+        df = df.merge(meet_df[['meet_id', 'start_date']], on='meet_id', how='left')
+        
+        # Parse raw times (no distance conversion, no weather/terrain adjustments)
+        df['standardized_to_target'] = df['result_time'].apply(parse_time)
+        time_col = 'standardized_to_target'
+    else:
+        raise ValueError(f"Unknown mode: {mode}")
     
     # Ensure dates are datetime
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Filter for valid data
-    df = df.dropna(subset=['standardized_to_target', 'start_date', 'gender', 'athlete_id'])
+    df = df.dropna(subset=[time_col, 'start_date', 'gender', 'athlete_id'])
     
-    print(f"Loaded {len(df)} raw athlete records")
+    print(f"Loaded {len(df)} raw athlete records ({mode})")
     return df
 
 def calculate_athlete_features(df):
@@ -101,15 +147,41 @@ def calculate_athlete_features(df):
         # Calculate race frequency
         race_frequency = num_races / season_duration if season_duration > 0 else 0
         
-        # Calculate performance progression
-        if len(times) >= 3:
-            # Calculate improvement from first half to second half
-            mid_point = len(times) // 2
-            first_half_avg = np.mean(times[:mid_point])
-            second_half_avg = np.mean(times[mid_point:])
-            progression_improvement = first_half_avg - second_half_avg
+        # Calculate average days between races (recovery time)
+        if num_races > 1:
+            dates = athlete_races['start_date'].values  # Already sorted by start_date
+            days_between = np.diff(dates)
+            # Convert timedelta to days
+            if len(days_between) > 0:
+                # Handle pandas Timedelta objects
+                avg_days_between_races = np.mean([d.days if hasattr(d, 'days') else float(d) / (24*3600*1e9) for d in days_between])
+            else:
+                avg_days_between_races = 0
         else:
-            progression_improvement = total_improvement
+            avg_days_between_races = 0
+        
+        # Calculate race-to-race improvement consistency
+        if len(times) >= 2:
+            race_to_race_improvements = np.diff(times)  # Negative = improving
+            race_to_race_improvement_std = np.std(race_to_race_improvements) if len(race_to_race_improvements) > 0 else 0
+            # Count "bad" races (worse than previous race)
+            bad_race_count = np.sum(race_to_race_improvements > 0)  # Positive = slower = bad
+        else:
+            race_to_race_improvement_std = 0
+            bad_race_count = 0
+        
+        # Calculate when best race occurred (timing of peak performance)
+        best_race_idx = np.argmin(times)
+        if best_race_idx == 0:
+            best_race_timing = 0  # Best race was first race
+        elif best_race_idx == len(times) - 1:
+            best_race_timing = season_duration  # Best race was last race
+        else:
+            # Days from first race to best race
+            best_race_date = athlete_races.iloc[best_race_idx]['start_date']
+            best_race_timing = (best_race_date - first_date).days
+        
+        # Note: progression_improvement removed - not needed as a feature
         
         # Extract athlete metadata
         gender = athlete_races.iloc[0]['gender']
@@ -140,8 +212,12 @@ def calculate_athlete_features(df):
             'improvement_rate': improvement_rate,
             'slope': slope,
             'race_frequency': race_frequency,
-            'progression_improvement': progression_improvement,
-            'starting_percentile': starting_percentile
+            'starting_percentile': starting_percentile,
+            # New features
+            'avg_days_between_races': avg_days_between_races,
+            'race_to_race_improvement_std': race_to_race_improvement_std,
+            'best_race_timing': best_race_timing,
+            'bad_race_count': bad_race_count
         })
     
     print(f"Calculated features for {len(athlete_features)} athletes")
@@ -159,8 +235,9 @@ def create_advanced_features(athlete_df):
     
     # Create interaction features
     features_df['gender_year'] = features_df['gender_encoded'] * features_df['year']
-    features_df['races_duration_ratio'] = features_df['num_races'] / features_df['season_duration']
-    features_df['improvement_per_race'] = features_df['total_improvement'] / features_df['num_races']
+    # Note: races_duration_ratio removed - it's identical to race_frequency (both = num_races / season_duration)
+    # Note: improvement_per_race removed - it's circular with target variable (improvement_rate)
+    # Both use total_improvement, creating a data leakage issue
     
     # Create polynomial features for key variables
     # Note: Squared terms capture non-linear relationships (e.g., optimal season length)
@@ -174,15 +251,20 @@ def create_advanced_features(athlete_df):
     features_df['worst_to_avg_ratio'] = features_df['worst_time'] / features_df['avg_time']
     
     # Create improvement efficiency features
-    features_df['improvement_efficiency'] = features_df['total_improvement'] / features_df['time_range']
+    # improvement_to_variability_ratio: total improvement relative to performance variability
+    # Higher values = more improvement relative to variability (more consistent improvement)
+    features_df['improvement_to_variability_ratio'] = features_df['total_improvement'] / features_df['time_range']
     features_df['consistency_score'] = 1 / (1 + features_df['cv_time'])
     
-    # Create season timing features
-    features_df['early_season_performance'] = features_df['first_time']
-    features_df['late_season_performance'] = features_df['last_time']
+    # Note: early_season_performance and late_season_performance removed - duplicates of first_time and last_time
     
     # Create experience features
     features_df['experience_level'] = features_df['num_races'] * features_df['season_duration']
+    
+    # Create peak timing feature (normalized to season duration)
+    features_df['best_race_timing_ratio'] = features_df['best_race_timing'] / features_df['season_duration']
+    # Replace inf/NaN with 0 (for edge cases)
+    features_df['best_race_timing_ratio'] = features_df['best_race_timing_ratio'].replace([np.inf, -np.inf], 0).fillna(0)
     
     return features_df
 
@@ -191,15 +273,29 @@ def prepare_model_data(features_df):
     print("Preparing model data...")
     
     # Select features for the model
+    # Note: improvement_per_race removed - it's circular with target (both use total_improvement)
+    # Note: progression_improvement removed - not needed as a feature
+    # Note: Removed duplicates:
+    #   - early_season_performance (duplicate of first_time)
+    #   - late_season_performance (duplicate of last_time)
+    #   - races_duration_ratio (duplicate of race_frequency)
+    # num_races is the correct feature to use (number of races in season)
     feature_columns = [
         'gender_encoded', 'year', 'num_races', 'season_duration', 
         'first_time', 'last_time', 'best_time', 'worst_time', 'avg_time',
         'time_std', 'time_range', 'cv_time', 'race_frequency',
-        'progression_improvement', 'starting_percentile', 'gender_year',
-        'races_duration_ratio', 'improvement_per_race', 'starting_percentile_squared',
+        'starting_percentile', 'gender_year',
+        'starting_percentile_squared',
         'num_races_squared', 'season_duration_squared', 'best_to_avg_ratio',
-        'worst_to_avg_ratio', 'improvement_efficiency', 'consistency_score',
-        'early_season_performance', 'late_season_performance', 'experience_level'
+        'worst_to_avg_ratio', 'improvement_to_variability_ratio', 'consistency_score',
+        'experience_level',
+        # New features
+        'slope',  # Improvement trajectory pattern (was calculated but not used)
+        'avg_days_between_races',  # Recovery time indicator
+        'race_to_race_improvement_std',  # Consistency of improvement
+        'best_race_timing',  # When peak performance occurred
+        'best_race_timing_ratio',  # Peak timing normalized to season duration
+        'bad_race_count'  # Number of races worse than previous
     ]
     
     # Target variable: improvement_rate (seconds per day)
@@ -458,19 +554,41 @@ def hyperparameter_tuning(X_train, y_train, best_model_name):
             ('model', base_model)
         ])
     
-    # Grid search (using only training data)
+    # Calculate total number of fits for progress bar
+    from itertools import product
+    param_combinations = list(product(*param_grid.values()))
+    total_fits = len(param_combinations) * 5  # 5 CV folds
+    
+    print(f"Testing {len(param_combinations)} parameter combinations with 5-fold CV ({total_fits} total fits)...")
+    
+    # Grid search - suppress verbose output to avoid clutter
+    # Use verbose=0 to prevent sklearn from printing each CV fold
     grid_search = GridSearchCV(
-        pipeline, param_grid, cv=5, scoring='r2', n_jobs=-1, verbose=1
+        pipeline, param_grid, cv=5, scoring='r2', n_jobs=-1, verbose=0
     )
-    grid_search.fit(X_train, y_train)
+    
+    if TQDM_AVAILABLE:
+        # Show a simple progress message with tqdm
+        with tqdm(total=total_fits, desc="Hyperparameter tuning", unit="fit",
+                 bar_format='{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]') as pbar:
+            # Fit the model
+            grid_search.fit(X_train, y_train)
+            # Update to completion
+            pbar.n = total_fits
+            pbar.refresh()
+    else:
+        # No progress bar, just fit
+        grid_search.fit(X_train, y_train)
     
     print(f"Best parameters: {grid_search.best_params_}")
     print(f"Best CV score: {grid_search.best_score_:.4f}")
     
     return grid_search.best_estimator_
 
-def analyze_feature_importance(model, feature_names):
+def analyze_feature_importance(model, feature_names, output_dir='output'):
     """Analyze feature importance for tree-based models."""
+    os.makedirs(output_dir, exist_ok=True)
+    
     if hasattr(model.named_steps['model'], 'feature_importances_'):
         importances = model.named_steps['model'].feature_importances_
         feature_importance_df = pd.DataFrame({
@@ -481,13 +599,15 @@ def analyze_feature_importance(model, feature_names):
         print("\nFeature Importance:")
         print(feature_importance_df)
         
-        # Plot feature importance
+        # Plot feature importance - show top 15
         plt.figure(figsize=(14, 10))
-        sns.barplot(data=feature_importance_df.head(15), x='importance', y='feature')
-        plt.title('Top 15 Most Important Features for Improvement Prediction')
-        plt.xlabel('Feature Importance')
+        top_15 = feature_importance_df.head(15)
+        sns.barplot(data=top_15, x='importance', y='feature')
+        plt.title('Top 15 Most Important Features for Improvement Prediction', fontsize=14, fontweight='bold')
+        plt.xlabel('Feature Importance', fontsize=12)
+        plt.ylabel('Feature', fontsize=12)
         plt.tight_layout()
-        plt.savefig('output/raw_data_feature_importance.pdf', dpi=300, bbox_inches='tight')
+        plt.savefig(f'{output_dir}/raw_data_feature_importance.pdf', dpi=300, bbox_inches='tight')
         plt.close()
         
         return feature_importance_df
@@ -668,6 +788,7 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
         
         # Create visualization
         if 'Men' in pivot_df.columns and 'Women' in pivot_df.columns:
+            # Get top 15 features by absolute difference
             top_features = pivot_df.head(15).index
             
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
@@ -1067,6 +1188,62 @@ def plot_predictions(results, test_metadata, output_dir='output'):
     plt.tight_layout()
     plt.savefig(f'{output_dir}/raw_data_model_predictions.pdf', dpi=300, bbox_inches='tight')
     plt.close()
+    
+    # Create combined plots: all 6 models for men, all 6 models for women
+    print("\nCreating combined gender plots...")
+    gender_labels = {'M': 'Men', 'F': 'Women'}
+    
+    for gender in ['M', 'F']:
+        gender_label = gender_labels[gender]
+        fig, axes = plt.subplots(2, 3, figsize=(18, 12))
+        axes = axes.ravel()
+        
+        # Filter test metadata for this gender
+        gender_mask = test_metadata['gender'] == gender
+        
+        for i, (model_name, result) in enumerate(results.items()):
+            ax = axes[i]
+            
+            # Filter predictions for this gender
+            y_test_array = np.array(result['y_test'])
+            y_pred_array = np.array(result['y_pred'])
+            
+            y_test_gender = y_test_array[gender_mask.values]
+            y_pred_gender = y_pred_array[gender_mask.values]
+            
+            if len(y_test_gender) > 0:
+                # Plot actual vs predicted
+                ax.scatter(y_test_gender, y_pred_gender, alpha=0.6, s=30)
+                
+                # Add perfect prediction line
+                min_val = min(y_test_gender.min(), y_pred_gender.min())
+                max_val = max(y_test_gender.max(), y_pred_gender.max())
+                ax.plot([min_val, max_val], [min_val, max_val], 'r--', alpha=0.8, linewidth=2)
+                
+                # Calculate R² for this gender
+                r2_gender = r2_score(y_test_gender, y_pred_gender)
+                
+                # Bootstrap CI for gender R²
+                r2_gender_mean, r2_gender_lower, r2_gender_upper = bootstrap_confidence_interval(
+                    y_test_gender, y_pred_gender, r2_score, n_bootstrap=500
+                )
+                
+                ax.set_xlabel('Actual Improvement Rate (seconds/day)')
+                ax.set_ylabel('Predicted Improvement Rate (seconds/day)')
+                ax.set_title(f'{model_name}\nR² = {r2_gender:.3f} (95% CI: [{r2_gender_lower:.3f}, {r2_gender_upper:.3f}])\nn={len(y_test_gender)}', fontweight='bold')
+                ax.grid(True, alpha=0.3)
+            else:
+                ax.text(0.5, 0.5, 'No data', ha='center', va='center', transform=ax.transAxes)
+                ax.set_title(f'{model_name}', fontweight='bold')
+        
+        plt.suptitle(f'All Models - {gender_label} Predictions', fontsize=16, fontweight='bold', y=0.995)
+        plt.tight_layout(rect=[0, 0, 1, 0.99])
+        
+        # Save combined gender plot
+        safe_gender = gender_label.lower()
+        plt.savefig(f'{output_dir}/raw_data_model_predictions_all_models_{safe_gender}.pdf', dpi=300, bbox_inches='tight')
+        plt.close()
+        print(f"  Saved combined plot for {gender_label}: {output_dir}/raw_data_model_predictions_all_models_{safe_gender}.pdf")
     
     print(f"Prediction plots saved to {output_dir}/")
 
@@ -1587,8 +1764,8 @@ def main():
     print("RAW DATA IMPROVEMENT PREDICTION MODEL")
     print("="*60)
     
-    # Load raw data
-    df = load_raw_data()
+    # Load raw data (using standardized times - best method)
+    df = load_raw_data(mode='standardized')
     
     # Calculate athlete features
     athlete_df = calculate_athlete_features(df)
@@ -1666,7 +1843,198 @@ def main():
     print("="*60)
     analyze_race_frequency_by_gender(features_df_filtered)
     
+    # Compare standardized vs converted vs original times
+    print("\n" + "="*60)
+    print("COMPARING: Standardized vs Converted vs Original Times")
+    print("="*60)
+    compare_time_standardization_methods()
+    
     print("\nAnalysis complete!")
+
+def compare_time_standardization_methods(output_dir='output'):
+    """
+    Compare model performance using:
+    1. Standardized times (weather, terrain, distance adjustments)
+    2. Converted-only times (distance only, no weather/terrain)
+    3. Original times (no adjustments)
+    
+    This demonstrates that standardization improves model performance.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    
+    print("\nComparing three time standardization approaches:")
+    print("1. Standardized: Weather + Terrain + Distance adjustments (BEST)")
+    print("2. Converted: Distance conversion only (no weather/terrain) (MIDDLE)")
+    print("3. Raw: No adjustments at all - original race times (WORST)")
+    print("\nNote: Standardized and Converted methods convert distances to 6k (women) / 8k (men).")
+    print("Raw method uses original times without distance conversion (less comparable).")
+    
+    comparison_results = []
+    
+    for mode in ['standardized', 'converted', 'raw']:
+        print(f"\n{'='*60}")
+        print(f"Analyzing: {mode.upper()} times")
+        print('='*60)
+        
+        try:
+            # Load data with specified mode
+            df = load_raw_data(mode=mode)
+            
+            # Calculate athlete features
+            athlete_df = calculate_athlete_features(df)
+            
+            if len(athlete_df) < 100:
+                print(f"  Insufficient data for {mode} (n={len(athlete_df)})")
+                continue
+            
+            # Create advanced features
+            features_df = create_advanced_features(athlete_df)
+            
+            # Prepare model data
+            X, y, features_df_filtered = prepare_model_data(features_df)
+            
+            # Temporal split
+            train_mask = features_df_filtered['year'] == 2023
+            test_mask = features_df_filtered['year'] == 2024
+            
+            X_train = X[train_mask]
+            X_test = X[test_mask]
+            y_train = y[train_mask]
+            y_test = y[test_mask]
+            
+            print(f"  Training samples: {len(X_train)}, Test samples: {len(X_test)}")
+            
+            # Train best model (Gradient Boosting)
+            model = GradientBoostingRegressor(n_estimators=100, random_state=42)
+            model.fit(X_train, y_train)
+            
+            # Evaluate
+            y_pred = model.predict(X_test)
+            r2 = r2_score(y_test, y_pred)
+            rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+            mae = mean_absolute_error(y_test, y_pred)
+            
+            # Bootstrap CI
+            r2_mean, r2_lower, r2_upper = bootstrap_confidence_interval(
+                y_test, y_pred, r2_score, n_bootstrap=1000
+            )
+            
+            # Cross-validation
+            cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='r2')
+            
+            comparison_results.append({
+                'Method': mode.capitalize(),
+                'R² Score': r2,
+                'R² CI Lower': r2_lower,
+                'R² CI Upper': r2_upper,
+                'RMSE': rmse,
+                'MAE': mae,
+                'CV R² Mean': cv_scores.mean(),
+                'CV R² Std': cv_scores.std(),
+                'Train n': len(X_train),
+                'Test n': len(X_test)
+            })
+            
+            print(f"  Test R²: {r2:.4f} (95% CI: [{r2_lower:.4f}, {r2_upper:.4f}])")
+            print(f"  RMSE: {rmse:.4f}, MAE: {mae:.4f}")
+            print(f"  CV R²: {cv_scores.mean():.4f} (±{cv_scores.std():.4f})")
+            
+        except Exception as e:
+            print(f"  Error analyzing {mode}: {str(e)}")
+            continue
+    
+    # Create comparison visualization
+    if len(comparison_results) >= 2:
+        comparison_df = pd.DataFrame(comparison_results)
+        comparison_df.to_csv(f'{output_dir}/time_standardization_comparison.csv', index=False)
+        
+        # Create visualization
+        fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+        
+        methods = comparison_df['Method'].values
+        r2_scores = comparison_df['R² Score'].values
+        r2_lower = comparison_df['R² CI Lower'].values
+        r2_upper = comparison_df['R² CI Upper'].values
+        rmse_scores = comparison_df['RMSE'].values
+        mae_scores = comparison_df['MAE'].values
+        
+        # Plot 1: R² Scores with CIs
+        x_pos = np.arange(len(methods))
+        bars1 = axes[0].bar(x_pos, r2_scores, alpha=0.7, 
+                           color=['#2E86AB', '#A23B72', '#6C757D'][:len(methods)])
+        axes[0].errorbar(x_pos, r2_scores, 
+                         yerr=[r2_scores - r2_lower, r2_upper - r2_scores],
+                         fmt='none', color='black', capsize=5, capthick=2)
+        axes[0].set_xticks(x_pos)
+        axes[0].set_xticklabels(methods, rotation=45, ha='right')
+        axes[0].set_ylabel('R² Score')
+        axes[0].set_title('Model Performance by Time Standardization Method\n(Higher is Better)')
+        axes[0].grid(True, alpha=0.3, axis='y')
+        axes[0].set_ylim(0, 1.0)
+        
+        # Add value labels
+        for i, (bar, score) in enumerate(zip(bars1, r2_scores)):
+            axes[0].text(bar.get_x() + bar.get_width()/2., score + 0.02,
+                         f'{score:.3f}', ha='center', va='bottom', fontweight='bold')
+        
+        # Plot 2: RMSE
+        bars2 = axes[1].bar(x_pos, rmse_scores, alpha=0.7,
+                           color=['#2E86AB', '#A23B72', '#6C757D'][:len(methods)])
+        axes[1].set_xticks(x_pos)
+        axes[1].set_xticklabels(methods, rotation=45, ha='right')
+        axes[1].set_ylabel('RMSE (seconds/day)')
+        axes[1].set_title('RMSE by Time Standardization Method\n(Lower is Better)')
+        axes[1].grid(True, alpha=0.3, axis='y')
+        
+        # Add value labels
+        for i, (bar, score) in enumerate(zip(bars2, rmse_scores)):
+            axes[1].text(bar.get_x() + bar.get_width()/2., score + max(rmse_scores)*0.02,
+                         f'{score:.2f}', ha='center', va='bottom', fontweight='bold')
+        
+        # Plot 3: MAE
+        bars3 = axes[2].bar(x_pos, mae_scores, alpha=0.7,
+                           color=['#2E86AB', '#A23B72', '#6C757D'][:len(methods)])
+        axes[2].set_xticks(x_pos)
+        axes[2].set_xticklabels(methods, rotation=45, ha='right')
+        axes[2].set_ylabel('MAE (seconds/day)')
+        axes[2].set_title('MAE by Time Standardization Method\n(Lower is Better)')
+        axes[2].grid(True, alpha=0.3, axis='y')
+        
+        # Add value labels
+        for i, (bar, score) in enumerate(zip(bars3, mae_scores)):
+            axes[2].text(bar.get_x() + bar.get_width()/2., score + max(mae_scores)*0.02,
+                         f'{score:.2f}', ha='center', va='bottom', fontweight='bold')
+        
+        plt.tight_layout()
+        plt.savefig(f'{output_dir}/time_standardization_comparison.pdf', dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        print(f"\n{'='*60}")
+        print("STANDARDIZATION COMPARISON RESULTS")
+        print('='*60)
+        print(comparison_df.to_string(index=False))
+        print(f"\nComparison saved to:")
+        print(f"  - {output_dir}/time_standardization_comparison.csv")
+        print(f"  - {output_dir}/time_standardization_comparison.pdf")
+        
+        # Statistical comparison
+        if len(comparison_results) >= 2:
+            print(f"\nPerformance Improvement:")
+            if 'Standardized' in comparison_df['Method'].values and 'Converted' in comparison_df['Method'].values:
+                std_r2 = comparison_df[comparison_df['Method'] == 'Standardized']['R² Score'].values[0]
+                conv_r2 = comparison_df[comparison_df['Method'] == 'Converted']['R² Score'].values[0]
+                improvement = ((std_r2 - conv_r2) / conv_r2) * 100
+                print(f"  Standardized vs Converted: {improvement:+.1f}% improvement in R²")
+            
+            if 'Standardized' in comparison_df['Method'].values and 'Original' in comparison_df['Method'].values:
+                std_r2 = comparison_df[comparison_df['Method'] == 'Standardized']['R² Score'].values[0]
+                orig_r2 = comparison_df[comparison_df['Method'] == 'Original']['R² Score'].values[0]
+                improvement = ((std_r2 - orig_r2) / orig_r2) * 100
+                print(f"  Standardized vs Original: {improvement:+.1f}% improvement in R²")
+        
+        return comparison_df
+    
+    return None
 
 def test_feature_redundancy(X, y, features_df, feature_names):
     """Test if season_duration_squared is redundant."""
