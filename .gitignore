@@ -6,3 +6,7 @@ venv/
 
 #Notebooks
 .ipynb_checkpoints/
+
+# Data directories
+data/
+data/**/*
