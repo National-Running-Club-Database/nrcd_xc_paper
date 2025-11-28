@@ -1,25 +1,31 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
-import os
-from utils import standardize_convert_exclude_nationals_df
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from scipy.stats import chi2_contingency
+from utils import standardize_convert_exclude_nationals_df
 
 output_dir = 'output/TeamRaceParticipation'
 os.makedirs(output_dir, exist_ok=True)
 
 def get_teams_with_4plus_athletes(year, gender):
-    """Get list of teams that have at least one athlete competing in 4+ races"""
+    """Get list of teams that have at least one athlete competing in 4+ races (not 4+ athletes, but 4+ races for at least 1 athlete)"""
     
     # Load data
     df = standardize_convert_exclude_nationals_df()
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Load team and athlete-team association data
-    athlete_team_df = pd.read_csv('data/jss_data/athlete_team_association.csv')
-    team_df = pd.read_csv('data/jss_data/team.csv')
-    athlete_df = pd.read_csv('data/jss_data/athlete.csv')
+    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
+    team_df = pd.read_csv('data/team.csv')
+    athlete_df = pd.read_csv('data/athlete.csv')
     
     # Merge athlete gender information
     athlete_df = athlete_df[['athlete_id', 'gender']]
@@ -62,7 +68,7 @@ def get_teams_with_4plus_athletes(year, gender):
 def analyze_2024_mens_overlap():
     """Analyze overlap for 2024 men's teams"""
     
-    # Get teams with 4+ athletes
+    # Get teams with at least one athlete competing in 4+ races
     teams_4plus = get_teams_with_4plus_athletes(2024, 'M')
     
     # 2024 Men's Nationals Top 15 teams
@@ -85,7 +91,7 @@ def analyze_2024_mens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/jss_data/team.csv')
+    team_df = pd.read_csv('data/team.csv')
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -134,25 +140,25 @@ def print_2024_mens_results(results):
     """Print the 2024 men's overlap results"""
     print("2024 Men's Nationals Overlap Analysis")
     print("=" * 50)
-    print(f"Teams with at least one runner competing in 4+ races: {results['total_4plus']}")
+    print(f"Teams with at least one athlete competing in 4+ races: {results['total_4plus']}")
     print(f"Top 15 teams at nationals: {results['total_nationals']}")
     print(f"Overlap: {results['overlap_count']} teams")
     print()
-    print(f"Percentage of 4+ teams that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
-    print(f"Percentage of top 15 nationals teams that had 4+ athletes: {results['overlap_percentage_nationals']:.1f}%")
+    print(f"Percentage of teams with 4+ races (at least 1 athlete) that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
+    print(f"Percentage of top 15 nationals teams that had at least one athlete competing in 4+ races: {results['overlap_percentage_nationals']:.1f}%")
     print()
     print("Teams in both categories:")
     print("-" * 30)
     for team_name in sorted(results['overlap_team_names']):
         print(f"• {team_name}")
     print()
-    print("Teams with 4+ athletes but NOT in top 15:")
+    print("Teams with at least one athlete competing in 4+ races but NOT in top 15:")
     print("-" * 40)
     non_overlap_4plus = set(results['teams_4plus_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_4plus):
         print(f"• {team_name}")
     print()
-    print("Top 15 teams that did NOT have 4+ athletes:")
+    print("Top 15 teams that did NOT have at least one athlete competing in 4+ races:")
     print("-" * 45)
     non_overlap_nationals = set(results['nationals_teams_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_nationals):
@@ -161,7 +167,7 @@ def print_2024_mens_results(results):
 def analyze_2023_mens_overlap():
     """Analyze overlap for 2023 men's teams"""
     
-    # Get teams with 4+ athletes
+    # Get teams with at least one athlete competing in 4+ races
     teams_4plus = get_teams_with_4plus_athletes(2023, 'M')
     
     # 2023 Men's Nationals Top 15 teams
@@ -184,7 +190,7 @@ def analyze_2023_mens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/jss_data/team.csv')
+    team_df = pd.read_csv('data/team.csv')
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -233,25 +239,25 @@ def print_2023_mens_results(results):
     """Print the 2023 men's overlap results"""
     print("\n2023 Men's Nationals Overlap Analysis")
     print("=" * 50)
-    print(f"Teams with at least one runner competing in 4+ races: {results['total_4plus']}")
+    print(f"Teams with at least one athlete competing in 4+ races: {results['total_4plus']}")
     print(f"Top 15 teams at nationals: {results['total_nationals']}")
     print(f"Overlap: {results['overlap_count']} teams")
     print()
-    print(f"Percentage of 4+ teams that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
-    print(f"Percentage of top 15 nationals teams that had 4+ athletes: {results['overlap_percentage_nationals']:.1f}%")
+    print(f"Percentage of teams with 4+ races (at least 1 athlete) that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
+    print(f"Percentage of top 15 nationals teams that had at least one athlete competing in 4+ races: {results['overlap_percentage_nationals']:.1f}%")
     print()
     print("Teams in both categories:")
     print("-" * 30)
     for team_name in sorted(results['overlap_team_names']):
         print(f"• {team_name}")
     print()
-    print("Teams with 4+ athletes but NOT in top 15:")
+    print("Teams with at least one athlete competing in 4+ races but NOT in top 15:")
     print("-" * 40)
     non_overlap_4plus = set(results['teams_4plus_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_4plus):
         print(f"• {team_name}")
     print()
-    print("Top 15 teams that did NOT have 4+ athletes:")
+    print("Top 15 teams that did NOT have at least one athlete competing in 4+ races:")
     print("-" * 45)
     non_overlap_nationals = set(results['nationals_teams_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_nationals):
@@ -260,7 +266,7 @@ def print_2023_mens_results(results):
 def analyze_2023_womens_overlap():
     """Analyze overlap for 2023 women's teams"""
     
-    # Get teams with 4+ athletes
+    # Get teams with at least one athlete competing in 4+ races
     teams_4plus = get_teams_with_4plus_athletes(2023, 'F')
     
     # 2023 Women's Nationals Top 15 teams
@@ -283,7 +289,7 @@ def analyze_2023_womens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/jss_data/team.csv')
+    team_df = pd.read_csv('data/team.csv')
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -332,25 +338,25 @@ def print_2023_womens_results(results):
     """Print the 2023 women's overlap results"""
     print("\n2023 Women's Nationals Overlap Analysis")
     print("=" * 50)
-    print(f"Teams with at least one runner competing in 4+ races: {results['total_4plus']}")
+    print(f"Teams with at least one athlete competing in 4+ races: {results['total_4plus']}")
     print(f"Top 15 teams at nationals: {results['total_nationals']}")
     print(f"Overlap: {results['overlap_count']} teams")
     print()
-    print(f"Percentage of 4+ teams that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
-    print(f"Percentage of top 15 nationals teams that had 4+ athletes: {results['overlap_percentage_nationals']:.1f}%")
+    print(f"Percentage of teams with 4+ races (at least 1 athlete) that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
+    print(f"Percentage of top 15 nationals teams that had at least one athlete competing in 4+ races: {results['overlap_percentage_nationals']:.1f}%")
     print()
     print("Teams in both categories:")
     print("-" * 30)
     for team_name in sorted(results['overlap_team_names']):
         print(f"• {team_name}")
     print()
-    print("Teams with 4+ athletes but NOT in top 15:")
+    print("Teams with at least one athlete competing in 4+ races but NOT in top 15:")
     print("-" * 40)
     non_overlap_4plus = set(results['teams_4plus_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_4plus):
         print(f"• {team_name}")
     print()
-    print("Top 15 teams that did NOT have 4+ athletes:")
+    print("Top 15 teams that did NOT have at least one athlete competing in 4+ races:")
     print("-" * 45)
     non_overlap_nationals = set(results['nationals_teams_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_nationals):
@@ -359,7 +365,7 @@ def print_2023_womens_results(results):
 def analyze_2024_womens_overlap():
     """Analyze overlap for 2024 women's teams"""
     
-    # Get teams with 4+ athletes
+    # Get teams with at least one athlete competing in 4+ races
     teams_4plus = get_teams_with_4plus_athletes(2024, 'F')
     
     # 2024 Women's Nationals Top 15 teams
@@ -382,7 +388,7 @@ def analyze_2024_womens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/jss_data/team.csv')
+    team_df = pd.read_csv('data/team.csv')
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -431,25 +437,223 @@ def print_2024_womens_results(results):
     """Print the 2024 women's overlap results"""
     print("\n2024 Women's Nationals Overlap Analysis")
     print("=" * 50)
-    print(f"Teams with at least one runner competing in 4+ races: {results['total_4plus']}")
+    print(f"Teams with at least one athlete competing in 4+ races: {results['total_4plus']}")
     print(f"Top 15 teams at nationals: {results['total_nationals']}")
     print(f"Overlap: {results['overlap_count']} teams")
     print()
-    print(f"Percentage of 4+ teams that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
-    print(f"Percentage of top 15 nationals teams that had 4+ athletes: {results['overlap_percentage_nationals']:.1f}%")
+    print(f"Percentage of teams with 4+ races (at least 1 athlete) that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
+    print(f"Percentage of top 15 nationals teams that had at least one athlete competing in 4+ races: {results['overlap_percentage_nationals']:.1f}%")
     print()
     print("Teams in both categories:")
     print("-" * 30)
     for team_name in sorted(results['overlap_team_names']):
         print(f"• {team_name}")
     print()
-    print("Teams with 4+ athletes but NOT in top 15:")
+    print("Teams with at least one athlete competing in 4+ races but NOT in top 15:")
     print("-" * 40)
     non_overlap_4plus = set(results['teams_4plus_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_4plus):
         print(f"• {team_name}")
     print()
-    print("Top 15 teams that did NOT have 4+ athletes:")
+    print("Top 15 teams that did NOT have at least one athlete competing in 4+ races:")
+    print("-" * 45)
+    non_overlap_nationals = set(results['nationals_teams_names']) - set(results['overlap_team_names'])
+    for team_name in sorted(non_overlap_nationals):
+        print(f"• {team_name}")
+
+def analyze_2025_mens_overlap():
+    """Analyze overlap for 2025 men's teams"""
+    
+    # Get teams with at least one athlete competing in 4+ races
+    teams_4plus = get_teams_with_4plus_athletes(2025, 'M')
+    
+    # 2025 Men's Nationals Top 15 teams
+    nationals_teams_2025_mens = [
+        "University of Michigan",
+        "University of Virginia",
+        "Virginia Tech",
+        "University of Illinois",
+        "California Polytechnic State University",
+        "University of Wisconsin",
+        "University of Kentucky",
+        "Georgia Tech",
+        "Purdue University",
+        "University of Massachusetts Amherst",
+        "Penn State University",
+        "Boston College",
+        "University of Maryland",
+        "Northwestern University",
+        "Cornell University"
+    ]
+    
+    # Load team data to get team names
+    team_df = pd.read_csv('data/team.csv')
+    
+    # Get team IDs for nationals teams (filter to avoid duplicates)
+    nationals_team_ids = []
+    for team_name in nationals_teams_2025_mens:
+        matches = team_df[team_df['team_name'].str.contains(team_name, case=False, na=False)]
+        if not matches.empty:
+            # Take only the first match to avoid duplicates
+            nationals_team_ids.append(matches['team_id'].iloc[0])
+    
+    # Find overlap
+    overlap_teams = set(teams_4plus) & set(nationals_team_ids)
+    
+    # Get team names for overlap teams
+    overlap_team_names = []
+    for team_id in overlap_teams:
+        team_name = team_df[team_df['team_id'] == team_id]['team_name'].iloc[0]
+        overlap_team_names.append(team_name)
+    
+    # Get team names for all 4+ teams
+    all_4plus_team_names = []
+    for team_id in teams_4plus:
+        team_name = team_df[team_df['team_id'] == team_id]['team_name'].iloc[0]
+        all_4plus_team_names.append(team_name)
+    
+    # Get team names for all nationals teams
+    all_nationals_team_names = []
+    for team_id in nationals_team_ids:
+        team_name = team_df[team_df['team_id'] == team_id]['team_name'].iloc[0]
+        all_nationals_team_names.append(team_name)
+    
+    return {
+        'teams_4plus': teams_4plus,
+        'teams_4plus_names': all_4plus_team_names,
+        'nationals_teams': nationals_team_ids,
+        'nationals_teams_names': all_nationals_team_names,
+        'overlap_teams': overlap_teams,
+        'overlap_team_names': overlap_team_names,
+        'overlap_count': len(overlap_teams),
+        'total_4plus': len(teams_4plus),
+        'total_nationals': len(nationals_team_ids),
+        'overlap_percentage_4plus': len(overlap_teams) / len(teams_4plus) * 100 if len(teams_4plus) > 0 else 0,
+        'overlap_percentage_nationals': len(overlap_teams) / len(nationals_team_ids) * 100 if len(nationals_team_ids) > 0 else 0
+    }
+
+def print_2025_mens_results(results):
+    """Print the 2025 men's overlap results"""
+    print("\n2025 Men's Nationals Overlap Analysis")
+    print("=" * 50)
+    print(f"Teams with at least one athlete competing in 4+ races: {results['total_4plus']}")
+    print(f"Top 15 teams at nationals: {results['total_nationals']}")
+    print(f"Overlap: {results['overlap_count']} teams")
+    print()
+    print(f"Percentage of teams with 4+ races (at least 1 athlete) that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
+    print(f"Percentage of top 15 nationals teams that had at least one athlete competing in 4+ races: {results['overlap_percentage_nationals']:.1f}%")
+    print()
+    print("Teams in both categories:")
+    print("-" * 30)
+    for team_name in sorted(results['overlap_team_names']):
+        print(f"• {team_name}")
+    print()
+    print("Teams with at least one athlete competing in 4+ races but NOT in top 15:")
+    print("-" * 40)
+    non_overlap_4plus = set(results['teams_4plus_names']) - set(results['overlap_team_names'])
+    for team_name in sorted(non_overlap_4plus):
+        print(f"• {team_name}")
+    print()
+    print("Top 15 teams that did NOT have at least one athlete competing in 4+ races:")
+    print("-" * 45)
+    non_overlap_nationals = set(results['nationals_teams_names']) - set(results['overlap_team_names'])
+    for team_name in sorted(non_overlap_nationals):
+        print(f"• {team_name}")
+
+def analyze_2025_womens_overlap():
+    """Analyze overlap for 2025 women's teams"""
+    
+    # Get teams with at least one athlete competing in 4+ races
+    teams_4plus = get_teams_with_4plus_athletes(2025, 'F')
+    
+    # 2025 Women's Nationals Top 15 teams
+    nationals_teams_2025_womens = [
+        "Virginia Tech",
+        "Penn State University",
+        "University of Michigan",
+        "University of North Carolina",
+        "University of Massachusetts Amherst",
+        "University of Tennessee",
+        "University of Virginia",
+        "Cornell University",
+        "Boston College",
+        "University of Wisconsin",
+        "Michigan State University",
+        "Brown University",
+        "University of Pittsburgh",
+        "Georgia Tech",
+        "University of Illinois"
+    ]
+    
+    # Load team data to get team names
+    team_df = pd.read_csv('data/team.csv')
+    
+    # Get team IDs for nationals teams (filter to avoid duplicates)
+    nationals_team_ids = []
+    for team_name in nationals_teams_2025_womens:
+        matches = team_df[team_df['team_name'].str.contains(team_name, case=False, na=False)]
+        if not matches.empty:
+            # Take only the first match to avoid duplicates
+            nationals_team_ids.append(matches['team_id'].iloc[0])
+    
+    # Find overlap
+    overlap_teams = set(teams_4plus) & set(nationals_team_ids)
+    
+    # Get team names for overlap teams
+    overlap_team_names = []
+    for team_id in overlap_teams:
+        team_name = team_df[team_df['team_id'] == team_id]['team_name'].iloc[0]
+        overlap_team_names.append(team_name)
+    
+    # Get team names for all 4+ teams
+    all_4plus_team_names = []
+    for team_id in teams_4plus:
+        team_name = team_df[team_df['team_id'] == team_id]['team_name'].iloc[0]
+        all_4plus_team_names.append(team_name)
+    
+    # Get team names for all nationals teams
+    all_nationals_team_names = []
+    for team_id in nationals_team_ids:
+        team_name = team_df[team_df['team_id'] == team_id]['team_name'].iloc[0]
+        all_nationals_team_names.append(team_name)
+    
+    return {
+        'teams_4plus': teams_4plus,
+        'teams_4plus_names': all_4plus_team_names,
+        'nationals_teams': nationals_team_ids,
+        'nationals_teams_names': all_nationals_team_names,
+        'overlap_teams': overlap_teams,
+        'overlap_team_names': overlap_team_names,
+        'overlap_count': len(overlap_teams),
+        'total_4plus': len(teams_4plus),
+        'total_nationals': len(nationals_team_ids),
+        'overlap_percentage_4plus': len(overlap_teams) / len(teams_4plus) * 100 if len(teams_4plus) > 0 else 0,
+        'overlap_percentage_nationals': len(overlap_teams) / len(nationals_team_ids) * 100 if len(nationals_team_ids) > 0 else 0
+    }
+
+def print_2025_womens_results(results):
+    """Print the 2025 women's overlap results"""
+    print("\n2025 Women's Nationals Overlap Analysis")
+    print("=" * 50)
+    print(f"Teams with at least one athlete competing in 4+ races: {results['total_4plus']}")
+    print(f"Top 15 teams at nationals: {results['total_nationals']}")
+    print(f"Overlap: {results['overlap_count']} teams")
+    print()
+    print(f"Percentage of teams with 4+ races (at least 1 athlete) that were top 15 at nationals: {results['overlap_percentage_4plus']:.1f}%")
+    print(f"Percentage of top 15 nationals teams that had at least one athlete competing in 4+ races: {results['overlap_percentage_nationals']:.1f}%")
+    print()
+    print("Teams in both categories:")
+    print("-" * 30)
+    for team_name in sorted(results['overlap_team_names']):
+        print(f"• {team_name}")
+    print()
+    print("Teams with at least one athlete competing in 4+ races but NOT in top 15:")
+    print("-" * 40)
+    non_overlap_4plus = set(results['teams_4plus_names']) - set(results['overlap_team_names'])
+    for team_name in sorted(non_overlap_4plus):
+        print(f"• {team_name}")
+    print()
+    print("Top 15 teams that did NOT have at least one athlete competing in 4+ races:")
     print("-" * 45)
     non_overlap_nationals = set(results['nationals_teams_names']) - set(results['overlap_team_names'])
     for team_name in sorted(non_overlap_nationals):
@@ -464,7 +668,7 @@ def save_2024_mens_results(results):
     for team_name in results['overlap_team_names']:
         rows.append({
             'Team_Name': team_name,
-            'Category': 'Both (4+ athletes AND top 15 nationals)'
+            'Category': 'Both (at least 1 athlete with 4+ races AND top 15 nationals)'
         })
     
     # Teams with 4+ but not top 15
@@ -472,7 +676,7 @@ def save_2024_mens_results(results):
     for team_name in sorted(non_overlap_4plus):
         rows.append({
             'Team_Name': team_name,
-            'Category': '4+ athletes only'
+            'Category': 'At least 1 athlete with 4+ races only'
         })
     
     # Top 15 teams without 4+ athletes
@@ -480,7 +684,7 @@ def save_2024_mens_results(results):
     for team_name in sorted(non_overlap_nationals):
         rows.append({
             'Team_Name': team_name,
-            'Category': 'Top 15 nationals only'
+            'Category': 'Top 15 nationals only (no athlete with 4+ races)'
         })
     
     results_df = pd.DataFrame(rows)
@@ -491,7 +695,7 @@ def save_2024_mens_results(results):
     # Create summary
     summary_data = {
         'Metric': [
-            'Total teams with 4+ athletes',
+            'Total teams with at least 1 athlete competing in 4+ races',
             'Total top 15 nationals teams', 
             'Overlap count',
             'Overlap percentage (of 4+ teams)',
@@ -520,12 +724,12 @@ def calculate_p_values(summary_stats):
         
         # Create 2x2 contingency table for this category:
         #                    Made Top 15    Not in Top 15
-        # Teams with 4+     Overlap        TeamsWith4Plus - Overlap
-        # Teams without 4+  TotalTop15 - Overlap  TotalTeams - TeamsWith4Plus - (TotalTop15 - Overlap)
+        # Teams with ≥1 athlete (4+ races)     Overlap        TeamsWith4Plus - Overlap
+        # Teams without ≥1 athlete (4+ races)  TotalTop15 - Overlap  TotalTeams - TeamsWith4Plus - (TotalTop15 - Overlap)
         
-        # Teams with 4+ that made top 15
+        # Teams with ≥1 athlete (4+ races) that made top 15
         a = stat['Overlap']
-        # Teams with 4+ that didn't make top 15
+        # Teams with ≥1 athlete (4+ races) that didn't make top 15
         b = stat['TeamsWith4Plus'] - stat['Overlap']
         # Teams without 4+ that made top 15
         c = stat['TotalTop15'] - stat['Overlap']
@@ -543,51 +747,28 @@ def calculate_p_values(summary_stats):
     
     return p_values
 
-def create_summary_table_pdf(summary_stats, output_path):
-    """Create a PDF table summarizing all four categories"""
-    import matplotlib.pyplot as plt
-    from matplotlib.backends.backend_pdf import PdfPages
-    import numpy as np
-
+def create_summary_table_csv(summary_stats, output_path):
+    """Create a CSV table summarizing all categories"""
     # Calculate p-values
     p_values = calculate_p_values(summary_stats)
 
-    columns = [
-        "Category",
-        "Total Teams",
-        "Total in Top 15",
-        "Teams with 4+ Athletes",
-        "% of Total Teams with 4+ Athletes",
-        "% of Top 15 with 4+ Athletes",
-        "% of 4+ Teams in Top 15",
-        "Overlap Count",
-        "P-value (χ² test)"
-    ]
-    data = []
+    # Create DataFrame with all summary data
+    rows = []
     for stat in summary_stats:
-        data.append([
-            stat['Category'],
-            stat['TotalTeams'],
-            stat['TotalTop15'],
-            stat['TeamsWith4Plus'],
-            f"{stat['PctTotal4Plus']:.1f}%",
-            f"{stat['PctTop15With4Plus']:.1f}%",
-            f"{stat['Pct4PlusInTop15']:.1f}%",
-            stat['Overlap'],
-            f"{p_values[stat['Category']]:.3f}"
-        ])
-
-    fig, ax = plt.subplots(figsize=(10, 2 + 0.5*len(data)))
-    ax.axis('off')
-    table = ax.table(cellText=data, colLabels=columns, loc='center', cellLoc='center')
-    table.auto_set_font_size(False)
-    table.set_fontsize(12)
-    table.scale(1.2, 1.2)
-    plt.title('Nationals Overlap Summary (2023-2024)', fontsize=16, pad=20)
-    plt.tight_layout()
-    with PdfPages(output_path) as pdf:
-        pdf.savefig(fig, bbox_inches='tight')
-    plt.close(fig)
+        rows.append({
+            'Category': stat['Category'],
+            'Total_Teams': stat['TotalTeams'],
+            'Total_in_Top_15': stat['TotalTop15'],
+            'Teams_with_at_least_1_athlete_4plus_races': stat['TeamsWith4Plus'],
+            'Pct_Total_Teams_with_at_least_1_athlete_4plus_races': f"{stat['PctTotal4Plus']:.1f}%",
+            'Pct_Top_15_with_at_least_1_athlete_4plus_races': f"{stat['PctTop15With4Plus']:.1f}%",
+            'Pct_teams_with_at_least_1_athlete_4plus_races_in_Top_15': f"{stat['Pct4PlusInTop15']:.1f}%",
+            'Overlap_Count': stat['Overlap'],
+            'P_value_chi_square_test': f"{p_values[stat['Category']]:.3f}"
+        })
+    
+    summary_df = pd.DataFrame(rows)
+    summary_df.to_csv(output_path, index=False)
 
 def calculate_overall_stats():
     """Calculate overall statistics across all categories"""
@@ -609,11 +790,11 @@ def calculate_overall_stats():
     
     print(f"2024 Men's Teams:")
     print(f"  • Total teams in dataset: {baseline_stats['2024_M']['total_teams']}")
-    print(f"  • Teams with 4+ athletes: {baseline_stats['2024_M']['teams_4plus']} ({baseline_stats['2024_M']['percentage']:.1f}%)")
+    print(f"  • Teams with at least 1 athlete competing in 4+ races: {baseline_stats['2024_M']['teams_4plus']} ({baseline_stats['2024_M']['percentage']:.1f}%)")
     print(f"  • Top 15 at nationals: {mens_2024_nationals}")
     print(f"  • Overlap: {mens_2024_overlap} teams")
-    print(f"  • Overlap rate: {mens_2024_overlap/mens_2024_nationals*100:.1f}% of nationals teams had 4+ athletes")
-    print(f"  • Success rate: {mens_2024_overlap/baseline_stats['2024_M']['teams_4plus']*100:.1f}% of 4+ teams made top 15")
+    print(f"  • Overlap rate: {mens_2024_overlap/mens_2024_nationals*100:.1f}% of nationals teams had at least 1 athlete competing in 4+ races")
+    print(f"  • Success rate: {mens_2024_overlap/baseline_stats['2024_M']['teams_4plus']*100:.1f}% of teams with ≥1 athlete (4+ races) made top 15")
     
     # Overall statistics
     total_teams_4plus = sum([stats['teams_4plus'] for stats in baseline_stats.values()])
@@ -622,7 +803,7 @@ def calculate_overall_stats():
     
     print(f"\nOverall Statistics (All Categories):")
     print(f"  • Total teams across all categories: {total_teams}")
-    print(f"  • Teams with 4+ athletes: {total_teams_4plus}")
+    print(f"  • Teams with at least 1 athlete competing in 4+ races: {total_teams_4plus}")
     print(f"  • Overall percentage: {overall_percentage:.1f}%")
     print(f"  • 2024 Men's nationals success: {mens_2024_overlap/mens_2024_nationals*100:.1f}%")
 
@@ -645,6 +826,14 @@ def main():
     # 2024 Women's analysis
     womens_2024_results = analyze_2024_womens_overlap()
     print_2024_womens_results(womens_2024_results)
+    
+    # 2025 Men's analysis
+    mens_2025_results = analyze_2025_mens_overlap()
+    print_2025_mens_results(mens_2025_results)
+    
+    # 2025 Women's analysis
+    womens_2025_results = analyze_2025_womens_overlap()
+    print_2025_womens_results(womens_2025_results)
     
     calculate_overall_stats()
 
@@ -689,16 +878,36 @@ def main():
             'PctTop15With4Plus': womens_2024_results['overlap_count']/womens_2024_results['total_nationals']*100 if womens_2024_results['total_nationals'] else 0,
             'Pct4PlusInTop15': womens_2024_results['overlap_count']/womens_2024_results['total_4plus']*100 if womens_2024_results['total_4plus'] else 0,
             'Overlap': womens_2024_results['overlap_count']
+        },
+        {
+            'Category': '2025 Men',
+            'TotalTeams': 115,
+            'TotalTop15': mens_2025_results['total_nationals'],
+            'TeamsWith4Plus': mens_2025_results['total_4plus'],
+            'PctTotal4Plus': mens_2025_results['total_4plus'] / 115 * 100 if 115 > 0 else 0,
+            'PctTop15With4Plus': mens_2025_results['overlap_count']/mens_2025_results['total_nationals']*100 if mens_2025_results['total_nationals'] else 0,
+            'Pct4PlusInTop15': mens_2025_results['overlap_count']/mens_2025_results['total_4plus']*100 if mens_2025_results['total_4plus'] else 0,
+            'Overlap': mens_2025_results['overlap_count']
+        },
+        {
+            'Category': '2025 Women',
+            'TotalTeams': 109,
+            'TotalTop15': womens_2025_results['total_nationals'],
+            'TeamsWith4Plus': womens_2025_results['total_4plus'],
+            'PctTotal4Plus': womens_2025_results['total_4plus'] / 109 * 100 if 109 > 0 else 0,
+            'PctTop15With4Plus': womens_2025_results['overlap_count']/womens_2025_results['total_nationals']*100 if womens_2025_results['total_nationals'] else 0,
+            'Pct4PlusInTop15': womens_2025_results['overlap_count']/womens_2025_results['total_4plus']*100 if womens_2025_results['total_4plus'] else 0,
+            'Overlap': womens_2025_results['overlap_count']
         }
     ]
-    output_path = os.path.join(output_dir, 'nationals_overlap_summary.pdf')
-    create_summary_table_pdf(summary_stats, output_path)
-    print(f"\nSummary table PDF saved to: {output_path}")
+    output_path = os.path.join(output_dir, 'nationals_overlap_summary.csv')
+    create_summary_table_csv(summary_stats, output_path)
+    print(f"\nSummary table CSV saved to: {output_path}")
     
     # Print p-values to console for verification
     p_values = calculate_p_values(summary_stats)
     print(f"\nStatistical Significance (Chi-square tests for each category):")
-    print(f"Testing relationship: Teams with 4+ athletes vs. Making Top 15")
+    print(f"Testing relationship: Teams with at least 1 athlete competing in 4+ races vs. Making Top 15")
     
     for stat in summary_stats:
         category = stat['Category']
@@ -713,11 +922,11 @@ def main():
     for stat in summary_stats:
         category = stat['Category']
         print(f"\n{category}:")
-        print(f"  Teams with 4+ athletes: {stat['TeamsWith4Plus']}")
+        print(f"  Teams with at least 1 athlete competing in 4+ races: {stat['TeamsWith4Plus']}")
         print(f"  Teams in Top 15: {stat['TotalTop15']}")
         print(f"  Overlap: {stat['Overlap']}")
-        print(f"  % of 4+ teams in Top 15: {stat['Pct4PlusInTop15']:.1f}%")
-        print(f"  % of Top 15 with 4+ athletes: {stat['PctTop15With4Plus']:.1f}%")
+        print(f"  % of teams with ≥1 athlete (4+ races) in Top 15: {stat['Pct4PlusInTop15']:.1f}%")
+        print(f"  % of Top 15 with at least 1 athlete competing in 4+ races: {stat['PctTop15With4Plus']:.1f}%")
 
 if __name__ == '__main__':
     main() 

@@ -1,8 +1,14 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
-import os
 from utils import standardize_convert_exclude_nationals_df
 
 def create_simplified_formula():

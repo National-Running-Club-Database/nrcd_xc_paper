@@ -1,0 +1,50 @@
+Category,Metric,Model,Value,CI_Lower,CI_Upper,Subgroup,Year,Gender,N,Additional_Info
+Dataset Summary,Mean Improvement Rate,N/A,-0.6623851594497495,,,Gender,All,Men,2751.0,Std: 5.1142 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-0.47612917886636497,,,Gender,All,Women,1633.0,Std: 4.5812 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-0.59300650609832,,,Overall,All,All,4384.0,Std: 4.9227 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-0.1403302053123079,,,Year,2023,All,2234.0,Std: 4.0111 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-0.5928159200725062,,,Year,2024,All,1248.0,Std: 5.0907 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-1.7144219244089265,,,Year,2025,All,902.0,Std: 6.3542 (filtered data)
+Dataset Summary,Total Athletes,N/A,4384.0,,,Overall,All,All,4384.0,"After filtering outliers (improvement_rate in [-50, 50] sec/day, season_duration >= 7 days)"
+Feature Importance,Importance Score,Random Forest,0.21238397309836107,,,Feature,N/A,N/A,,"Feature: experience_level, Rank: 1"
+Feature Importance,Importance Score,Random Forest,0.17093403814198205,,,Feature,N/A,N/A,,"Feature: bad_race_count, Rank: 2"
+Feature Importance,Importance Score,Random Forest,0.12000305474222651,,,Feature,N/A,N/A,,"Feature: slope, Rank: 3"
+Feature Importance,Importance Score,Random Forest,0.09104777555220783,,,Feature,N/A,N/A,,"Feature: race_frequency, Rank: 4"
+Feature Importance,Importance Score,Random Forest,0.08054286207166747,,,Feature,N/A,N/A,,"Feature: time_std, Rank: 5"
+Feature Importance,Importance Score,Random Forest,0.044193200801247993,,,Feature,N/A,N/A,,"Feature: cv_time, Rank: 6"
+Feature Importance,Importance Score,Random Forest,0.04410923336331949,,,Feature,N/A,N/A,,"Feature: time_range, Rank: 7"
+Feature Importance,Importance Score,Random Forest,0.0389287842538177,,,Feature,N/A,N/A,,"Feature: best_to_avg_ratio, Rank: 8"
+Feature Importance,Importance Score,Random Forest,0.03247968216226445,,,Feature,N/A,N/A,,"Feature: season_duration_squared, Rank: 9"
+Feature Importance,Importance Score,Random Forest,0.03190767968338154,,,Feature,N/A,N/A,,"Feature: worst_to_avg_ratio, Rank: 10"
+Model Performance,CV R² Mean,Gradient Boosting,0.8829942041150372,0.8682543950059651,0.8977340132241092,Overall,All,All,1248.0,Std: 0.0147
+Model Performance,CV R² Mean,Lasso Regression,-5.095326057155293,-16.053893029121244,5.863240914810658,Overall,All,All,1248.0,Std: 10.9586
+Model Performance,CV R² Mean,Linear Regression,-475.6277025420198,-1407.8006181216053,456.5452130375657,Overall,All,All,1248.0,Std: 932.1729
+Model Performance,CV R² Mean,Random Forest,0.889183183928201,0.8780356587696375,0.9003307090867644,Overall,All,All,1248.0,Std: 0.0111
+Model Performance,CV R² Mean,Ridge Regression,-19.518821074399852,-44.09213144940914,5.054489300609436,Overall,All,All,1248.0,Std: 24.5733
+Model Performance,CV R² Mean,SVR,0.542950387949763,0.40219630272430296,0.6837044731752231,Overall,All,All,1248.0,Std: 0.1408
+Model Performance,MAE,Gradient Boosting,0.5865277322688717,,,Overall,All,All,1248.0,
+Model Performance,MAE,Lasso Regression,2.0341680490013547,,,Overall,All,All,1248.0,
+Model Performance,MAE,Linear Regression,3.14559720502046,,,Overall,All,All,1248.0,
+Model Performance,MAE,Random Forest,0.4003451246812706,,,Overall,All,All,1248.0,
+Model Performance,MAE,Ridge Regression,2.2612859286276286,,,Overall,All,All,1248.0,
+Model Performance,MAE,SVR,1.1370487574267827,,,Overall,All,All,1248.0,
+Model Performance,RMSE,Gradient Boosting,1.5801664691683341,,,Overall,All,All,1248.0,
+Model Performance,RMSE,Lasso Regression,4.074303946982252,,,Overall,All,All,1248.0,
+Model Performance,RMSE,Linear Regression,26.027802132876335,,,Overall,All,All,1248.0,
+Model Performance,RMSE,Random Forest,1.448630101840267,,,Overall,All,All,1248.0,
+Model Performance,RMSE,Ridge Regression,6.987616707726019,,,Overall,All,All,1248.0,
+Model Performance,RMSE,SVR,3.7786584295220416,,,Overall,All,All,1248.0,
+Model Performance,R² Score,Gradient Boosting,0.9035738108635558,0.8548342164704582,0.9415236625516562,Overall,All,All,1248.0,
+Model Performance,R² Score,Lasso Regression,0.35894370555638233,0.33107014676614605,0.3925701290737762,Overall,All,All,1248.0,
+Model Performance,R² Score,Linear Regression,-25.16160068201886,-68.93388201026661,0.4761719703138635,Overall,All,All,1248.0,
+Model Performance,R² Score,Random Forest,0.9189590860331184,0.8712400282633765,0.9550262788630863,Overall,All,All,1248.0,
+Model Performance,R² Score,Ridge Regression,-0.885590878608842,-3.1535808259154114,0.4398489550319698,Overall,All,All,1248.0,
+Model Performance,R² Score,SVR,0.4486027559746729,0.3769515869032483,0.5332501810649887,Overall,All,All,1248.0,
+Subgroup Analysis,MAE,Random Forest,0.429684783506675,,,Gender,All,Men,792.0,
+Subgroup Analysis,MAE,Random Forest,0.34938676987925243,,,Gender,All,Women,456.0,
+Subgroup Analysis,MAE,Random Forest,0.4003451246812706,,,Year,2024,All,1248.0,
+Subgroup Analysis,R² Score,Random Forest,0.9097230301292347,0.8440906390880828,0.9581927987034308,Gender,All,Men,792.0,
+Subgroup Analysis,R² Score,Random Forest,0.947109448655936,0.9195148125008896,0.9686551523574419,Gender,All,Women,456.0,
+Subgroup Analysis,R² Score,Random Forest,0.9189590860331184,0.8683953455631672,0.9536370422731073,Year,2024,All,1248.0,
+Subgroup Analysis,R² Score,Random Forest,0.9097230301292347,0.8516787135840649,0.9580012148271984,Year × Gender,2024,Men,792.0,
+Subgroup Analysis,R² Score,Random Forest,0.947109448655936,0.9156538717809841,0.9691870572328743,Year × Gender,2024,Women,456.0,

@@ -1,6 +1,12 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
-import os
 from utils import standardize_convert_exclude_nationals_df, convert_exclude_nationals
 
 output_dir = 'output/PercentileTimeAnalysis'
@@ -178,7 +184,7 @@ def main():
     print(f"Converted data: {len(df_conv)} records")
     
     # Analyze each combination and save separate CSV files
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         for gender in ['M', 'F']:
             gender_label = 'Men' if gender == 'M' else 'Women'
             

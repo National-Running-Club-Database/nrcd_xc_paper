@@ -1,3 +1,10 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,7 +19,6 @@ from sklearn.pipeline import Pipeline
 import warnings
 warnings.filterwarnings('ignore')
 
-import os
 from utils import standardize_convert_exclude_nationals_df, convert_exclude_nationals
 
 def load_percentile_data():

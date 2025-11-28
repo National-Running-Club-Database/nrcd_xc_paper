@@ -6,14 +6,20 @@ This script analyzes meet data by month (August, September, October, November)
 excluding nationals, and tracks course details for both meets and results by gender.
 """
 
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
 from datetime import datetime
-import os
 
 def load_data():
     """Load all necessary data files."""
-    data_dir = "data/data"
+    data_dir = "data"
     
     # Load main data files
     meets = pd.read_csv(os.path.join(data_dir, "meet.csv"))
@@ -28,16 +34,16 @@ def filter_meets_by_criteria(meets):
     Filter meets to include only:
     - August, September, October, November
     - Exclude nationals
-    - Only 2023 and 2024
+    - Only 2023, 2024, and 2025
     """
     # Convert start_date to datetime
     meets['start_date'] = pd.to_datetime(meets['start_date'], errors='coerce')
     
     # Filter by month (August = 8, September = 9, October = 10, November = 11)
-    # and year (2023, 2024)
+    # and year (2023, 2024, 2025)
     meets_filtered = meets[
         (meets['start_date'].dt.month.isin([8, 9, 10, 11])) &
-        (meets['start_date'].dt.year.isin([2023, 2024])) &
+        (meets['start_date'].dt.year.isin([2023, 2024, 2025])) &
         (meets['nationals'] == False) &
         (meets['start_date'].notna())
     ].copy()

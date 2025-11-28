@@ -1,10 +1,16 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
-import os
 
 def load_data():
     """Load the data files."""
-    data_dir = 'data/jss_data'
+    data_dir = 'data'
     
     # Load the main data files
     result_df = pd.read_csv(os.path.join(data_dir, 'result.csv'))

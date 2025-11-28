@@ -1,16 +1,19 @@
-import pandas as pd
 import os
 import sys
 
-# Create output directory if it doesn't exist
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
+import pandas as pd
+
+# Output directory (can be overridden by rq1.py)
 output_dir = 'output/NumberOfRacesQuestion'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
 
 def load_data():
     """Load all CSV files from the data directory with error handling."""
     # Use the full data including postseason meets
-    directory_path = '../data/jss_data'
+    directory_path = 'data'  # Relative to main directory
     required_files = [
         'team.csv', 'athlete.csv', 'sport.csv', 'running_event.csv',
         'meet.csv', 'result.csv', 'course_details.csv', 'athlete_team_association.csv'
@@ -41,16 +44,10 @@ def load_data():
     except Exception as e:
         raise Exception(f"Error loading data: {str(e)}")
 
-def save_athlete_list(athlete_ids, filename, description):
-    """Save a list of athlete IDs to a file."""
-    filepath = os.path.join(output_dir, filename)
-    with open(filepath, 'w') as f:
-        for athlete_id in athlete_ids:
-            f.write(f"{athlete_id}\n")
-    print(f"{description} saved to: {filepath}")
-
 def save_dataframe_to_csv(df, filename, description="Save a dataframe to CSV file with optional description."):
     """Save a pandas DataFrame to a CSV file."""
+    # Ensure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
     filepath = os.path.join(output_dir, filename)
     df.to_csv(filepath, index=False)
     print(f"{description} saved to: {filepath}")
@@ -135,13 +132,6 @@ def process_year(year, result_df, meet_df, athlete_df, running_event_df, gender_
     print(f"4-5 races: {len(female_4_5)} athletes")
     print(f"6+ races: {len(female_6_plus)} athletes")
     print(f"Total female athletes: {len(female_race_counts)}")
-    # Save lists
-    save_athlete_list(male_2_3, f'male_athletes_2_3_races_{year}.txt', f"Male athletes with 2-3 races in {year}")
-    save_athlete_list(male_4_5, f'male_athletes_4_5_races_{year}.txt', f"Male athletes with 4-5 races in {year}")
-    save_athlete_list(male_6_plus, f'male_athletes_6plus_races_{year}.txt', f"Male athletes with 6+ races in {year}")
-    save_athlete_list(female_2_3, f'female_athletes_2_3_races_{year}.txt', f"Female athletes with 2-3 races in {year}")
-    save_athlete_list(female_4_5, f'female_athletes_4_5_races_{year}.txt', f"Female athletes with 4-5 races in {year}")
-    save_athlete_list(female_6_plus, f'female_athletes_6plus_races_{year}.txt', f"Female athletes with 6+ races in {year}")
     # Save summary
     race_count_summary = pd.DataFrame({
         'Gender': ['Male', 'Male', 'Male', 'Female', 'Female', 'Female'],
@@ -150,9 +140,6 @@ def process_year(year, result_df, meet_df, athlete_df, running_event_df, gender_
                          len(female_2_3), len(female_4_5), len(female_6_plus)]
     })
     save_dataframe_to_csv(race_count_summary, f'athlete_race_count_summary_{year}.csv', f"Athlete race count summary {year}")
-    # Save detailed
-    detailed_race_counts = athlete_race_counts.sort_values(['gender', 'race_count'], ascending=[True, False])
-    save_dataframe_to_csv(detailed_race_counts, f'detailed_athlete_race_counts_{year}.csv', f"Detailed race counts for each athlete {year}")
     # Compute and save time differences for each group
     for group_name, athlete_ids, gender in [
         (f'male_2_3', male_2_3, 'M'),
@@ -180,9 +167,10 @@ def main():
     print(f"Total results: {len(result_df):,}")
     print(f"Total athletes: {len(athlete_df):,}")
     print(f"Total meets: {len(meet_df):,}")
-    # Process for 2023 and 2024
+    # Process for 2023, 2024, and 2025
     process_year(2023, result_df, meet_df, athlete_df, running_event_df, '2023')
     process_year(2024, result_df, meet_df, athlete_df, running_event_df, '2024')
+    process_year(2025, result_df, meet_df, athlete_df, running_event_df, '2025')
 
 if __name__ == "__main__":
     main()

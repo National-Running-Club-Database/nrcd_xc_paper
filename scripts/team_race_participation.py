@@ -1,6 +1,12 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
-import os
 from utils import standardize_convert_exclude_nationals_df
 
 output_dir = 'output/TeamRaceParticipation'
@@ -14,9 +20,9 @@ def analyze_team_participation():
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Load team and athlete-team association data
-    athlete_team_df = pd.read_csv('data/jss_data/athlete_team_association.csv')
-    team_df = pd.read_csv('data/jss_data/team.csv')
-    athlete_df = pd.read_csv('data/jss_data/athlete.csv')
+    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
+    team_df = pd.read_csv('data/team.csv')
+    athlete_df = pd.read_csv('data/athlete.csv')
     
     # Merge athlete gender information
     athlete_df = athlete_df[['athlete_id', 'gender']]
@@ -28,7 +34,7 @@ def analyze_team_participation():
     
     results = {}
     
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         start = pd.Timestamp(year=year, month=8, day=1)
         end = pd.Timestamp(year=year, month=11, day=28, hour=23, minute=59, second=59)
         
@@ -82,7 +88,7 @@ def print_results(results):
     print("Team Participation Analysis: Teams with at least one runner competing in 4+ races")
     print("=" * 80)
     
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         print(f"\n{year} Season:")
         print("-" * 40)
         
@@ -95,7 +101,7 @@ def print_results(results):
 def save_results_to_csv(results):
     """Save results to CSV file"""
     rows = []
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         for gender in ['M', 'F']:
             gender_label = "Men" if gender == 'M' else "Women"
             data = results[(year, gender)]

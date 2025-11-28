@@ -1,9 +1,16 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-from datetime import datetime
+from datetime import datetime, timedelta
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 from sklearn.cluster import KMeans, AgglomerativeClustering
@@ -11,15 +18,13 @@ from sklearn.metrics import r2_score
 import scipy.cluster.hierarchy as sch
 import plotly.express as px
 import plotly.graph_objects as go
-import os
 import warnings
 from IPython.display import display
-from datetime import timedelta
 warnings.filterwarnings('ignore')  # Suppress warnings for cleaner output
 
 def load_data():
     """Load all CSV files from the data directory with error handling."""
-    directory_path = '../data/nrcd/data'
+    directory_path = 'data'  # Relative to main directory
     required_files = [
         'team.csv', 'athlete.csv', 'sport.csv', 'running_event.csv',
         'meet.csv', 'result.csv', 'course_details.csv', 'athlete_team_association.csv'
@@ -164,6 +169,22 @@ def adjust_time_for_race(event_name, time, course_details, gender):
     elif event_name.endswith('mi'):
         event_dist = float(event_name.replace('mi', '').strip()) * 1609.34
     
+    # Apply weather adjustment FIRST (affects raw performance)
+    # Weather should be applied to the raw time before terrain adjustments
+    if pd.notna(course_details.get('temperature')) and pd.notna(course_details.get('dew_point')):
+        weather_factor = course_details['temperature'] + course_details['dew_point']
+        if weather_factor > 100:
+            # Calculate weather rate multiplier (e.g., 1.02, 1.09 for bad weather)
+            # Research-based: bad weather makes you run slower by a multiplicative rate
+            # Formula produces rates like 1.02 (2%) for weather_factor=110, 1.08 (8%) for weather_factor=120
+            percent_increase = 0.02 * (weather_factor - 100) ** 2  # e.g., 2.0% for 110, 8.0% for 120
+            weather_rate = 1 + (percent_increase / 100)  # e.g., 1.02 for 2% slower, 1.08 for 8% slower
+            # Bad weather makes actual times slower by weather_rate
+            # To get ideal time, we divide by the weather rate
+            # Example: 25:05 in hot weather (rate 1.05) → 25:05 / 1.05 = 23:53 in ideal conditions
+            time /= weather_rate
+    
+    # Apply terrain adjustments AFTER weather (terrain affects course difficulty, not raw performance)
     hill_slow_time = 0
     hill_speed_time = 0
     
@@ -183,12 +204,6 @@ def adjust_time_for_race(event_name, time, course_details, gender):
                 time *= factor ** 1.055
             elif gender == 'M':
                 time *= factor ** 1.08
-
-    if pd.notna(course_details.get('temperature')) and pd.notna(course_details.get('dew_point')):
-        weather_factor = course_details['temperature'] + course_details['dew_point']
-        if weather_factor > 100:
-            percent_increase = 0.0015 * (weather_factor - 100) ** 2
-            time *= 1 - (percent_increase / 100)
 
     return time
 

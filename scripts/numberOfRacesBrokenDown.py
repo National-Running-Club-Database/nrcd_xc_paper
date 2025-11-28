@@ -1,16 +1,20 @@
-import pandas as pd
 import os
 import sys
 
-# Create output directory if it doesn't exist
-output_dir = 'output/NumberOfRacesQuestion'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
+import pandas as pd
+
+# Output directory (can be overridden by rq1.py)
+output_dir = 'output/NumberOfRacesBrokenDown'
+os.makedirs(output_dir, exist_ok=True)
 
 def load_data():
     """Load all CSV files from the data directory with error handling."""
     # Use the full data including postseason meets
-    directory_path = '../data/jss_data'
+    directory_path = 'data'  # Relative to main directory
     required_files = [
         'team.csv', 'athlete.csv', 'sport.csv', 'running_event.csv',
         'meet.csv', 'result.csv', 'course_details.csv', 'athlete_team_association.csv'
@@ -199,9 +203,10 @@ def main():
     print(f"Total results: {len(result_df):,}")
     print(f"Total athletes: {len(athlete_df):,}")
     print(f"Total meets: {len(meet_df):,}")
-    # Process for 2023 and 2024
+    # Process for 2023, 2024, and 2025
     process_year(2023, result_df, meet_df, athlete_df, running_event_df, '2023')
     process_year(2024, result_df, meet_df, athlete_df, running_event_df, '2024')
+    process_year(2025, result_df, meet_df, athlete_df, running_event_df, '2025')
 
 if __name__ == "__main__":
     main()

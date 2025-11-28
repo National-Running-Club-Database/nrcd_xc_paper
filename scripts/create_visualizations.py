@@ -1,10 +1,16 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import matplotlib.pyplot as plt
-import os
 import glob
 
-# Set up the output directory
-output_dir = '../output/NumberOfRacesQuestion'
+# Set up the output directory (relative to main directory)
+output_dir = 'output/NumberOfRacesQuestion'
 
 def extract_average_from_csv(filepath):
     """Extract the average time difference from the last row of a CSV file."""
@@ -27,11 +33,12 @@ def create_broader_category_visualizations():
     # Data structure to store averages
     data = {
         '2023': {'M': {}, 'F': {}},
-        '2024': {'M': {}, 'F': {}}
+        '2024': {'M': {}, 'F': {}},
+        '2025': {'M': {}, 'F': {}}
     }
     
     # Extract averages from the broader category files
-    for year in ['2023', '2024']:
+    for year in ['2023', '2024', '2025']:
         for gender in ['M', 'F']:
             gender_label = 'male' if gender == 'M' else 'female'
             
@@ -96,11 +103,12 @@ def create_granular_category_visualizations():
     # Data structure to store averages
     data = {
         '2023': {'M': {}, 'F': {}},
-        '2024': {'M': {}, 'F': {}}
+        '2024': {'M': {}, 'F': {}},
+        '2025': {'M': {}, 'F': {}}
     }
     
     # Extract averages from the granular category files
-    for year in ['2023', '2024']:
+    for year in ['2023', '2024', '2025']:
         for gender in ['M', 'F']:
             gender_label = 'male' if gender == 'M' else 'female'
             
@@ -151,11 +159,11 @@ def create_combined_visualization():
     print("Creating combined visualization...")
     
     # Extract data for both categories
-    broader_data = {'2023': {'M': {}, 'F': {}}, '2024': {'M': {}, 'F': {}}}
-    granular_data = {'2023': {'M': {}, 'F': {}}, '2024': {'M': {}, 'F': {}}}
+    broader_data = {'2023': {'M': {}, 'F': {}}, '2024': {'M': {}, 'F': {}}, '2025': {'M': {}, 'F': {}}}
+    granular_data = {'2023': {'M': {}, 'F': {}}, '2024': {'M': {}, 'F': {}}, '2025': {'M': {}, 'F': {}}}
     
     # Broader categories
-    for year in ['2023', '2024']:
+    for year in ['2023', '2024', '2025']:
         for gender in ['M', 'F']:
             gender_label = 'male' if gender == 'M' else 'female'
             for cat in ['2_3', '4_5', '6_plus']:
@@ -165,7 +173,7 @@ def create_combined_visualization():
                     broader_data[year][gender][cat] = avg
     
     # Granular categories
-    for year in ['2023', '2024']:
+    for year in ['2023', '2024', '2025']:
         for gender in ['M', 'F']:
             gender_label = 'male' if gender == 'M' else 'female'
             for race_count in ['2', '3', '4', '5', '6']:

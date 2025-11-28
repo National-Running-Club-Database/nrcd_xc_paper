@@ -1,7 +1,13 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import os
 from utils import standardize_convert_exclude_nationals_df, convert_exclude_nationals
 
 output_dir = 'output/NumberOfRacesQuestion'
@@ -74,7 +80,8 @@ def plot_results(results, year, subtitle, filename):
     plt.close()
 
 def plot_comparison_grid(results_dict):
-    fig, axes = plt.subplots(2, 2, figsize=(15, 12), sharex=True, sharey=True)
+    # Adjust subplot layout for 3 years (3 rows x 2 columns)
+    fig, axes = plt.subplots(3, 2, figsize=(14, 18), sharex=True, sharey=True)
     x = np.array([2,3,4,5])
     width = 0.15
     offsets = {'M': -width/2, 'F': width/2}
@@ -85,8 +92,10 @@ def plot_comparison_grid(results_dict):
         (2023, 'converted'): '2023: Converted Only (distance)',
         (2024, 'standardized'): '2024: Standardized (weather, terrain, etc.)',
         (2024, 'converted'): '2024: Converted Only (distance)',
+        (2025, 'standardized'): '2025: Standardized (weather, terrain, etc.)',
+        (2025, 'converted'): '2025: Converted Only (distance)',
     }
-    for i, year in enumerate([2023, 2024]):
+    for i, year in enumerate([2023, 2024, 2025]):
         for j, mode in enumerate(['standardized', 'converted']):
             ax = axes[i, j]
             results = results_dict[(year, mode)]
@@ -119,7 +128,7 @@ def main():
     df_conv = convert_exclude_nationals()
     df_conv['start_date'] = pd.to_datetime(df_conv['start_date'], errors='coerce')
     results_dict = {}
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         start = pd.Timestamp(year=year, month=8, day=1)
         end = pd.Timestamp(year=year, month=11, day=28, hour=23, minute=59, second=59)
         # Full standardization

@@ -1,6 +1,12 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
-import os
 from utils import standardize_convert_exclude_nationals_df
 from scipy.stats import chi2_contingency
 
@@ -19,7 +25,7 @@ def analyze_gender_race_participation():
     
     results = {}
     
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         start = pd.Timestamp(year=year, month=8, day=1)
         end = pd.Timestamp(year=year, month=11, day=28, hour=23, minute=59, second=59)
         
@@ -82,7 +88,7 @@ def print_gender_analysis(results):
     print("Gender Race Participation Analysis")
     print("=" * 50)
     
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         data = results[year]
         print(f"\n{year} Season:")
         print("-" * 30)
@@ -117,7 +123,7 @@ def print_gender_analysis(results):
 def save_gender_analysis(results):
     """Save gender analysis results to CSV"""
     rows = []
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         data = results[year]
         rows.append({
             'Year': year,
@@ -145,7 +151,7 @@ def save_gender_analysis(results):
     
     # Create summary with p-values
     summary_rows = []
-    for year in [2023, 2024]:
+    for year in [2023, 2024, 2025]:
         data = results[year]
         summary_rows.append({
             'Year': year,

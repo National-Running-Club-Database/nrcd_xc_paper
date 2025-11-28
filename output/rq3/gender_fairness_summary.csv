@@ -1,0 +1,5 @@
+Metric,Gender,Value,Interpretation
+R² Score,Men,0.9097230301292348,Model explains 91.0% of variance for men
+R² Score,Women,0.947109448655936,Model explains 94.7% of variance for women
+R² Difference,Difference,-0.037386418526701215,Men R² is -0.0374 higher
+Relative Performance,Women/Men Ratio,1.0410964846315809,Women R² is 104.1% of men R²

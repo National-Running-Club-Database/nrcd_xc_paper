@@ -1,3 +1,10 @@
+import os
+import sys
+
+# Setup paths for imports (works from main directory or scripts directory)
+from _setup_paths import setup_paths
+setup_paths()
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,13 +12,12 @@ import seaborn as sns
 from datetime import datetime
 import plotly.graph_objects as go
 import plotly.express as px
-import os
 import warnings
 warnings.filterwarnings('ignore')
 
 def load_data():
     """Load all CSV files from the data directory with error handling."""
-    directory_path = 'data/nrcd/data'
+    directory_path = 'data'
     required_files = [
         'team.csv', 'athlete.csv', 'sport.csv', 'running_event.csv',
         'meet.csv', 'result.csv', 'course_details.csv', 'athlete_team_association.csv'
@@ -32,7 +38,7 @@ def load_data():
         athlete_df = pd.read_csv(os.path.join(directory_path, 'athlete.csv'))
         sport_df = pd.read_csv(os.path.join(directory_path, 'sport.csv'))
         running_event_df = pd.read_csv(os.path.join(directory_path, 'running_event.csv'))
-        meet_df = pd.read_csv(os.path.join(directory_path, 'meet_regular_season.csv'))
+        meet_df = pd.read_csv(os.path.join(directory_path, 'meet.csv'))
         result_df = pd.read_csv(os.path.join(directory_path, 'result.csv'))
         course_details_df = pd.read_csv(os.path.join(directory_path, 'course_details.csv'))
         athlete_team_association_df = pd.read_csv(os.path.join(directory_path, 'athlete_team_association.csv'))
@@ -140,14 +146,16 @@ def get_race_results_by_state_by_year(meet_df, result_df, year):
     
     return results_by_state
 
-def create_state_choropleth_map(results_by_state_2023, results_by_state_2024):
-    """Create a choropleth map of race results by state for 2023 and 2024 combined."""
+def create_state_choropleth_map(results_by_state_2023, results_by_state_2024, results_by_state_2025):
+    """Create a choropleth map of race results by state for 2023, 2024, and 2025 combined."""
     
-    # Create DataFrames for both years
+    # Create DataFrames for all years
     state_data_2023 = pd.DataFrame(list(results_by_state_2023.items()),
                                   columns=['State', 'Results_2023'])
     state_data_2024 = pd.DataFrame(list(results_by_state_2024.items()),
                                   columns=['State', 'Results_2024'])
+    state_data_2025 = pd.DataFrame(list(results_by_state_2025.items()),
+                                  columns=['State', 'Results_2025'])
     
     # Create a complete list of all US states and DC
     all_states = [
@@ -164,17 +172,19 @@ def create_state_choropleth_map(results_by_state_2023, results_by_state_2024):
     # Merge with actual results data
     state_data = pd.merge(complete_state_data, state_data_2023, on='State', how='left').fillna(0)
     state_data = pd.merge(state_data, state_data_2024, on='State', how='left').fillna(0)
+    state_data = pd.merge(state_data, state_data_2025, on='State', how='left').fillna(0)
     
     # Convert to integers
     state_data['Results_2023'] = state_data['Results_2023'].astype(int)
     state_data['Results_2024'] = state_data['Results_2024'].astype(int)
+    state_data['Results_2025'] = state_data['Results_2025'].astype(int)
     
-    # Calculate total results for both years
-    state_data['Total_Results'] = state_data['Results_2023'] + state_data['Results_2024']
+    # Calculate total results for all years
+    state_data['Total_Results'] = state_data['Results_2023'] + state_data['Results_2024'] + state_data['Results_2025']
     
-    # Create text for hover showing both years
+    # Create text for hover showing all years
     state_data['text'] = state_data.apply(
-        lambda row: f"2023: {row['Results_2023']}<br>2024: {row['Results_2024']}<br>Total: {row['Total_Results']}", 
+        lambda row: f"2023: {row['Results_2023']}<br>2024: {row['Results_2024']}<br>2025: {row['Results_2025']}<br>Total: {row['Total_Results']}", 
         axis=1
     )
     
@@ -214,7 +224,7 @@ def create_state_choropleth_map(results_by_state_2023, results_by_state_2024):
     
     fig.update_layout(
         title=dict(
-            text='<b>Number of Cross Country Race Results (2023-2024)</b>',
+            text='<b>Number of Cross Country Race Results (2023-2025)</b>',
             x=0.5,
             xanchor='center',
             y=0.98,
@@ -236,36 +246,49 @@ def create_state_choropleth_map(results_by_state_2023, results_by_state_2024):
     
     return fig
 
-# Get race results by state for 2023 and 2024
-print("Calculating race results by state for 2023...")
-results_by_state_2023 = get_race_results_by_state_by_year(meet_df, result_df, 2023)
-print("Calculating race results by state for 2024...")
-results_by_state_2024 = get_race_results_by_state_by_year(meet_df, result_df, 2024)
+def main():
+    """Main function to create state race results map."""
+    # Get race results by state for 2023, 2024, and 2025
+    print("Calculating race results by state for 2023...")
+    results_by_state_2023 = get_race_results_by_state_by_year(meet_df, result_df, 2023)
+    print("Calculating race results by state for 2024...")
+    results_by_state_2024 = get_race_results_by_state_by_year(meet_df, result_df, 2024)
+    print("Calculating race results by state for 2025...")
+    results_by_state_2025 = get_race_results_by_state_by_year(meet_df, result_df, 2025)
 
-# Create the choropleth map
-print("Creating choropleth map...")
-fig = create_state_choropleth_map(results_by_state_2023, results_by_state_2024)
+    # Create the choropleth map
+    print("Creating choropleth map...")
+    fig = create_state_choropleth_map(results_by_state_2023, results_by_state_2024, results_by_state_2025)
 
-# Save as PDF
-output_dir = 'output'
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+    # Save as PDF
+    output_dir = 'output'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-output_file = os.path.join(output_dir, 'race_results_by_state_2023_2024.pdf')
-print(f"Saving map to {output_file}...")
-fig.write_image(output_file, format='pdf', width=1600, height=1000, scale=2)
+    output_file = os.path.join(output_dir, 'race_results_by_state_2023_2024_2025.pdf')
+    print(f"Saving map to {output_file}...")
+    fig.write_image(output_file, format='pdf', width=1600, height=1000, scale=2)
 
-print("Map saved successfully!")
-print(f"Total race results 2023: {sum(results_by_state_2023.values())}")
-print(f"Total race results 2024: {sum(results_by_state_2024.values())}")
+    print("Map saved successfully!")
+    print(f"Total race results 2023: {sum(results_by_state_2023.values())}")
+    print(f"Total race results 2024: {sum(results_by_state_2024.values())}")
+    print(f"Total race results 2025: {sum(results_by_state_2025.values())}")
 
-# Print summary statistics
-print("\nTop 10 states by race results in 2023:")
-sorted_2023 = sorted(results_by_state_2023.items(), key=lambda x: x[1], reverse=True)
-for state, count in sorted_2023[:10]:
-    print(f"{state}: {count}")
+    # Print summary statistics
+    print("\nTop 10 states by race results in 2023:")
+    sorted_2023 = sorted(results_by_state_2023.items(), key=lambda x: x[1], reverse=True)
+    for state, count in sorted_2023[:10]:
+        print(f"{state}: {count}")
 
-print("\nTop 10 states by race results in 2024:")
-sorted_2024 = sorted(results_by_state_2024.items(), key=lambda x: x[1], reverse=True)
-for state, count in sorted_2024[:10]:
-    print(f"{state}: {count}") 
+    print("\nTop 10 states by race results in 2024:")
+    sorted_2024 = sorted(results_by_state_2024.items(), key=lambda x: x[1], reverse=True)
+    for state, count in sorted_2024[:10]:
+        print(f"{state}: {count}")
+
+    print("\nTop 10 states by race results in 2025:")
+    sorted_2025 = sorted(results_by_state_2025.items(), key=lambda x: x[1], reverse=True)
+    for state, count in sorted_2025[:10]:
+        print(f"{state}: {count}")
+
+if __name__ == '__main__':
+    main() 
