@@ -13,10 +13,63 @@ from scipy.stats import chi2_contingency
 from utils import standardize_convert_exclude_nationals_df
 
 output_dir = 'output/TeamRaceParticipation'
-os.makedirs(output_dir, exist_ok=True)
+# Directory creation moved to main() to avoid creating when imported
+
+def get_total_teams_with_3plus_athletes(year, gender):
+    """Get total number of teams with at least 3 athletes of the given gender who have run at least one race.
+    
+    This is used as the denominator for consistent filtering across all statistics.
+    """
+    # Load data
+    df = standardize_convert_exclude_nationals_df()
+    df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
+    
+    # Load team and athlete-team association data
+    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
+    athlete_df = pd.read_csv('data/athlete.csv')
+    
+    # Merge athlete gender information
+    athlete_df = athlete_df[['athlete_id', 'gender']]
+    athlete_team_df = athlete_team_df.merge(athlete_df, on='athlete_id', how='left')
+    
+    # Filter out missing data
+    df = df.dropna(subset=['athlete_id', 'start_date', 'gender'])
+    athlete_team_df = athlete_team_df.dropna(subset=['athlete_id', 'team_id', 'gender'])
+    
+    # Filter for the specific year and gender
+    start = pd.Timestamp(year=year, month=8, day=1)
+    end = pd.Timestamp(year=year, month=11, day=28, hour=23, minute=59, second=59)
+    
+    year_df = df[(df['start_date'] >= start) & (df['start_date'] <= end)].copy()
+    year_df = year_df[year_df['gender'] == gender]
+    
+    # Count races per athlete for the year
+    athlete_race_counts = year_df.groupby('athlete_id').size().reset_index(name='race_count')
+    
+    # Merge with athlete-team associations
+    athlete_team_races = athlete_race_counts.merge(
+        athlete_team_df[['athlete_id', 'team_id', 'gender']], 
+        on='athlete_id', 
+        how='left'
+    )
+    
+    # Filter for the specific gender
+    gender_data = athlete_team_races[athlete_team_races['gender'] == gender]
+    
+    # Count number of unique athletes per team who have run at least 1 race
+    team_athlete_counts = gender_data.groupby('team_id')['athlete_id'].nunique().reset_index(name='athlete_count')
+    
+    # Filter teams with at least 3 athletes of the given gender who have run at least 1 race
+    teams_with_3plus_athletes = team_athlete_counts[team_athlete_counts['athlete_count'] >= 3]['team_id'].unique()
+    
+    return len(teams_with_3plus_athletes)
 
 def get_teams_with_4plus_athletes(year, gender):
-    """Get list of teams that have at least one athlete competing in 4+ races (not 4+ athletes, but 4+ races for at least 1 athlete)"""
+    """Get list of teams that have at least one athlete competing in 4+ races (not 4+ athletes, but 4+ races for at least 1 athlete).
+    
+    Filter: Requires at least 3 athletes of the given gender who have run in at least one race.
+    The 3 athletes don't need to be the same 3 - just that at least 3 athletes on the team have participated.
+    """
     
     # Load data
     df = standardize_convert_exclude_nationals_df()
@@ -55,12 +108,22 @@ def get_teams_with_4plus_athletes(year, gender):
     # Filter for the specific gender
     gender_data = athlete_team_races[athlete_team_races['gender'] == gender]
     
-    # Find athletes with 4+ races
-    athletes_4plus = gender_data[gender_data['race_count'] >= 4]['athlete_id'].unique()
+    # Count number of unique athletes per team who have run at least 1 race (for the filter)
+    # This counts all athletes on the team who have participated, not just those with 4+ races
+    team_athlete_counts = gender_data.groupby('team_id')['athlete_id'].nunique().reset_index(name='athlete_count')
     
-    # Find teams that have at least one such athlete
-    teams_with_4plus_athlete = gender_data[
-        gender_data['athlete_id'].isin(athletes_4plus)
+    # Filter teams with at least 3 athletes of the given gender who have run at least 1 race
+    teams_with_3plus_athletes = team_athlete_counts[team_athlete_counts['athlete_count'] >= 3]['team_id'].unique()
+    
+    # Filter gender_data to only teams with at least 3 participating athletes
+    gender_data_filtered = gender_data[gender_data['team_id'].isin(teams_with_3plus_athletes)]
+    
+    # Find athletes with 4+ races
+    athletes_4plus = gender_data_filtered[gender_data_filtered['race_count'] >= 4]['athlete_id'].unique()
+    
+    # Find teams that have at least one such athlete (and already have at least 3 athletes who have raced)
+    teams_with_4plus_athlete = gender_data_filtered[
+        gender_data_filtered['athlete_id'].isin(athletes_4plus)
     ]['team_id'].unique()
     
     return teams_with_4plus_athlete
@@ -751,20 +814,30 @@ def create_summary_table_csv(summary_stats, output_path):
     """Create a CSV table summarizing all categories"""
     # Calculate p-values
     p_values = calculate_p_values(summary_stats)
+    
+    # Calculate Bonferroni correction
+    n_tests = len(summary_stats)
+    bonferroni_alpha = 0.05 / n_tests
 
     # Create DataFrame with all summary data
     rows = []
     for stat in summary_stats:
+        category = stat['Category']
+        p_val = p_values[category]
+        bonferroni_sig = "Yes" if p_val < bonferroni_alpha else "No"
+        
         rows.append({
-            'Category': stat['Category'],
+            'Category': category,
             'Total_Teams': stat['TotalTeams'],
             'Total_in_Top_15': stat['TotalTop15'],
-            'Teams_with_at_least_1_athlete_4plus_races': stat['TeamsWith4Plus'],
-            'Pct_Total_Teams_with_at_least_1_athlete_4plus_races': f"{stat['PctTotal4Plus']:.1f}%",
-            'Pct_Top_15_with_at_least_1_athlete_4plus_races': f"{stat['PctTop15With4Plus']:.1f}%",
-            'Pct_teams_with_at_least_1_athlete_4plus_races_in_Top_15': f"{stat['Pct4PlusInTop15']:.1f}%",
+            'Teams_4plus_races': stat['TeamsWith4Plus'],
+            'Pct_Total_Teams_4plus_races': f"{stat['PctTotal4Plus']:.1f}%",
+            'Pct_Top_15_4plus_races': f"{stat['PctTop15With4Plus']:.1f}%",
+            'Pct_4plus_races_in_Top_15': f"{stat['Pct4PlusInTop15']:.1f}%",
             'Overlap_Count': stat['Overlap'],
-            'P_value_chi_square_test': f"{p_values[stat['Category']]:.3f}"
+            'P_value_chi_square_test': f"{p_val:.3f}",
+            'Bonferroni_alpha': f"{bonferroni_alpha:.4f}",
+            'Bonferroni_significant': bonferroni_sig
         })
     
     summary_df = pd.DataFrame(rows)
@@ -808,6 +881,8 @@ def calculate_overall_stats():
     print(f"  • 2024 Men's nationals success: {mens_2024_overlap/mens_2024_nationals*100:.1f}%")
 
 def main():
+    # Create output directory only when run directly
+    os.makedirs(output_dir, exist_ok=True)
     print("Analyzing Nationals overlap across years...")
     
     # 2023 Men's analysis
@@ -838,63 +913,79 @@ def main():
     calculate_overall_stats()
 
     # Collect summary stats for table
+    # Calculate total teams with consistent filter (at least 3 athletes who have run at least 1 race)
+    print("\nCalculating total teams with at least 3 athletes (consistent filter)...")
+    total_teams_2023_m = get_total_teams_with_3plus_athletes(2023, 'M')
+    total_teams_2023_f = get_total_teams_with_3plus_athletes(2023, 'F')
+    total_teams_2024_m = get_total_teams_with_3plus_athletes(2024, 'M')
+    total_teams_2024_f = get_total_teams_with_3plus_athletes(2024, 'F')
+    total_teams_2025_m = get_total_teams_with_3plus_athletes(2025, 'M')
+    total_teams_2025_f = get_total_teams_with_3plus_athletes(2025, 'F')
+    
+    print(f"  2023 Men: {total_teams_2023_m} teams")
+    print(f"  2023 Women: {total_teams_2023_f} teams")
+    print(f"  2024 Men: {total_teams_2024_m} teams")
+    print(f"  2024 Women: {total_teams_2024_f} teams")
+    print(f"  2025 Men: {total_teams_2025_m} teams")
+    print(f"  2025 Women: {total_teams_2025_f} teams")
+    
     summary_stats = [
         {
             'Category': '2023 Men',
-            'TotalTeams': 94,
+            'TotalTeams': total_teams_2023_m,
             'TotalTop15': mens_2023_results['total_nationals'],
             'TeamsWith4Plus': mens_2023_results['total_4plus'],
-            'PctTotal4Plus': 36/94*100,
+            'PctTotal4Plus': mens_2023_results['total_4plus'] / total_teams_2023_m * 100 if total_teams_2023_m > 0 else 0,
             'PctTop15With4Plus': mens_2023_results['overlap_count']/mens_2023_results['total_nationals']*100 if mens_2023_results['total_nationals'] else 0,
             'Pct4PlusInTop15': mens_2023_results['overlap_count']/mens_2023_results['total_4plus']*100 if mens_2023_results['total_4plus'] else 0,
             'Overlap': mens_2023_results['overlap_count']
         },
         {
             'Category': '2023 Women',
-            'TotalTeams': 94,
+            'TotalTeams': total_teams_2023_f,
             'TotalTop15': womens_2023_results['total_nationals'],
             'TeamsWith4Plus': womens_2023_results['total_4plus'],
-            'PctTotal4Plus': 27/94*100,
+            'PctTotal4Plus': womens_2023_results['total_4plus'] / total_teams_2023_f * 100 if total_teams_2023_f > 0 else 0,
             'PctTop15With4Plus': womens_2023_results['overlap_count']/womens_2023_results['total_nationals']*100 if womens_2023_results['total_nationals'] else 0,
             'Pct4PlusInTop15': womens_2023_results['overlap_count']/womens_2023_results['total_4plus']*100 if womens_2023_results['total_4plus'] else 0,
             'Overlap': womens_2023_results['overlap_count']
         },
         {
             'Category': '2024 Men',
-            'TotalTeams': 115,
+            'TotalTeams': total_teams_2024_m,
             'TotalTop15': mens_2024_results['total_nationals'],
             'TeamsWith4Plus': mens_2024_results['total_4plus'],
-            'PctTotal4Plus': 37/115*100,
+            'PctTotal4Plus': mens_2024_results['total_4plus'] / total_teams_2024_m * 100 if total_teams_2024_m > 0 else 0,
             'PctTop15With4Plus': mens_2024_results['overlap_count']/mens_2024_results['total_nationals']*100 if mens_2024_results['total_nationals'] else 0,
             'Pct4PlusInTop15': mens_2024_results['overlap_count']/mens_2024_results['total_4plus']*100 if mens_2024_results['total_4plus'] else 0,
             'Overlap': mens_2024_results['overlap_count']
         },
         {
             'Category': '2024 Women',
-            'TotalTeams': 101,
+            'TotalTeams': total_teams_2024_f,
             'TotalTop15': womens_2024_results['total_nationals'],
             'TeamsWith4Plus': womens_2024_results['total_4plus'],
-            'PctTotal4Plus': 28/101*100,
+            'PctTotal4Plus': womens_2024_results['total_4plus'] / total_teams_2024_f * 100 if total_teams_2024_f > 0 else 0,
             'PctTop15With4Plus': womens_2024_results['overlap_count']/womens_2024_results['total_nationals']*100 if womens_2024_results['total_nationals'] else 0,
             'Pct4PlusInTop15': womens_2024_results['overlap_count']/womens_2024_results['total_4plus']*100 if womens_2024_results['total_4plus'] else 0,
             'Overlap': womens_2024_results['overlap_count']
         },
         {
             'Category': '2025 Men',
-            'TotalTeams': 115,
+            'TotalTeams': total_teams_2025_m,
             'TotalTop15': mens_2025_results['total_nationals'],
             'TeamsWith4Plus': mens_2025_results['total_4plus'],
-            'PctTotal4Plus': mens_2025_results['total_4plus'] / 115 * 100 if 115 > 0 else 0,
+            'PctTotal4Plus': mens_2025_results['total_4plus'] / total_teams_2025_m * 100 if total_teams_2025_m > 0 else 0,
             'PctTop15With4Plus': mens_2025_results['overlap_count']/mens_2025_results['total_nationals']*100 if mens_2025_results['total_nationals'] else 0,
             'Pct4PlusInTop15': mens_2025_results['overlap_count']/mens_2025_results['total_4plus']*100 if mens_2025_results['total_4plus'] else 0,
             'Overlap': mens_2025_results['overlap_count']
         },
         {
             'Category': '2025 Women',
-            'TotalTeams': 109,
+            'TotalTeams': total_teams_2025_f,
             'TotalTop15': womens_2025_results['total_nationals'],
             'TeamsWith4Plus': womens_2025_results['total_4plus'],
-            'PctTotal4Plus': womens_2025_results['total_4plus'] / 109 * 100 if 109 > 0 else 0,
+            'PctTotal4Plus': womens_2025_results['total_4plus'] / total_teams_2025_f * 100 if total_teams_2025_f > 0 else 0,
             'PctTop15With4Plus': womens_2025_results['overlap_count']/womens_2025_results['total_nationals']*100 if womens_2025_results['total_nationals'] else 0,
             'Pct4PlusInTop15': womens_2025_results['overlap_count']/womens_2025_results['total_4plus']*100 if womens_2025_results['total_4plus'] else 0,
             'Overlap': womens_2025_results['overlap_count']

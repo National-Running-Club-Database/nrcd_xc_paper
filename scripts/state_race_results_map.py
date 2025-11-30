@@ -261,7 +261,8 @@ def main():
     fig = create_state_choropleth_map(results_by_state_2023, results_by_state_2024, results_by_state_2025)
 
     # Save as PDF
-    output_dir = 'output'
+    # Use module-level output_dir if set, otherwise default to 'output'
+    output_dir = globals().get('output_dir', 'output')
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 

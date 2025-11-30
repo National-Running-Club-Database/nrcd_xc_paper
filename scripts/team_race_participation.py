@@ -10,7 +10,7 @@ import numpy as np
 from utils import standardize_convert_exclude_nationals_df
 
 output_dir = 'output/TeamRaceParticipation'
-os.makedirs(output_dir, exist_ok=True)
+# Directory creation moved to main() to avoid creating when imported
 
 def analyze_team_participation():
     """Analyze teams with at least one runner competing in 4+ races per season"""
@@ -122,6 +122,8 @@ def save_results_to_csv(results):
     return results_df
 
 def main():
+    # Create output directory only when run directly
+    os.makedirs(output_dir, exist_ok=True)
     print("Analyzing team participation...")
     results = analyze_team_participation()
     

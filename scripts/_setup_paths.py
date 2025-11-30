@@ -21,3 +21,4 @@ def setup_paths():
 # Auto-setup when imported
 setup_paths()
 
+

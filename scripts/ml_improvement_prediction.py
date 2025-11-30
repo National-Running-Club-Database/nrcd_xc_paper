@@ -600,17 +600,37 @@ def train_models(X, y, features_df, use_temporal_split=True):
                 )
             cv_scores_dict[name] = cv_scores
         
-        # Compare each pair
+        # Calculate number of pairwise comparisons for Bonferroni correction
+        n_comparisons = len(model_names) * (len(model_names) - 1) // 2
+        bonferroni_alpha = 0.05 / n_comparisons
+        print(f"Multiple Comparisons Correction:")
+        print(f"  Number of pairwise comparisons: {n_comparisons}")
+        print(f"  Bonferroni alpha: {bonferroni_alpha:.6f} (0.05 / {n_comparisons})")
+        print(f"  (Significant if p < {bonferroni_alpha:.6f} after correction)")
+        print()
+        
+        # Store all comparisons first
+        comparisons_list = []
         for i, model1 in enumerate(model_names):
             for model2 in model_names[i+1:]:
                 t_stat, p_value = ttest_rel(cv_scores_dict[model1], cv_scores_dict[model2])
                 mean_diff = cv_scores_dict[model1].mean() - cv_scores_dict[model2].mean()
-                
-                significance = "***" if p_value < 0.001 else "**" if p_value < 0.01 else "*" if p_value < 0.05 else "ns"
-                print(f"{model1} vs {model2}:")
-                print(f"  Mean difference: {mean_diff:.4f}")
-                print(f"  t-statistic: {t_stat:.4f}, p-value: {p_value:.4f} {significance}")
-                print()
+                comparisons_list.append((model1, model2, t_stat, p_value, mean_diff))
+        
+        # Apply Bonferroni correction and print results
+        for model1, model2, t_stat, p_value, mean_diff in comparisons_list:
+            bonferroni_p = min(p_value * n_comparisons, 1.0)
+            
+            # Significance markers (based on uncorrected for reference, but report corrected)
+            uncorrected_sig = "***" if p_value < 0.001 else "**" if p_value < 0.01 else "*" if p_value < 0.05 else "ns"
+            corrected_sig = "***" if bonferroni_p < 0.001 else "**" if bonferroni_p < 0.01 else "*" if bonferroni_p < 0.05 else "ns"
+            
+            print(f"{model1} vs {model2}:")
+            print(f"  Mean difference: {mean_diff:.4f}")
+            print(f"  t-statistic: {t_stat:.4f}")
+            print(f"  p-value (uncorrected): {p_value:.4f} {uncorrected_sig}")
+            print(f"  p-value (Bonferroni): {bonferroni_p:.4f} {corrected_sig}")
+            print()
     
     # If temporal split and 2025 data available, also test on 2025
     if use_temporal_split and 2025 in available_years:
@@ -1394,75 +1414,7 @@ def plot_predictions(results, test_metadata, output_dir='output'):
     genders = sorted(test_metadata['gender'].unique())
     gender_labels = {'M': 'Men', 'F': 'Women'}
     
-    # Create a figure for each model, with subplots for each year/gender combination
-    for model_name, result in valid_results.items():
-        if len(years) == 1 and len(genders) == 1:
-            fig, ax = plt.subplots(1, 1, figsize=(8, 8))
-            axes = [[ax]]
-        else:
-            fig, axes = plt.subplots(len(years), len(genders), figsize=(15, 12))
-            # Handle case where there's only one year or one gender
-            if len(years) == 1:
-                axes = axes.reshape(1, -1)
-            elif len(genders) == 1:
-                axes = axes.reshape(-1, 1)
-        
-        for i, year in enumerate(years):
-            for j, gender in enumerate(genders):
-                if len(years) == 1 and len(genders) == 1:
-                    ax = axes[0][0]
-                elif len(years) == 1:
-                    ax = axes[0, j]
-                elif len(genders) == 1:
-                    ax = axes[i, 0]
-                else:
-                    ax = axes[i, j]
-                
-                # Filter data for this year and gender
-                mask = (test_metadata['year'] == year) & (test_metadata['gender'] == gender)
-                
-                if mask.sum() > 0:
-                    # Convert to numpy arrays for indexing
-                    y_test_array = np.array(result['y_test'])
-                    y_pred_array = np.array(result['y_pred'])
-                    
-                    y_test_filtered = y_test_array[mask.values]
-                    y_pred_filtered = y_pred_array[mask.values]
-                    
-                    # Plot actual vs predicted
-                    ax.scatter(y_test_filtered, y_pred_filtered, alpha=0.6, s=30)
-                    
-                    # Add perfect prediction line
-                    min_val = min(y_test_filtered.min(), y_pred_filtered.min())
-                    max_val = max(y_test_filtered.max(), y_pred_filtered.max())
-                    ax.plot([min_val, max_val], [min_val, max_val], 'r--', alpha=0.8, linewidth=2)
-                    
-                    # Calculate R² for this subset
-                    from sklearn.metrics import r2_score
-                    r2_subset = r2_score(y_test_filtered, y_pred_filtered)
-                    
-                    # Bootstrap CI for subset R²
-                    r2_subset_mean, r2_subset_lower, r2_subset_upper = bootstrap_confidence_interval(
-                        y_test_filtered, y_pred_filtered, r2_score, n_bootstrap=500
-                    )
-                    
-                    ax.set_xlabel('Actual Improvement Rate (seconds/day)')
-                    ax.set_ylabel('Predicted Improvement Rate (seconds/day)')
-                    ax.set_title(f'{year} - {gender_labels.get(gender, gender)}\nR² = {r2_subset:.3f} (95% CI: [{r2_subset_lower:.3f}, {r2_subset_upper:.3f}])\nn={len(y_test_filtered)}', fontweight='bold')
-                    ax.grid(True, alpha=0.3)
-                else:
-                    ax.text(0.5, 0.5, 'No data', ha='center', va='center', transform=ax.transAxes)
-                    ax.set_title(f'{year} - {gender_labels.get(gender, gender)}', fontweight='bold')
-        
-        plt.suptitle(f'{model_name} - Predictions by Year and Gender', fontsize=16, fontweight='bold', y=0.995)
-        plt.tight_layout(rect=[0, 0, 1, 0.99])
-        
-        # Save individual model plots
-        safe_model_name = model_name.replace(' ', '_').lower()
-        plt.savefig(f'{output_dir}/raw_data_model_predictions_{safe_model_name}.pdf', dpi=300, bbox_inches='tight')
-        plt.close()
-    
-    # Also create the original combined plot for all models
+    # Create the combined plot for all models (skip individual model plots)
     # Only plot models that have y_test and y_pred
     valid_results_list = [(name, result) for name, result in valid_results.items()]
     n_models = len(valid_results_list)
@@ -1636,18 +1588,40 @@ def analyze_subgroup_differences(results, test_metadata, output_dir='output'):
             year_residuals[year] = residuals[mask.values]
             print(f"  {year}: R² = {r2_year:.4f}, n = {mask.sum()}")
     
-    # Statistical test for year differences (if 2 years)
-    if len(years) == 2:
-        year1, year2 = years
-        if year1 in year_residuals and year2 in year_residuals:
-            # Test if residuals differ between years
-            t_stat, p_val = stats.ttest_ind(year_residuals[year1], year_residuals[year2])
-            print(f"\n  T-test for residual differences ({year1} vs {year2}):")
-            print(f"    t-statistic: {t_stat:.4f}, p-value: {p_val:.4f}")
-            if p_val < 0.05:
-                print(f"    *** Significant difference (p < 0.05)")
-            else:
-                print(f"    No significant difference")
+    # Statistical test for year differences
+    if len(years) >= 2:
+        # Calculate number of pairwise comparisons for Bonferroni correction
+        n_year_comparisons = len(years) * (len(years) - 1) // 2
+        bonferroni_alpha_year = 0.05 / n_year_comparisons if n_year_comparisons > 1 else 0.05
+        
+        if n_year_comparisons > 1:
+            print(f"\n  Multiple Comparisons Correction for Years:")
+            print(f"    Number of pairwise comparisons: {n_year_comparisons}")
+            print(f"    Bonferroni alpha: {bonferroni_alpha_year:.6f} (0.05 / {n_year_comparisons})")
+        
+        # Perform pairwise comparisons
+        year_comparisons = []
+        for i, year1 in enumerate(years):
+            for year2 in years[i+1:]:
+                if year1 in year_residuals and year2 in year_residuals:
+                    t_stat, p_val = stats.ttest_ind(year_residuals[year1], year_residuals[year2])
+                    bonferroni_p = min(p_val * n_year_comparisons, 1.0)
+                    year_comparisons.append((year1, year2, t_stat, p_val, bonferroni_p))
+        
+        # Print results
+        if year_comparisons:
+            print(f"\n  T-tests for residual differences between years:")
+            for year1, year2, t_stat, p_val, bonferroni_p in year_comparisons:
+                uncorrected_sig = "***" if p_val < 0.001 else "**" if p_val < 0.01 else "*" if p_val < 0.05 else "ns"
+                corrected_sig = "***" if bonferroni_p < 0.001 else "**" if bonferroni_p < 0.01 else "*" if bonferroni_p < 0.05 else "ns"
+                print(f"    {year1} vs {year2}:")
+                print(f"      t-statistic: {t_stat:.4f}")
+                print(f"      p-value (uncorrected): {p_val:.4f} {uncorrected_sig}")
+                print(f"      p-value (Bonferroni): {bonferroni_p:.4f} {corrected_sig}")
+                if bonferroni_p < bonferroni_alpha_year:
+                    print(f"      *** Significant difference after Bonferroni correction")
+                else:
+                    print(f"      No significant difference after correction")
     
     # Analyze by gender
     print("\n2. Performance Differences by Gender:")
@@ -1667,18 +1641,42 @@ def analyze_subgroup_differences(results, test_metadata, output_dir='output'):
             gender_residuals[gender] = residuals[mask.values]
             print(f"  {gender_labels.get(gender, gender)}: R² = {r2_gender:.4f}, n = {mask.sum()}")
     
-    # Statistical test for gender differences (if 2 genders)
-    if len(genders) == 2:
-        g1, g2 = genders
-        if g1 in gender_residuals and g2 in gender_residuals:
-            # Test if residuals differ between genders
-            t_stat, p_val = stats.ttest_ind(gender_residuals[g1], gender_residuals[g2])
-            print(f"\n  T-test for residual differences ({gender_labels.get(g1, g1)} vs {gender_labels.get(g2, g2)}):")
-            print(f"    t-statistic: {t_stat:.4f}, p-value: {p_val:.4f}")
-            if p_val < 0.05:
-                print(f"    *** Significant difference (p < 0.05)")
-            else:
-                print(f"    No significant difference")
+    # Statistical test for gender differences
+    if len(genders) >= 2:
+        # Calculate number of pairwise comparisons for Bonferroni correction
+        n_gender_comparisons = len(genders) * (len(genders) - 1) // 2
+        bonferroni_alpha_gender = 0.05 / n_gender_comparisons if n_gender_comparisons > 1 else 0.05
+        
+        if n_gender_comparisons > 1:
+            print(f"\n  Multiple Comparisons Correction for Genders:")
+            print(f"    Number of pairwise comparisons: {n_gender_comparisons}")
+            print(f"    Bonferroni alpha: {bonferroni_alpha_gender:.6f} (0.05 / {n_gender_comparisons})")
+        
+        # Perform pairwise comparisons
+        gender_comparisons = []
+        for i, gender1 in enumerate(genders):
+            for gender2 in genders[i+1:]:
+                if gender1 in gender_residuals and gender2 in gender_residuals:
+                    t_stat, p_val = stats.ttest_ind(gender_residuals[gender1], gender_residuals[gender2])
+                    bonferroni_p = min(p_val * n_gender_comparisons, 1.0)
+                    gender_comparisons.append((gender1, gender2, t_stat, p_val, bonferroni_p))
+        
+        # Print results
+        if gender_comparisons:
+            print(f"\n  T-tests for residual differences between genders:")
+            for gender1, gender2, t_stat, p_val, bonferroni_p in gender_comparisons:
+                gender1_label = gender_labels.get(gender1, gender1)
+                gender2_label = gender_labels.get(gender2, gender2)
+                uncorrected_sig = "***" if p_val < 0.001 else "**" if p_val < 0.01 else "*" if p_val < 0.05 else "ns"
+                corrected_sig = "***" if bonferroni_p < 0.001 else "**" if bonferroni_p < 0.01 else "*" if bonferroni_p < 0.05 else "ns"
+                print(f"    {gender1_label} vs {gender2_label}:")
+                print(f"      t-statistic: {t_stat:.4f}")
+                print(f"      p-value (uncorrected): {p_val:.4f} {uncorrected_sig}")
+                print(f"      p-value (Bonferroni): {bonferroni_p:.4f} {corrected_sig}")
+                if bonferroni_p < bonferroni_alpha_gender:
+                    print(f"      *** Significant difference after Bonferroni correction")
+                else:
+                    print(f"      No significant difference after correction")
     
     # Analyze year × gender interactions
     print("\n3. Year × Gender Interactions:")
@@ -2106,8 +2104,14 @@ def save_important_statistics(results, test_metadata, features_df_filtered, best
     
     return stats_df
 
-def main():
-    """Main function to run the raw data improvement prediction analysis."""
+def main(output_dir='output'):
+    """Main function to run the raw data improvement prediction analysis.
+    
+    Parameters:
+    -----------
+    output_dir : str, default='output'
+        Directory to save all output files
+    """
     print("="*60)
     print("RAW DATA IMPROVEMENT PREDICTION MODEL")
     print("="*60)
@@ -2158,24 +2162,24 @@ def main():
     # Feature importance analysis
     print("\nAnalyzing feature importance...")
     feature_names = X.columns.tolist()
-    feature_importance_df = analyze_feature_importance(best_model, feature_names)
+    feature_importance_df = analyze_feature_importance(best_model, feature_names, output_dir=output_dir)
     
     # Plot predictions
     print("\nCreating prediction plots...")
-    plot_predictions(results, test_metadata)
+    plot_predictions(results, test_metadata, output_dir=output_dir)
     
     # Create residual diagnostics
     print("\nCreating residual diagnostics...")
-    plot_residual_diagnostics(results)
+    plot_residual_diagnostics(results, output_dir=output_dir)
     
     # Analyze subgroup differences
     print("\nAnalyzing subgroup differences...")
-    analyze_subgroup_differences(results, test_metadata)
+    analyze_subgroup_differences(results, test_metadata, output_dir=output_dir)
     
     # Analyze gender-specific feature importance
     print("\nAnalyzing gender-specific feature importance...")
     gender_importance_df, gender_pivot_df = analyze_gender_specific_feature_importance(
-        X, y, features_df_filtered
+        X, y, features_df_filtered, output_dir=output_dir
     )
     
     # Generate insights
@@ -2183,11 +2187,11 @@ def main():
     
     # Save results
     print("\nSaving results...")
-    save_model_results(results, features_df, feature_names)
+    save_model_results(results, features_df, feature_names, output_dir=output_dir)
     
     # Save important statistics (use filtered data for model-related stats, but keep original for comparison)
     print("\nSaving important statistics...")
-    stats_df = save_important_statistics(results, test_metadata, features_df_filtered, best_model, feature_names)
+    stats_df = save_important_statistics(results, test_metadata, features_df_filtered, best_model, feature_names, output_dir=output_dir)
     
     # Test if season_duration_squared is necessary
     print("\n" + "="*60)
@@ -2205,7 +2209,16 @@ def main():
     print("\n" + "="*60)
     print("COMPARING: Standardized vs Converted vs Original Times")
     print("="*60)
-    compare_time_standardization_methods()
+    compare_time_standardization_methods(output_dir=output_dir)
+    
+    # Sensitivity analysis: Test model performance without last_time feature
+    print("\n" + "="*60)
+    print("SENSITIVITY ANALYSIS: Testing model without 'last_time' feature")
+    print("="*60)
+    print("This tests whether 'last_time' creates data leakage.")
+    print("Target: improvement_rate = (last_time - first_time) / season_duration")
+    print("If removing 'last_time' significantly hurts performance, it suggests leakage.")
+    sensitivity_analysis_last_time(df, training_df, output_dir=output_dir)
     
     print("\nAnalysis complete!")
 
@@ -2217,6 +2230,9 @@ def compare_time_standardization_methods(output_dir='output'):
     3. Original times (no adjustments)
     
     This demonstrates that standardization improves model performance.
+    
+    IMPORTANT: Uses the same model (best from RQ1) for all three methods to ensure
+    fair comparison - only standardization method varies, not the model.
     """
     os.makedirs(output_dir, exist_ok=True)
     
@@ -2226,12 +2242,75 @@ def compare_time_standardization_methods(output_dir='output'):
     print("3. Raw: No adjustments at all - original race times (WORST)")
     print("\nNote: Standardized and Converted methods convert distances to 6k (women) / 8k (men).")
     print("Raw method uses original times without distance conversion (less comparable).")
+    print("\nMETHODOLOGY: Using the same model (best from RQ1) for all three methods")
+    print("to ensure fair comparison - only standardization method varies.")
+    
+    # First, determine the best model using standardized data (same as RQ1)
+    print(f"\n{'='*60}")
+    print("STEP 1: Determining best model from standardized data (RQ1)")
+    print('='*60)
+    
+    df_std = load_raw_data(mode='standardized')
+    df_std['year'] = pd.to_datetime(df_std['start_date']).dt.year
+    training_df_std = df_std[df_std['year'] == 2023].copy()
+    
+    athlete_df_std = calculate_athlete_features(df_std, training_df=training_df_std)
+    features_df_std = create_advanced_features(athlete_df_std)
+    X_std, y_std, features_df_filtered_std = prepare_model_data(features_df_std)
+    
+    train_mask_std = features_df_filtered_std['year'] == 2023
+    test_mask_std = features_df_filtered_std['year'] == 2024
+    
+    X_train_std = X_std[train_mask_std]
+    X_test_std = X_std[test_mask_std]
+    y_train_std = y_std[train_mask_std]
+    y_test_std = y_std[test_mask_std]
+    
+    # Test all models on standardized data to find best one
+    models_to_test = {
+        'Linear Regression': Pipeline([
+            ('scaler', StandardScaler()),
+            ('model', LinearRegression())
+        ]),
+        'Ridge Regression': Pipeline([
+            ('scaler', StandardScaler()),
+            ('model', Ridge(alpha=1.0))
+        ]),
+        'Lasso Regression': Pipeline([
+            ('scaler', StandardScaler()),
+            ('model', Lasso(alpha=0.1))
+        ]),
+        'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
+        'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
+        'SVR': Pipeline([
+            ('scaler', StandardScaler()),
+            ('model', SVR(kernel='rbf', C=1.0, epsilon=0.1))
+        ])
+    }
+    
+    best_r2_std = -np.inf
+    best_model = None
+    best_model_name = None
+    
+    for model_name, model in models_to_test.items():
+        model.fit(X_train_std, y_train_std)
+        y_pred_test = model.predict(X_test_std)
+        r2_test = r2_score(y_test_std, y_pred_test)
+        if r2_test > best_r2_std:
+            best_r2_std = r2_test
+            best_model_name = model_name
+            # Create a fresh instance for use in comparison
+            best_model = models_to_test[model_name]
+    
+    print(f"  Best model from RQ1 (standardized data): {best_model_name} (R² = {best_r2_std:.4f})")
+    print(f"  This model will be used for all three standardization methods.")
     
     comparison_results = []
     
+    # Now compare all three methods using the same model
     for mode in ['standardized', 'converted', 'raw']:
         print(f"\n{'='*60}")
-        print(f"Analyzing: {mode.upper()} times")
+        print(f"Analyzing: {mode.upper()} times (using {best_model_name})")
         print('='*60)
         
         try:
@@ -2266,41 +2345,27 @@ def compare_time_standardization_methods(output_dir='output'):
             
             print(f"  Training samples: {len(X_train)}, Test samples: {len(X_test)}")
             
-            # Test multiple models and use the best one for fair comparison
-            # This ensures we're comparing the best possible performance for each standardization method
-            models_to_test = {
-                'Ridge Regression': Pipeline([
-                    ('scaler', StandardScaler()),
-                    ('model', Ridge(alpha=1.0))
-                ]),
-                'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
-                'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
-                'Linear Regression': Pipeline([
-                    ('scaler', StandardScaler()),
-                    ('model', LinearRegression())
-                ])
-            }
+            # Use the same model (best from RQ1) for all standardization methods
+            # Create a fresh instance to avoid any state issues
+            if best_model_name == 'Linear Regression':
+                model = Pipeline([('scaler', StandardScaler()), ('model', LinearRegression())])
+            elif best_model_name == 'Ridge Regression':
+                model = Pipeline([('scaler', StandardScaler()), ('model', Ridge(alpha=1.0))])
+            elif best_model_name == 'Lasso Regression':
+                model = Pipeline([('scaler', StandardScaler()), ('model', Lasso(alpha=0.1))])
+            elif best_model_name == 'Random Forest':
+                model = RandomForestRegressor(n_estimators=100, random_state=42)
+            elif best_model_name == 'Gradient Boosting':
+                model = GradientBoostingRegressor(n_estimators=100, random_state=42)
+            elif best_model_name == 'SVR':
+                model = Pipeline([('scaler', StandardScaler()), ('model', SVR(kernel='rbf', C=1.0, epsilon=0.1))])
+            else:
+                raise ValueError(f"Unknown model: {best_model_name}")
             
-            best_r2 = -np.inf
-            best_model = None
-            best_model_name = None
-            best_y_pred = None
-            
-            for model_name, model in models_to_test.items():
-                model.fit(X_train, y_train)
-                y_pred_test = model.predict(X_test)
-                r2_test = r2_score(y_test, y_pred_test)
-                if r2_test > best_r2:
-                    best_r2 = r2_test
-                    best_model = model
-                    best_model_name = model_name
-                    best_y_pred = y_pred_test
-            
-            print(f"  Best model for {mode}: {best_model_name} (R² = {best_r2:.4f})")
-            
-            # Evaluate with best model
-            y_pred = best_y_pred
-            r2 = best_r2
+            # Train and evaluate
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+            r2 = r2_score(y_test, y_pred)
             rmse = np.sqrt(mean_squared_error(y_test, y_pred))
             mae = mean_absolute_error(y_test, y_pred)
             
@@ -2309,12 +2374,12 @@ def compare_time_standardization_methods(output_dir='output'):
                 y_test, y_pred, r2_score, n_bootstrap=1000
             )
             
-            # Cross-validation with best model
-            cv_scores = cross_val_score(best_model, X_train, y_train, cv=5, scoring='r2')
+            # Cross-validation
+            cv_scores = cross_val_score(model, X_train, y_train, cv=5, scoring='r2')
             
             comparison_results.append({
                 'Method': mode.capitalize(),
-                'Best Model': best_model_name,
+                'Model Used': best_model_name,
                 'R² Score': r2,
                 'R² CI Lower': r2_lower,
                 'R² CI Upper': r2_upper,
@@ -2332,6 +2397,8 @@ def compare_time_standardization_methods(output_dir='output'):
             
         except Exception as e:
             print(f"  Error analyzing {mode}: {str(e)}")
+            import traceback
+            traceback.print_exc()
             continue
     
     # Create comparison visualization
@@ -2359,7 +2426,8 @@ def compare_time_standardization_methods(output_dir='output'):
         axes[0].set_xticks(x_pos)
         axes[0].set_xticklabels(methods, rotation=45, ha='right')
         axes[0].set_ylabel('R² Score')
-        axes[0].set_title('Model Performance by Time Standardization Method\n(Higher is Better)')
+        model_used = comparison_df['Model Used'].iloc[0]  # Same model for all methods
+        axes[0].set_title(f'Model Performance by Time Standardization Method\n({model_used} - Same Model for All Methods)\n(Higher is Better)')
         axes[0].grid(True, alpha=0.3, axis='y')
         axes[0].set_ylim(0, 1.0)
         
@@ -2426,6 +2494,185 @@ def compare_time_standardization_methods(output_dir='output'):
         return comparison_df
     
     return None
+
+def sensitivity_analysis_last_time(df, training_df, output_dir='output'):
+    """
+    Sensitivity analysis: Test model performance with and without 'last_time' feature.
+    
+    This addresses the potential data leakage concern:
+    - Target: improvement_rate = (last_time - first_time) / season_duration
+    - Feature: last_time is included in features
+    - If removing last_time significantly hurts performance, it suggests leakage
+    
+    Parameters:
+    -----------
+    df : DataFrame
+        Full dataset
+    training_df : DataFrame
+        Training data (2023) for percentile calculation
+    output_dir : str
+        Output directory for results
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    
+    print("\nSensitivity Analysis: Testing model with and without 'last_time' feature")
+    print("-" * 60)
+    
+    # Calculate athlete features
+    athlete_df = calculate_athlete_features(df, training_df=training_df)
+    features_df = create_advanced_features(athlete_df)
+    
+    # Prepare model data (with last_time)
+    X_with, y, features_df_filtered = prepare_model_data(features_df)
+    
+    # Remove last_time for comparison
+    if 'last_time' not in X_with.columns:
+        print("  Warning: 'last_time' not found in features. Skipping sensitivity analysis.")
+        return
+    
+    X_without = X_with.drop(columns=['last_time'])
+    
+    # Temporal split
+    train_mask = features_df_filtered['year'] == 2023
+    test_mask = features_df_filtered['year'] == 2024
+    
+    X_train_with = X_with[train_mask]
+    X_test_with = X_with[test_mask]
+    X_train_without = X_without[train_mask]
+    X_test_without = X_without[test_mask]
+    y_train = y[train_mask]
+    y_test = y[test_mask]
+    
+    print(f"  Training samples: {len(X_train_with)}, Test samples: {len(X_test_with)}")
+    print(f"  Features with 'last_time': {len(X_with.columns)}")
+    print(f"  Features without 'last_time': {len(X_without.columns)}")
+    
+    # Use best model from RQ1 (Random Forest based on results)
+    # Test both versions
+    from sklearn.ensemble import RandomForestRegressor
+    
+    model_with = RandomForestRegressor(n_estimators=100, random_state=42)
+    model_without = RandomForestRegressor(n_estimators=100, random_state=42)
+    
+    print("\n  Training models...")
+    model_with.fit(X_train_with, y_train)
+    model_without.fit(X_train_without, y_train)
+    
+    # Evaluate
+    y_pred_with = model_with.predict(X_test_with)
+    y_pred_without = model_without.predict(X_test_without)
+    
+    r2_with = r2_score(y_test, y_pred_with)
+    r2_without = r2_score(y_test, y_pred_without)
+    rmse_with = np.sqrt(mean_squared_error(y_test, y_pred_with))
+    rmse_without = np.sqrt(mean_squared_error(y_test, y_pred_without))
+    mae_with = mean_absolute_error(y_test, y_pred_with)
+    mae_without = mean_absolute_error(y_test, y_pred_without)
+    
+    # Bootstrap CIs
+    r2_with_mean, r2_with_lower, r2_with_upper = bootstrap_confidence_interval(
+        y_test, y_pred_with, r2_score, n_bootstrap=1000
+    )
+    r2_without_mean, r2_without_lower, r2_without_upper = bootstrap_confidence_interval(
+        y_test, y_pred_without, r2_score, n_bootstrap=1000
+    )
+    
+    # Calculate performance difference
+    r2_diff = r2_with - r2_without
+    r2_diff_pct = (r2_diff / r2_without) * 100 if r2_without > 0 else 0
+    
+    print("\n  Results:")
+    print("-" * 60)
+    print(f"  WITH 'last_time' feature:")
+    print(f"    R²: {r2_with:.4f} (95% CI: [{r2_with_lower:.4f}, {r2_with_upper:.4f}])")
+    print(f"    RMSE: {rmse_with:.4f}")
+    print(f"    MAE: {mae_with:.4f}")
+    print(f"\n  WITHOUT 'last_time' feature:")
+    print(f"    R²: {r2_without:.4f} (95% CI: [{r2_without_lower:.4f}, {r2_without_upper:.4f}])")
+    print(f"    RMSE: {rmse_without:.4f}")
+    print(f"    MAE: {mae_without:.4f}")
+    print(f"\n  Difference:")
+    print(f"    R² difference: {r2_diff:+.4f} ({r2_diff_pct:+.2f}%)")
+    print(f"    RMSE difference: {rmse_without - rmse_with:+.4f}")
+    print(f"    MAE difference: {mae_without - mae_with:+.4f}")
+    
+    # Interpretation
+    print("\n  Interpretation:")
+    if abs(r2_diff) < 0.01:  # Less than 1% difference
+        print(f"    ✓ Minimal impact: Removing 'last_time' changes R² by only {abs(r2_diff):.4f}")
+        print(f"      This suggests 'last_time' does NOT create significant data leakage.")
+        print(f"      The feature is legitimate and provides useful information.")
+    elif r2_diff > 0.05:  # More than 5% drop
+        print(f"    ⚠️  Significant impact: Removing 'last_time' reduces R² by {r2_diff:.4f} ({r2_diff_pct:.1f}%)")
+        print(f"      This suggests potential data leakage. Consider removing 'last_time' for strict validation.")
+    else:  # 1-5% difference
+        print(f"    → Moderate impact: Removing 'last_time' changes R² by {abs(r2_diff):.4f} ({abs(r2_diff_pct):.1f}%)")
+        print(f"      'last_time' provides useful information but may have some leakage component.")
+        print(f"      Decision depends on research goals (prediction vs. strict causal inference).")
+    
+    # Save results
+    sensitivity_results = pd.DataFrame({
+        'Model': ['With last_time', 'Without last_time'],
+        'R²': [r2_with, r2_without],
+        'R²_CI_Lower': [r2_with_lower, r2_without_lower],
+        'R²_CI_Upper': [r2_with_upper, r2_without_upper],
+        'RMSE': [rmse_with, rmse_without],
+        'MAE': [mae_with, mae_without],
+        'N_Features': [len(X_with.columns), len(X_without.columns)]
+    })
+    
+    sensitivity_path = f'{output_dir}/sensitivity_analysis_last_time.csv'
+    sensitivity_results.to_csv(sensitivity_path, index=False)
+    print(f"\n  Results saved to: {sensitivity_path}")
+    
+    # Create visualization
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    
+    # Plot 1: R² comparison with CIs
+    models = ['With\nlast_time', 'Without\nlast_time']
+    r2_scores = [r2_with, r2_without]
+    r2_lower = [r2_with_lower, r2_without_lower]
+    r2_upper = [r2_with_upper, r2_without_upper]
+    
+    x_pos = np.arange(len(models))
+    bars = axes[0].bar(x_pos, r2_scores, alpha=0.7, color=['#2E86AB', '#A23B72'])
+    axes[0].errorbar(x_pos, r2_scores, 
+                     yerr=[np.array(r2_scores) - np.array(r2_lower), 
+                           np.array(r2_upper) - np.array(r2_scores)],
+                     fmt='none', color='black', capsize=5, capthick=2)
+    axes[0].set_xticks(x_pos)
+    axes[0].set_xticklabels(models)
+    axes[0].set_ylabel('R² Score')
+    axes[0].set_title('Model Performance: With vs Without last_time Feature\n(Higher is Better)')
+    axes[0].grid(True, alpha=0.3, axis='y')
+    axes[0].set_ylim(0, 1.0)
+    
+    # Add value labels
+    for i, (bar, score) in enumerate(zip(bars, r2_scores)):
+        axes[0].text(bar.get_x() + bar.get_width()/2., score + 0.02,
+                     f'{score:.3f}', ha='center', va='bottom', fontweight='bold')
+    
+    # Plot 2: RMSE comparison
+    rmse_scores = [rmse_with, rmse_without]
+    bars2 = axes[1].bar(x_pos, rmse_scores, alpha=0.7, color=['#2E86AB', '#A23B72'])
+    axes[1].set_xticks(x_pos)
+    axes[1].set_xticklabels(models)
+    axes[1].set_ylabel('RMSE (seconds/day)')
+    axes[1].set_title('RMSE: With vs Without last_time Feature\n(Lower is Better)')
+    axes[1].grid(True, alpha=0.3, axis='y')
+    
+    # Add value labels
+    for i, (bar, score) in enumerate(zip(bars2, rmse_scores)):
+        axes[1].text(bar.get_x() + bar.get_width()/2., score + max(rmse_scores)*0.02,
+                     f'{score:.2f}', ha='center', va='bottom', fontweight='bold')
+    
+    plt.tight_layout()
+    sensitivity_plot_path = f'{output_dir}/sensitivity_analysis_last_time.pdf'
+    plt.savefig(sensitivity_plot_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    print(f"  Visualization saved to: {sensitivity_plot_path}")
+    
+    return sensitivity_results
 
 def test_feature_redundancy(X, y, features_df, feature_names):
     """Test if season_duration_squared is redundant."""

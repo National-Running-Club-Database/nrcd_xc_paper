@@ -6,6 +6,7 @@ This script runs all analyses related to RQ1:
 - Number of races impact on performance
 - Team race participation analysis
 - Nationals overlap analysis (racing more → better at nationals)
+- Top 25 teams at nationals analysis (correlations with rank)
 - Main ML model for improvement prediction
 
 All outputs are saved to output/rq1/
@@ -96,61 +97,25 @@ def main():
     nationals_main()
     nationals_overlap_analysis.output_dir = original_output
     
-    print("\n6. State Race Results Map...")
+    print("\n6. Top 25 Teams at Nationals Analysis...")
+    from top25_team_analysis import main as top25_main
+    import top25_team_analysis
+    original_output = top25_team_analysis.output_dir
+    top25_team_analysis.output_dir = os.path.join(rq1_output, 'top25_teams')
+    os.makedirs(top25_team_analysis.output_dir, exist_ok=True)
+    top25_main()
+    top25_team_analysis.output_dir = original_output
+    
+    print("\n7. State Race Results Map...")
+    import state_race_results_map
+    state_race_results_map.output_dir = rq1_output
     from state_race_results_map import main as state_map_main
     state_map_main()
-    # Move the output PDF to rq1 directory
-    output_pdf = 'output/race_results_by_state_2023_2024_2025.pdf'
-    if os.path.exists(output_pdf):
-        dst_pdf = os.path.join(rq1_output, 'race_results_by_state_2023_2024_2025.pdf')
-        if os.path.exists(dst_pdf):
-            os.remove(dst_pdf)
-        shutil.move(output_pdf, dst_pdf)
-        print(f"  Moved: race_results_by_state_2023_2024_2025.pdf")
     
-    print("\n7. Main ML Model - Improvement Prediction (3-year validation)...")
+    print("\n8. Main ML Model - Improvement Prediction (3-year validation)...")
     from ml_improvement_prediction import main as ml_main
-    ml_main()
-    
-    # Move ML model outputs to rq1 directory
-    print("\n8. Organizing ML model outputs...")
-    ml_outputs = [
-        'raw_data_athlete_features.csv',
-        'raw_data_feature_importance.csv',
-        'raw_data_model_performance.csv',
-        'raw_data_3year_validation_results.csv',
-        'raw_data_important_statistics.csv',
-        'raw_data_gender_feature_importance_comparison.csv',
-        'raw_data_gender_feature_importance_pivot.csv',
-        'raw_data_subgroup_analysis.csv',
-        'time_standardization_comparison.csv',
-        'time_standardization_comparison.pdf'
-    ]
-    
-    # Get all PDFs from ML model (excluding FINDINGS_EXPLANATION.md)
-    ml_pdfs = []
-    if os.path.exists('output'):
-        for f in os.listdir('output'):
-            if f.startswith('raw_data_') and f.endswith('.pdf'):
-                ml_pdfs.append(f)
-            elif f.startswith('raw_data_') and f.endswith('.csv'):
-                # Also catch any CSV files we might have missed
-                if f not in ml_outputs:
-                    ml_outputs.append(f)
-    
-    # Move all ML outputs (preserve FINDINGS_EXPLANATION.md)
-    for filename in ml_outputs + ml_pdfs:
-        src = os.path.join('output', filename)
-        if os.path.exists(src):
-            dst = os.path.join(rq1_output, filename)
-            if os.path.exists(dst):
-                os.remove(dst)
-            shutil.move(src, dst)
-            print(f"  Moved: {filename}")
-    
-    # Note about FINDINGS_EXPLANATION.md
-    if os.path.exists('output/FINDINGS_EXPLANATION.md'):
-        print(f"  Preserved: FINDINGS_EXPLANATION.md (not moved)")
+    # Pass output directory directly to ML model
+    ml_main(output_dir=rq1_output)
     
     print("\n" + "="*60)
     print("RQ1 ANALYSIS COMPLETE")
@@ -162,6 +127,7 @@ def main():
     print(f"  - {rq1_output}/number_of_races_broken_down/")
     print(f"  - {rq1_output}/team_race_participation/")
     print(f"  - {rq1_output}/nationals_overlap/")
+    print(f"  - {rq1_output}/top25_teams/")
     print(f"  - {rq1_output}/race_results_by_state_2023_2024_2025.pdf")
     print(f"  - {rq1_output}/raw_data_*.csv (ML model results)")
     print(f"  - {rq1_output}/raw_data_*.pdf (ML model visualizations)")

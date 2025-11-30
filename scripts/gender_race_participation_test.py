@@ -11,7 +11,7 @@ from utils import standardize_convert_exclude_nationals_df
 from scipy.stats import chi2_contingency
 
 output_dir = 'output/GenderAnalysis'
-os.makedirs(output_dir, exist_ok=True)
+# Directory creation moved to main() to avoid creating when imported
 
 def analyze_gender_race_participation():
     """Analyze gender differences in race participation for 2023 and 2024"""
@@ -171,6 +171,8 @@ def save_gender_analysis(results):
     print(f"Summary with p-values saved to: {summary_path}")
 
 def main():
+    # Create output directory only when run directly
+    os.makedirs(output_dir, exist_ok=True)
     print("Analyzing gender differences in race participation...")
     results = analyze_gender_race_participation()
     

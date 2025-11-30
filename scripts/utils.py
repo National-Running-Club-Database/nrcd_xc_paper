@@ -40,32 +40,21 @@ def get_course_details(row, course_details_df):
         return match.iloc[0].to_dict()
     return {}
 
-def adjust_time_for_race(event_name:str, time:str, course_details:dict, gender:str, adjust_terrain=False, adjust_weather=False):
-    """"
-    Adjusts original time to the time under ideal conditions.
-    For example, if the weather is hot, the adjusted time will be quicker. Ex: 25:05 -> 24:32 depending on the weather.
-    
-    Parameters:
-    -----------
-    adjust_terrain : bool
-        If True, adjust for elevation gain/loss and course distance accuracy
-    adjust_weather : bool
-        If True, adjust for temperature and dew point (weather effects)
-    """
+def adjust_time_for_race(event_name:str, time:str, course_details:dict, gender:str):
     time = parse_time(time)
     event_dist = None
-    # Handle NaN/missing values
-    if pd.isna(event_name) or not isinstance(event_name, str):
-        return time  # Return unadjusted time if event_name is invalid
+    # Handle NaN or None values
+    if pd.isna(event_name) or event_name is None:
+        return time  # Return original time if event_name is invalid
+    # Convert to string if not already
+    event_name = str(event_name)
     if event_name.endswith('m'):
         event_dist = float(event_name.replace('m', '').strip())
     elif event_name.endswith('mi'):
         event_dist = float(event_name.replace('mi', '').strip()) * 1609.34
-    
-    # Terrain adjustments (elevation and course distance)
-    if adjust_terrain and event_dist:
-        hill_slow_time = 0
-        hill_speed_time = 0
+    hill_slow_time = 0
+    hill_speed_time = 0
+    if event_dist:
         if pd.notna(course_details.get('elevation_gain')) or pd.notna(course_details.get('elevation_loss')):
             if pd.notna(course_details.get('elevation_gain')):
                 grade_increase_percentage = course_details['elevation_gain'] / event_dist * 100
@@ -74,27 +63,25 @@ def adjust_time_for_race(event_name:str, time:str, course_details:dict, gender:s
                 grade_decrease_percentage = course_details['elevation_loss'] / event_dist * 100
                 hill_speed_time = time * 0.0267 * grade_decrease_percentage
             time += hill_speed_time - hill_slow_time
-        # Adjust for course distance accuracy (e.g., if 6k course is actually 6.1k)
         if pd.notna(course_details.get('estimated_course_distance')):
             factor = event_dist / course_details['estimated_course_distance']
             if gender == 'F':
                 time *= factor ** 1.055
             elif gender == 'M':
                 time *= factor ** 1.08
-    
-    # Weather adjustments (temperature and dew point)
-    if adjust_weather:
-        if pd.notna(course_details.get('temperature')) and pd.notna(course_details.get('dew_point')):
-            weather_factor = course_details['temperature'] + course_details['dew_point']
-            if weather_factor > 100:
-                percent_increase = 0.0015 * (weather_factor - 100) ** 2
-                time *= 1 - (percent_increase / 100)
+    if pd.notna(course_details.get('temperature')) and pd.notna(course_details.get('dew_point')):
+        weather_factor = course_details['temperature'] + course_details['dew_point']
+        if weather_factor > 100:
+            percent_increase = 0.0015 * (weather_factor - 100) ** 2
+            time *= 1 - (percent_increase / 100)
     return time
 
 def get_event_dist(event_name):
-    # Handle NaN/missing values
-    if pd.isna(event_name) or not isinstance(event_name, str):
+    # Handle NaN or None values
+    if pd.isna(event_name) or event_name is None:
         return None
+    # Convert to string if not already
+    event_name = str(event_name)
     if event_name.endswith('m'):
         return float(event_name.replace('m', '').strip())
     elif event_name == '4 Mile':
@@ -104,17 +91,7 @@ def get_event_dist(event_name):
     else:
         return None
 
-def convert_row_to_6k_8k(row, course_details_df, adjust_terrain=False, adjust_weather=False):
-    """
-    Convert race time to 6k (women) or 8k (men) equivalent.
-    
-    Parameters:
-    -----------
-    adjust_terrain : bool
-        If True, adjust for elevation and course distance (for 'converted' and 'standardized' modes)
-    adjust_weather : bool
-        If True, adjust for weather (only for 'standardized' mode)
-    """
+def convert_row_to_6k_8k(row, course_details_df):
     details = get_course_details(row, course_details_df) if not course_details_df.empty else {}
     raw_time = parse_time(row['result_time'])
     event_dist = get_event_dist(row['event_name'])
@@ -122,11 +99,10 @@ def convert_row_to_6k_8k(row, course_details_df, adjust_terrain=False, adjust_we
         return float('nan')
     # Adjust for course details if available
     if details:
-        adj_time = adjust_time_for_race(row['event_name'], row['result_time'], details, row['gender'], 
-                                       adjust_terrain=adjust_terrain, adjust_weather=adjust_weather)
+        adj_time = adjust_time_for_race(row['event_name'], row['result_time'], details, row['gender'])
     else:
         adj_time = raw_time
-    # Standardize to 6K (women) or 8K (men) - this is always done
+    # Standardize to 6K (women) or 8K (men)
     if row['gender'] == 'F':
         target_dist = 6000
         return adj_time * (target_dist / event_dist) ** 1.08
@@ -136,7 +112,7 @@ def convert_row_to_6k_8k(row, course_details_df, adjust_terrain=False, adjust_we
     else:
         return adj_time
 
-def standardize_and_convert_to_6k_8k(results_df=None, course_details_df=None, athlete_df=None, running_event_df=None, meet_df=None, adjust_terrain=False, adjust_weather=False):
+def standardize_and_convert_to_6k_8k(results_df=None, course_details_df=None, athlete_df=None, running_event_df=None, meet_df=None):
     if results_df is None:
         results_df = pd.read_csv(os.path.join('data', 'result.csv'))
     if course_details_df is None:
@@ -154,14 +130,10 @@ def standardize_and_convert_to_6k_8k(results_df=None, course_details_df=None, at
     if 'start_date' not in results_df.columns:
         results_df = results_df.merge(meet_df[['meet_id', 'start_date']], on='meet_id', how='left')
     results_df = results_df.copy()
-    results_df['standardized_to_target'] = results_df.apply(lambda row: convert_row_to_6k_8k(row, course_details_df, adjust_terrain=adjust_terrain, adjust_weather=adjust_weather), axis=1)
+    results_df['standardized_to_target'] = results_df.apply(lambda row: convert_row_to_6k_8k(row, course_details_df), axis=1)
     return results_df
 
 def standardize_convert_exclude_nationals_df(results_df=None, course_details_df=None, meet_df=None, athlete_df=None, running_event_df=None):
-    """
-    Full standardization: convert to 6k/8k, adjust for course distance, terrain, and weather.
-    Excludes nationals.
-    """
     if results_df is None:
         results_df = pd.read_csv(os.path.join('data', 'result.csv'))
     if course_details_df is None:
@@ -176,14 +148,9 @@ def standardize_convert_exclude_nationals_df(results_df=None, course_details_df=
         results_df = pd.read_csv(os.path.join('data', 'result.csv'))
     non_nationals_meets = meet_df[~meet_df['nationals'].astype(bool)]['meet_id']
     filtered_results = results_df[results_df['meet_id'].isin(non_nationals_meets)].copy()
-    # Standardized mode: adjust for everything (terrain + weather)
-    return standardize_and_convert_to_6k_8k(filtered_results, course_details_df, athlete_df, running_event_df, meet_df, adjust_terrain=True, adjust_weather=True)
+    return standardize_and_convert_to_6k_8k(filtered_results, course_details_df, athlete_df, running_event_df, meet_df)
 
 def convert_exclude_nationals(results_df=None, meet_df=None, athlete_df=None, running_event_df=None):
-    """
-    Convert times to 6k/8k and adjust for course distance (long/short courses),
-    but NO weather/terrain adjustments. Excludes nationals.
-    """
     if results_df is None or 'meet_id' not in results_df.columns:
         results_df = pd.read_csv(os.path.join('data', 'result.csv'))
     if meet_df is None:
@@ -192,7 +159,6 @@ def convert_exclude_nationals(results_df=None, meet_df=None, athlete_df=None, ru
         athlete_df = pd.read_csv(os.path.join('data', 'athlete.csv'))
     if running_event_df is None:
         running_event_df = pd.read_csv(os.path.join('data', 'running_event.csv'))
-    course_details_df = pd.read_csv(os.path.join('data', 'course_details.csv'))
     if 'meet_id' not in results_df.columns:
         raise ValueError("Input DataFrame to convert_exclude_nationals must have a 'meet_id' column.")
     non_nationals_meets = meet_df[~meet_df['nationals'].astype(bool)]['meet_id']
@@ -200,5 +166,4 @@ def convert_exclude_nationals(results_df=None, meet_df=None, athlete_df=None, ru
     filtered_results = filtered_results.merge(athlete_df[['athlete_id', 'gender']], on='athlete_id', how='left')
     filtered_results = filtered_results.merge(running_event_df[['running_event_id', 'event_name']], on='running_event_id', how='left')
     filtered_results = filtered_results.merge(meet_df[['meet_id', 'start_date']], on='meet_id', how='left')
-    # Converted mode: adjust for terrain (course distance) but NOT weather
-    return standardize_and_convert_to_6k_8k(filtered_results, course_details_df=course_details_df, athlete_df=athlete_df, running_event_df=running_event_df, meet_df=meet_df, adjust_terrain=True, adjust_weather=False)
+    return standardize_and_convert_to_6k_8k(filtered_results, course_details_df=pd.DataFrame(), athlete_df=athlete_df, running_event_df=running_event_df, meet_df=meet_df)

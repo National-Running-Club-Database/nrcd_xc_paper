@@ -1,7 +1,7 @@
-Category,Total_Teams,Total_in_Top_15,Teams_with_at_least_1_athlete_4plus_races,Pct_Total_Teams_with_at_least_1_athlete_4plus_races,Pct_Top_15_with_at_least_1_athlete_4plus_races,Pct_teams_with_at_least_1_athlete_4plus_races_in_Top_15,Overlap_Count,P_value_chi_square_test
-2023 Men,94,14,36,38.3%,64.3%,25.0%,9,0.061
-2023 Women,94,15,27,28.7%,60.0%,33.3%,9,0.009
-2024 Men,115,15,37,32.2%,73.3%,29.7%,11,0.001
-2024 Women,101,15,28,27.7%,73.3%,39.3%,11,0.000
-2025 Men,115,15,39,33.9%,60.0%,23.1%,9,0.046
-2025 Women,109,15,33,30.3%,80.0%,36.4%,12,0.000
+Category,Total_Teams,Total_in_Top_15,Teams_4plus_races,Pct_Total_Teams_4plus_races,Pct_Top_15_4plus_races,Pct_4plus_races_in_Top_15,Overlap_Count,P_value_chi_square_test,Bonferroni_alpha,Bonferroni_significant
+2023 Men,93,14,36,38.7%,64.3%,25.0%,9,0.067,0.0083,No
+2023 Women,85,15,27,31.8%,60.0%,33.3%,9,0.022,0.0083,No
+2024 Men,104,15,36,34.6%,73.3%,30.6%,11,0.002,0.0083,Yes
+2024 Women,91,15,28,30.8%,73.3%,39.3%,11,0.000,0.0083,Yes
+2025 Men,107,15,39,36.4%,60.0%,23.1%,9,0.079,0.0083,No
+2025 Women,97,15,33,34.0%,80.0%,36.4%,12,0.000,0.0083,Yes

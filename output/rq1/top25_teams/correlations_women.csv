@@ -1,0 +1,4 @@
+metric,pearson_r,pearson_p,pearson_p_bonferroni,r_squared,spearman_r,spearman_p,spearman_p_bonferroni,bonferroni_alpha,bonferroni_sig,n
+Season Duration (days),-0.046,0.6968,1.0,0.002116,0.016,0.8949,1.0,0.016666666666666666,False,74
+Max Races (any athlete),-0.232,0.0471,0.1413,0.053824000000000004,-0.248,0.0331,0.0993,0.016666666666666666,False,74
+Experience Level,-0.156,0.1833,0.5499,0.024336,-0.161,0.1703,0.5109,0.016666666666666666,False,74

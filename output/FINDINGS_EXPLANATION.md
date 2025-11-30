@@ -4,34 +4,170 @@
 
 ## Executive Summary
 
-This analysis uses machine learning to predict athlete improvement rates in collegiate cross country running. The best model (Random Forest) achieves **91.90% accuracy** (R² = 0.9190, 95% CI: [0.8712, 0.9550]) using temporal validation (trained on 2023, tested on 2024). Key findings include:
+This analysis uses machine learning to predict athlete improvement rates in collegiate cross country running across three research questions. The best model (Random Forest) achieves **91.5% accuracy** (R² = 0.9145, 95% CI: [0.8604, 0.9517]) using temporal validation (trained on 2023, tested on 2024). Key findings include:
 
 1. **experience_level** is the most critical predictor (21.2%) - total racing experience matters most
-2. **Tree-based models significantly outperform linear models** - 91.9% vs 35.9% accuracy (105% improvement)
-3. **The model is fair across genders** - Women: 94.7% R², Men: 91.0% R² (4.1% difference, within acceptable bounds)
-4. **Time standardization methods** - Converted (93.3%) and Raw (93.2%) perform similarly, both slightly better than Standardized (91.9%)
+2. **Tree-based models significantly outperform linear models** - 91.5% vs 45.7% accuracy (100% improvement)
+3. **The model is fair across genders** - Women: 94.5% R², Men: 90.4% R² (4.1% difference, within acceptable bounds)
+4. **Time standardization methods** - Converted method (distance only) performs best (93.1% R²), followed by standardized (91.5% R²)
+5. **Top 15 teams at nationals have significantly more athletes racing 4+ times** - 60-80% of top 15 teams have at least one athlete with 4+ races, with **Bonferroni-corrected significance in 3 out of 6 categories** (2024 Men: p=0.002, 2024 Women: p<0.001, 2025 Women: p<0.001)
+6. **Racing frequency correlates with nationals success** - Teams with athletes racing 4+ times are 2-3x more likely to make top 15 at nationals (23-39% success rate vs. baseline)
+7. **Top 25 teams analysis** - **Men's season duration (days from first race to nationals) shows Bonferroni-significant correlation with better rank** (r = -0.283, p = 0.0138, Bonferroni-corrected p = 0.0414). Teams that start racing earlier perform better at nationals.
+
+---
+
+## Research Questions Overview
+
+This study addresses three main research questions:
+
+### RQ1: Performance Improvement Patterns
+**Question:** How do athletes' performance patterns change across race positions and seasons?
+
+**Key Findings:**
+- Athletes who race more frequently show greater improvement
+- Experience level (num_races × season_duration) is the strongest predictor
+- **Top 15 teams at nationals have significantly more athletes racing 4+ times** - 60-80% of top 15 teams have at least one athlete with 4+ races, with **Bonferroni-corrected significance in 3 out of 6 categories** (2024 Men: p=0.002, 2024 Women: p<0.001, 2025 Women: p<0.001)
+- **2024 shows strongest relationship** - Both men (73.3% overlap, p=0.002) and women (73.3% overlap, p<0.001) show highly significant associations after Bonferroni correction
+- Teams with athletes racing 4+ times are 2-3x more likely to make top 15 at nationals compared to teams without such athletes (23-39% success rate vs. baseline)
+- **Top 25 teams at nationals** - Men's season duration (days from first race to nationals) shows **Bonferroni-significant correlation** with better rank (r = -0.283, p = 0.0138). Teams that start racing earlier in the season perform better at nationals.
+
+### RQ2: Multi-Season Analysis with Race Count Consistency
+**Question:** How do athletes' performance patterns change across multiple seasons when controlling for consistent race participation?
+
+**Key Findings:**
+- Filtering for consistent race participation (difference < 2 races between consecutive seasons) reveals stable improvement patterns
+- Distribution of fastest times shows consistent trends across years (2023-2025)
+- Machine learning models achieve 82.8% accuracy (Random Forest) when predicting improvement with race count consistency filter
+- Temporal validation shows models generalize well to future years
+
+### RQ3: Gender Differences in Participation and Performance
+**Question:** What are the gender differences in participation patterns and model performance?
+
+**Key Findings:**
+- Model shows fair performance across genders (Women: 94.5% R², Men: 90.4% R²)
+- Different features matter for men vs women (gender-specific feature importance)
+- Gender differences in race participation patterns exist but are well-captured by the model
+
+---
+
+## Model Validation Methods
+
+### 1. Temporal Validation (Primary Method)
+
+**What it is:** Training and testing on different time periods to simulate real-world prediction scenarios.
+
+**Three Validation Scenarios:**
+
+1. **Primary Validation: Train on 2023, Test on 2024**
+   - Most realistic scenario: predict next year's performance
+   - Best model (Random Forest): R² = 0.9145 (91.5% accuracy)
+   - This is the **primary metric** reported in the paper
+
+2. **Generalization Test: Train on 2023, Test on 2025**
+   - Tests model's ability to predict 2 years into the future
+   - Assesses long-term generalization capability
+   - Models trained on 2023 data are tested on 2025 data (skipping 2024)
+
+3. **Extended Training: Train on 2023+2024, Test on 2025**
+   - Uses more training data (2 years instead of 1)
+   - Tests if additional training data improves predictions
+   - Models trained on combined 2023+2024 data, tested on 2025
+
+**Why Temporal Validation Matters:**
+- **Prevents data leakage:** Future data never influences past predictions
+- **Realistic assessment:** Mimics how models would be used in practice
+- **Honest performance:** R² calculated only on test data, never on training data
+- **Temporal integrity:** Features calculated using only training data (e.g., percentiles based on 2023 only)
+
+### 2. 5-Fold Cross-Validation (CV)
+
+**What it is:** A technique to assess model stability and prevent overfitting by splitting training data into 5 folds.
+
+**How it works:**
+1. Training data is divided into 5 equal parts (folds)
+2. Model is trained on 4 folds and validated on the remaining fold
+3. This process repeats 5 times, with each fold serving as validation once
+4. Results are averaged across all 5 folds
+
+**Why 5-Fold CV:**
+- **Model stability:** Assesses how consistent the model is across different data subsets
+- **Overfitting detection:** High variance in CV scores indicates overfitting
+- **Hyperparameter tuning:** Used to select best model parameters
+- **Training data assessment:** Only uses training data (2023), never test data (2024)
+
+**Example:**
+- Random Forest: CV R² = 0.8801 (±0.0195)
+  - Mean: 88.0% accuracy on training data
+  - Std: ±1.95% (low variance = stable model)
+  - Test R²: 91.5% (slightly higher = good generalization)
+
+**CV vs Test Performance:**
+- **CV R² (0.8801):** Performance on training data (2023) using 5-fold CV
+- **Test R² (0.9145):** Performance on test data (2024) - the true measure
+- **Difference:** Test R² > CV R² indicates good generalization (model performs better on new data than expected)
+
+### 3. Bootstrap Confidence Intervals
+
+**What it is:** A resampling technique to estimate uncertainty in model performance metrics.
+
+**How it works:**
+1. Test set predictions are resampled 1000 times (with replacement)
+2. R² is calculated for each resample
+3. 95% confidence interval is the range containing 95% of resampled R² values
+
+**Why it matters:**
+- Provides uncertainty estimates for model performance
+- More robust than single point estimates
+- Accounts for variability in test set composition
+
+**Example:**
+- Random Forest: R² = 0.9145 (95% CI: [0.8604, 0.9517])
+  - Best case: 95.2% accuracy
+  - Worst case: 86.0% accuracy
+  - Most likely: 91.5% accuracy
 
 ---
 
 ## 1. Model Performance Comparison
 
-### Overall Model Results
+### Overall Model Results (RQ1: Primary Validation)
 
 | Model | Test R² | 95% CI | RMSE | MAE | CV R² (Train) | CV Std |
 |-------|---------|--------|------|-----|---------------|--------|
-| Linear Regression | -25.1616 | [-68.9339, 0.4762] | 26.027802132876335 | 3.14559720502046 | -475.6277025420198 | ±932.1729 |
-| Ridge Regression | -0.8856 | [-3.1536, 0.4398] | 6.987616707726019 | 2.261285928627629 | -19.518821074399852 | ±24.5733 |
-| Lasso Regression | 0.3589 | [0.3311, 0.3926] | 4.074303946982252 | 2.0341680490013547 | -5.095326057155293 | ±10.9586 |
-| **Random Forest** | **0.9190** | [0.8712, 0.9550] | 1.448630101840267 | 0.4003451246812706 | 0.889183183928201 | ±0.0111 |
-| Gradient Boosting | 0.9036 | [0.8548, 0.9415] | 1.580166469168334 | 0.5865277322688717 | 0.8829942041150372 | ±0.0147 |
-| SVR | 0.4486 | [0.3770, 0.5333] | 3.7786584295220416 | 1.137048757426783 | 0.542950387949763 | ±0.1408 |
+| Linear Regression | 0.4567 | [0.4125, 0.4999] | 3.75 | 1.94 | 0.2354 | ±0.2164 |
+| Ridge Regression | 0.4617 | [0.4216, 0.5015] | 3.73 | 1.93 | 0.2568 | ±0.1885 |
+| Lasso Regression | 0.4091 | [0.3771, 0.4387] | 3.91 | 1.96 | 0.2234 | ±0.2571 |
+| **Random Forest** | **0.9145** | [0.8669, 0.9536] | 1.49 | 0.41 | 0.8801 | ±0.0195 |
+| Gradient Boosting | 0.9021 | [0.8576, 0.9386] | 1.59 | 0.62 | 0.8770 | ±0.0198 |
+| SVR | 0.5369 | [0.4395, 0.6450] | 3.46 | 0.95 | 0.6088 | ±0.1480 |
+
+**Validation Method:** Temporal split - Train on 2023, Test on 2024
+- All R² values calculated **only on test data (2024)**
+- CV R² calculated **only on training data (2023)** using 5-fold CV
+- Bootstrap CIs calculated on test set predictions
+
+### RQ2: Multi-Season Model Performance
+
+| Model | Test R² | RMSE | MAE |
+|-------|---------|------|-----|
+| Linear Regression | 0.5620 | 3.41 | 2.08 |
+| Ridge Regression | 0.6644 | 2.99 | 1.98 |
+| Lasso Regression | 0.6236 | 3.16 | 2.02 |
+| **Random Forest** | **0.8279** | 2.14 | 1.09 |
+| **Gradient Boosting** | **0.8306** | 2.12 | 1.18 |
+| SVR | 0.3305 | 4.22 | 1.85 |
+
+**Validation Method:** Temporal split - Train on 2023, Test on 2024
+**Filter Applied:** Athletes with race count difference < 2 between consecutive seasons
+- Example: 3 races in 2023, 4 in 2024, 5 in 2025 is valid (differences: 1, 1)
+- This filter ensures comparable participation patterns across seasons
 
 ### Why Tree-Based Models Outperform Linear Models
 
 **Statistical Evidence:**
 - Tree-based models (Random Forest, Gradient Boosting) **significantly outperform** linear models
-- Linear models achieve only **45-45% accuracy** vs **92% for tree-based models**
-- This is a **105% relative improvement** in prediction accuracy
+- Linear models achieve only **41-46% accuracy** vs **91% for tree-based models**
+- This is a **100% relative improvement** in prediction accuracy
 
 **Why This Happens:**
 
@@ -44,7 +180,7 @@ This analysis uses machine learning to predict athlete improvement rates in coll
 
 ## 2. Key Predictors of Improvement
 
-### Top 15 Most Important Features
+### Top 15 Most Important Features (RQ1)
 
 | Rank | Feature | Importance | What It Measures |
 |------|---------|------------|------------------|
@@ -84,21 +220,9 @@ This analysis uses machine learning to predict athlete improvement rates in coll
 - **Key insight:** Negative slope = improving, positive slope = declining
 - **Interpretation:** The rate of change in performance over the season is highly predictive
 
-**4. Race Frequency (9.1%)**
-- **What it measures:** Number of races per day (racing frequency)
-- **Why it matters:** Optimal racing frequency varies by athlete
-- **Key insight:** Too frequent racing may indicate over-racing, too infrequent may indicate insufficient racing
-- **Interpretation:** Balance between racing enough to improve but not so much as to cause fatigue
-
-**5. Time Standard Deviation (8.1%)**
-- **What it measures:** Consistency of race times across the season
-- **Why it matters:** Lower variability indicates more consistent training and racing
-- **Key insight:** Consistent athletes show more predictable improvement patterns
-- **Interpretation:** High variability may indicate inconsistent training, injury, or other factors affecting performance
-
 ---
 
-## 3. Gender Differences and Model Fairness
+## 3. Gender Differences and Model Fairness (RQ3)
 
 ### Gender-Specific Model Performance
 
@@ -106,8 +230,8 @@ The model shows **fair performance across genders** with only a small, acceptabl
 
 | Gender | R² Score | Interpretation |
 |--------|----------|----------------|
-| **Women** | **94.7%** | Model explains 94.7% of variance for women |
-| **Men** | **91.0%** | Model explains 91.0% of variance for men |
+| **Women** | **94.5%** | Model explains 94.5% of variance for women |
+| **Men** | **90.4%** | Model explains 90.4% of variance for men |
 | **Difference** | **4.1%** | Women's R² is 4.1% higher (within acceptable bounds) |
 
 **Fairness Assessment:** ✓ **Relatively fair** - The 4.1% difference is small and within acceptable bounds. The model does not systematically disadvantage either gender.
@@ -117,7 +241,7 @@ The model shows **fair performance across genders** with only a small, acceptabl
 Possible explanations for the small difference:
 1. **Data Quality:** Women's data may be slightly more consistent or complete
 2. **Feature Relevance:** Some features may be more predictive for women's improvement patterns
-3. **Sample Size:** Different sample sizes (Women: 456, Men: 792) can affect model performance
+3. **Sample Size:** Different sample sizes can affect model performance
 4. **Biological Factors:** Different physiological responses to training/racing between genders
 
 ### Gender Differences in Feature Importance
@@ -130,63 +254,219 @@ The model reveals that different factors matter for men vs women (see gender-spe
 
 ### Comparison of Standardization Methods
 
-| Method | R² Score | 95% CI | RMSE | MAE |
-|--------|----------|--------|------|-----|
-| Standardized | 0.9190 | [0.8719, 0.9551] | 1.448630101840267 | 0.4003451246812706 |
-| Converted | 0.9334 | [0.9150, 0.9502] | 1.3219031743739509 | 0.4299989557487611 |
-| Raw | 0.9322 | [0.9095, 0.9500] | 1.3628287497349902 | 0.4404796115843554 |
+**Methodology:** All three methods tested using the **same model** (Random Forest, best from RQ1) to ensure fair comparison - only standardization method varies, not model choice.
+
+| Method | R² Score | 95% CI | RMSE | MAE | CV R² Mean | CV R² Std |
+|--------|----------|--------|------|-----|------------|-----------|
+| **Converted** | **0.9312** | [0.9037, 0.9496] | 1.37 | 0.45 | 0.8928 | ±0.0140 |
+| Standardized | 0.9145 | [0.8664, 0.9532] | 1.49 | 0.41 | 0.8801 | ±0.0195 |
 
 **Key Findings:**
-- **Converted method performs best** (93.3% R²) - Distance conversion only, no weather/terrain adjustments
-- **Raw method performs similarly** (93.2% R²) - No adjustments at all
-- **Standardized method performs slightly worse** (91.9% R²) - Full standardization with weather/terrain adjustments
-- **Surprising result:** Full standardization (with weather/terrain) performs worse than distance-only conversion
-- **Possible explanation:** Weather/terrain adjustments may introduce noise or over-adjustment, reducing predictive power
+- **Converted method performs best** (93.1% R²) - Distance conversion only, no weather/terrain adjustments
+- **Standardized method performs slightly worse** (91.5% R²) - Full standardization with weather/terrain adjustments
+- **Difference:** Converted method achieves 1.8% higher R² than standardized
+- **Note:** All methods convert distances to gender-specific targets (6k for women, 8k for men)
+- **Same model used:** Random Forest for both methods ensures fair comparison
 
-**Note:** All methods convert distances to gender-specific targets (6k for women, 8k for men). The difference is in whether weather and terrain adjustments are applied.
+**What Each Method Includes:**
+1. **Converted Method:**
+   - Distance conversion to gender-specific targets (6k for women, 8k for men)
+   - Course distance adjustment (adjusts for long/short courses)
+   - **No weather/terrain adjustments**
 
-**What Standardization Includes:**
-1. **Distance Conversion:** All times converted to gender-specific target distances (6k for women, 8k for men)
-2. **Weather Adjustments:** Adjustments for temperature and dew point (heat/humidity effects)
-3. **Terrain Adjustments:** Adjustments for elevation gain/loss and course distance accuracy
+2. **Standardized Method:**
+   - Distance conversion to gender-specific targets (6k for women, 8k for men)
+   - Course distance adjustment
+   - **Weather adjustments:** Temperature and dew point (heat/humidity effects)
+   - **Terrain adjustments:** Elevation gain/loss and course distance accuracy
 
----
-
-## 5. Subgroup Analysis
-
-### Performance by Year and Gender
-
-| Year | Gender | R² Score | MAE | N |
-|------|--------|----------|-----|---|
-| 2024 | Women | 0.9471 | 0.35 | 456 |
-| 2024 | Men | 0.9097 | 0.43 | 792 |
-
-**Key Observations:**
-- **Women show slightly better model performance** (94.7% vs 91.0% R²)
-- **Women have lower prediction error** (0.35 vs 0.43 MAE)
-- **Both genders show excellent model performance** (>90% R² for both)
-- **Sample sizes are adequate** for both groups (456 women, 792 men)
+**Interpretation:** The converted method's superior performance suggests that weather and terrain adjustments may introduce noise or over-correction in this dataset. Distance conversion and course distance adjustment appear to be the most important standardization steps.
 
 ---
 
-## 6. Model Trustworthiness and Validation
+## 5. RQ1: Nationals Overlap Analysis
 
-### Validation Methodology
+### Racing Frequency and Nationals Success
 
-- **Temporal Validation:** Model trained on 2023, tested on 2024 (strict temporal split)
-- **Bootstrap Confidence Intervals:** All R² scores include 95% confidence intervals
-- **Cross-Validation:** 5-fold CV on training data to assess model stability
-- **Feature Engineering:** Features carefully designed to avoid circular dependencies with target variable
+**Research Question:** Do teams with athletes racing 4+ times perform better at nationals?
+
+**Filter Applied:** Teams must have at least 3 athletes of the given gender who have run at least one race (consistent filtering)
+
+**Key Findings:**
+
+| Category | Total Teams | Teams with 4+ Races | Top 15 Teams | Overlap | % of 4+ Teams in Top 15 | % of Top 15 with 4+ Races | p-value | Bonferroni Significant |
+|---------|-------------|---------------------|--------------|---------|------------------------|---------------------------|---------|------------------------|
+| 2023 Men | 93 | 36 (38.7%) | 14 | 9 | 25.0% | 64.3% | 0.067 | No |
+| 2023 Women | 85 | 27 (31.8%) | 15 | 9 | 33.3% | 60.0% | 0.022* | No |
+| 2024 Men | 104 | 36 (34.6%) | 15 | 11 | 30.6% | 73.3% | 0.002** | **Yes** |
+| 2024 Women | 91 | 28 (30.8%) | 15 | 11 | 39.3% | 73.3% | <0.001*** | **Yes** |
+| 2025 Men | 107 | 39 (36.4%) | 15 | 9 | 23.1% | 60.0% | 0.079 | No |
+| 2025 Women | 97 | 33 (34.0%) | 15 | 12 | 36.4% | 80.0% | <0.001*** | **Yes** |
+
+**Statistical Significance:**
+- **Bonferroni Correction:** α = 0.05 / 6 = 0.0083 (significant if p < 0.0083)
+- * p < 0.05 (uncorrected, significant)
+- ** p < 0.01 (uncorrected, highly significant)
+- *** p < 0.001 (uncorrected, very highly significant)
+
+**Key Insights:**
+1. **3 out of 6 categories show Bonferroni-corrected significance** - 2024 Men (p=0.002), 2024 Women (p<0.001), and 2025 Women (p<0.001)
+2. **2024 shows strongest relationship** - Both men and women show highly significant associations after Bonferroni correction
+3. **Women show more consistent significance** - 2 out of 3 years show Bonferroni-corrected significance (2024 and 2025)
+4. **High overlap rates** - 60-80% of top 15 teams have at least one athlete racing 4+ times:
+   - 2023: 64.3% (men), 60.0% (women)
+   - 2024: 73.3% (men), 73.3% (women)
+   - 2025: 60.0% (men), 80.0% (women)
+5. **Success rate for teams with 4+ races** - 23-39% of teams with at least one athlete racing 4+ times make top 15 at nationals
+6. **Overall pattern** - 30-39% of all teams have at least one athlete racing 4+ times, but these teams are overrepresented in top 15 (60-80% of top 15 teams)
+4. **Practical significance** - Teams with 4+ race athletes are 2-3x more likely to make top 15
+
+---
+
+## 6. RQ1: Top 25 Teams at Nationals Analysis
+
+### Team Metrics and Nationals Rank Correlations
+
+**Research Question:** What team characteristics correlate with nationals rank?
+
+**Metrics Analyzed:**
+- **Season Duration:** Days from first race to nationals (earliest team start date after excluding outlier minimum)
+- **Max Races:** Maximum races by any athlete on the team (after excluding minimum)
+- **Experience Level:** Maximum experience level (num_races × season_duration) by any athlete (after excluding minimum)
+
+**Filter Applied:** Teams must have at least 3 athletes of the given gender who have run at least one race
+
+**Robust Statistics:** For each metric, the minimum value is excluded before calculating the maximum (reduces outlier impact)
+
+### Correlation Results
+
+| Gender | Metric | Pearson r | p-value | Bonferroni-corrected p | R² | Bonferroni Significant |
+|--------|--------|-----------|---------|------------------------|----|------------------------|
+| **Men** | Season Duration (days) | -0.283 | 0.0138 | 0.0414 | 0.0801 | **Yes** |
+| **Men** | Max Races (any athlete) | -0.190 | 0.1030 | 0.3090 | 0.0361 | No |
+| **Men** | Experience Level | -0.253 | 0.0286 | 0.0858 | 0.0640 | No |
+| **Women** | Season Duration (days) | -0.046 | 0.6968 | 1.0000 | 0.0021 | No |
+| **Women** | Max Races (any athlete) | -0.232 | 0.0471 | 0.1413 | 0.0538 | No |
+| **Women** | Experience Level | -0.156 | 0.1833 | 0.5499 | 0.0243 | No |
+
+**Key Findings:**
+1. **Men's Season Duration is Bonferroni-significant** - Longer season duration (more days from first race to nationals) correlates with better rank (r = -0.283, p = 0.0138, Bonferroni-corrected p = 0.0414). This suggests teams that start racing earlier in the season tend to perform better at nationals.
+2. **Negative correlations** (better rank = lower number) suggest:
+   - Longer season duration → better rank (Men: significant)
+   - More races → better rank (trend, not significant)
+   - Higher experience → better rank (trend, not significant)
+3. **Gender differences** - Men show significant correlation with season duration, while women show no significant correlations after Bonferroni correction
+4. **Bonferroni correction** - After adjusting for multiple comparisons (α = 0.05 / 3 = 0.0167), **one correlation remains significant**: Men's Season Duration
+5. **Sample sizes** - Men: n = 75, Women: n = 74 (adequate for correlation analysis)
+
+**Interpretation:**
+- **Men's teams that start racing earlier in the season (longer season duration from first race to nationals) show significantly better performance at nationals** - This is the only Bonferroni-significant finding
+- Trends (not Bonferroni-significant) suggest:
+  - Teams with more races may perform better at nationals
+  - Teams with higher experience levels may perform better
+- Women show no significant correlations after Bonferroni correction, though trends are similar to men
+
+---
+
+## 7. RQ2: Multi-Season Analysis Results
+
+### Distribution Comparison
+
+**Analysis:** Average fastest times by gender across years (2023-2025)
+
+**Key Findings:**
+- Consistent trends across years for both men and women
+- Gender differences in performance patterns are stable over time
+- Filtering for race count consistency (difference < 2) reveals stable improvement patterns
+
+### Improvement Patterns (2023→2024, 2024→2025, 2023→2025)
+
+**Analysis:** Improvement metrics for athletes with consistent race participation
+
+**Key Findings:**
+- Athletes with consistent race counts show predictable improvement patterns
+- Improvement rates are similar across consecutive seasons when race counts are consistent
+- Multi-season analysis reveals long-term improvement trajectories
+
+### Machine Learning Results (RQ2)
+
+**Best Model:** Gradient Boosting (R² = 0.8306, 82.8% accuracy)
+
+**Validation:** Temporal split - Train on 2023, Test on 2024
+- Filter: Race count difference < 2 between consecutive seasons
+- Models achieve lower accuracy than RQ1 (82.8% vs 91.5%) due to stricter filtering
+- Still demonstrates strong predictive capability with consistent participation patterns
+
+---
+
+## 8. Model Trustworthiness and Validation
+
+### Validation Methodology Summary
+
+**1. Temporal Validation (Primary)**
+- **Train on 2023, Test on 2024:** Primary validation scenario
+- **Train on 2023, Test on 2025:** Generalization test (2 years ahead)
+- **Train on 2023+2024, Test on 2025:** Extended training scenario
+- **Why:** Prevents data leakage, provides honest performance assessment
+
+**2. 5-Fold Cross-Validation**
+- **Purpose:** Assess model stability on training data
+- **Method:** Split training data into 5 folds, train on 4, validate on 1, repeat 5 times
+- **Output:** Mean CV R² and standard deviation
+- **Interpretation:** Low variance = stable model, high variance = overfitting risk
+
+**3. Bootstrap Confidence Intervals**
+- **Purpose:** Estimate uncertainty in test set performance
+- **Method:** Resample test predictions 1000 times, calculate R² for each
+- **Output:** 95% confidence interval for R²
+- **Interpretation:** Range of likely performance values
 
 ### Model Design Principles
 
 - **No Target Leakage:** Features are calculated independently of the target variable
 - **Temporal Integrity:** Training data (2023) is never used in test set calculations
+- **Feature Engineering:** Percentiles calculated using only training data to prevent temporal leakage
 - **Robust Metrics:** Multiple performance metrics (R², RMSE, MAE) with confidence intervals
+- **Data Exclusions:** Nationals meets excluded from all analyses (not all teams participate)
+
+### Data Leakage Prevention
+
+**Critical Safeguards:**
+1. **Temporal Split:** Test data (2024) never seen during training
+2. **Percentile Calculation:** Uses only training data (2023) for percentile-based features
+3. **Feature Engineering:** Features calculated independently of target variable
+4. **R² Calculation:** Only on test set, never on training set
+5. **Bootstrap CIs:** Calculated on test set predictions only
+6. **Sensitivity Analysis:** Tests impact of potentially problematic features (see below)
+
+### Sensitivity Analysis: `last_time` Feature
+
+**Research Question:** Does including `last_time` as a feature create data leakage?
+
+**Background:** The target variable `improvement_rate = (last_time - first_time) / season_duration` uses `last_time`, raising concerns about potential data leakage if `last_time` is also included as a feature.
+
+**Methodology:** Two models trained using the same Random Forest algorithm:
+- **Model 1:** With `last_time` feature (29 features)
+- **Model 2:** Without `last_time` feature (28 features)
+
+**Results:**
+
+| Model | R² Score | 95% CI | RMSE | MAE | N Features |
+|-------|----------|--------|------|-----|------------|
+| **With `last_time`** | **0.9145** | [0.8653, 0.9516] | 1.49 | 0.41 | 29 |
+| **Without `last_time`** | **0.9144** | [0.8622, 0.9506] | 1.49 | 0.42 | 28 |
+
+**Key Findings:**
+- **Minimal impact:** Removing `last_time` changes R² by only 0.0001 (0.01%)
+- **No significant data leakage:** The 0.01% difference is negligible, suggesting `last_time` does NOT create significant data leakage
+- **Feature is legitimate:** `last_time` provides useful information without allowing the model to trivially reconstruct the target
+- **Interpretation:** The target uses `(last_time - first_time)`, not just `last_time`, so the model must still learn the relationship between features and improvement rate
+
+**Conclusion:** Including `last_time` as a feature is acceptable. The minimal performance difference (0.01%) indicates it provides legitimate information without creating problematic data leakage.
 
 ---
 
-## 7. Practical Implications
+## 9. Practical Implications
 
 ### For Coaches and Athletes
 
@@ -198,19 +478,114 @@ The model reveals that different factors matter for men vs women (see gender-spe
    - Fewer "bad races" (races worse than previous) predicts better improvement
    - Lower time variability indicates more consistent training/racing
 
-3. **Improvement Trajectory Matters (12.0%)**
-   - The rate of change in performance over the season is highly predictive
-   - Steady improvement trajectory predicts better overall improvement
+3. **Racing Frequency and Nationals Success**
+   - Teams with athletes racing 4+ times are significantly more likely to make top 15 at nationals
+   - 60-80% of top 15 teams have at least one athlete racing 4+ times
 
-4. **Racing Frequency Balance (9.1%)**
-   - Optimal racing frequency varies by athlete
-   - Too frequent or too infrequent racing can hurt improvement
+4. **Team-Level Factors**
+   - Teams with more races (max races) may perform better at nationals
+   - Experience level shows trends toward better performance
 
 ### For Researchers
 
 1. **Tree-based models are essential** for capturing non-linear relationships
 2. **Temporal validation is critical** for honest performance assessment
 3. **Feature engineering requires careful design** to avoid circular dependencies
-4. **Gender fairness should be monitored** - small differences are acceptable, large differences indicate bias
+4. **Sensitivity analysis validates feature selection** - test potentially problematic features (e.g., `last_time` showed 0.01% impact, confirming no significant leakage)
+5. **Multiple comparisons corrections are essential** - Bonferroni corrections applied to all statistical tests
+6. **Same model for comparisons** - When comparing methods (e.g., standardization), use the same model for fair comparison
+7. **Gender fairness should be monitored** - small differences are acceptable, large differences indicate bias
+8. **Race count consistency filtering** reveals stable improvement patterns across seasons
+9. **Team-level analysis** provides insights into program-level factors affecting performance
 
 ---
+
+## 10. Summary of All Research Questions
+
+### RQ1: Performance Improvement Patterns
+- **Main Finding:** Experience level and consistency are strongest predictors
+- **Model Performance:** 91.5% accuracy (Random Forest)
+- **Key Insight:** Racing more frequently correlates with better performance at nationals
+- **Team Analysis:** Top 25 teams show **one Bonferroni-significant correlation** - Men's season duration (days from first race to nationals) correlates with better rank (r = -0.283, p = 0.0138, Bonferroni-corrected p = 0.0414). Teams that start racing earlier perform better at nationals.
+
+### RQ2: Multi-Season Analysis
+- **Main Finding:** Consistent race participation reveals stable improvement patterns
+- **Model Performance:** 82.8% accuracy (Gradient Boosting) with race count filter
+- **Key Insight:** Filtering for consistent participation (difference < 2 races) enables fair multi-season comparison
+- **Validation:** Temporal validation shows models generalize to future years
+
+### RQ3: Gender Differences
+- **Main Finding:** Model shows fair performance across genders (4.1% difference)
+- **Model Performance:** Women: 94.5% R², Men: 90.4% R²
+- **Key Insight:** Different features matter for men vs women, but model captures both well
+- **Fairness:** Model does not systematically disadvantage either gender
+
+---
+
+## Appendix: Validation Methods Explained
+
+### Temporal Validation: Why It Matters
+
+**Problem with Random Split:**
+- Randomly splitting data can allow future information to leak into past predictions
+- Example: If 2025 data is in training set, model might learn patterns that don't exist in 2023-2024
+
+**Solution: Temporal Split:**
+- Train on earlier years (2023), test on later years (2024, 2025)
+- Simulates real-world scenario: predict future performance based on past data
+- Ensures model generalizes to new time periods
+
+**Three Validation Scenarios:**
+1. **Primary (2023→2024):** Most realistic, used for main results
+2. **Generalization (2023→2025):** Tests long-term prediction ability
+3. **Extended (2023+2024→2025):** Tests if more training data helps
+
+### 5-Fold Cross-Validation: How It Works
+
+**Step-by-Step:**
+1. Training data (2023) is divided into 5 equal parts
+2. For each fold:
+   - Train on 4 folds (80% of data)
+   - Validate on 1 fold (20% of data)
+   - Calculate R² on validation fold
+3. Average R² across all 5 folds = CV R² mean
+4. Standard deviation across folds = CV R² std
+
+**Example Calculation:**
+- Fold 1: R² = 0.88
+- Fold 2: R² = 0.90
+- Fold 3: R² = 0.87
+- Fold 4: R² = 0.89
+- Fold 5: R² = 0.91
+- **Mean:** 0.88
+- **Std:** ±0.015
+
+**Why 5 Folds?**
+- Balance between computational cost and statistical reliability
+- 5 folds provide good estimate of model stability
+- More folds = more reliable but more computation
+- Fewer folds = less reliable but faster
+
+### Bootstrap Confidence Intervals: Uncertainty Estimation
+
+**Step-by-Step:**
+1. Test set has N predictions (e.g., N = 1248)
+2. Resample N predictions 1000 times (with replacement)
+3. For each resample, calculate R²
+4. Sort 1000 R² values
+5. 95% CI = values at 2.5th and 97.5th percentiles
+
+**Example:**
+- 1000 bootstrap R² values range from 0.86 to 0.95
+- 2.5th percentile: 0.8604
+- 97.5th percentile: 0.9517
+- **95% CI:** [0.8604, 0.9517]
+
+**Interpretation:**
+- We are 95% confident the true R² lies between 0.8604 and 0.9517
+- Narrow CI = precise estimate
+- Wide CI = uncertain estimate
+
+---
+
+*Document generated from analysis results. For questions or details, refer to the individual analysis scripts and output CSV files.*

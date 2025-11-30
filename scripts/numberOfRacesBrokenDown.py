@@ -9,7 +9,7 @@ import pandas as pd
 
 # Output directory (can be overridden by rq1.py)
 output_dir = 'output/NumberOfRacesBrokenDown'
-os.makedirs(output_dir, exist_ok=True)
+# Directory creation moved to main() to avoid creating when imported
 
 def load_data():
     """Load all CSV files from the data directory with error handling."""
@@ -190,6 +190,8 @@ def process_year(year, result_df, meet_df, athlete_df, running_event_df, gender_
         save_dataframe_to_csv(time_diffs_df, f'{group_name}_time_diff_{year}.csv', f"Time difference (slowest-fastest) for {group_name} in {year}")
 
 def main():
+    # Create output directory only when run directly
+    os.makedirs(output_dir, exist_ok=True)
     print("=== ATHLETE RACE COUNT ANALYSIS BY YEAR ===")
     print("Using full dataset including postseason meets")
     print()
