@@ -127,6 +127,29 @@ def main():
     # Pass output directory directly to ML model
     ml_main(output_dir=rq1_output)
     
+    print("\n10. Combined Overlay Plots (2023, 2024, 2025) - Men's...")
+    # Set output directory for overlay plots
+    overlay_output_dir = os.path.join(rq1_output, 'overlay_plots')
+    os.makedirs(overlay_output_dir, exist_ok=True)
+    try:
+        # Import and run men's overlay script (now in scripts directory)
+        from create_combined_overlay_2023_2024_2025_mens import main as mens_overlay_main
+        mens_overlay_main(output_dir=overlay_output_dir)
+    except Exception as e:
+        print(f"  ERROR running men's overlay script: {e}")
+        import traceback
+        traceback.print_exc()
+    
+    print("\n11. Combined Overlay Plots (2023, 2024, 2025) - Women's...")
+    try:
+        # Import and run women's overlay script (now in scripts directory)
+        from create_combined_overlay_2023_2024_2025_womens import main as womens_overlay_main
+        womens_overlay_main(output_dir=overlay_output_dir)
+    except Exception as e:
+        print(f"  ERROR running women's overlay script: {e}")
+        import traceback
+        traceback.print_exc()
+    
     print("\n" + "="*60)
     print("RQ1 ANALYSIS COMPLETE")
     print("="*60)
@@ -142,6 +165,8 @@ def main():
     print(f"  - {rq1_output}/race_results_by_state_2023_2024_2025.pdf")
     print(f"  - {rq1_output}/raw_data_*.csv (ML model results)")
     print(f"  - {rq1_output}/raw_data_*.pdf (ML model visualizations)")
+    print(f"  - {rq1_output}/overlay_plots/combined_overlay_2023_2024_2025_mens.pdf")
+    print(f"  - {rq1_output}/overlay_plots/combined_overlay_2023_2024_2025_womens.pdf")
 
 if __name__ == "__main__":
     main()

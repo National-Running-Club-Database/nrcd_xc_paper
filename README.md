@@ -17,16 +17,16 @@ To set up the dataset:
   - Main analysis: `rq1.py`, `rq2.py`, `rq3.py` (orchestrate all analyses)
   - ML model: `ml_improvement_prediction.py` (main ML model with temporal validation)
   - Specialized analyses: gender analysis, team participation, race counts, top 25 teams, nationals overlap
-  - Visualization scripts for key findings
+  - Visualization scripts for key findings (including combined overlay plots for 2023-2025)
 
 - **`output/`**: Analysis outputs organized by research question
-  - `rq1/`: Performance improvement patterns (ML model, race analyses, top 25 teams, nationals overlap)
+  - `rq1/`: Performance improvement patterns (ML model, race analyses, top 25 teams, nationals overlap, overlay plots)
   - `rq2/`: Multi-season analysis with race count consistency filter
   - `rq3/`: Gender differences (participation, feature importance)
   - `FINDINGS_EXPLANATION.md`: Comprehensive findings summary
 
-- **`key_visualizations/`**: Generated visualizations organized by research questions
-  - RQ1: Fastest race position analysis
+- **`key_visualizations/`**: Additional generated visualizations organized by research questions
+  - RQ1: Additional visualization scripts and outputs
   - RQ2: Time change distribution analysis  
   - RQ3: Gender differences analysis
 
@@ -127,6 +127,9 @@ python scripts/first_to_last_improvement.py
 python scripts/numberOfRacesQuestion.py
 python scripts/numberOfRacesBrokenDown.py
 python scripts/ml_improvement_prediction.py  # Main ML model with 3-year validation
+# Combined overlay plots (2023, 2024, 2025) are automatically generated when running rq1.py
+# To run individually: python scripts/create_combined_overlay_2023_2024_2025_mens.py
+#                     python scripts/create_combined_overlay_2023_2024_2025_womens.py
 ```
 
 #### RQ2: Time Change Distribution
@@ -194,6 +197,7 @@ Outputs are organized by research question:
   - Team race participation
   - **Top 25 teams at nationals** (`top25_teams/`)
   - **Nationals overlap analysis** (`nationals_overlap/`) - Top 15 teams vs 4+ race athletes
+  - **Combined overlay plots** (`overlay_plots/`) - Combined 2023, 2024, 2025 overlay plots for men and women
   - State race results map
   - Time standardization comparison
   - Sensitivity analysis for `last_time` feature
@@ -252,8 +256,7 @@ The dataset provides valuable insights for runners, coaches, and teams, bridging
 ## Authors
 
 **Code Authors:**
-- Jonathan A. Karr Jr - [![ORCID](https://img.shields.io/badge/ORCID-0009--0000--1600--6122-green.svg)](https://orcid.org/0009-0000-1600-6122)
-- Ryan M. Fryer - [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--3591--3877-green.svg)](https://orcid.org/0009-0008-3591-3877)
+Hidden for blind revision
 
 ## Reproducibility
 
@@ -267,17 +270,5 @@ All analysis scripts are included with clear documentation. Key features:
 
 The `output/FINDINGS_EXPLANATION.md` file provides a comprehensive summary of all findings, methodologies, and statistical validation approaches.
 
-## Citation
-
-When using this code or data, please cite our arXiv paper:
-
-```bibtex
-@article{karr2025national,
-  title={National Running Club Database: Assessing Collegiate Club Athletes' Cross Country Race Results},
-  author={Karr Jr, Jonathan A and Darden, Ben and Pell, Nicholas and Fryer, Ryan M and Ambrose, Kayla and Hall, Evan and Bualuan, Ramzi K and Chawla, Nitesh V},
-  journal={arXiv preprint arXiv:2509.10600},
-  year={2025}
-}
-```
 
 

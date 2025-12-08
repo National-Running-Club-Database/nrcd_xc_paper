@@ -363,8 +363,8 @@ def create_overlay_plot(df_diff, year, mode, output_path):
             if len(race_df_clean) < 3:
                 continue
             
-            # Round first race minutes to whole numbers for binning
-            race_df_clean['first_race_minutes_rounded'] = race_df_clean['first_race_minutes'].round().astype(int)
+            # Truncate (floor) first race minutes to whole numbers for binning
+            race_df_clean['first_race_minutes_rounded'] = np.floor(race_df_clean['first_race_minutes']).astype(int)
             
             # Group by whole minute values and count athletes in each minute
             bin_stats = race_df_clean.groupby('first_race_minutes_rounded', observed=True).agg({
@@ -422,11 +422,15 @@ def create_overlay_plot(df_diff, year, mode, output_path):
             ax1.axvline(x=men_outlier_threshold, color='black', linestyle='--', linewidth=1.5, zorder=10)  # Outlier threshold
         
         # Update title to include IQR info
-        mode_label = 'Non-standardized' if mode == 'non-standardized' else 'Standardized'
-        title_text = f'{mode_label} - Male ({year})\nIQR: Q1 = {int(round(men_q1))} min, Q3 = {int(round(men_q3))} min'
+        if mode == 'standardized':
+            title_text = f'2025: Standardized (Weather & Elevation) - Male\nIQR: Q1 = {int(round(men_q1))} min, Q3 = {int(round(men_q3))} min'
+        else:
+            title_text = f'2025: Converted Only (8000m) - Male\nIQR: Q1 = {int(round(men_q1))} min, Q3 = {int(round(men_q3))} min'
     else:
-        mode_label = 'Non-standardized' if mode == 'non-standardized' else 'Standardized'
-        title_text = f'{mode_label} - Male ({year})'
+        if mode == 'standardized':
+            title_text = f'2025: Standardized (Weather & Elevation) - Male'
+        else:
+            title_text = f'2025: Converted Only (8000m) - Male'
     
     ax1.set_title(title_text, fontsize=11, fontweight='normal')
     ax1.legend(loc='best', fontsize=9, frameon=True, fancybox=False, edgecolor='black')
@@ -454,8 +458,8 @@ def create_overlay_plot(df_diff, year, mode, output_path):
             if len(race_df_clean) < 3:
                 continue
             
-            # Round first race minutes to whole numbers for binning
-            race_df_clean['first_race_minutes_rounded'] = race_df_clean['first_race_minutes'].round().astype(int)
+            # Truncate (floor) first race minutes to whole numbers for binning
+            race_df_clean['first_race_minutes_rounded'] = np.floor(race_df_clean['first_race_minutes']).astype(int)
             
             # Group by whole minute values and count athletes in each minute
             bin_stats = race_df_clean.groupby('first_race_minutes_rounded', observed=True).agg({
@@ -513,11 +517,15 @@ def create_overlay_plot(df_diff, year, mode, output_path):
             ax2.axvline(x=women_outlier_threshold, color='black', linestyle='--', linewidth=1.5, zorder=10)  # Outlier threshold
         
         # Update title to include IQR info
-        mode_label = 'Non-standardized' if mode == 'non-standardized' else 'Standardized'
-        title_text = f'{mode_label} - Female ({year})\nIQR: Q1 = {int(round(women_q1))} min, Q3 = {int(round(women_q3))} min'
+        if mode == 'standardized':
+            title_text = f'2025: Standardized (Weather & Elevation) - Female\nIQR: Q1 = {int(round(women_q1))} min, Q3 = {int(round(women_q3))} min'
+        else:
+            title_text = f'2025: Converted Only (6000m) - Female\nIQR: Q1 = {int(round(women_q1))} min, Q3 = {int(round(women_q3))} min'
     else:
-        mode_label = 'Non-standardized' if mode == 'non-standardized' else 'Standardized'
-        title_text = f'{mode_label} - Female ({year})'
+        if mode == 'standardized':
+            title_text = f'2025: Standardized (Weather & Elevation) - Female'
+        else:
+            title_text = f'2025: Converted Only (6000m) - Female'
     
     ax2.set_title(title_text, fontsize=11, fontweight='normal')
     ax2.legend(loc='best', fontsize=9, frameon=True, fancybox=False, edgecolor='black')
@@ -569,12 +577,19 @@ def main():
     # Load data - non-standardized (converted only)
     print("\n2. Processing non-standardized data (converted only)...")
     try:
-        df_conv = convert_exclude_nationals(
-            results_df=results_df,
-            meet_df=meet_df,
-            athlete_df=athlete_df,
-            running_event_df=running_event_df
-        )
+        # Change to data directory temporarily for convert_exclude_nationals
+        original_dir = os.getcwd()
+        data_parent = os.path.dirname(data_dir)
+        try:
+            os.chdir(data_parent)  # Change to parent of data/data so 'data' path works
+            df_conv = convert_exclude_nationals(
+                results_df=results_df,
+                meet_df=meet_df,
+                athlete_df=athlete_df,
+                running_event_df=running_event_df
+            )
+        finally:
+            os.chdir(original_dir)
         df_conv['start_date'] = pd.to_datetime(df_conv['start_date'], errors='coerce')
         df_conv_year = filter_year_data(df_conv, year)
         print(f"   Found {len(df_conv_year)} records for {year} (August 25 - November 27)")

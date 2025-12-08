@@ -21,13 +21,11 @@ sys.path.insert(0, script_dir)
 from utils import convert_exclude_nationals, standardize_convert_exclude_nationals_df
 
 # Set data directory path
-workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-data_dir = os.path.join(workspace_root, 'data', 'data')
+workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+data_dir = os.path.join(workspace_root, 'data')
 
-# Set output directory
-base_dir = os.path.dirname(script_dir)
-output_dir = os.path.join(base_dir, 'key_visualizations', 'RQ1', 'combined_overlay_2023_2024_2025')
-os.makedirs(output_dir, exist_ok=True)
+# Set default output directory (can be overridden by main() parameter)
+default_output_dir = os.path.join(workspace_root, 'key_visualizations', 'RQ1', 'combined_overlay_2023_2024_2025')
 
 # Set matplotlib style
 plt.style.use('default')
@@ -311,12 +309,22 @@ def plot_womens_subplot(ax, women_df, year, mode):
     ax.set_title(title_text, fontsize=11, fontweight='normal')
     ax.legend(loc='best', fontsize=9, frameon=True, fancybox=False, edgecolor='black')
 
-def main():
-    """Main function to create combined overlay plots."""
+def main(output_dir=None):
+    """Main function to create combined overlay plots.
+    
+    Parameters:
+    - output_dir: Optional output directory. If None, uses default location.
+    """
+    # Use provided output_dir or default
+    if output_dir is None:
+        output_dir = default_output_dir
+    os.makedirs(output_dir, exist_ok=True)
+    
     print("="*60)
     print("CREATING COMBINED RQ1 OVERLAY PLOTS FOR 2023, 2024, 2025 - WOMEN'S DATA")
     print("="*60)
     print(f"Data directory: {data_dir}")
+    print(f"Output directory: {output_dir}")
     print(f"Date range: August 25 to November 27 for each year")
     print("="*60)
     
@@ -347,18 +355,12 @@ def main():
         # Non-standardized (converted only)
         print(f"   Processing {year} non-standardized data...")
         try:
-            original_dir = os.getcwd()
-            data_parent = os.path.dirname(data_dir)
-            try:
-                os.chdir(data_parent)
-                df_conv = convert_exclude_nationals(
-                    results_df=results_df,
-                    meet_df=meet_df,
-                    athlete_df=athlete_df,
-                    running_event_df=running_event_df
-                )
-            finally:
-                os.chdir(original_dir)
+            df_conv = convert_exclude_nationals(
+                results_df=results_df,
+                meet_df=meet_df,
+                athlete_df=athlete_df,
+                running_event_df=running_event_df
+            )
             
             df_conv['start_date'] = pd.to_datetime(df_conv['start_date'], errors='coerce')
             df_conv_year = filter_year_data(df_conv, year)
