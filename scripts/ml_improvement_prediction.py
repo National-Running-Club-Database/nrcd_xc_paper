@@ -822,7 +822,7 @@ def analyze_feature_importance(model, feature_names, output_dir='output'):
         plt.figure(figsize=(14, 10))
         top_15 = feature_importance_df.head(15)
         sns.barplot(data=top_15, x='importance', y='feature')
-        plt.title('Top 15 Most Important Features for Improvement Prediction', fontsize=14, fontweight='bold')
+        plt.title('Top 15 Most Important Features for Improvement Prediction\nRandom Forest Feature Importance', fontsize=14, fontweight='bold')
         plt.xlabel('Feature Importance', fontsize=12)
         plt.ylabel('Feature', fontsize=12)
         plt.tight_layout()
@@ -901,35 +901,17 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
         
         print(f"  Training samples: {len(X_train_gender)}, Test samples: {len(X_test_gender)}")
         
-        # Test multiple models and use the best one for this gender
-        # This ensures we get the best possible performance and feature importance for each gender
-        models_to_test = {
-            'Ridge Regression': Pipeline([
-                ('scaler', StandardScaler()),
-                ('model', Ridge(alpha=1.0))
-            ]),
-            'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
-            'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
-            'Linear Regression': Pipeline([
-                ('scaler', StandardScaler()),
-                ('model', LinearRegression())
-            ])
-        }
+        # Use Random Forest for both men and women (consistent model type for comparable feature importance)
+        # Feature importance from tree-based models (Random Forest) is not comparable to 
+        # coefficient-based importance from linear models (Linear Regression, Ridge, etc.)
+        # Using the same model type ensures valid comparison between genders
+        best_model_name = 'Random Forest'
+        best_model = RandomForestRegressor(n_estimators=100, random_state=42)
+        best_model.fit(X_train_gender, y_train_gender)
+        y_pred_test = best_model.predict(X_test_gender)
+        best_r2 = r2_score(y_test_gender, y_pred_test)
         
-        best_r2 = -np.inf
-        best_model = None
-        best_model_name = None
-        
-        for model_name, model in models_to_test.items():
-            model.fit(X_train_gender, y_train_gender)
-            y_pred_test = model.predict(X_test_gender)
-            r2_test = r2_score(y_test_gender, y_pred_test)
-            if r2_test > best_r2:
-                best_r2 = r2_test
-                best_model = model
-                best_model_name = model_name
-        
-        print(f"  Best model for {gender_label}: {best_model_name} (R² = {best_r2:.4f})")
+        print(f"  Model for {gender_label}: {best_model_name} (R² = {best_r2:.4f})")
         
         # Evaluate with best model
         y_pred_gender = best_model.predict(X_test_gender)
@@ -945,19 +927,41 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
         else:
             feature_names_list = [f'feature_{i}' for i in range(X.shape[1])]
         
-        # Get feature importance (only for tree-based models)
+        # Get feature importance (only for tree-based models: Random Forest and Gradient Boosting)
+        # Random Forest and Gradient Boosting both have feature_importances_
         if hasattr(best_model, 'feature_importances_'):
+            # Direct access (Random Forest, Gradient Boosting)
             importances = best_model.feature_importances_
-        elif hasattr(best_model, 'named_steps') and hasattr(best_model.named_steps.get('model', None), 'feature_importances_'):
-            importances = best_model.named_steps['model'].feature_importances_
+        elif hasattr(best_model, 'named_steps'):
+            # Pipeline with model step
+            model_step = best_model.named_steps.get('model', None)
+            if model_step is not None and hasattr(model_step, 'feature_importances_'):
+                importances = model_step.feature_importances_
+            elif model_step is not None and hasattr(model_step, 'coef_'):
+                # For linear models in pipeline, use absolute coefficients as importance
+                coef = model_step.coef_
+                importances = np.abs(coef)
+                # Normalize to sum to 1
+                if importances.sum() > 0:
+                    importances = importances / importances.sum()
+                else:
+                    importances = np.zeros(len(feature_names_list))
+            else:
+                print(f"  Warning: Cannot extract feature importance from {best_model_name} (no feature_importances_ or coef_)")
+                importances = np.zeros(len(feature_names_list))
         elif hasattr(best_model, 'coef_'):
             # For linear models, use absolute coefficients as importance
-            coef = best_model.coef_ if hasattr(best_model, 'coef_') else best_model.named_steps['model'].coef_
+            coef = best_model.coef_
             importances = np.abs(coef)
             # Normalize to sum to 1
-            importances = importances / importances.sum()
+            if importances.sum() > 0:
+                importances = importances / importances.sum()
+            else:
+                importances = np.zeros(len(feature_names_list))
         else:
             print(f"  Warning: Cannot extract feature importance from {best_model_name}")
+            print(f"    Model type: {type(best_model)}")
+            print(f"    Has feature_importances_: {hasattr(best_model, 'feature_importances_')}")
             importances = np.zeros(len(feature_names_list))
         
         # Store importance for comparison
@@ -980,7 +984,25 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             mask = comparison_df['Gender'] == gender
             comparison_df.loc[mask, 'Rank'] = comparison_df.loc[mask, 'Importance'].rank(ascending=False, method='min')
         
-        # Pivot for easier comparison
+        # Ensure Rank column is numeric (convert from object/float to numeric)
+        comparison_df['Rank'] = pd.to_numeric(comparison_df['Rank'], errors='coerce')
+        
+        # Filter to top 15 features for each gender and sort by rank (most important first)
+        top_features_list = []
+        for gender in comparison_df['Gender'].unique():
+            gender_df = comparison_df[comparison_df['Gender'] == gender].copy()
+            # Get top 15 by rank (rank 1 is most important)
+            # Ensure Rank is numeric before using nsmallest
+            gender_df['Rank'] = pd.to_numeric(gender_df['Rank'], errors='coerce')
+            top_15 = gender_df.nsmallest(15, 'Rank')  # nsmallest because rank 1 is best
+            top_15 = top_15.sort_values('Rank', ascending=True)  # Sort by rank ascending (1, 2, 3...)
+            top_features_list.append(top_15)
+        
+        # Combine and sort: Men first, then Women, each sorted by rank
+        comparison_df_sorted = pd.concat(top_features_list, ignore_index=True)
+        comparison_df_sorted = comparison_df_sorted.sort_values(['Gender', 'Rank'], ascending=[True, True])
+        
+        # Pivot for easier comparison (use original comparison_df for pivot to keep all features)
         pivot_df = comparison_df.pivot(index='Feature', columns='Gender', values='Importance').fillna(0)
         rank_pivot_df = comparison_df.pivot(index='Feature', columns='Gender', values='Rank').fillna(999)
         
@@ -988,11 +1010,26 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
         if 'Men' in pivot_df.columns and 'Women' in pivot_df.columns:
             pivot_df['Difference'] = pivot_df['Women'] - pivot_df['Men']
             pivot_df['Abs_Difference'] = pivot_df['Difference'].abs()
-            pivot_df = pivot_df.sort_values('Abs_Difference', ascending=False)
         
-        # Save comparison
-        comparison_df.to_csv(f'{output_dir}/raw_data_gender_feature_importance_comparison.csv', index=False)
-        pivot_df.to_csv(f'{output_dir}/raw_data_gender_feature_importance_pivot.csv')
+        # Reorder pivot_df to show Men's top 15 first, then Women's top 15
+        # Get Men's top 15 features (sorted by Men importance, rank 1 first)
+        men_top15_features = comparison_df_sorted[comparison_df_sorted['Gender'] == 'Men']['Feature'].tolist()
+        # Get Women's top 15 features (sorted by Women importance, rank 1 first)
+        women_top15_features = comparison_df_sorted[comparison_df_sorted['Gender'] == 'Women']['Feature'].tolist()
+        
+        # Combine: Men's top 15 first, then Women's top 15 (excluding duplicates)
+        ordered_features = men_top15_features.copy()
+        for feat in women_top15_features:
+            if feat not in ordered_features:
+                ordered_features.append(feat)
+        
+        # Determine feature ordering for pivot_df (only include features that exist)
+        pivot_features_ordered = [f for f in ordered_features if f in pivot_df.index]
+        # Keep all other features at the end
+        other_features = [f for f in pivot_df.index if f not in pivot_features_ordered]
+        
+        # Save comparison (sorted with top 15 per gender)
+        comparison_df_sorted.to_csv(f'{output_dir}/raw_data_gender_feature_importance_comparison.csv', index=False)
         
         print(f"\nGender-specific feature importance saved to:")
         print(f"  - {output_dir}/raw_data_gender_feature_importance_comparison.csv")
@@ -1032,51 +1069,72 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             pivot_df['P_Value_Bonferroni'] = pivot_df['P_Value'] * n_tests  # Adjusted p-values
             pivot_df['Significant_Bonferroni'] = pivot_df['P_Value'] < bonferroni_alpha
             
-            # Benjamini-Hochberg FDR correction (manual implementation)
-            p_values = pivot_df['P_Value'].values
-            # Manual Benjamini-Hochberg procedure
-            sorted_indices = np.argsort(p_values)
-            p_values_fdr = np.zeros_like(p_values)
-            for i, idx in enumerate(sorted_indices):
-                p_values_fdr[idx] = p_values[idx] * n_tests / (i + 1)
-            # Ensure monotonicity (p-values should be non-decreasing)
-            for i in range(len(p_values_fdr) - 2, -1, -1):
-                if p_values_fdr[i] > p_values_fdr[i + 1]:
-                    p_values_fdr[i] = p_values_fdr[i + 1]
-            # Cap at 1.0
-            p_values_fdr = np.minimum(p_values_fdr, 1.0)
+            # Use Bonferroni for main significance flag
+            pivot_df['Significant'] = pivot_df['Significant_Bonferroni']
             
-            pivot_df['P_Value_FDR'] = p_values_fdr
-            pivot_df['Significant_FDR'] = pivot_df['P_Value_FDR'] < alpha
-            
-            # Use FDR for main significance flag (less conservative than Bonferroni)
-            pivot_df['Significant'] = pivot_df['Significant_FDR']
-            
-            # Significance level based on uncorrected p-values (for display)
-            pivot_df['Significance_Level'] = pivot_df['P_Value'].apply(
-                lambda p: '***' if p < 0.001 else '**' if p < 0.01 else '*' if p < 0.05 else ''
-            )
-            
-            # Add corrected significance markers
+            # Significance markers based on Bonferroni correction
             pivot_df['Significance_Bonferroni'] = pivot_df['P_Value'].apply(
                 lambda p: '***' if p < bonferroni_alpha else ''
             )
-            pivot_df['Significance_FDR'] = pivot_df['P_Value_FDR'].apply(
-                lambda p: '***' if p < 0.001 else '**' if p < 0.01 else '*' if p < 0.05 else ''
-            )
+            
+            # Now reorder pivot_df with all significance columns
+            pivot_df_reordered = pivot_df.loc[pivot_features_ordered + other_features].copy()
             
             print(f"\nMultiple Comparisons Correction Applied:")
             print(f"  Number of tests: {n_tests}")
             print(f"  Bonferroni alpha: {bonferroni_alpha:.6f} (0.05 / {n_tests})")
-            print(f"  FDR (Benjamini-Hochberg) alpha: {alpha}")
             print(f"  Features significant (uncorrected p<0.05): {sum(pivot_df['P_Value'] < 0.05)}")
             print(f"  Features significant (Bonferroni): {sum(pivot_df['Significant_Bonferroni'])}")
-            print(f"  Features significant (FDR): {sum(pivot_df['Significant_FDR'])}")
+        else:
+            # If no significance testing, still use reordered version and add default values
+            pivot_df_reordered = pivot_df.loc[pivot_features_ordered + other_features].copy()
+            pivot_df_reordered['P_Value'] = np.nan
+            pivot_df_reordered['Significant_Bonferroni'] = False
+        
+        # Update pivot_df to be used for visualization and save
+        pivot_df = pivot_df_reordered
+        pivot_df.to_csv(f'{output_dir}/raw_data_gender_feature_importance_pivot.csv')
+        
+        # Create new comparison CSV with requested format: Feature, Rank, Avg_Importance, Men_Importance, Women_Importance, P_Value, Bonferroni_Significant
+        if 'Men' in pivot_df.columns and 'Women' in pivot_df.columns:
+            # Calculate average importance if not already done
+            if 'Avg_Importance' not in pivot_df.columns:
+                pivot_df['Avg_Importance'] = (pivot_df['Men'] + pivot_df['Women']) / 2
+            
+            # Create comparison DataFrame with requested columns
+            comparison_output = pd.DataFrame({
+                'Feature': pivot_df.index,
+                'Men_Importance': pivot_df['Men'],
+                'Women_Importance': pivot_df['Women'],
+                'Avg_Importance': pivot_df['Avg_Importance'],
+                'P_Value': pivot_df.get('P_Value', np.nan),
+                'Bonferroni_Significant': pivot_df.get('Significant_Bonferroni', False)
+            })
+            
+            # Calculate rank based on average importance (rank 1 = most important)
+            comparison_output['Rank'] = comparison_output['Avg_Importance'].rank(ascending=False, method='min')
+            comparison_output['Rank'] = pd.to_numeric(comparison_output['Rank'], errors='coerce')
+            
+            # Sort by rank (most important first)
+            comparison_output = comparison_output.sort_values('Rank', ascending=True)
+            
+            # Reorder columns as requested
+            comparison_output = comparison_output[['Feature', 'Rank', 'Avg_Importance', 'Men_Importance', 'Women_Importance', 'P_Value', 'Bonferroni_Significant']]
+            
+            # Save the new format
+            comparison_output.to_csv(f'{output_dir}/raw_data_gender_feature_importance_comparison.csv', index=False)
         
         # Create visualization
         if 'Men' in pivot_df.columns and 'Women' in pivot_df.columns:
-            # Get top 15 features by absolute difference
-            top_features = pivot_df.head(15).index
+            # Get top 15 features based on average importance (Men + Women) / 2
+            # Calculate average importance for each feature
+            pivot_df['Avg_Importance'] = (pivot_df['Men'] + pivot_df['Women']) / 2
+            
+            # Get top 15 features by average importance, sorted descending (most important first)
+            top_features_df = pivot_df.nlargest(15, 'Avg_Importance').sort_values('Avg_Importance', ascending=False)
+            top_features = top_features_df.index.tolist()
+            # Reverse so most important is at top (for horizontal bar chart, index 0 is at bottom)
+            top_features = top_features[::-1]
             
             fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
             
@@ -1087,11 +1145,11 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             men_vals = [pivot_df.loc[f, 'Men'] for f in top_features]
             women_vals = [pivot_df.loc[f, 'Women'] for f in top_features]
             
-            # Color bars based on significance
+            # Color bars based on Bonferroni significance (significant between genders)
             men_colors = []
             women_colors = []
             for f in top_features:
-                is_sig = pivot_df.loc[f, 'Significant'] if 'Significant' in pivot_df.columns else False
+                is_sig = pivot_df.loc[f, 'Significant_Bonferroni'] if 'Significant_Bonferroni' in pivot_df.columns else False
                 if is_sig:
                     men_colors.append('#2E86AB')  # Blue for significant
                     women_colors.append('#A23B72')  # Purple for significant
@@ -1106,10 +1164,10 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             max_importance = max(max(men_vals), max(women_vals))
             ax1.set_xlim(0, max_importance * 1.15)  # Add 15% padding for markers
             
-            # Add significance markers
-            if 'Significance_Level' in pivot_df.columns:
+            # Add significance markers (use Bonferroni significance markers)
+            if 'Significance_Bonferroni' in pivot_df.columns:
                 for i, f in enumerate(top_features):
-                    sig_level = pivot_df.loc[f, 'Significance_Level']
+                    sig_level = pivot_df.loc[f, 'Significance_Bonferroni']
                     if sig_level:
                         # Position marker at the right edge of the bars with small offset
                         max_val = max(men_vals[i], women_vals[i])
@@ -1122,26 +1180,27 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             ax1.set_yticks(x)
             ax1.set_yticklabels(top_features)
             ax1.set_xlabel('Feature Importance', fontsize=12)
-            # Count significant features
-            n_sig_fdr = sum(pivot_df.loc[top_features, 'Significant_FDR']) if 'Significant_FDR' in pivot_df.columns else 0
-            n_sig_bonf = sum(pivot_df.loc[top_features, 'Significant_Bonferroni']) if 'Significant_Bonferroni' in pivot_df.columns else 0
+            # Count significant features (across ALL features, not just top 15 displayed)
+            n_sig_bonf_all = sum(pivot_df['Significant_Bonferroni']) if 'Significant_Bonferroni' in pivot_df.columns else 0
+            # Also count within displayed top 15
+            n_sig_bonf_top15 = sum(pivot_df.loc[top_features, 'Significant_Bonferroni']) if 'Significant_Bonferroni' in pivot_df.columns else 0
             
-            ax1.set_title(f'Feature Importance Comparison: Men vs Women\n'
-                         f'(Colored = FDR Significant, *p<0.05, **p<0.01, ***p<0.001)\n'
-                         f'FDR Significant: {n_sig_fdr}, Bonferroni Significant: {n_sig_bonf}', 
+            ax1.set_title(f'Random Forest Feature Importance Comparison: Men vs Women\n'
+                         f'(Colored = Bonferroni Significant Between Genders, ***p<Bonferroni threshold)\n'
+                         f'Bonferroni Significant: {n_sig_bonf_all} total ({n_sig_bonf_top15} shown)', 
                          fontsize=12, fontweight='bold')
             ax1.legend(fontsize=11)
             ax1.grid(True, alpha=0.3, axis='x')
             
             # Plot 2: Difference plot with significance
             differences = [pivot_df.loc[f, 'Difference'] for f in top_features]
-            sig_levels = [pivot_df.loc[f, 'Significance_Level'] if 'Significance_Level' in pivot_df.columns else '' 
+            sig_levels = [pivot_df.loc[f, 'Significance_Bonferroni'] if 'Significance_Bonferroni' in pivot_df.columns else '' 
                          for f in top_features]
             
-            # Color based on significance
+            # Color based on Bonferroni significance (significant between genders)
             diff_colors = []
             for i, f in enumerate(top_features):
-                is_sig = pivot_df.loc[f, 'Significant'] if 'Significant' in pivot_df.columns else False
+                is_sig = pivot_df.loc[f, 'Significant_Bonferroni'] if 'Significant_Bonferroni' in pivot_df.columns else False
                 if is_sig:
                     diff_colors.append('#E63946' if differences[i] > 0 else '#06A77D')  # Red/Green for significant
                 else:
@@ -1156,9 +1215,9 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             ax2.set_yticks(x)
             ax2.set_yticklabels(top_features)
             ax2.set_xlabel('Difference (Women - Men)', fontsize=12)
-            ax2.set_title(f'Feature Importance Differences\n'
-                         f'(Red/Green = FDR Significant, Gray = Not Significant)\n'
-                         f'FDR: {n_sig_fdr} significant, Bonferroni: {n_sig_bonf} significant', 
+            ax2.set_title(f'Random Forest Feature Importance Differences\n'
+                         f'(Red/Green = Bonferroni Significant Between Genders, Gray = Not Significant)\n'
+                         f'Bonferroni Significant: {n_sig_bonf_all} total ({n_sig_bonf_top15} shown)', 
                          fontsize=12, fontweight='bold')
             ax2.axvline(x=0, color='black', linestyle='--', linewidth=1)
             ax2.grid(True, alpha=0.3, axis='x')
@@ -1184,31 +1243,6 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
             
             # Print significant features (with corrections)
             if 'Significant' in pivot_df.columns:
-                # Uncorrected
-                sig_uncorrected = pivot_df[pivot_df['P_Value'] < 0.05].sort_values('Abs_Difference', ascending=False)
-                print(f"\nStatistically Significant Feature Differences (Uncorrected, p < 0.05):")
-                print("-" * 90)
-                print(f"{'Feature':<30} {'Men':<12} {'Women':<12} {'Difference':<12} {'P-Value':<10} {'FDR':<10}")
-                print("-" * 90)
-                for f in sig_uncorrected.index:
-                    print(f"{f:<30} {pivot_df.loc[f, 'Men']:<12.6f} {pivot_df.loc[f, 'Women']:<12.6f} "
-                          f"{pivot_df.loc[f, 'Difference']:<12.6f} {pivot_df.loc[f, 'P_Value']:<10.4f} "
-                          f"{pivot_df.loc[f, 'P_Value_FDR']:<10.4f}")
-                
-                # FDR corrected
-                sig_fdr = pivot_df[pivot_df['Significant_FDR']].sort_values('Abs_Difference', ascending=False)
-                if len(sig_fdr) > 0:
-                    print(f"\nStatistically Significant Feature Differences (FDR Corrected, q < 0.05):")
-                    print("-" * 90)
-                    print(f"{'Feature':<30} {'Men':<12} {'Women':<12} {'Difference':<12} {'P-Value':<10} {'FDR':<10}")
-                    print("-" * 90)
-                    for f in sig_fdr.index:
-                        print(f"{f:<30} {pivot_df.loc[f, 'Men']:<12.6f} {pivot_df.loc[f, 'Women']:<12.6f} "
-                              f"{pivot_df.loc[f, 'Difference']:<12.6f} {pivot_df.loc[f, 'P_Value']:<10.4f} "
-                              f"{pivot_df.loc[f, 'P_Value_FDR']:<10.4f}")
-                else:
-                    print(f"\nNo features remain significant after FDR correction.")
-                
                 # Bonferroni corrected
                 sig_bonf = pivot_df[pivot_df['Significant_Bonferroni']].sort_values('Abs_Difference', ascending=False)
                 if len(sig_bonf) > 0:

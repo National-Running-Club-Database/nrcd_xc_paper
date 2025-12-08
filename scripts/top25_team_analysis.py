@@ -3,9 +3,9 @@ Top 25 Teams at Nationals Analysis
 
 This script analyzes the top 25 teams at nationals each year (2023-2025) for men and women.
 For each team, it calculates:
-- Season duration (days from first race to nationals)
-- Max races (maximum races by any athlete on the team)
-- Experience level (maximum num_races * season_duration by any athlete)
+- Season duration (days from first race to nationals, team-level)
+- Max races (maximum races by any athlete on the team, after excluding min)
+- Experience level (max_races × season_duration, where season_duration is the team-level duration from first race to nationals)
 
 Then performs correlation analysis to identify relationships.
 
@@ -105,9 +105,10 @@ def calculate_team_metrics(team_id, year, gender, df, athlete_team_df):
     """
     Calculate metrics for a team in a given year:
     - first_race_date: Earliest race date after excluding earliest outlier (robust min)
-    - season_duration: Days from first race to nationals
+    - season_duration: Days from first race to nationals (team-level)
     - max_races: Maximum number of races after excluding min race count (robust max)
-    - experience_level: Maximum experience level after excluding min value (robust max)
+    - experience_level: max_races × season_duration (team-level calculation)
+      where season_duration is the team-level duration from first race to nationals
     
     Filter: Requires at least 3 athletes of the given gender.
     For each metric, only the minimum value is excluded before calculating the maximum.
@@ -188,7 +189,7 @@ def calculate_team_metrics(team_id, year, gender, df, athlete_team_df):
     else:
         first_race_date = min(athlete_start_dates)  # Fallback if not enough values
     
-    # Calculate season duration: first race to nationals
+    # Calculate season duration: first race to nationals (team-level)
     season_duration = (nationals_date - first_race_date).days
     
     # For max_races: exclude min race count only, then take max of remaining
@@ -200,14 +201,9 @@ def calculate_team_metrics(team_id, year, gender, df, athlete_team_df):
     else:
         max_num_races = max(race_counts)  # Fallback if not enough values
     
-    # For experience_level: exclude min only, then take max of remaining
-    experience_levels = athlete_metrics_df['experience_level'].tolist()
-    if len(experience_levels) >= 3:
-        experience_levels_sorted = sorted(experience_levels)
-        experience_levels_filtered = experience_levels_sorted[1:]  # Exclude min only
-        max_experience_level = max(experience_levels_filtered)  # Max of remaining
-    else:
-        max_experience_level = max(experience_levels)  # Fallback if not enough values
+    # Experience level = max_races × season_duration (team-level calculation)
+    # season_duration is the team-level duration from first race to nationals
+    experience_level = max_num_races * season_duration
     
     avg_season_duration = athlete_metrics_df['season_duration'].mean()
     
@@ -215,7 +211,7 @@ def calculate_team_metrics(team_id, year, gender, df, athlete_team_df):
         'team_id': team_id,
         'first_race_date': first_race_date,
         'max_races': int(max_num_races),  # Integer, not decimal
-        'experience_level': max_experience_level,
+        'experience_level': experience_level,  # max_races × max_season_duration
         'season_duration': season_duration,  # Days from first race to nationals
         'avg_athlete_season_duration': avg_season_duration,
         'num_athletes': len(athlete_metrics),

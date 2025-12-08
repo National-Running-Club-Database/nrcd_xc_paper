@@ -7,6 +7,7 @@ This script runs all analyses related to RQ1:
 - Team race participation analysis
 - Nationals overlap analysis (racing more → better at nationals)
 - Top 25 teams at nationals analysis (correlations with rank)
+- Weekly participation analysis (meets, athletes per week)
 - Main ML model for improvement prediction
 
 All outputs are saved to output/rq1/
@@ -97,7 +98,16 @@ def main():
     nationals_main()
     nationals_overlap_analysis.output_dir = original_output
     
-    print("\n6. Top 25 Teams at Nationals Analysis...")
+    print("\n6. Weekly Participation Analysis...")
+    from weekly_participation_analysis import main as weekly_main
+    import weekly_participation_analysis
+    original_output = weekly_participation_analysis.output_dir
+    weekly_participation_analysis.output_dir = os.path.join(rq1_output, 'weekly_participation')
+    os.makedirs(weekly_participation_analysis.output_dir, exist_ok=True)
+    weekly_main()
+    weekly_participation_analysis.output_dir = original_output
+    
+    print("\n7. Top 25 Teams at Nationals Analysis...")
     from top25_team_analysis import main as top25_main
     import top25_team_analysis
     original_output = top25_team_analysis.output_dir
@@ -106,13 +116,13 @@ def main():
     top25_main()
     top25_team_analysis.output_dir = original_output
     
-    print("\n7. State Race Results Map...")
+    print("\n8. State Race Results Map...")
     import state_race_results_map
     state_race_results_map.output_dir = rq1_output
     from state_race_results_map import main as state_map_main
     state_map_main()
     
-    print("\n8. Main ML Model - Improvement Prediction (3-year validation)...")
+    print("\n9. Main ML Model - Improvement Prediction (3-year validation)...")
     from ml_improvement_prediction import main as ml_main
     # Pass output directory directly to ML model
     ml_main(output_dir=rq1_output)
@@ -128,6 +138,7 @@ def main():
     print(f"  - {rq1_output}/team_race_participation/")
     print(f"  - {rq1_output}/nationals_overlap/")
     print(f"  - {rq1_output}/top25_teams/")
+    print(f"  - {rq1_output}/weekly_participation/")
     print(f"  - {rq1_output}/race_results_by_state_2023_2024_2025.pdf")
     print(f"  - {rq1_output}/raw_data_*.csv (ML model results)")
     print(f"  - {rq1_output}/raw_data_*.pdf (ML model visualizations)")

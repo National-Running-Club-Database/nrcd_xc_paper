@@ -1,150 +1,150 @@
 year,gender,rank,team_name,team_id,first_race_date,season_duration,max_races,experience_level,avg_athlete_season_duration,num_athletes,total_races
-2023,Men,1,University of Michigan,124,2023-09-23,49,3,105,20.16,50,103
-2023,Men,2,Virginia Tech,167,2023-09-01,71,5,315,28.03,60,181
-2023,Men,3,California Polytechnic State University,4,2023-09-01,71,3,150,15.98,53,102
-2023,Men,4,Ohio State University,116,2023-09-08,64,4,200,21.79,24,52
-2023,Men,5,University of Wisconsin,61,2023-09-09,63,5,245,16.19,54,116
-2023,Men,6,Georgia Tech,75,2023-09-16,56,3,126,13.65,37,58
-2023,Men,7,Northeastern University,188,2023-09-16,56,5,175,16.69,65,161
-2023,Men,8,University of Illinois,56,2023-09-08,64,3,150,21.36,44,73
-2023,Men,9,Purdue University,117,2023-09-08,64,4,200,26.21,86,174
-2023,Men,10,University of Maryland,159,2023-09-16,56,4,140,16.93,43,102
-2023,Men,11,University of Notre Dame,1,2023-09-01,71,7,399,30.0,23,64
-2023,Men,12,Michigan State University,112,2023-09-15,57,4,172,16.85,47,96
-2023,Men,13,NC State University,79,2023-09-16,56,4,168,23.1,39,94
-2023,Men,14,Northwestern University,49,2023-09-30,42,4,112,16.27,22,50
-2023,Men,15,Boston College,172,2023-09-23,49,3,84,18.1,29,60
-2023,Men,16,University of Connecticut,203,2023-09-23,49,4,112,15.11,44,110
-2023,Men,17,Stanford University,11,2023-10-14,28,2,14,4.26,23,37
-2023,Men,18,University of Virginia,164,2023-09-16,56,4,140,18.88,43,91
-2023,Men,19,Villanova University,165,2023-09-09,63,3,126,27.63,19,41
-2023,Men,20,University of Tennessee,96,2023-09-09,63,4,196,27.5,28,72
-2023,Men,21,Cornell University,178,2023-09-23,49,3,84,14.29,24,43
-2023,Men,22,University of Central Florida,84,2023-09-30,42,3,84,16.48,23,45
-2023,Men,23,University of Massachusetts Amherst,204,2023-09-16,56,4,140,12.28,61,115
-2023,Men,24,University of Delaware,158,2023-09-30,42,3,63,12.21,34,69
-2023,Men,25,University of Kentucky,122,2023-09-16,56,3,126,18.53,17,29
-2023,Women,1,University of Wisconsin,61,2023-09-23,49,4,112,11.33,24,44
-2023,Women,2,University of Michigan,124,2023-09-23,49,3,105,18.67,54,106
-2023,Women,3,Virginia Tech,167,2023-09-16,56,4,140,24.39,33,95
-2023,Women,4,Penn State University,146,2023-09-16,56,4,140,11.85,114,198
-2023,Women,5,Purdue University,117,2023-09-08,64,4,200,24.21,28,60
-2023,Women,6,Ohio State University,116,2023-09-08,64,5,250,26.79,24,60
-2023,Women,7,University of Illinois,56,2023-09-08,64,3,150,27.12,25,46
-2023,Women,8,University of Notre Dame,1,2023-09-08,64,4,200,27.93,14,38
-2023,Women,9,Northeastern University,188,2023-09-16,56,5,175,16.43,46,109
-2023,Women,11,University of Virginia,164,2023-09-16,56,3,105,16.03,31,56
-2023,Women,12,University of Maryland,159,2023-09-16,56,4,140,14.7,20,39
-2023,Women,13,University of Minnesota,59,2023-09-23,49,4,140,15.06,16,34
-2023,Women,14,Princeton University,147,2023-09-23,49,3,84,9.62,16,27
-2023,Women,15,Georgetown University,138,2023-09-16,56,2,42,4.67,33,43
-2023,Women,16,University of Pittsburgh,162,2023-09-16,56,4,140,14.58,48,82
-2023,Women,17,Boston College,172,2023-09-23,49,3,84,17.68,19,41
-2023,Women,18,California Polytechnic State University,4,2023-09-01,71,3,150,10.25,20,39
-2023,Women,19,Michigan State University,112,2023-09-15,57,4,172,15.33,21,42
-2023,Women,20,Brown University,174,2023-09-23,49,4,112,10.5,14,25
-2023,Women,21,University of Tennessee,96,2023-09-09,63,4,196,17.77,26,52
-2023,Women,22,Cornell University,178,2023-09-23,49,3,84,14.44,16,29
-2023,Women,23,Miami University of Ohio,111,2023-09-08,64,4,200,28.15,13,31
-2023,Women,24,University of Missouri,60,2023-09-15,57,3,129,12.4,15,22
-2023,Women,25,University of Massachusetts Amherst,204,2023-09-16,56,4,140,11.81,32,62
-2024,Men,1,Virginia Tech,167,2024-09-06,64,5,390,22.17,65,185
-2024,Men,2,California Polytechnic State University,4,2024-08-30,71,4,228,22.23,48,118
-2024,Men,3,University of Michigan,124,2024-09-13,57,4,172,17.29,65,132
-2024,Men,4,University of Virginia,164,2024-09-21,49,4,112,15.43,44,90
-2024,Men,5,Georgia Tech,75,2024-08-31,70,5,280,22.88,48,99
-2024,Men,6,University of Wisconsin,61,2024-09-06,64,6,258,11.49,51,104
-2024,Men,7,University of Illinois,56,2024-09-07,63,4,168,20.49,41,91
-2024,Men,8,Penn State University,146,2024-09-14,56,5,175,21.19,75,186
-2024,Men,9,Ohio State University,116,2024-08-30,71,6,342,24.93,30,87
-2024,Men,10,University of Maryland,159,2024-09-14,56,4,140,21.0,48,117
-2024,Men,11,Cornell University,178,2024-09-21,49,2,70,15.91,22,32
-2024,Men,12,Purdue University,117,2024-09-07,63,3,147,19.44,81,137
-2024,Men,13,"University of California, Davis",15,2024-10-19,21,2,14,3.36,25,37
-2024,Men,14,Stanford University,11,2024-10-19,21,2,14,4.26,23,37
-2024,Men,15,Michigan State University,112,2024-09-13,57,4,172,15.45,53,108
-2024,Men,16,NC State University,79,2024-09-06,64,4,200,22.62,34,74
-2024,Men,17,Northeastern University,188,2024-09-14,56,4,168,25.1,41,97
-2024,Men,18,West Virginia University,169,2024-08-30,71,4,200,24.68,19,42
-2024,Men,19,Northwestern University,49,2024-09-28,42,3,63,9.69,13,24
-2024,Men,20,University of North Carolina Charlotte,90,2024-09-14,56,2,84,17.5,12,17
-2024,Men,21,University of Notre Dame,1,2024-08-30,71,8,456,17.5,32,84
-2024,Men,22,University of Central Florida,84,2024-10-26,14,1,0,0.0,20,20
-2024,Men,23,Boston College,172,2024-09-14,56,5,210,26.53,19,49
-2024,Men,24,University of Connecticut,203,2024-09-21,49,4,140,18.98,45,110
-2024,Men,25,University of Delaware,158,2024-09-14,56,4,140,21.79,28,73
-2024,Women,1,University of Michigan,124,2024-09-13,57,4,172,13.25,55,97
-2024,Women,2,University of Wisconsin,61,2024-09-06,64,6,258,11.53,38,75
-2024,Women,3,University of Virginia,164,2024-09-21,49,4,112,16.65,37,77
-2024,Women,4,Cornell University,178,2024-09-21,49,2,70,15.0,21,30
-2024,Women,5,Virginia Tech,167,2024-09-21,49,4,112,17.16,31,81
-2024,Women,6,California Polytechnic State University,4,2024-09-21,49,4,140,13.53,15,33
-2024,Women,7,Northeastern University,188,2024-09-14,56,4,168,26.65,26,66
-2024,Women,8,Ohio State University,116,2024-09-06,64,5,250,28.7,23,72
-2024,Women,9,University of Tennessee,96,2024-09-07,63,6,294,28.08,24,71
-2024,Women,10,Boston College,172,2024-09-14,56,5,210,27.22,27,65
-2024,Women,11,University of Maryland,159,2024-09-14,56,4,140,14.58,24,47
-2024,Women,12,Brown University,174,2024-09-21,49,3,105,18.67,12,24
-2024,Women,13,Michigan State University,112,2024-09-13,57,4,172,23.16,32,81
-2024,Women,14,Northwestern University,49,2024-10-12,28,2,14,2.0,7,9
-2024,Women,15,University of Central Florida,84,2024-10-26,14,1,0,0.0,5,5
-2024,Women,16,Stanford University,11,2024-10-19,21,2,14,3.23,13,19
-2024,Women,17,University of Illinois,56,2024-09-07,63,4,168,21.0,21,51
-2024,Women,18,"University of California, Davis",15,2024-10-19,21,2,14,2.19,16,21
-2024,Women,19,University of Connecticut,203,2024-09-21,49,4,140,25.74,31,88
-2024,Women,20,University of North Carolina Charlotte,90,2024-09-14,56,2,84,31.5,4,7
-2024,Women,21,Penn State University,146,2024-09-14,56,5,175,15.57,67,146
-2024,Women,22,University of Delaware,158,2024-09-14,56,4,140,28.31,26,77
-2024,Women,23,Georgia Tech,75,2024-08-31,70,4,224,36.17,12,28
-2024,Women,24,American University,130,2024-09-14,56,3,105,16.8,15,30
-2024,Women,25,Purdue University,117,2024-09-07,63,3,147,21.0,34,64
-2025,Men,1,University of Michigan,124,2025-09-12,57,4,172,17.91,67,137
-2025,Men,2,University of Virginia,164,2025-09-13,56,5,210,19.88,50,107
-2025,Men,3,Virginia Tech,167,2025-09-05,64,5,250,29.18,65,184
-2025,Men,4,University of Illinois,56,2025-09-06,63,4,168,24.04,46,112
-2025,Men,5,California Polytechnic State University,4,2025-08-29,71,4,228,14.41,41,74
-2025,Men,6,University of Wisconsin,61,2025-09-05,64,5,215,13.7,40,89
-2025,Men,7,University of Kentucky,122,2025-09-13,56,3,126,27.0,21,47
-2025,Men,8,Georgia Tech,75,2025-09-20,49,3,84,16.18,33,65
-2025,Men,9,Purdue University,117,2025-09-20,49,3,150,17.68,63,112
-2025,Men,10,University of Massachusetts Amherst,204,2025-09-13,56,6,252,21.13,52,130
-2025,Men,11,Penn State University,146,2025-09-20,49,3,105,16.03,62,112
-2025,Men,12,Boston College,172,2025-09-13,56,4,168,23.33,24,55
-2025,Men,13,University of Maryland,159,2025-09-13,56,4,168,20.46,56,122
-2025,Men,14,Northwestern University,49,2025-10-04,35,3,42,10.0,14,28
-2025,Men,15,Cornell University,178,2025-09-21,48,3,102,18.0,34,53
-2025,Men,16,University of Notre Dame,1,2025-08-29,71,5,285,15.92,24,51
-2025,Men,17,University of Pittsburgh,162,2025-09-20,49,4,140,21.0,34,80
-2025,Men,18,University of North Carolina Charlotte,90,2025-09-13,56,3,105,19.25,16,32
-2025,Men,19,NC State University,79,2025-09-06,63,4,168,25.67,36,84
-2025,Men,20,University of Delaware,158,2025-09-19,50,3,108,24.3,40,91
-2025,Men,21,"University of California, Davis",15,2025-10-18,21,3,171,7.88,17,30
-2025,Men,22,Michigan State University,112,2025-08-29,71,4,228,17.33,61,136
-2025,Men,23,University of Connecticut,203,2025-09-20,49,5,175,20.7,47,129
-2025,Men,24,Ohio State University,116,2025-09-05,64,5,250,18.88,32,80
-2025,Men,25,West Virginia University,169,2025-08-29,71,4,228,35.26,19,50
-2025,Women,1,Virginia Tech,167,2025-09-13,56,5,250,22.82,34,77
-2025,Women,2,Penn State University,146,2025-09-20,49,3,105,16.83,47,83
-2025,Women,3,University of Michigan,124,2025-09-12,57,4,172,17.02,63,127
-2025,Women,4,University of North Carolina Charlotte,90,2025-09-13,56,2,56,11.67,3,5
-2025,Women,5,University of Massachusetts Amherst,204,2025-09-13,56,6,252,23.72,18,55
-2025,Women,6,University of Tennessee,96,2025-09-12,57,5,180,31.45,22,75
-2025,Women,7,University of Virginia,164,2025-09-13,56,4,168,17.17,47,85
-2025,Women,8,Cornell University,178,2025-09-21,48,2,68,17.0,26,39
-2025,Women,9,Boston College,172,2025-09-13,56,4,168,18.33,21,43
-2025,Women,10,University of Wisconsin,61,2025-09-19,50,5,215,6.1,29,50
-2025,Women,11,Michigan State University,112,2025-08-29,71,4,172,14.48,44,87
-2025,Women,12,Brown University,174,2025-09-20,49,5,175,16.69,13,29
-2025,Women,13,University of Pittsburgh,162,2025-09-20,49,4,140,13.79,33,59
-2025,Women,14,Georgia Tech,75,2025-09-20,49,4,144,21.5,16,33
-2025,Women,15,University of Illinois,56,2025-09-06,63,4,168,22.0,28,65
-2025,Women,16,Stanford University,11,2025-10-18,21,2,14,2.1,10,13
-2025,Women,17,Princeton University,147,2025-09-13,56,4,168,13.12,16,29
-2025,Women,18,"University of California, Davis",15,2025-10-18,21,2,14,3.18,11,16
-2025,Women,19,University of Vermont,208,2025-09-13,56,2,84,13.26,19,25
-2025,Women,20,James Madison University,139,2025-08-29,71,6,342,25.55,22,56
-2025,Women,21,University of Maryland,159,2025-09-13,56,4,168,20.33,21,41
-2025,Women,22,Northeastern University,188,2025-09-13,56,5,210,23.48,31,84
-2025,Women,23,University of Delaware,158,2025-09-19,50,3,108,19.56,27,56
-2025,Women,24,University of Kentucky,122,2025-09-13,56,3,126,24.0,7,14
-2025,Women,25,Purdue University,117,2025-09-20,49,3,105,13.43,37,61
+2023,Men,1,University of Michigan,124,2023-09-23,49,3,147,20.16,50,103
+2023,Men,2,Virginia Tech,167,2023-09-01,71,5,355,28.03,60,181
+2023,Men,3,California Polytechnic State University,4,2023-09-01,71,3,213,15.98,53,102
+2023,Men,4,Ohio State University,116,2023-09-08,64,4,256,21.79,24,52
+2023,Men,5,University of Wisconsin,61,2023-09-09,63,5,315,16.19,54,116
+2023,Men,6,Georgia Tech,75,2023-09-16,56,3,168,13.65,37,58
+2023,Men,7,Northeastern University,188,2023-09-16,56,5,280,16.69,65,161
+2023,Men,8,University of Illinois,56,2023-09-08,64,3,192,21.36,44,73
+2023,Men,9,Purdue University,117,2023-09-08,64,4,256,26.21,86,174
+2023,Men,10,University of Maryland,159,2023-09-16,56,4,224,16.93,43,102
+2023,Men,11,University of Notre Dame,1,2023-09-01,71,7,497,30.0,23,64
+2023,Men,12,Michigan State University,112,2023-09-15,57,4,228,16.85,47,96
+2023,Men,13,NC State University,79,2023-09-16,56,4,224,23.1,39,94
+2023,Men,14,Northwestern University,49,2023-09-30,42,4,168,16.27,22,50
+2023,Men,15,Boston College,172,2023-09-23,49,3,147,18.1,29,60
+2023,Men,16,University of Connecticut,203,2023-09-23,49,4,196,15.11,44,110
+2023,Men,17,Stanford University,11,2023-10-14,28,2,56,4.26,23,37
+2023,Men,18,University of Virginia,164,2023-09-16,56,4,224,18.88,43,91
+2023,Men,19,Villanova University,165,2023-09-09,63,3,189,27.63,19,41
+2023,Men,20,University of Tennessee,96,2023-09-09,63,4,252,27.5,28,72
+2023,Men,21,Cornell University,178,2023-09-23,49,3,147,14.29,24,43
+2023,Men,22,University of Central Florida,84,2023-09-30,42,3,126,16.48,23,45
+2023,Men,23,University of Massachusetts Amherst,204,2023-09-16,56,4,224,12.28,61,115
+2023,Men,24,University of Delaware,158,2023-09-30,42,3,126,12.21,34,69
+2023,Men,25,University of Kentucky,122,2023-09-16,56,3,168,18.53,17,29
+2023,Women,1,University of Wisconsin,61,2023-09-23,49,4,196,11.33,24,44
+2023,Women,2,University of Michigan,124,2023-09-23,49,3,147,18.67,54,106
+2023,Women,3,Virginia Tech,167,2023-09-16,56,4,224,24.39,33,95
+2023,Women,4,Penn State University,146,2023-09-16,56,4,224,11.85,114,198
+2023,Women,5,Purdue University,117,2023-09-08,64,4,256,24.21,28,60
+2023,Women,6,Ohio State University,116,2023-09-08,64,5,320,26.79,24,60
+2023,Women,7,University of Illinois,56,2023-09-08,64,3,192,27.12,25,46
+2023,Women,8,University of Notre Dame,1,2023-09-08,64,4,256,27.93,14,38
+2023,Women,9,Northeastern University,188,2023-09-16,56,5,280,16.43,46,109
+2023,Women,11,University of Virginia,164,2023-09-16,56,3,168,16.03,31,56
+2023,Women,12,University of Maryland,159,2023-09-16,56,4,224,14.7,20,39
+2023,Women,13,University of Minnesota,59,2023-09-23,49,4,196,15.06,16,34
+2023,Women,14,Princeton University,147,2023-09-23,49,3,147,9.62,16,27
+2023,Women,15,Georgetown University,138,2023-09-16,56,2,112,4.67,33,43
+2023,Women,16,University of Pittsburgh,162,2023-09-16,56,4,224,14.58,48,82
+2023,Women,17,Boston College,172,2023-09-23,49,3,147,17.68,19,41
+2023,Women,18,California Polytechnic State University,4,2023-09-01,71,3,213,10.25,20,39
+2023,Women,19,Michigan State University,112,2023-09-15,57,4,228,15.33,21,42
+2023,Women,20,Brown University,174,2023-09-23,49,4,196,10.5,14,25
+2023,Women,21,University of Tennessee,96,2023-09-09,63,4,252,17.77,26,52
+2023,Women,22,Cornell University,178,2023-09-23,49,3,147,14.44,16,29
+2023,Women,23,Miami University of Ohio,111,2023-09-08,64,4,256,28.15,13,31
+2023,Women,24,University of Missouri,60,2023-09-15,57,3,171,12.4,15,22
+2023,Women,25,University of Massachusetts Amherst,204,2023-09-16,56,4,224,11.81,32,62
+2024,Men,1,Virginia Tech,167,2024-09-06,64,5,320,22.17,65,185
+2024,Men,2,California Polytechnic State University,4,2024-08-30,71,4,284,22.23,48,118
+2024,Men,3,University of Michigan,124,2024-09-13,57,4,228,17.29,65,132
+2024,Men,4,University of Virginia,164,2024-09-21,49,4,196,15.43,44,90
+2024,Men,5,Georgia Tech,75,2024-08-31,70,5,350,22.88,48,99
+2024,Men,6,University of Wisconsin,61,2024-09-06,64,6,384,11.49,51,104
+2024,Men,7,University of Illinois,56,2024-09-07,63,4,252,20.49,41,91
+2024,Men,8,Penn State University,146,2024-09-14,56,5,280,21.19,75,186
+2024,Men,9,Ohio State University,116,2024-08-30,71,6,426,24.93,30,87
+2024,Men,10,University of Maryland,159,2024-09-14,56,4,224,21.0,48,117
+2024,Men,11,Cornell University,178,2024-09-21,49,2,98,15.91,22,32
+2024,Men,12,Purdue University,117,2024-09-07,63,3,189,19.44,81,137
+2024,Men,13,"University of California, Davis",15,2024-10-19,21,2,42,3.36,25,37
+2024,Men,14,Stanford University,11,2024-10-19,21,2,42,4.26,23,37
+2024,Men,15,Michigan State University,112,2024-09-13,57,4,228,15.45,53,108
+2024,Men,16,NC State University,79,2024-09-06,64,4,256,22.62,34,74
+2024,Men,17,Northeastern University,188,2024-09-14,56,4,224,25.1,41,97
+2024,Men,18,West Virginia University,169,2024-08-30,71,4,284,24.68,19,42
+2024,Men,19,Northwestern University,49,2024-09-28,42,3,126,9.69,13,24
+2024,Men,20,University of North Carolina Charlotte,90,2024-09-14,56,2,112,17.5,12,17
+2024,Men,21,University of Notre Dame,1,2024-08-30,71,8,568,17.5,32,84
+2024,Men,22,University of Central Florida,84,2024-10-26,14,1,14,0.0,20,20
+2024,Men,23,Boston College,172,2024-09-14,56,5,280,26.53,19,49
+2024,Men,24,University of Connecticut,203,2024-09-21,49,4,196,18.98,45,110
+2024,Men,25,University of Delaware,158,2024-09-14,56,4,224,21.79,28,73
+2024,Women,1,University of Michigan,124,2024-09-13,57,4,228,13.25,55,97
+2024,Women,2,University of Wisconsin,61,2024-09-06,64,6,384,11.53,38,75
+2024,Women,3,University of Virginia,164,2024-09-21,49,4,196,16.65,37,77
+2024,Women,4,Cornell University,178,2024-09-21,49,2,98,15.0,21,30
+2024,Women,5,Virginia Tech,167,2024-09-21,49,4,196,17.16,31,81
+2024,Women,6,California Polytechnic State University,4,2024-09-21,49,4,196,13.53,15,33
+2024,Women,7,Northeastern University,188,2024-09-14,56,4,224,26.65,26,66
+2024,Women,8,Ohio State University,116,2024-09-06,64,5,320,28.7,23,72
+2024,Women,9,University of Tennessee,96,2024-09-07,63,6,378,28.08,24,71
+2024,Women,10,Boston College,172,2024-09-14,56,5,280,27.22,27,65
+2024,Women,11,University of Maryland,159,2024-09-14,56,4,224,14.58,24,47
+2024,Women,12,Brown University,174,2024-09-21,49,3,147,18.67,12,24
+2024,Women,13,Michigan State University,112,2024-09-13,57,4,228,23.16,32,81
+2024,Women,14,Northwestern University,49,2024-10-12,28,2,56,2.0,7,9
+2024,Women,15,University of Central Florida,84,2024-10-26,14,1,14,0.0,5,5
+2024,Women,16,Stanford University,11,2024-10-19,21,2,42,3.23,13,19
+2024,Women,17,University of Illinois,56,2024-09-07,63,4,252,21.0,21,51
+2024,Women,18,"University of California, Davis",15,2024-10-19,21,2,42,2.19,16,21
+2024,Women,19,University of Connecticut,203,2024-09-21,49,4,196,25.74,31,88
+2024,Women,20,University of North Carolina Charlotte,90,2024-09-14,56,2,112,31.5,4,7
+2024,Women,21,Penn State University,146,2024-09-14,56,5,280,15.57,67,146
+2024,Women,22,University of Delaware,158,2024-09-14,56,4,224,28.31,26,77
+2024,Women,23,Georgia Tech,75,2024-08-31,70,4,280,36.17,12,28
+2024,Women,24,American University,130,2024-09-14,56,3,168,16.8,15,30
+2024,Women,25,Purdue University,117,2024-09-07,63,3,189,21.0,34,64
+2025,Men,1,University of Michigan,124,2025-09-12,57,4,228,17.91,67,137
+2025,Men,2,University of Virginia,164,2025-09-13,56,5,280,19.88,50,107
+2025,Men,3,Virginia Tech,167,2025-09-05,64,5,320,29.18,65,184
+2025,Men,4,University of Illinois,56,2025-09-06,63,4,252,24.04,46,112
+2025,Men,5,California Polytechnic State University,4,2025-08-29,71,4,284,14.41,41,74
+2025,Men,6,University of Wisconsin,61,2025-09-05,64,5,320,13.7,40,89
+2025,Men,7,University of Kentucky,122,2025-09-13,56,3,168,27.0,21,47
+2025,Men,8,Georgia Tech,75,2025-09-20,49,3,147,16.18,33,65
+2025,Men,9,Purdue University,117,2025-09-20,49,3,147,17.68,63,112
+2025,Men,10,University of Massachusetts Amherst,204,2025-09-13,56,6,336,21.13,52,130
+2025,Men,11,Penn State University,146,2025-09-20,49,3,147,16.03,62,112
+2025,Men,12,Boston College,172,2025-09-13,56,4,224,23.33,24,55
+2025,Men,13,University of Maryland,159,2025-09-13,56,4,224,20.46,56,122
+2025,Men,14,Northwestern University,49,2025-10-04,35,3,105,10.0,14,28
+2025,Men,15,Cornell University,178,2025-09-21,48,3,144,18.0,34,53
+2025,Men,16,University of Notre Dame,1,2025-08-29,71,5,355,15.92,24,51
+2025,Men,17,University of Pittsburgh,162,2025-09-20,49,4,196,21.0,34,80
+2025,Men,18,University of North Carolina Charlotte,90,2025-09-13,56,3,168,19.25,16,32
+2025,Men,19,NC State University,79,2025-09-06,63,4,252,25.67,36,84
+2025,Men,20,University of Delaware,158,2025-09-19,50,3,150,24.3,40,91
+2025,Men,21,"University of California, Davis",15,2025-10-18,21,3,63,7.88,17,30
+2025,Men,22,Michigan State University,112,2025-08-29,71,4,284,17.33,61,136
+2025,Men,23,University of Connecticut,203,2025-09-20,49,5,245,20.7,47,129
+2025,Men,24,Ohio State University,116,2025-09-05,64,5,320,18.88,32,80
+2025,Men,25,West Virginia University,169,2025-08-29,71,4,284,35.26,19,50
+2025,Women,1,Virginia Tech,167,2025-09-13,56,5,280,22.82,34,77
+2025,Women,2,Penn State University,146,2025-09-20,49,3,147,16.83,47,83
+2025,Women,3,University of Michigan,124,2025-09-12,57,4,228,17.02,63,127
+2025,Women,4,University of North Carolina Charlotte,90,2025-09-13,56,2,112,11.67,3,5
+2025,Women,5,University of Massachusetts Amherst,204,2025-09-13,56,6,336,23.72,18,55
+2025,Women,6,University of Tennessee,96,2025-09-12,57,5,285,31.45,22,75
+2025,Women,7,University of Virginia,164,2025-09-13,56,4,224,17.17,47,85
+2025,Women,8,Cornell University,178,2025-09-21,48,2,96,17.0,26,39
+2025,Women,9,Boston College,172,2025-09-13,56,4,224,18.33,21,43
+2025,Women,10,University of Wisconsin,61,2025-09-19,50,5,250,6.1,29,50
+2025,Women,11,Michigan State University,112,2025-08-29,71,4,284,14.48,44,87
+2025,Women,12,Brown University,174,2025-09-20,49,5,245,16.69,13,29
+2025,Women,13,University of Pittsburgh,162,2025-09-20,49,4,196,13.79,33,59
+2025,Women,14,Georgia Tech,75,2025-09-20,49,4,196,21.5,16,33
+2025,Women,15,University of Illinois,56,2025-09-06,63,4,252,22.0,28,65
+2025,Women,16,Stanford University,11,2025-10-18,21,2,42,2.1,10,13
+2025,Women,17,Princeton University,147,2025-09-13,56,4,224,13.12,16,29
+2025,Women,18,"University of California, Davis",15,2025-10-18,21,2,42,3.18,11,16
+2025,Women,19,University of Vermont,208,2025-09-13,56,2,112,13.26,19,25
+2025,Women,20,James Madison University,139,2025-08-29,71,6,426,25.55,22,56
+2025,Women,21,University of Maryland,159,2025-09-13,56,4,224,20.33,21,41
+2025,Women,22,Northeastern University,188,2025-09-13,56,5,280,23.48,31,84
+2025,Women,23,University of Delaware,158,2025-09-19,50,3,150,19.56,27,56
+2025,Women,24,University of Kentucky,122,2025-09-13,56,3,168,24.0,7,14
+2025,Women,25,Purdue University,117,2025-09-20,49,3,147,13.43,37,61

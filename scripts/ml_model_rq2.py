@@ -24,6 +24,8 @@ setup_paths()
 
 import pandas as pd
 import numpy as np
+import seaborn as sns
+from scipy import stats
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
@@ -41,7 +43,7 @@ from ml_improvement_prediction import (
 )
 from sklearn.metrics import r2_score
 
-def create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X, y, output_dir='output/rq2'):
+def create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X, y, output_dir='output/rq2', best_model_name=None, best_model=None):
     """
     Create RQ2 prediction plots showing:
     1. Predicting 2025 based on 2023 training (generalization)
@@ -52,8 +54,16 @@ def create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X,
     - Models trained only on training years (2023 or 2023+2024)
     - Predictions made only on 2025 test data
     - R² calculated only on 2025 test data (never on training data)
+    
+    Parameters:
+    -----------
+    best_model_name : str, optional
+        Name of the best performing model
+    best_model : model object, optional
+        The best performing model (for feature importance extraction)
     """
     import matplotlib.pyplot as plt
+    import numpy as np
     
     print("\nCreating RQ2 prediction plots (combined PDF)...")
     print("⚠️  DATA LEAKAGE PREVENTION:")
@@ -64,6 +74,14 @@ def create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X,
     os.makedirs(output_dir, exist_ok=True)
     
     gender_labels = {'M': 'Men', 'F': 'Women'}
+    
+    # Determine model name from results if not provided
+    if best_model_name is None:
+        valid_results = {k: v for k, v in results.items() 
+                        if k not in ['_2025_generalization', '_2025_extended'] 
+                        and 'y_test' in v and 'y_pred' in v}
+        if len(valid_results) > 0:
+            best_model_name = max(valid_results.keys(), key=lambda k: valid_results[k]['r2'])
     
     # Get 2025 test data ONLY (never use training data for R²)
     test_2025_mask = features_df_filtered['year'] == 2025
@@ -78,11 +96,14 @@ def create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X,
     print(f"   ✅ Using {len(X_test_2025)} test samples from 2025 only (no training data)")
     
     # Create figure with 4 subplots (2 rows × 2 columns)
-    # Row 1: Generalization (2023 training), Row 2: Extended (2023+2024 training)
-    # Column 1: Men, Column 2: Women
     fig, axes = plt.subplots(2, 2, figsize=(16, 14))
-    fig.suptitle('Multi-Season Predictions: Predicting 2025 Performance', 
-                 fontsize=16, fontweight='bold', y=0.995)
+    axes = axes.reshape(2, 2)
+    
+    # Main title with model name
+    model_title = f'Multi-Season Predictions: Predicting 2025 Performance'
+    if best_model_name:
+        model_title += f'\nModel: {best_model_name}'
+    fig.suptitle(model_title, fontsize=16, fontweight='bold', y=0.995)
     
     plot_data = {}
     
@@ -211,6 +232,377 @@ def create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X,
     
     print(f"  Saved combined prediction plots to {output_path}")
     print(f"RQ2 prediction plots saved to {output_dir}/")
+
+def analyze_rq2_gender_specific_feature_importance(X, y, features_df, output_dir='output/rq2'):
+    """
+    Analyze feature importance separately for men and women in RQ2 (like RQ1 does).
+    
+    This function trains separate models for each gender to determine if
+    different factors are important for predicting improvement in men vs women.
+    
+    Parameters:
+    -----------
+    X : DataFrame or array
+        Feature matrix
+    y : Series or array
+        Target variable
+    features_df : DataFrame
+        DataFrame with metadata (gender, year, etc.)
+    output_dir : str
+        Output directory for results
+    """
+    import matplotlib.pyplot as plt
+    from sklearn.metrics import r2_score, mean_absolute_error
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+    from sklearn.linear_model import LinearRegression, Ridge
+    
+    print("\n" + "="*60)
+    print("RQ2 GENDER-SPECIFIC FEATURE IMPORTANCE ANALYSIS")
+    print("="*60)
+    
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Use temporal split: train on 2023, test on 2024
+    features_df_aligned = features_df.reset_index(drop=True)
+    X_aligned = X.reset_index(drop=True) if hasattr(X, 'reset_index') else X
+    y_aligned = y.reset_index(drop=True) if hasattr(y, 'reset_index') else y
+    
+    train_mask = features_df_aligned['year'] == 2023
+    test_mask = features_df_aligned['year'] == 2024
+    
+    # Use positional indexing to ensure alignment
+    if hasattr(X_aligned, 'iloc'):
+        X_train_all = X_aligned.iloc[train_mask.values]
+        X_test_all = X_aligned.iloc[test_mask.values]
+    else:
+        X_train_all = X_aligned[train_mask.values]
+        X_test_all = X_aligned[test_mask.values]
+    
+    if hasattr(y_aligned, 'iloc'):
+        y_train_all = y_aligned.iloc[train_mask.values]
+        y_test_all = y_aligned.iloc[test_mask.values]
+    else:
+        y_train_all = y_aligned[train_mask.values]
+        y_test_all = y_aligned[test_mask.values]
+    
+    features_train = features_df_aligned[train_mask].reset_index(drop=True)
+    features_test = features_df_aligned[test_mask].reset_index(drop=True)
+    
+    # Get feature names
+    if hasattr(X, 'columns'):
+        feature_names_list = X.columns.tolist()
+    else:
+        feature_names_list = [f'feature_{i}' for i in range(X.shape[1])]
+    
+    gender_importance_comparison = []
+    
+    for gender in ['M', 'F']:
+        gender_label = 'Men' if gender == 'M' else 'Women'
+        print(f"\nAnalyzing {gender_label}...")
+        
+        # Filter training and test data by gender
+        train_gender_mask = features_train['gender'] == gender
+        test_gender_mask = features_test['gender'] == gender
+        
+        if train_gender_mask.sum() < 50:
+            print(f"  Insufficient data for {gender_label} (n={train_gender_mask.sum()})")
+            continue
+        
+        X_train_gender = X_train_all.iloc[train_gender_mask.values] if hasattr(X_train_all, 'iloc') else X_train_all[train_gender_mask.values]
+        y_train_gender = y_train_all.iloc[train_gender_mask.values] if hasattr(y_train_all, 'iloc') else y_train_all[train_gender_mask.values]
+        X_test_gender = X_test_all.iloc[test_gender_mask.values] if hasattr(X_test_all, 'iloc') else X_test_all[test_gender_mask.values]
+        y_test_gender = y_test_all.iloc[test_gender_mask.values] if hasattr(y_test_all, 'iloc') else y_test_all[test_gender_mask.values]
+        
+        print(f"  Training samples: {len(X_train_gender)}, Test samples: {len(X_test_gender)}")
+        
+        # Use Random Forest for both men and women (consistent model type for comparable feature importance)
+        best_model_name = 'Random Forest'
+        best_model = RandomForestRegressor(n_estimators=100, random_state=42)
+        best_model.fit(X_train_gender, y_train_gender)
+        y_pred_test = best_model.predict(X_test_gender)
+        best_r2 = r2_score(y_test_gender, y_pred_test)
+        
+        print(f"  Model for {gender_label}: {best_model_name} (R² = {best_r2:.4f})")
+        
+        # Get feature importance
+        importances = np.zeros(len(feature_names_list))
+        if hasattr(best_model, 'feature_importances_'):
+            importances = best_model.feature_importances_
+        elif hasattr(best_model, 'named_steps'):
+            model_step = best_model.named_steps.get('model', None)
+            if model_step is not None and hasattr(model_step, 'feature_importances_'):
+                importances = model_step.feature_importances_
+        elif hasattr(best_model, 'coef_'):
+            coef = best_model.coef_ if hasattr(best_model, 'coef_') else best_model.named_steps['model'].coef_
+            importances = np.abs(coef)
+            if importances.sum() > 0:
+                importances = importances / importances.sum()
+        
+        # Store importance for comparison
+        for i, (feature, importance) in enumerate(zip(feature_names_list, importances)):
+            gender_importance_comparison.append({
+                'Gender': gender_label,
+                'Feature': feature,
+                'Importance': importance,
+                'Best_Model': best_model_name,
+                'R²': best_r2,
+                'Rank': None
+            })
+    
+    # Create comparison DataFrame
+    if len(gender_importance_comparison) == 0:
+        print("No gender-specific feature importance data collected.")
+        return None, None
+    
+    comparison_df = pd.DataFrame(gender_importance_comparison)
+    
+    # Calculate ranks within each gender
+    for gender in comparison_df['Gender'].unique():
+        mask = comparison_df['Gender'] == gender
+        comparison_df.loc[mask, 'Rank'] = comparison_df.loc[mask, 'Importance'].rank(ascending=False, method='min')
+    
+    # Ensure Rank column is numeric
+    comparison_df['Rank'] = pd.to_numeric(comparison_df['Rank'], errors='coerce')
+    
+    # Filter to top 15 features for each gender and sort by rank
+    top_features_list = []
+    for gender in comparison_df['Gender'].unique():
+        gender_df = comparison_df[comparison_df['Gender'] == gender].copy()
+        gender_df['Rank'] = pd.to_numeric(gender_df['Rank'], errors='coerce')
+        top_15 = gender_df.nsmallest(15, 'Rank')
+        top_15 = top_15.sort_values('Rank', ascending=True)
+        top_features_list.append(top_15)
+    
+    # Combine and sort
+    comparison_df_sorted = pd.concat(top_features_list, ignore_index=True)
+    comparison_df_sorted = comparison_df_sorted.sort_values(['Gender', 'Rank'], ascending=[True, True])
+    
+    # Pivot for easier comparison
+    pivot_df = comparison_df.pivot(index='Feature', columns='Gender', values='Importance').fillna(0)
+    
+    # Calculate difference in importance
+    if 'Men' in pivot_df.columns and 'Women' in pivot_df.columns:
+        pivot_df['Difference'] = pivot_df['Women'] - pivot_df['Men']
+        pivot_df['Abs_Difference'] = pivot_df['Difference'].abs()
+    
+    # Test statistical significance of feature importance differences using bootstrap
+    print("\nTesting statistical significance of feature importance differences...")
+    significance_results = {}
+    
+    # Bootstrap feature importance for men and women
+    n_bootstrap = 100
+    men_mask = features_train['gender'] == 'M'
+    women_mask = features_train['gender'] == 'F'
+    
+    X_train_men = X_train_all.iloc[men_mask.values] if hasattr(X_train_all, 'iloc') else X_train_all[men_mask.values]
+    y_train_men = y_train_all.iloc[men_mask.values] if hasattr(y_train_all, 'iloc') else y_train_all[men_mask.values]
+    X_train_women = X_train_all.iloc[women_mask.values] if hasattr(X_train_all, 'iloc') else X_train_all[women_mask.values]
+    y_train_women = y_train_all.iloc[women_mask.values] if hasattr(y_train_all, 'iloc') else y_train_all[women_mask.values]
+    
+    if len(X_train_men) >= 50 and len(X_train_women) >= 50:
+        print(f"  Running bootstrap test (n={n_bootstrap})...")
+        
+        # Bootstrap for men
+        men_importances_boot = {f: [] for f in feature_names_list}
+        for _ in range(n_bootstrap):
+            indices = np.random.choice(len(X_train_men), len(X_train_men), replace=True)
+            if hasattr(X_train_men, 'iloc'):
+                X_boot = X_train_men.iloc[indices]
+                y_boot = y_train_men.iloc[indices] if hasattr(y_train_men, 'iloc') else y_train_men[indices]
+            else:
+                X_boot = X_train_men[indices]
+                y_boot = y_train_men[indices]
+            
+            model = RandomForestRegressor(n_estimators=100, random_state=None)
+            model.fit(X_boot, y_boot)
+            for i, feature in enumerate(feature_names_list):
+                men_importances_boot[feature].append(model.feature_importances_[i])
+        
+        # Bootstrap for women
+        women_importances_boot = {f: [] for f in feature_names_list}
+        for _ in range(n_bootstrap):
+            indices = np.random.choice(len(X_train_women), len(X_train_women), replace=True)
+            if hasattr(X_train_women, 'iloc'):
+                X_boot = X_train_women.iloc[indices]
+                y_boot = y_train_women.iloc[indices] if hasattr(y_train_women, 'iloc') else y_train_women[indices]
+            else:
+                X_boot = X_train_women[indices]
+                y_boot = y_train_women[indices]
+            
+            model = RandomForestRegressor(n_estimators=100, random_state=None)
+            model.fit(X_boot, y_boot)
+            for i, feature in enumerate(feature_names_list):
+                women_importances_boot[feature].append(model.feature_importances_[i])
+        
+        # Test significance for each feature
+        for feature in feature_names_list:
+            men_vals = np.array(men_importances_boot[feature])
+            women_vals = np.array(women_importances_boot[feature])
+            t_stat, p_value = stats.ttest_ind(men_vals, women_vals)
+            significance_results[feature] = {'p_value': p_value}
+        
+        # Apply Bonferroni correction
+        n_tests = len(significance_results)
+        alpha = 0.05
+        bonferroni_alpha = alpha / n_tests
+        
+        # Add to pivot_df
+        pivot_df['P_Value'] = pivot_df.index.map(lambda f: significance_results.get(f, {}).get('p_value', 1.0))
+        pivot_df['P_Value_Bonferroni'] = pivot_df['P_Value'] * n_tests
+        pivot_df['Significant_Bonferroni'] = pivot_df['P_Value'] < bonferroni_alpha
+        pivot_df['Significance_Bonferroni'] = pivot_df['P_Value'].apply(
+            lambda p: '***' if p < bonferroni_alpha else ''
+        )
+    else:
+        # If no significance testing, add default values
+        pivot_df['P_Value'] = np.nan
+        pivot_df['Significant_Bonferroni'] = False
+    
+    # Get top 15 features by average importance
+    pivot_df['Avg_Importance'] = (pivot_df['Men'] + pivot_df['Women']) / 2
+    top_features_df = pivot_df.nlargest(15, 'Avg_Importance').sort_values('Avg_Importance', ascending=False)
+    top_features = top_features_df.index.tolist()
+    # Reverse so most important is at top (for horizontal bar chart, index 0 is at bottom)
+    top_features = top_features[::-1]
+    
+    # Create visualization (similar to RQ1)
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 10))
+    
+    # Plot 1: Side-by-side comparison
+    x = np.arange(len(top_features))
+    width = 0.35
+    
+    men_vals = [pivot_df.loc[f, 'Men'] for f in top_features]
+    women_vals = [pivot_df.loc[f, 'Women'] for f in top_features]
+    
+    # Color bars based on Bonferroni significance
+    men_colors = []
+    women_colors = []
+    for f in top_features:
+        is_sig = pivot_df.loc[f, 'Significant_Bonferroni'] if 'Significant_Bonferroni' in pivot_df.columns else False
+        if is_sig:
+            men_colors.append('#2E86AB')  # Blue for significant
+            women_colors.append('#A23B72')  # Purple for significant
+        else:
+            men_colors.append('#6C757D')  # Gray for non-significant
+            women_colors.append('#6C757D')
+    
+    bars1 = ax1.barh(x - width/2, men_vals, width, label='Men', alpha=0.8, color=men_colors)
+    bars2 = ax1.barh(x + width/2, women_vals, width, label='Women', alpha=0.8, color=women_colors)
+    
+    max_importance = max(max(men_vals), max(women_vals))
+    ax1.set_xlim(0, max_importance * 1.15)
+    
+    # Add significance markers (use Bonferroni significance markers)
+    if 'Significance_Bonferroni' in pivot_df.columns:
+        for i, f in enumerate(top_features):
+            sig_level = pivot_df.loc[f, 'Significance_Bonferroni']
+            if sig_level:
+                max_val = max(men_vals[i], women_vals[i])
+                x_pos = max_val + (max_importance * 0.02)
+                ax1.text(x_pos, i, sig_level, 
+                        fontsize=12, fontweight='bold', va='center', ha='left',
+                        color='red' if pivot_df.loc[f, 'Difference'] > 0 else 'blue')
+    
+    ax1.set_yticks(x)
+    ax1.set_yticklabels(top_features)
+    ax1.set_xlabel('Feature Importance', fontsize=12)
+    # Count significant features (across ALL features, not just top 15 displayed)
+    n_sig_bonf_all = sum(pivot_df['Significant_Bonferroni']) if 'Significant_Bonferroni' in pivot_df.columns else 0
+    # Also count within displayed top 15
+    n_sig_bonf_top15 = sum(pivot_df.loc[top_features, 'Significant_Bonferroni']) if 'Significant_Bonferroni' in pivot_df.columns else 0
+    ax1.set_title(f'Random Forest Feature Importance Comparison: Men vs Women\n'
+                 f'(Colored = Bonferroni Significant Between Genders, ***p<Bonferroni threshold)\n'
+                 f'Bonferroni Significant: {n_sig_bonf_all} total ({n_sig_bonf_top15} shown) (RQ2)', 
+                 fontsize=12, fontweight='bold')
+    ax1.legend(fontsize=11)
+    ax1.grid(True, alpha=0.3, axis='x')
+    
+    # Plot 2: Difference plot with significance
+    differences = [pivot_df.loc[f, 'Difference'] for f in top_features]
+    sig_levels = [pivot_df.loc[f, 'Significance_Bonferroni'] if 'Significance_Bonferroni' in pivot_df.columns else '' 
+                 for f in top_features]
+    
+    # Color based on Bonferroni significance (significant between genders)
+    diff_colors = []
+    for i, f in enumerate(top_features):
+        is_sig = pivot_df.loc[f, 'Significant_Bonferroni'] if 'Significant_Bonferroni' in pivot_df.columns else False
+        if is_sig:
+            diff_colors.append('#E63946' if differences[i] > 0 else '#06A77D')
+        else:
+            diff_colors.append('#6C757D')
+    
+    bars3 = ax2.barh(x, differences, alpha=0.7, color=diff_colors)
+    
+    max_diff = max(abs(min(differences)), abs(max(differences)))
+    ax2.set_xlim(min(differences) * 1.15, max(differences) * 1.15)
+    
+    # Add significance markers
+    for i, (diff, sig) in enumerate(zip(differences, sig_levels)):
+        if sig:
+            if diff > 0:
+                x_pos = diff + (max_diff * 0.02)
+                ha = 'left'
+            else:
+                x_pos = diff - (max_diff * 0.02)
+                ha = 'right'
+            ax2.text(x_pos, i, sig, fontsize=12, fontweight='bold', 
+                    va='center', ha=ha,
+                    color='red' if diff > 0 else 'blue')
+    
+    ax2.set_yticks(x)
+    ax2.set_yticklabels(top_features)
+    ax2.set_xlabel('Difference (Women - Men)', fontsize=12)
+    ax2.set_title(f'Random Forest Feature Importance Differences\n'
+                 f'(Red/Green = Bonferroni Significant Between Genders, Gray = Not Significant)\n'
+                 f'Bonferroni Significant: {n_sig_bonf_all} total ({n_sig_bonf_top15} shown) (RQ2)', 
+                 fontsize=12, fontweight='bold')
+    ax2.axvline(x=0, color='black', linestyle='--', linewidth=1)
+    ax2.grid(True, alpha=0.3, axis='x')
+    
+    plt.tight_layout()
+    output_path = f'{output_dir}/multi_season_gender_feature_importance_comparison.pdf'
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"\nGender-specific feature importance saved to:")
+    print(f"  - {output_dir}/multi_season_gender_feature_importance_comparison.pdf")
+    
+    # Create comparison CSV with requested format: Feature, Rank, Avg_Importance, Men_Importance, Women_Importance, P_Value, Bonferroni_Significant
+    if 'Men' in pivot_df.columns and 'Women' in pivot_df.columns:
+        # Calculate average importance if not already done
+        if 'Avg_Importance' not in pivot_df.columns:
+            pivot_df['Avg_Importance'] = (pivot_df['Men'] + pivot_df['Women']) / 2
+        
+        # Create comparison DataFrame with requested columns
+        comparison_output = pd.DataFrame({
+            'Feature': pivot_df.index,
+            'Men_Importance': pivot_df['Men'],
+            'Women_Importance': pivot_df['Women'],
+            'Avg_Importance': pivot_df['Avg_Importance'],
+            'P_Value': pivot_df.get('P_Value', np.nan),
+            'Bonferroni_Significant': pivot_df.get('Significant_Bonferroni', False)
+        })
+        
+        # Calculate rank based on average importance (rank 1 = most important)
+        comparison_output['Rank'] = comparison_output['Avg_Importance'].rank(ascending=False, method='min')
+        comparison_output['Rank'] = pd.to_numeric(comparison_output['Rank'], errors='coerce')
+        
+        # Sort by rank (most important first)
+        comparison_output = comparison_output.sort_values('Rank', ascending=True)
+        
+        # Reorder columns as requested
+        comparison_output = comparison_output[['Feature', 'Rank', 'Avg_Importance', 'Men_Importance', 'Women_Importance', 'P_Value', 'Bonferroni_Significant']]
+        
+        # Save the new format
+        comparison_output.to_csv(f'{output_dir}/multi_season_gender_feature_importance_comparison.csv', index=False)
+    
+    # Also save pivot for reference
+    pivot_df.to_csv(f'{output_dir}/multi_season_gender_feature_importance_pivot.csv')
+    
+    return comparison_df_sorted, pivot_df
 
 def run_rq2_ml_analysis(df_filtered, valid_athlete_ids, output_dir='output/rq2'):
     """
@@ -348,7 +740,12 @@ def run_rq2_ml_analysis(df_filtered, valid_athlete_ids, output_dir='output/rq2')
     
     # Create custom RQ2 prediction plots (only comprehensive ones, not individual models)
     print("\nCreating RQ2 prediction plots...")
-    create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X, y, output_dir)
+    create_rq2_prediction_plots(results, test_metadata, features_df_filtered, X, y, output_dir, 
+                               best_model_name=best_model_name, best_model=best_model)
+    
+    # Create gender-specific feature importance analysis (separate models for men and women, like RQ1)
+    print("\nCreating RQ2 gender-specific feature importance analysis...")
+    analyze_rq2_gender_specific_feature_importance(X, y, features_df_filtered, output_dir)
     
     # Save model performance
     results_summary = []

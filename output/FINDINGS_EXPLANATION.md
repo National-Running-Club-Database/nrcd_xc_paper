@@ -9,7 +9,7 @@ This analysis uses machine learning to predict athlete improvement rates in coll
 1. **experience_level** is the most critical predictor (21.2%) - total racing experience matters most
 2. **Tree-based models significantly outperform linear models** - 91.5% vs 45.7% accuracy (100% improvement)
 3. **The model is fair across genders** - Women: 94.5% R², Men: 90.4% R² (4.1% difference, within acceptable bounds)
-4. **Time standardization methods** - Converted method (distance only) performs best (93.1% R²), followed by standardized (91.5% R²)
+4. **Time standardization methods** - Converted method (distance only) performs best (93.1% R²), followed by standardized (90.4% R²)
 5. **Top 15 teams at nationals have significantly more athletes racing 4+ times** - 60-80% of top 15 teams have at least one athlete with 4+ races, with **Bonferroni-corrected significance in 3 out of 6 categories** (2024 Men: p=0.002, 2024 Women: p<0.001, 2025 Women: p<0.001)
 6. **Racing frequency correlates with nationals success** - Teams with athletes racing 4+ times are 2-3x more likely to make top 15 at nationals (23-39% success rate vs. baseline)
 7. **Top 25 teams analysis** - **Men's season duration (days from first race to nationals) shows Bonferroni-significant correlation with better rank** (r = -0.283, p = 0.0138, Bonferroni-corrected p = 0.0414). Teams that start racing earlier perform better at nationals.
@@ -258,13 +258,13 @@ The model reveals that different factors matter for men vs women (see gender-spe
 
 | Method | R² Score | 95% CI | RMSE | MAE | CV R² Mean | CV R² Std |
 |--------|----------|--------|------|-----|------------|-----------|
-| **Converted** | **0.9312** | [0.9037, 0.9496] | 1.37 | 0.45 | 0.8928 | ±0.0140 |
-| Standardized | 0.9145 | [0.8664, 0.9532] | 1.49 | 0.41 | 0.8801 | ±0.0195 |
+| **Converted** | **0.9314** | [0.9077, 0.9498] | 1.37 | 0.45 | 0.8934 | ±0.0134 |
+| Standardized | 0.9036 | [0.8526, 0.9445] | 1.58 | 0.43 | 0.8848 | ±0.0336 |
 
 **Key Findings:**
 - **Converted method performs best** (93.1% R²) - Distance conversion only, no weather/terrain adjustments
-- **Standardized method performs slightly worse** (91.5% R²) - Full standardization with weather/terrain adjustments
-- **Difference:** Converted method achieves 1.8% higher R² than standardized
+- **Standardized method performs slightly worse** (90.4% R²) - Full standardization with weather/terrain adjustments
+- **Difference:** Converted method achieves 2.8 percentage points higher R² than standardized (not statistically significant)
 - **Note:** All methods convert distances to gender-specific targets (6k for women, 8k for men)
 - **Same model used:** Random Forest for both methods ensures fair comparison
 
@@ -280,7 +280,7 @@ The model reveals that different factors matter for men vs women (see gender-spe
    - **Weather adjustments:** Temperature and dew point (heat/humidity effects)
    - **Terrain adjustments:** Elevation gain/loss and course distance accuracy
 
-**Interpretation:** The converted method's superior performance suggests that weather and terrain adjustments may introduce noise or over-correction in this dataset. Distance conversion and course distance adjustment appear to be the most important standardization steps.
+**Interpretation:** The converted method's higher R² should be interpreted with caution. Weather conditions typically become cooler and more ideal as the season progresses, meaning that faster times later in the season may reflect both fitness improvement and more favorable racing conditions. This weather-related improvement pattern can artificially boost R² in the Converted method, since the slope feature (improvement trajectory) captures this combined effect. Consequently, the Standardized method, which removes weather-related performance variation, may provide a more accurate assessment of true fitness improvement, even though it yields a lower R² for prediction. The primary analyses use the Converted Only method due to its higher predictive performance, but researchers should consider the Standardized method when the goal is to assess true fitness gains rather than predict performance.
 
 ---
 
