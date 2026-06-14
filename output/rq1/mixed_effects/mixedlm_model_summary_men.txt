@@ -1,0 +1,58 @@
+Mixed-effects explanatory model
+===============================
+
+Subset: Men
+Formula: improvement_rate ~ z_num_races + z_season_duration + z_starting_percentile + z_year
+Rows used: 2752
+Unique athletes: 2752
+
+OLS (robust SE, HC3):
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:       improvement_rate   R-squared:                       0.071
+Model:                            OLS   Adj. R-squared:                  0.070
+Method:                 Least Squares   F-statistic:                     27.05
+Date:                Sat, 02 May 2026   Prob (F-statistic):           4.81e-22
+Time:                        00:39:41   Log-Likelihood:                -8283.3
+No. Observations:                2752   AIC:                         1.658e+04
+Df Residuals:                    2747   BIC:                         1.661e+04
+Df Model:                           4                                         
+Covariance Type:                  HC3                                         
+=========================================================================================
+                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------
+Intercept                -0.6154      0.094     -6.565      0.000      -0.799      -0.432
+z_num_races              -0.3297      0.055     -5.985      0.000      -0.438      -0.222
+z_season_duration         0.3582      0.112      3.204      0.001       0.139       0.577
+z_starting_percentile    -1.1882      0.125     -9.530      0.000      -1.433      -0.944
+z_year                   -0.6130      0.128     -4.800      0.000      -0.863      -0.363
+==============================================================================
+Omnibus:                      764.094   Durbin-Watson:                   1.893
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            61905.577
+Skew:                          -0.286   Prob(JB):                         0.00
+Kurtosis:                      26.228   Cond. No.                         2.77
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+
+MixedLM (random intercept by athlete_id, ML fit):
+              Mixed Linear Model Regression Results
+=================================================================
+Model:             MixedLM  Dependent Variable:  improvement_rate
+No. Observations:  2752     Method:              ML              
+No. Groups:        2752     Scale:               12.0474         
+Min. group size:   1        Log-Likelihood:      -8283.3482      
+Max. group size:   1        Converged:           Yes             
+Mean group size:   1.0                                           
+-----------------------------------------------------------------
+                      Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+-----------------------------------------------------------------
+Intercept             -0.615    0.085  -7.283 0.000 -0.781 -0.450
+z_num_races           -0.330    0.122  -2.710 0.007 -0.568 -0.091
+z_season_duration      0.358    0.087   4.110 0.000  0.187  0.529
+z_starting_percentile -1.188    0.094 -12.649 0.000 -1.372 -1.004
+z_year                -0.613    0.079  -7.721 0.000 -0.769 -0.457
+Group Var             12.047                                     
+=================================================================
+

@@ -149,6 +149,33 @@ def main():
         print(f"  ERROR running women's overlay script: {e}")
         import traceback
         traceback.print_exc()
+
+    print("\n12. Robustness: Feature Ablation (feature removal checks)...")
+    try:
+        from feature_ablation_robustness import main as ablation_main
+        ablation_main(output_dir=rq1_output)
+    except Exception as e:
+        print(f"  ERROR running feature ablation robustness: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n13. Robustness: Sensitivity Sweep (key modeling choices)...")
+    try:
+        from sensitivity_analysis_sweep import main as sensitivity_main
+        sensitivity_main(output_dir=rq1_output)
+    except Exception as e:
+        print(f"  ERROR running sensitivity sweep: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n14. Explanatory Model: Mixed-Effects (athlete random effects)...")
+    try:
+        from mixed_effects_explanatory_model import main as mixed_main
+        mixed_main(output_dir=rq1_output)
+    except Exception as e:
+        print(f"  ERROR running mixed-effects model: {e}")
+        import traceback
+        traceback.print_exc()
     
     print("\n" + "="*60)
     print("RQ1 ANALYSIS COMPLETE")
@@ -167,6 +194,9 @@ def main():
     print(f"  - {rq1_output}/raw_data_*.pdf (ML model visualizations)")
     print(f"  - {rq1_output}/overlay_plots/combined_overlay_2023_2024_2025_mens.pdf")
     print(f"  - {rq1_output}/overlay_plots/combined_overlay_2023_2024_2025_womens.pdf")
+    print(f"  - {rq1_output}/robustness_feature_ablation/ (*_men / *_women feature ablation)")
+    print(f"  - {rq1_output}/sensitivity_sweep/ (*_men / *_women sensitivity sweep)")
+    print(f"  - {rq1_output}/mixed_effects/ (mixed-effects explanatory model, men/women only)")
 
 if __name__ == "__main__":
     main()

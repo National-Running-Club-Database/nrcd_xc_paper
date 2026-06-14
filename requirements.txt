@@ -8,4 +8,5 @@ scikit-learn
 plotly
 tqdm
 numpy
+statsmodels
 
