@@ -1,0 +1,9 @@
+{
+  "random_seed": 42,
+  "bootstrap_replicates": 2000,
+  "splits": [
+    "train 2023 -> test 2024",
+    "train 2023 -> test 2025",
+    "train 2023+2024 -> test 2025"
+  ]
+}

@@ -2,57 +2,59 @@ Mixed-effects explanatory model
 ===============================
 
 Subset: Women
-Formula: improvement_rate ~ z_num_races + z_season_duration + z_starting_percentile + z_year
-Rows used: 1647
-Unique athletes: 1647
+Formula: improvement_rate ~ z_num_races + z_num_races_sq + z_season_duration + z_starting_percentile + z_year
+Rows used: 2030
+Unique athletes: 1487
 
 OLS (robust SE, HC3):
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:       improvement_rate   R-squared:                       0.030
-Model:                            OLS   Adj. R-squared:                  0.027
-Method:                 Least Squares   F-statistic:                     11.06
-Date:                Sat, 02 May 2026   Prob (F-statistic):           7.44e-09
-Time:                        00:39:41   Log-Likelihood:                -4812.4
-No. Observations:                1647   AIC:                             9635.
-Df Residuals:                    1642   BIC:                             9662.
-Df Model:                           4                                         
+Dep. Variable:       improvement_rate   R-squared:                       0.066
+Model:                            OLS   Adj. R-squared:                  0.063
+Method:                 Least Squares   F-statistic:                     21.08
+Date:                Mon, 20 Jul 2026   Prob (F-statistic):           1.33e-20
+Time:                        23:45:34   Log-Likelihood:                -6597.8
+No. Observations:                2030   AIC:                         1.321e+04
+Df Residuals:                    2024   BIC:                         1.324e+04
+Df Model:                           5                                         
 Covariance Type:                  HC3                                         
 =========================================================================================
                             coef    std err          z      P>|z|      [0.025      0.975]
 -----------------------------------------------------------------------------------------
-Intercept                -0.4500      0.111     -4.051      0.000      -0.668      -0.232
-z_num_races              -0.1602      0.047     -3.414      0.001      -0.252      -0.068
-z_season_duration         0.2816      0.133      2.114      0.034       0.021       0.543
-z_starting_percentile    -0.6760      0.127     -5.309      0.000      -0.926      -0.426
-z_year                   -0.3181      0.164     -1.942      0.052      -0.639       0.003
+Intercept                -0.9768      0.139     -7.012      0.000      -1.250      -0.704
+z_num_races              -0.3583      0.141     -2.543      0.011      -0.634      -0.082
+z_num_races_sq            0.0569      0.068      0.833      0.405      -0.077       0.191
+z_season_duration         0.2784      0.198      1.406      0.160      -0.110       0.667
+z_starting_percentile    -1.6242      0.165     -9.870      0.000      -1.947      -1.302
+z_year                   -0.3785      0.141     -2.685      0.007      -0.655      -0.102
 ==============================================================================
-Omnibus:                      828.117   Durbin-Watson:                   1.824
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):            23377.900
-Skew:                           1.772   Prob(JB):                         0.00
-Kurtosis:                      21.114   Cond. No.                         2.74
+Omnibus:                      457.244   Durbin-Watson:                   1.503
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            12144.608
+Skew:                           0.419   Prob(JB):                         0.00
+Kurtosis:                      14.953   Cond. No.                         3.92
 ==============================================================================
 
 Notes:
 [1] Standard Errors are heteroscedasticity robust (HC3)
 
 MixedLM (random intercept by athlete_id, ML fit):
-             Mixed Linear Model Regression Results
-================================================================
-Model:              MixedLM Dependent Variable: improvement_rate
-No. Observations:   1647    Method:             ML              
-No. Groups:         1647    Scale:              10.1032         
-Min. group size:    1       Log-Likelihood:     -4812.4359      
-Max. group size:    1       Converged:          Yes             
-Mean group size:    1.0                                         
-----------------------------------------------------------------
-                      Coef.  Std.Err.   z    P>|z| [0.025 0.975]
-----------------------------------------------------------------
-Intercept             -0.450    0.104 -4.316 0.000 -0.654 -0.246
-z_num_races           -0.160    0.105 -1.524 0.128 -0.366  0.046
-z_season_duration      0.282    0.158  1.779 0.075 -0.029  0.592
-z_starting_percentile -0.676    0.106 -6.375 0.000 -0.884 -0.468
-z_year                -0.318    0.121 -2.622 0.009 -0.556 -0.080
-Group Var             10.103                                    
-================================================================
+              Mixed Linear Model Regression Results
+=================================================================
+Model:             MixedLM  Dependent Variable:  improvement_rate
+No. Observations:  2030     Method:              ML              
+No. Groups:        1487     Scale:               31.4154         
+Min. group size:   1        Log-Likelihood:      -6593.1428      
+Max. group size:   3        Converged:           Yes             
+Mean group size:   1.4                                           
+-----------------------------------------------------------------
+                      Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+-----------------------------------------------------------------
+Intercept             -1.010    0.190  -5.324 0.000 -1.381 -0.638
+z_num_races           -0.375    0.214  -1.751 0.080 -0.794  0.045
+z_num_races_sq         0.092    0.120   0.762 0.446 -0.144  0.327
+z_season_duration      0.219    0.170   1.292 0.196 -0.113  0.551
+z_starting_percentile -1.724    0.150 -11.519 0.000 -2.017 -1.430
+z_year                -0.402    0.136  -2.955 0.003 -0.669 -0.135
+Group Var              7.841    0.547                            
+=================================================================
 

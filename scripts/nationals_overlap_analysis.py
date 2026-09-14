@@ -4,6 +4,7 @@ import sys
 # Setup paths for imports (works from main directory or scripts directory)
 from _setup_paths import setup_paths
 setup_paths()
+from load_nrcd_data import get_data_dir
 
 import pandas as pd
 import numpy as np
@@ -25,8 +26,8 @@ def get_total_teams_with_3plus_athletes(year, gender):
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Load team and athlete-team association data
-    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
-    athlete_df = pd.read_csv('data/athlete.csv')
+    athlete_team_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete_team_association.csv'))
+    athlete_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete.csv'))
     
     # Merge athlete gender information
     athlete_df = athlete_df[['athlete_id', 'gender']]
@@ -76,9 +77,9 @@ def get_teams_with_4plus_athletes(year, gender):
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Load team and athlete-team association data
-    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
-    team_df = pd.read_csv('data/team.csv')
-    athlete_df = pd.read_csv('data/athlete.csv')
+    athlete_team_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete_team_association.csv'))
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
+    athlete_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete.csv'))
     
     # Merge athlete gender information
     athlete_df = athlete_df[['athlete_id', 'gender']]
@@ -154,7 +155,7 @@ def analyze_2024_mens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/team.csv')
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -253,7 +254,7 @@ def analyze_2023_mens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/team.csv')
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -352,7 +353,7 @@ def analyze_2023_womens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/team.csv')
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -451,7 +452,7 @@ def analyze_2024_womens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/team.csv')
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -550,7 +551,7 @@ def analyze_2025_mens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/team.csv')
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []
@@ -649,7 +650,7 @@ def analyze_2025_womens_overlap():
     ]
     
     # Load team data to get team names
-    team_df = pd.read_csv('data/team.csv')
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
     
     # Get team IDs for nationals teams (filter to avoid duplicates)
     nationals_team_ids = []

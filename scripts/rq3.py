@@ -108,6 +108,15 @@ def main():
                 print(f"    ⚠️  Moderate difference - model shows some unfairness")
             else:
                 print(f"    ✓ Relatively fair - small difference between genders")
+
+    print("\n4. Team-association robustness: thresholds, cluster-robust, partial pooling...")
+    try:
+        from team_association_robustness import main as team_robust_main
+        team_robust_main(output_dir=rq3_output)
+    except Exception as e:
+        print(f"  ERROR running team-association robustness: {e}")
+        import traceback
+        traceback.print_exc()
     
     print("\n" + "="*60)
     print("RQ3 ANALYSIS COMPLETE")
@@ -118,6 +127,7 @@ def main():
     print(f"  - {rq3_output}/raw_data_gender_*.* (feature importance)")
     print(f"  - {rq3_output}/raw_data_subgroup_analysis.csv (R² by gender)")
     print(f"  - {rq3_output}/gender_fairness_summary.csv (fairness metrics)")
+    print(f"  - {rq3_output}/team_association_robustness/ (or robustness CSVs under rq3)")
 
 if __name__ == "__main__":
     main()

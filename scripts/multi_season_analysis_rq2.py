@@ -18,6 +18,7 @@ import sys
 # Setup paths for imports
 from _setup_paths import setup_paths
 setup_paths()
+from load_nrcd_data import get_data_dir
 
 import pandas as pd
 import numpy as np
@@ -112,7 +113,7 @@ def create_rq2_comprehensive_plots(results_df, output_dir='output/rq2'):
         if len(imp_2023_2024) > 0 and len(imp_2024_2025) > 0:
             # Create box plot for distribution
             box_data = [imp_2023_2024, imp_2024_2025]
-            bp = ax2.boxplot(box_data, labels=['2023→2024', '2024→2025'], patch_artist=True,
+            bp = ax2.boxplot(box_data, tick_labels=['2023→2024', '2024→2025'], patch_artist=True,
                             widths=0.6, showmeans=True, meanline=True)
             
             # Color the boxes
@@ -433,7 +434,7 @@ def analyze_athletes_all_seasons(df, valid_athlete_ids, output_dir='output/rq2')
     
     # Get athlete and gender info (only merge if gender column doesn't exist)
     if 'gender' not in df_filtered.columns:
-        athlete_df = pd.read_csv('data/athlete.csv')
+        athlete_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete.csv'))
         df_filtered = df_filtered.merge(athlete_df[['athlete_id', 'gender']], on='athlete_id', how='left')
     
     # Ensure gender column exists

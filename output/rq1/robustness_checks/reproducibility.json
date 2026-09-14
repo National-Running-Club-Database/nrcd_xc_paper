@@ -1,0 +1,12 @@
+{
+  "random_seed": 42,
+  "primary_r2": {
+    "M": 0.043,
+    "F": -0.029
+  },
+  "split_half_rho": {
+    "M": 0.22822087419717996,
+    "F": 0.2787539600162913
+  },
+  "skipped": "historical_experience_covariates"
+}

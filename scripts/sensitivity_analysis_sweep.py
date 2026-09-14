@@ -17,46 +17,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from feature_policy import DEFAULT_FEATURE_COLUMNS, LEGACY_FULL_FEATURES, PRIMARY_FEATURES, WITHIN_SEX_DROP, features_for_gender_model
 
-
-DEFAULT_FEATURE_COLUMNS = [
-    "gender_encoded",
-    "year",
-    "num_races",
-    "season_duration",
-    "first_time",
-    "last_time",
-    "best_time",
-    "worst_time",
-    "avg_time",
-    "time_std",
-    "time_range",
-    "cv_time",
-    "race_frequency",
-    "starting_percentile",
-    "gender_year",
-    "starting_percentile_squared",
-    "num_races_squared",
-    "season_duration_squared",
-    "best_to_avg_ratio",
-    "worst_to_avg_ratio",
-    "variability_score",
-    "consistency_score",
-    "experience_level",
-    "slope",
-    "avg_days_between_races",
-    "race_to_race_improvement_std",
-    "best_race_timing",
-    "best_race_timing_ratio",
-    "bad_race_count",
+# Back-compat: sensitivity scenarios may still request the pre-prune full list.
+BASE_FEATURES_NO_SQUARED = [c for c in PRIMARY_FEATURES if not c.endswith("_squared")]
+BASE_FEATURES_NO_TIMES = [
+    c
+    for c in PRIMARY_FEATURES
+    if c not in {"first_time", "last_time", "best_time", "worst_time", "avg_time"}
 ]
-
-
-BASE_FEATURES_NO_SQUARED = [c for c in DEFAULT_FEATURE_COLUMNS if not c.endswith("_squared")]
-BASE_FEATURES_NO_LAST_TIME = [c for c in DEFAULT_FEATURE_COLUMNS if c != "last_time"]
-BASE_FEATURES_NO_TIMES = [c for c in DEFAULT_FEATURE_COLUMNS if c not in {"first_time", "last_time", "best_time", "worst_time", "avg_time"}]
 
 
 def _feature_columns_for_gender(
@@ -67,7 +36,7 @@ def _feature_columns_for_gender(
     g = str(gender_filter).upper()
     if g not in {"M", "F"}:
         return feature_columns
-    return tuple(c for c in feature_columns if c not in {"gender_encoded", "gender_year"})
+    return tuple(features_for_gender_model(feature_columns))
 
 
 @dataclass(frozen=True)
@@ -157,30 +126,30 @@ def _scenario_grid() -> List[Scenario]:
     return [
         Scenario(
             scenario="baseline",
-            feature_set="all_features",
-            feature_columns=tuple(DEFAULT_FEATURE_COLUMNS),
+            feature_set="compact_primary",
+            feature_columns=tuple(PRIMARY_FEATURES),
+            improvement_rate_range=(-50, 50),
+            model_n_estimators=100,
+        ),
+        Scenario(
+            scenario="legacy_full_features",
+            feature_set="legacy_full",
+            feature_columns=tuple(LEGACY_FULL_FEATURES),
             improvement_rate_range=(-50, 50),
             model_n_estimators=100,
         ),
         Scenario(
             scenario="tighter_outlier_filter",
-            feature_set="all_features",
-            feature_columns=tuple(DEFAULT_FEATURE_COLUMNS),
+            feature_set="compact_primary",
+            feature_columns=tuple(PRIMARY_FEATURES),
             improvement_rate_range=(-20, 20),
             model_n_estimators=100,
         ),
         Scenario(
             scenario="wider_outlier_filter",
-            feature_set="all_features",
-            feature_columns=tuple(DEFAULT_FEATURE_COLUMNS),
+            feature_set="compact_primary",
+            feature_columns=tuple(PRIMARY_FEATURES),
             improvement_rate_range=(-100, 100),
-            model_n_estimators=100,
-        ),
-        Scenario(
-            scenario="remove_last_time",
-            feature_set="no_last_time",
-            feature_columns=tuple(BASE_FEATURES_NO_LAST_TIME),
-            improvement_rate_range=(-50, 50),
             model_n_estimators=100,
         ),
         Scenario(
@@ -199,15 +168,15 @@ def _scenario_grid() -> List[Scenario]:
         ),
         Scenario(
             scenario="smaller_forest",
-            feature_set="all_features",
-            feature_columns=tuple(DEFAULT_FEATURE_COLUMNS),
+            feature_set="compact_primary",
+            feature_columns=tuple(PRIMARY_FEATURES),
             improvement_rate_range=(-50, 50),
             model_n_estimators=50,
         ),
         Scenario(
             scenario="larger_forest",
-            feature_set="all_features",
-            feature_columns=tuple(DEFAULT_FEATURE_COLUMNS),
+            feature_set="compact_primary",
+            feature_columns=tuple(PRIMARY_FEATURES),
             improvement_rate_range=(-50, 50),
             model_n_estimators=200,
         ),

@@ -1,0 +1,15 @@
+gender,spec,n_features,test_r2,delta_r2_vs_primary,verdict
+Men,primary_compact,17,0.04324304853585281,0.0,baseline
+Men,drop_slope,16,0.034519733381985995,-0.008723315153866817,null_robust_to_dropping_block
+Men,drop_absolute_times,15,0.04332127427207788,7.822573622506823e-05,null_robust_to_dropping_block
+Men,drop_schedule,8,0.03916062808105736,-0.004082420454795455,null_robust_to_dropping_block
+Men,drop_starting_ability,14,0.04658630897813998,0.003343260442287166,null_robust_to_dropping_block
+Men,schedule_only,10,-0.056018603097810926,-0.09926165163366374,still_near_zero
+Men,early_external_proxy,4,0.02922445320896916,-0.014018595326883654,still_near_zero
+Women,primary_compact,17,-0.02861583490179198,0.0,baseline
+Women,drop_slope,16,-0.032584261911263956,-0.003968427009471975,null_robust_to_dropping_block
+Women,drop_absolute_times,15,-0.05201468708540813,-0.023398852183616148,null_robust_to_dropping_block
+Women,drop_schedule,8,0.0228993042376473,0.05151513913943928,null_robust_to_dropping_block
+Women,drop_starting_ability,14,-0.040936121594002284,-0.012320286692210303,null_robust_to_dropping_block
+Women,schedule_only,10,-0.1615271222109207,-0.1329112873091287,still_near_zero
+Women,early_external_proxy,4,-0.04065329265267459,-0.012037457750882607,still_near_zero

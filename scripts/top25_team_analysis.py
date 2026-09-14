@@ -18,6 +18,7 @@ import sys
 # Setup paths for imports
 from _setup_paths import setup_paths
 setup_paths()
+from load_nrcd_data import get_data_dir
 
 import pandas as pd
 import numpy as np
@@ -29,6 +30,36 @@ from utils import standardize_convert_exclude_nationals_df
 
 output_dir = 'output/top25_teams'
 # Directory creation moved to main() to avoid creating when imported
+RANDOM_SEED = 42
+PERMUTATION_REPLICATES = 10000
+
+
+def _stratified_permutation_null(
+    data, metric, n_permutations=PERMUTATION_REPLICATES, rng=None
+):
+    """Shuffle a team metric within year and return Pearson-r null draws.
+
+    Year-stratified shuffling preserves each season's rank/metric distributions
+    while breaking the team-level association being tested.
+    """
+    clean = data[["year", "rank", metric]].dropna().copy()
+    if len(clean) < 3:
+        return np.array([])
+    if rng is None:
+        rng = np.random.default_rng(RANDOM_SEED)
+    rank = clean["rank"].to_numpy()
+    metric_values = clean[metric].to_numpy()
+    year_groups = [
+        np.flatnonzero(clean["year"].to_numpy() == year)
+        for year in sorted(clean["year"].unique())
+    ]
+    null = np.empty(n_permutations, dtype=float)
+    for i in range(n_permutations):
+        permuted = metric_values.copy()
+        for idx in year_groups:
+            permuted[idx] = rng.permutation(permuted[idx])
+        null[i] = pearsonr(rank, permuted)[0]
+    return null
 
 # ============================================================================
 # TOP 25 TEAMS AT NATIONALS - LOAD FROM CSV OR DEFINE HERE
@@ -227,9 +258,9 @@ def analyze_top25_teams():
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Load team and athlete-team association data
-    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
-    team_df = pd.read_csv('data/team.csv')
-    athlete_df = pd.read_csv('data/athlete.csv')
+    athlete_team_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete_team_association.csv'))
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
+    athlete_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete.csv'))
     
     # Merge athlete gender information
     athlete_df = athlete_df[['athlete_id', 'gender']]
@@ -321,6 +352,8 @@ def perform_correlation_analysis(results_df):
     
     # Store all correlation results for comprehensive CSV
     all_correlation_results = []
+    all_permutation_draws = []
+    rng = np.random.default_rng(RANDOM_SEED)
     
     # Separate by gender
     for gender in ['Men', 'Women']:
@@ -358,6 +391,28 @@ def perform_correlation_analysis(results_df):
             
             # Pearson correlation
             pearson_r, pearson_p = pearsonr(rank_clean, metric_clean)
+
+            # Empirical null: shuffle team-metric labels within each season.
+            permutation_null = _stratified_permutation_null(
+                gender_df.loc[common_idx],
+                metric,
+                n_permutations=PERMUTATION_REPLICATES,
+                rng=rng,
+            )
+            permutation_p = (
+                (1 + np.sum(np.abs(permutation_null) >= abs(pearson_r)))
+                / (len(permutation_null) + 1)
+            )
+            all_permutation_draws.extend(
+                {
+                    "gender": gender,
+                    "metric": metric_labels[metric],
+                    "replicate": i,
+                    "null_pearson_r": value,
+                    "random_seed": RANDOM_SEED,
+                }
+                for i, value in enumerate(permutation_null)
+            )
             
             # Spearman correlation (rank-based, more robust)
             spearman_r, spearman_p = spearmanr(rank_clean, metric_clean)
@@ -366,6 +421,9 @@ def perform_correlation_analysis(results_df):
                 'metric': metric_labels[metric],
                 'pearson_r': round(pearson_r, 3),
                 'pearson_p': round(pearson_p, 4),
+                'permutation_p': permutation_p,
+                'permutation_replicates': PERMUTATION_REPLICATES,
+                'random_seed': RANDOM_SEED,
                 'spearman_r': round(spearman_r, 3),
                 'spearman_p': round(spearman_p, 4),
                 'n': len(common_idx)
@@ -395,7 +453,8 @@ def perform_correlation_analysis(results_df):
             corr_df['bonferroni_sig'] = corr_df['pearson_p'] < bonferroni_alpha
             
             # Reorder columns for better readability
-            corr_df = corr_df[['metric', 'pearson_r', 'pearson_p', 'pearson_p_bonferroni', 
+            corr_df = corr_df[['metric', 'pearson_r', 'pearson_p', 'permutation_p',
+                              'permutation_replicates', 'random_seed', 'pearson_p_bonferroni',
                               'r_squared', 'spearman_r', 'spearman_p', 'spearman_p_bonferroni', 
                               'bonferroni_alpha', 'bonferroni_sig', 'n']]
             
@@ -463,13 +522,22 @@ def perform_correlation_analysis(results_df):
         comprehensive_corr_df['bonferroni_sig'] = comprehensive_corr_df['pearson_p'] < comprehensive_corr_df['bonferroni_alpha']
         
         # Reorder columns for better readability
-        comprehensive_corr_df = comprehensive_corr_df[['gender', 'metric', 'pearson_r', 'pearson_p', 'pearson_p_bonferroni', 
+        comprehensive_corr_df = comprehensive_corr_df[['gender', 'metric', 'pearson_r', 'pearson_p',
+                                                     'permutation_p', 'permutation_replicates', 'random_seed',
+                                                     'pearson_p_bonferroni',
                                                      'r_squared', 'spearman_r', 'spearman_p', 'spearman_p_bonferroni', 
                                                      'bonferroni_alpha', 'bonferroni_sig', 'n']]
         
         comprehensive_path = f'{output_dir}/correlations_comprehensive.csv'
         comprehensive_corr_df.to_csv(comprehensive_path, index=False)
         print(f"\n✅ Saved comprehensive correlations to {comprehensive_path}")
+
+        permutation_path = f'{output_dir}/correlation_permutation_null.csv'
+        pd.DataFrame(all_permutation_draws).to_csv(permutation_path, index=False)
+        print(
+            f"  Saved {PERMUTATION_REPLICATES}-draw, year-stratified empirical "
+            f"null distributions (seed {RANDOM_SEED}) to {permutation_path}"
+        )
 
 def create_correlation_heatmap(gender_df, gender, metrics, metric_labels):
     """Create correlation chart for team metrics vs Nationals Rank with R² values"""
@@ -801,6 +869,14 @@ def main():
     )
     
     if all_empty:
+        metrics_path = os.path.join(output_dir, "top25_teams_metrics.csv")
+        if os.path.exists(metrics_path):
+            print(
+                f"\nNo team-list input found; rerunning correlation and permutation "
+                f"diagnostics from {metrics_path}."
+            )
+            perform_correlation_analysis(pd.read_csv(metrics_path))
+            return
         print("\n⚠️  WARNING: No teams provided.")
         print("\nOption 1: Create data/top25_teams.csv with columns: year, gender, rank, team_name")
         print("          (Template available at data/top25_teams_template.csv)")

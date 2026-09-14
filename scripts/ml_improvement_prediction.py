@@ -11,6 +11,7 @@ Run from main directory: python scripts/ml_improvement_prediction.py
 
 import os
 import sys
+import json
 
 # Setup paths for imports (works from main directory or scripts directory)
 from _setup_paths import setup_paths
@@ -32,6 +33,9 @@ from scipy import stats
 from scipy.stats import ttest_rel
 import warnings
 warnings.filterwarnings('ignore')
+
+RANDOM_SEED = 42
+BOOTSTRAP_REPLICATES = 2000
 
 try:
     from tqdm import tqdm
@@ -64,24 +68,18 @@ def load_raw_data(mode='standardized'):
         df = convert_exclude_nationals()
         time_col = 'standardized_to_target'
     elif mode == 'original' or mode == 'raw':
-        # Raw: Only distance conversion to 6k/8k, NO course distance adjustment, NO weather, NO terrain
-        import os
-        results_df = pd.read_csv(os.path.join('data', 'result.csv'))
-        meet_df = pd.read_csv(os.path.join('data', 'meet.csv'))
-        athlete_df = pd.read_csv(os.path.join('data', 'athlete.csv'))
-        running_event_df = pd.read_csv(os.path.join('data', 'running_event.csv'))
-        
-        # Exclude nationals
-        non_nationals_meets = meet_df[~meet_df['nationals'].astype(bool)]['meet_id']
-        filtered_results = results_df[results_df['meet_id'].isin(non_nationals_meets)].copy()
-        
-        # Merge with other data
-        filtered_results = filtered_results.merge(athlete_df[['athlete_id', 'gender']], on='athlete_id', how='left')
-        filtered_results = filtered_results.merge(running_event_df[['running_event_id', 'event_name']], on='running_event_id', how='left')
-        filtered_results = filtered_results.merge(meet_df[['meet_id', 'start_date']], on='meet_id', how='left')
-        
+        # Raw: cross country only, distance conversion to 6k/8k, NO course distance
+        # adjustment, NO weather, NO terrain.
+        from load_nrcd_data import load_cross_country_results, load_tables, get_data_dir
+        tables = load_tables(get_data_dir())
+        filtered_results = load_cross_country_results(exclude_nationals=True, tables=tables)
+
         # Raw mode: only distance conversion, no course details adjustments
-        df = standardize_and_convert_to_6k_8k(filtered_results, course_details_df=pd.DataFrame(), athlete_df=athlete_df, running_event_df=running_event_df, meet_df=meet_df, adjust_terrain=False, adjust_weather=False)
+        df = standardize_and_convert_to_6k_8k(
+            filtered_results, course_details_df=pd.DataFrame(),
+            athlete_df=tables['athlete'], running_event_df=tables['running_event'],
+            meet_df=tables['meet'], adjust_terrain=False, adjust_weather=False,
+        )
         time_col = 'standardized_to_target'
     else:
         raise ValueError(f"Unknown mode: {mode}")
@@ -113,17 +111,19 @@ def calculate_athlete_features(df, training_df=None):
     percentile_df = training_df if training_df is not None else df
     
     athlete_features = []
-    
-    # Get unique athletes
-    athletes = df['athlete_id'].unique()
-    print(f"Processing {len(athletes)} athletes...")
-    
-    for i, athlete_id in enumerate(athletes):
+
+    # One row represents one athlete-season. Grouping only by athlete_id would
+    # let later seasons leak into a runner's first-year predictors and target.
+    df = df.copy()
+    df['year'] = df['start_date'].dt.year
+    athlete_seasons = list(df.groupby(['athlete_id', 'year'], sort=False))
+    print(f"Processing {len(athlete_seasons)} athlete-seasons...")
+
+    for i, ((athlete_id, year), athlete_races) in enumerate(athlete_seasons):
         if i % 1000 == 0:
-            print(f"  Processing athlete {i+1}/{len(athletes)}")
-        
-        # Get all races for this athlete
-        athlete_races = df[df['athlete_id'] == athlete_id].sort_values('start_date')
+            print(f"  Processing athlete-season {i+1}/{len(athlete_seasons)}")
+
+        athlete_races = athlete_races.sort_values('start_date')
         
         if len(athlete_races) < 2:
             continue
@@ -154,51 +154,45 @@ def calculate_athlete_features(df, training_df=None):
         num_races = len(athlete_races)
         season_duration = days_diff
         
-        # Calculate performance statistics
+        # Time-derived predictors use only races before the final outcome race.
+        # last_time is retained for descriptive output, not as a model feature.
         times = athlete_races['standardized_to_target'].values
-        best_time = np.min(times)
-        worst_time = np.max(times)
-        avg_time = np.mean(times)
-        time_std = np.std(times)
+        predictor_races = athlete_races.iloc[:-1]
+        predictor_times = predictor_races['standardized_to_target'].values
+        best_time = np.min(predictor_times)
+        worst_time = np.max(predictor_times)
+        avg_time = np.mean(predictor_times)
+        time_std = np.std(predictor_times)
         
         # Calculate consistency metrics
         time_range = worst_time - best_time
         cv_time = time_std / avg_time if avg_time > 0 else 0
         
-        # Calculate improvement pattern (linear regression slope)
-        # FIXED: Exclude last race to prevent data leakage (last_time is used in target)
-        if len(times) >= 3:
-            # Use first N-1 races (exclude last race) for slope calculation
-            X = np.arange(len(times) - 1).reshape(-1, 1)
-            y = times[:-1]  # Exclude last time
+        # Calculate trajectory from pre-final races only. A two-race athlete
+        # has one predictor observation, so its slope is undefined (set to 0);
+        # using race 2 would exactly reproduce the target numerator.
+        if len(predictor_times) >= 2:
+            X = np.arange(len(predictor_times)).reshape(-1, 1)
+            y = predictor_times
             slope_model = LinearRegression()
             slope_model.fit(X, y)
             slope = slope_model.coef_[0]
-        elif len(times) == 2:
-            # For 2 races, use improvement from first to second (not last)
-            slope = times[1] - times[0]
         else:
-            slope = 0  # Default for edge cases
+            slope = 0
         
         # Calculate race frequency
         race_frequency = num_races / season_duration if season_duration > 0 else 0
         
         # Calculate average days between races (recovery time)
         if num_races > 1:
-            dates = athlete_races['start_date'].values  # Already sorted by start_date
-            days_between = np.diff(dates)
-            # Convert timedelta to days
-            if len(days_between) > 0:
-                # Handle pandas Timedelta objects
-                avg_days_between_races = np.mean([d.days if hasattr(d, 'days') else float(d) / (24*3600*1e9) for d in days_between])
-            else:
-                avg_days_between_races = 0
+            date_diffs = athlete_races['start_date'].diff().dropna()
+            avg_days_between_races = float(date_diffs.dt.total_seconds().mean() / 86400.0)
         else:
             avg_days_between_races = 0
         
         # Calculate race-to-race improvement consistency
-        if len(times) >= 2:
-            race_to_race_improvements = np.diff(times)  # Negative = improving
+        if len(predictor_times) >= 2:
+            race_to_race_improvements = np.diff(predictor_times)
             race_to_race_improvement_std = np.std(race_to_race_improvements) if len(race_to_race_improvements) > 0 else 0
             # Count "bad" races (worse than previous race)
             bad_race_count = np.sum(race_to_race_improvements > 0)  # Positive = slower = bad
@@ -207,22 +201,22 @@ def calculate_athlete_features(df, training_df=None):
             bad_race_count = 0
         
         # Calculate when best race occurred (timing of peak performance)
-        best_race_idx = np.argmin(times)
+        best_race_idx = np.argmin(predictor_times)
         if best_race_idx == 0:
             best_race_timing = 0  # Best race was first race
-        elif best_race_idx == len(times) - 1:
-            best_race_timing = season_duration  # Best race was last race
+        elif best_race_idx == len(predictor_times) - 1:
+            best_race_timing = (
+                predictor_races.iloc[best_race_idx]['start_date'] - first_date
+            ).days
         else:
             # Days from first race to best race
-            best_race_date = athlete_races.iloc[best_race_idx]['start_date']
+            best_race_date = predictor_races.iloc[best_race_idx]['start_date']
             best_race_timing = (best_race_date - first_date).days
         
         # Note: progression_improvement removed - not needed as a feature
         
         # Extract athlete metadata
         gender = athlete_races.iloc[0]['gender']
-        year = athlete_races.iloc[0]['start_date'].year
-        
         # Calculate percentile of starting performance within gender/year
         # FIXED: Use training data only (percentile_df) to prevent temporal leakage
         if training_df is not None:
@@ -274,93 +268,67 @@ def calculate_athlete_features(df, training_df=None):
             'bad_race_count': bad_race_count
         })
     
-    print(f"Calculated features for {len(athlete_features)} athletes")
+    print(f"Calculated features for {len(athlete_features)} athlete-seasons")
     return pd.DataFrame(athlete_features)
 
 def create_advanced_features(athlete_df):
-    """Create advanced features for the machine learning model."""
+    """Create advanced features for the machine learning model.
+
+    Builds both compact-primary and legacy-full columns so sensitivity analyses
+    can still request ``LEGACY_FULL_FEATURES``. Leaky derived features and exact
+    duplicates are intentionally not created (see ``feature_policy``).
+    """
     print("Creating advanced features...")
     
     features_df = athlete_df.copy()
     
-    # Create categorical encodings
     le_gender = LabelEncoder()
     features_df['gender_encoded'] = le_gender.fit_transform(features_df['gender'])
     
-    # Create interaction features
     features_df['gender_year'] = features_df['gender_encoded'] * features_df['year']
-    # Note: races_duration_ratio removed - it's identical to race_frequency (both = num_races / season_duration)
-    # Note: improvement_per_race removed - it's circular with target variable (improvement_rate)
-    # Both use total_improvement, creating a data leakage issue
-    
-    # Create polynomial features for key variables
-    # Note: Squared terms capture non-linear relationships (e.g., optimal season length)
-    # We include both linear and squared terms to model potential U-shaped or inverted-U relationships
     features_df['starting_percentile_squared'] = features_df['starting_percentile'] ** 2
     features_df['num_races_squared'] = features_df['num_races'] ** 2
     features_df['season_duration_squared'] = features_df['season_duration'] ** 2
     
-    # Create performance ratio features
+    # Legacy-full ratio / variability transforms (pruned from compact primary)
     features_df['best_to_avg_ratio'] = features_df['best_time'] / features_df['avg_time']
     features_df['worst_to_avg_ratio'] = features_df['worst_time'] / features_df['avg_time']
-    
-    # Create improvement efficiency features
-    # FIXED: Removed improvement_to_variability_ratio - it uses total_improvement which leaks target info
-    # Instead, use only variability-related features (no improvement component)
-    # Handle division by zero for time_range
-    # variability_score: inverse of normalized time range (higher = more consistent, no leakage)
     features_df['variability_score'] = np.where(
         features_df['time_range'] > 0,
-        1 / (1 + features_df['time_range'] / features_df['avg_time']),  # Normalized variability
-        1.0  # Perfect consistency if time_range = 0
+        1 / (1 + features_df['time_range'] / features_df['avg_time']),
+        1.0,
     )
     features_df['consistency_score'] = 1 / (1 + features_df['cv_time'])
-    
-    # Note: early_season_performance and late_season_performance removed - duplicates of first_time and last_time
-    
-    # Create experience features
     features_df['experience_level'] = features_df['num_races'] * features_df['season_duration']
-    
-    # Create peak timing feature (normalized to season duration)
-    features_df['best_race_timing_ratio'] = features_df['best_race_timing'] / features_df['season_duration']
-    # Replace inf/NaN with 0 (for edge cases)
-    features_df['best_race_timing_ratio'] = features_df['best_race_timing_ratio'].replace([np.inf, -np.inf], 0).fillna(0)
+    features_df['best_race_timing_ratio'] = (
+        features_df['best_race_timing'] / features_df['season_duration']
+    )
+    features_df['best_race_timing_ratio'] = (
+        features_df['best_race_timing_ratio']
+        .replace([np.inf, -np.inf], 0)
+        .fillna(0)
+    )
     
     return features_df
 
-def prepare_model_data(features_df):
-    """Prepare data for machine learning models."""
+def prepare_model_data(features_df, feature_columns=None):
+    """Prepare data for machine learning models.
+
+    Feature lists and exclusion classes live in ``feature_policy`` (single
+    source of truth). Default ``feature_columns`` is the compact primary set
+    after the redundancy prune; pass ``LEGACY_FULL_FEATURES`` for sensitivity.
+    """
+    from feature_policy import PRIMARY_FEATURES
+
     print("Preparing model data...")
-    
-    # Select features for the model
-    # Note: improvement_per_race removed - it's circular with target (both use total_improvement)
-    # Note: progression_improvement removed - not needed as a feature
-    # Note: Removed duplicates:
-    #   - early_season_performance (duplicate of first_time)
-    #   - late_season_performance (duplicate of last_time)
-    #   - races_duration_ratio (duplicate of race_frequency)
-    # Note: improvement_to_variability_ratio removed - data leakage (uses total_improvement)
-    # Note: Replaced with variability_score (no improvement component)
-    # Note: last_time is kept but creates partial leakage (used in target calculation)
-    #       Consider removing if strict no-leakage is required, but it's a legitimate feature
-    # num_races is the correct feature to use (number of races in season)
-    feature_columns = [
-        'gender_encoded', 'year', 'num_races', 'season_duration', 
-        'first_time', 'last_time', 'best_time', 'worst_time', 'avg_time',
-        'time_std', 'time_range', 'cv_time', 'race_frequency',
-        'starting_percentile', 'gender_year',
-        'starting_percentile_squared',
-        'num_races_squared', 'season_duration_squared', 'best_to_avg_ratio',
-        'worst_to_avg_ratio', 'variability_score', 'consistency_score',
-        'experience_level',
-        # New features
-        'slope',  # Improvement trajectory pattern (was calculated but not used)
-        'avg_days_between_races',  # Recovery time indicator
-        'race_to_race_improvement_std',  # Consistency of improvement
-        'best_race_timing',  # When peak performance occurred
-        'best_race_timing_ratio',  # Peak timing normalized to season duration
-        'bad_race_count'  # Number of races worse than previous
-    ]
+    feature_columns = list(feature_columns or PRIMARY_FEATURES)
+    missing = [c for c in feature_columns if c not in features_df.columns]
+    if missing:
+        raise ValueError(
+            f"prepare_model_data missing columns {missing}. "
+            "Re-run feature construction or use LEGACY_FULL_FEATURES only if "
+            "those columns exist in the athlete feature table."
+        )
     
     # Target variable: improvement_rate (seconds per day)
     X = features_df[feature_columns].copy()
@@ -399,7 +367,14 @@ def prepare_model_data(features_df):
     
     return X, y, features_df_filtered
 
-def bootstrap_confidence_interval(y_true, y_pred, metric_func, n_bootstrap=1000, confidence=0.95):
+def bootstrap_confidence_interval(
+    y_true,
+    y_pred,
+    metric_func,
+    n_bootstrap=BOOTSTRAP_REPLICATES,
+    confidence=0.95,
+    random_seed=RANDOM_SEED,
+):
     """
     Calculate bootstrap confidence interval for a metric.
     
@@ -415,7 +390,7 @@ def bootstrap_confidence_interval(y_true, y_pred, metric_func, n_bootstrap=1000,
         Predicted values
     metric_func : callable
         Function to compute the metric (e.g., r2_score)
-    n_bootstrap : int, default=1000
+    n_bootstrap : int, default=2000
         Number of bootstrap samples
     confidence : float, default=0.95
         Confidence level (e.g., 0.95 for 95% CI)
@@ -430,11 +405,12 @@ def bootstrap_confidence_interval(y_true, y_pred, metric_func, n_bootstrap=1000,
         Upper bound of confidence interval
     """
     n = len(y_true)
+    rng = np.random.default_rng(random_seed)
     bootstrap_scores = []
     
     for _ in range(n_bootstrap):
         # Resample with replacement
-        indices = np.random.choice(n, n, replace=True)
+        indices = rng.choice(n, n, replace=True)
         y_true_boot = np.array(y_true)[indices]
         y_pred_boot = np.array(y_pred)[indices]
         score = metric_func(y_true_boot, y_pred_boot)
@@ -490,14 +466,16 @@ def train_models(X, y, features_df, use_temporal_split=True):
             'Linear Regression': LinearRegression(),
             'Ridge Regression': Ridge(alpha=1.0),
             'Lasso Regression': Lasso(alpha=0.1),
-            'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
-            'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
+            'Random Forest': RandomForestRegressor(n_estimators=100, random_state=RANDOM_SEED),
+            'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=RANDOM_SEED),
             'SVR': SVR(kernel='rbf', C=1.0, gamma='scale')
         }
     else:
         # Random split
         print("Using random split: 80% train, 20% test")
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=RANDOM_SEED
+        )
         
         # Get indices for test set to track year and gender
         test_indices = X_test.index
@@ -509,8 +487,8 @@ def train_models(X, y, features_df, use_temporal_split=True):
             'Linear Regression': LinearRegression(),
             'Ridge Regression': Ridge(alpha=1.0),
             'Lasso Regression': Lasso(alpha=0.1),
-            'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42),
-            'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=42),
+            'Random Forest': RandomForestRegressor(n_estimators=100, random_state=RANDOM_SEED),
+            'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=RANDOM_SEED),
             'SVR': SVR(kernel='rbf', C=1.0, gamma='scale')
         }
     
@@ -544,7 +522,7 @@ def train_models(X, y, features_df, use_temporal_split=True):
         
         # Bootstrap confidence intervals for R²
         r2_mean, r2_lower, r2_upper = bootstrap_confidence_interval(
-            y_test, y_pred, r2_score, n_bootstrap=1000
+            y_test, y_pred, r2_score
         )
         
         # Cross-validation score (on training data only for temporal split)
@@ -856,6 +834,12 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
     # Ensure all DataFrames have aligned indices
     features_df_aligned = features_df.reset_index(drop=True)
     X_aligned = X.reset_index(drop=True) if hasattr(X, 'reset_index') else X
+    if hasattr(X_aligned, 'drop'):
+        # Constant gender encodings add no information within a sex-specific
+        # model and can obscure what "separately trained" means.
+        X_aligned = X_aligned.drop(
+            columns=['gender_encoded', 'gender_year'], errors='ignore'
+        )
     y_aligned = y.reset_index(drop=True) if hasattr(y, 'reset_index') else y
     
     train_mask = features_df_aligned['year'] == 2023
@@ -880,6 +864,7 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
     features_test = features_df_aligned[test_mask].reset_index(drop=True)
     
     gender_importance_comparison = []
+    gender_model_performance = []
     
     for gender in ['M', 'F']:
         gender_label = 'Men' if gender == 'M' else 'Women'
@@ -901,29 +886,71 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
         
         print(f"  Training samples: {len(X_train_gender)}, Test samples: {len(X_test_gender)}")
         
-        # Use Random Forest for both men and women (consistent model type for comparable feature importance)
-        # Feature importance from tree-based models (Random Forest) is not comparable to 
-        # coefficient-based importance from linear models (Linear Regression, Ridge, etc.)
-        # Using the same model type ensures valid comparison between genders
-        best_model_name = 'Random Forest'
-        best_model = RandomForestRegressor(n_estimators=100, random_state=42)
-        best_model.fit(X_train_gender, y_train_gender)
-        y_pred_test = best_model.predict(X_test_gender)
-        best_r2 = r2_score(y_test_gender, y_pred_test)
+        # Compare all candidate models separately within each gender. This is
+        # the primary performance analysis; subgroup scores from a pooled
+        # model are diagnostic only.
+        candidate_models = {
+            'Linear Regression': LinearRegression(),
+            'Ridge Regression': Ridge(alpha=1.0),
+            'Lasso Regression': Lasso(alpha=0.1),
+            'Random Forest': RandomForestRegressor(n_estimators=100, random_state=RANDOM_SEED),
+            'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, random_state=RANDOM_SEED),
+            'SVR': SVR(kernel='rbf', C=1.0, gamma='scale'),
+        }
+        fitted_candidates = {}
+        candidate_scores = {}
+        for model_name, estimator in candidate_models.items():
+            steps = [('model', estimator)]
+            if model_name in {'Linear Regression', 'Ridge Regression', 'Lasso Regression', 'SVR'}:
+                steps.insert(0, ('scaler', StandardScaler()))
+            pipeline = Pipeline(steps)
+            pipeline.fit(X_train_gender, y_train_gender)
+            y_pred_candidate = pipeline.predict(X_test_gender)
+            r2_candidate = r2_score(y_test_gender, y_pred_candidate)
+            fitted_candidates[model_name] = pipeline
+            candidate_scores[model_name] = r2_candidate
+            _, r2_lower, r2_upper = bootstrap_confidence_interval(
+                y_test_gender, y_pred_candidate, r2_score
+            )
+            gender_model_performance.append({
+                'Gender': gender_label,
+                'Model': model_name,
+                'Time_Method': 'Standardized',
+                'Train_Year': 2023,
+                'Test_Year': 2024,
+                'N_Train': len(X_train_gender),
+                'N_Test': len(X_test_gender),
+                'R²': r2_candidate,
+                'R²_CI_Lower': r2_lower,
+                'R²_CI_Upper': r2_upper,
+                'RMSE': np.sqrt(mean_squared_error(y_test_gender, y_pred_candidate)),
+                'MAE': mean_absolute_error(y_test_gender, y_pred_candidate),
+                'Is_Best': False,
+                'Random_Seed': RANDOM_SEED,
+                'Bootstrap_Replicates': BOOTSTRAP_REPLICATES,
+            })
+
+        best_model_name = max(candidate_scores, key=candidate_scores.get)
+        best_r2 = candidate_scores[best_model_name]
+        gender_model_performance[-len(candidate_models) + list(candidate_models).index(best_model_name)]['Is_Best'] = True
+        print(f"  Best model for {gender_label}: {best_model_name} (R² = {best_r2:.4f})")
+
+        # Use a common Random Forest only for an exploratory, comparable
+        # feature-importance display. Its importance does not establish
+        # predictive value when held-out R² is weak or negative.
+        importance_model_name = 'Random Forest (exploratory)'
+        best_model = fitted_candidates['Random Forest'].named_steps['model']
+        r2_gender = candidate_scores['Random Forest']
+        mae_gender = mean_absolute_error(
+            y_test_gender, fitted_candidates['Random Forest'].predict(X_test_gender)
+        )
         
-        print(f"  Model for {gender_label}: {best_model_name} (R² = {best_r2:.4f})")
-        
-        # Evaluate with best model
-        y_pred_gender = best_model.predict(X_test_gender)
-        r2_gender = best_r2
-        mae_gender = mean_absolute_error(y_test_gender, y_pred_gender)
-        
-        print(f"  Test R²: {r2_gender:.4f}, MAE: {mae_gender:.4f}")
+        print(f"  Exploratory Random Forest R²: {r2_gender:.4f}, MAE: {mae_gender:.4f}")
         
         # Get feature importance
         # Handle both DataFrame and numpy array
-        if hasattr(X, 'columns'):
-            feature_names_list = X.columns.tolist()
+        if hasattr(X_train_gender, 'columns'):
+            feature_names_list = X_train_gender.columns.tolist()
         else:
             feature_names_list = [f'feature_{i}' for i in range(X.shape[1])]
         
@@ -970,11 +997,15 @@ def analyze_gender_specific_feature_importance(X, y, features_df, output_dir='ou
                 'Gender': gender_label,
                 'Feature': feature,
                 'Importance': importance,
-                'Best_Model': best_model_name,
+                'Best_Model': importance_model_name,
                 'R²': r2_gender,
                 'Rank': None  # Will fill later
             })
     
+    pd.DataFrame(gender_model_performance).to_csv(
+        f'{output_dir}/raw_data_gender_model_performance.csv', index=False
+    )
+
     # Create comparison DataFrame
     if len(gender_importance_comparison) > 0:
         comparison_df = pd.DataFrame(gender_importance_comparison)
@@ -1285,11 +1316,13 @@ def test_feature_importance_significance(X_train_all, y_train_all, features_trai
         print("  Insufficient data for bootstrap test")
         return None
     
+    rng = np.random.default_rng(RANDOM_SEED)
+
     # Bootstrap feature importance for men
     men_importances_boot = {f: [] for f in feature_names}
     for _ in range(n_bootstrap):
         # Resample with replacement
-        indices = np.random.choice(len(X_train_men), len(X_train_men), replace=True)
+        indices = rng.choice(len(X_train_men), len(X_train_men), replace=True)
         # Handle both DataFrame and numpy array
         if hasattr(X_train_men, 'iloc'):
             X_boot = X_train_men.iloc[indices]
@@ -1298,7 +1331,9 @@ def test_feature_importance_significance(X_train_all, y_train_all, features_trai
             X_boot = X_train_men[indices]
             y_boot = y_train_men[indices]
         
-        model = GradientBoostingRegressor(n_estimators=100, random_state=None)
+        model = GradientBoostingRegressor(
+            n_estimators=100, random_state=RANDOM_SEED
+        )
         model.fit(X_boot, y_boot)
         
         for i, feature in enumerate(feature_names):
@@ -1308,7 +1343,7 @@ def test_feature_importance_significance(X_train_all, y_train_all, features_trai
     women_importances_boot = {f: [] for f in feature_names}
     for _ in range(n_bootstrap):
         # Resample with replacement
-        indices = np.random.choice(len(X_train_women), len(X_train_women), replace=True)
+        indices = rng.choice(len(X_train_women), len(X_train_women), replace=True)
         # Handle both DataFrame and numpy array
         if hasattr(X_train_women, 'iloc'):
             X_boot = X_train_women.iloc[indices]
@@ -1317,7 +1352,9 @@ def test_feature_importance_significance(X_train_all, y_train_all, features_trai
             X_boot = X_train_women[indices]
             y_boot = y_train_women[indices]
         
-        model = GradientBoostingRegressor(n_estimators=100, random_state=None)
+        model = GradientBoostingRegressor(
+            n_estimators=100, random_state=RANDOM_SEED
+        )
         model.fit(X_boot, y_boot)
         
         for i, feature in enumerate(feature_names):
@@ -2149,6 +2186,24 @@ def main(output_dir='output'):
     print("="*60)
     print("RAW DATA IMPROVEMENT PREDICTION MODEL")
     print("="*60)
+    print(
+        f"Reproducibility: random_seed={RANDOM_SEED}, "
+        f"bootstrap_replicates={BOOTSTRAP_REPLICATES}; SVR is deterministic."
+    )
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "reproducibility_manifest.json"), "w") as f:
+        json.dump(
+            {
+                "random_seed": RANDOM_SEED,
+                "bootstrap_replicates": BOOTSTRAP_REPLICATES,
+                "random_forest_random_state": RANDOM_SEED,
+                "gradient_boosting_random_state": RANDOM_SEED,
+                "svr_randomness": "deterministic for fixed inputs and parameters",
+                "temporal_split": "train 2023, test 2024",
+            },
+            f,
+            indent=2,
+        )
     
     # Load raw data (using standardized times - best method)
     df = load_raw_data(mode='standardized')
@@ -2245,14 +2300,9 @@ def main(output_dir='output'):
     print("="*60)
     compare_time_standardization_methods(output_dir=output_dir)
     
-    # Sensitivity analysis: Test model performance without last_time feature
-    print("\n" + "="*60)
-    print("SENSITIVITY ANALYSIS: Testing model without 'last_time' feature")
-    print("="*60)
-    print("This tests whether 'last_time' creates data leakage.")
-    print("Target: improvement_rate = (last_time - first_time) / season_duration")
-    print("If removing 'last_time' significantly hurts performance, it suggests leakage.")
-    sensitivity_analysis_last_time(df, training_df, output_dir=output_dir)
+    # last_time is an endpoint constituent and is excluded from the primary
+    # feature set by construction. Broader feature-set checks (including
+    # removing all absolute time markers) live in sensitivity_analysis_sweep.py.
     
     print("\nAnalysis complete!")
 
@@ -2405,7 +2455,7 @@ def compare_time_standardization_methods(output_dir='output'):
             
             # Bootstrap CI
             r2_mean, r2_lower, r2_upper = bootstrap_confidence_interval(
-                y_test, y_pred, r2_score, n_bootstrap=1000
+                y_test, y_pred, r2_score
             )
             
             # Cross-validation
@@ -2605,10 +2655,10 @@ def sensitivity_analysis_last_time(df, training_df, output_dir='output'):
     
     # Bootstrap CIs
     r2_with_mean, r2_with_lower, r2_with_upper = bootstrap_confidence_interval(
-        y_test, y_pred_with, r2_score, n_bootstrap=1000
+        y_test, y_pred_with, r2_score
     )
     r2_without_mean, r2_without_lower, r2_without_upper = bootstrap_confidence_interval(
-        y_test, y_pred_without, r2_score, n_bootstrap=1000
+        y_test, y_pred_without, r2_score
     )
     
     # Calculate performance difference

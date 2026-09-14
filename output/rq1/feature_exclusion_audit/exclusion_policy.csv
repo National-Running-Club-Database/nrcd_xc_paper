@@ -1,0 +1,11 @@
+feature,status,class,reason
+last_time,excluded,A_endpoint_leakage,Endpoint of y=(last-first)/duration.
+total_improvement,excluded,A_endpoint_leakage,Numerator of y.
+late_season_performance,excluded,A_endpoint_leakage,"Alias of last_time (counted as A, not also C)."
+progression_improvement,excluded,A_endpoint_leakage,"Alias of total_improvement (counted as A, not also C)."
+improvement_per_race,excluded,B_derived_leakage,total_improvement / num_races.
+improvement_to_variability_ratio,excluded,B_derived_leakage,Uses total_improvement in the numerator.
+early_season_performance,excluded,C_exact_duplicate,Alias of retained first_time.
+races_duration_ratio,excluded,C_exact_duplicate,Identical to retained race_frequency.
+gender_encoded,dropped_within_sex,E_within_sex_constant,Constant after sex-stratified fitting.
+gender_year,dropped_within_sex,E_within_sex_constant,Constant after sex-stratified fitting.

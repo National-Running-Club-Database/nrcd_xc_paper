@@ -1,18 +1,17 @@
 """
 RQ1: Performance improvement patterns across race positions
 
-This script runs all analyses related to RQ1:
-- First to last race improvement
-- Number of races impact on performance
-- Team race participation analysis
-- Nationals overlap analysis (racing more → better at nationals)
-- Top 25 teams at nationals analysis (correlations with rank)
-- Weekly participation analysis (meets, athletes per week)
-- Main ML model for improvement prediction
+Runs the core RQ1 stack into output/rq1/:
+- First-to-last / race-count descriptives, team & nationals analyses
+- Weekly participation, state map, overlay figures
+- Leakage-controlled ML + feature exclusion / compact primary suite
+- Robustness (ablation, sensitivity, diagnostics), mixed effects
+- Enrichment, mathematical contributions (weather-path, SER, ERO)
+- Null-result diagnostics, CIKM R² audit, underexplored mechanisms
 
-All outputs are saved to output/rq1/
+Team-association robustness lives in rq3.py (output/rq3/).
 
-Run from main directory: python scripts/rq1.py
+Run from repository root: python scripts/rq1.py
 """
 
 import os
@@ -117,36 +116,39 @@ def main():
     top25_team_analysis.output_dir = original_output
     
     print("\n8. State Race Results Map...")
-    import state_race_results_map
-    state_race_results_map.output_dir = rq1_output
-    from state_race_results_map import main as state_map_main
-    state_map_main()
+    try:
+        import state_race_results_map
+        state_race_results_map.output_dir = rq1_output
+        from state_race_results_map import main as state_map_main
+        state_map_main()
+    except Exception as e:
+        print(f"  ERROR running state race results map (continuing): {e}")
     
     print("\n9. Main ML Model - Improvement Prediction (3-year validation)...")
     from ml_improvement_prediction import main as ml_main
     # Pass output directory directly to ML model
     ml_main(output_dir=rq1_output)
     
-    print("\n10. Combined Overlay Plots (2023, 2024, 2025) - Men's...")
+    print("\n10-11. Combined Overlay Plots (2023, 2024, 2025) - Men's & Women's...")
     # Set output directory for overlay plots
     overlay_output_dir = os.path.join(rq1_output, 'overlay_plots')
     os.makedirs(overlay_output_dir, exist_ok=True)
     try:
-        # Import and run men's overlay script (now in scripts directory)
-        from create_combined_overlay_2023_2024_2025_mens import main as mens_overlay_main
-        mens_overlay_main(output_dir=overlay_output_dir)
+        # Single gender-parametrized overlay module (replaces the old mens/womens pair)
+        from create_combined_overlay_2023_2024_2025 import main as combined_overlay_main
+        for gender in ('M', 'F'):
+            combined_overlay_main(gender=gender, output_dir=overlay_output_dir)
     except Exception as e:
-        print(f"  ERROR running men's overlay script: {e}")
+        print(f"  ERROR running combined overlay script: {e}")
         import traceback
         traceback.print_exc()
-    
-    print("\n11. Combined Overlay Plots (2023, 2024, 2025) - Women's...")
+
+    print("\n11b. Combined years all-plots grid...")
     try:
-        # Import and run women's overlay script (now in scripts directory)
-        from create_combined_overlay_2023_2024_2025_womens import main as womens_overlay_main
-        womens_overlay_main(output_dir=overlay_output_dir)
+        from create_combined_2023_2024_2025_all_plots_grid import main as grid_main
+        grid_main(output_dir=overlay_output_dir)
     except Exception as e:
-        print(f"  ERROR running women's overlay script: {e}")
+        print(f"  ERROR running all-plots grid: {e}")
         import traceback
         traceback.print_exc()
 
@@ -168,12 +170,102 @@ def main():
         import traceback
         traceback.print_exc()
 
-    print("\n14. Explanatory Model: Mixed-Effects (athlete random effects)...")
+    print("\n14. Prediction diagnostics: learning curves and outlier sensitivity...")
+    try:
+        from prediction_diagnostics import main as diagnostics_main
+        diagnostics_main(output_dir=rq1_output)
+    except Exception as e:
+        print(f"  ERROR running prediction diagnostics: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n15. Feature exclusion audit (leakage vs over-exclusion; compact vs legacy)...")
+    try:
+        from feature_exclusion_audit import main as exclusion_main
+        exclusion_main(output_dir=os.path.join(rq1_output, 'feature_exclusion_audit'))
+    except Exception as e:
+        print(f"  ERROR running feature exclusion audit: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n15b. Compact primary six-model suite (table + learning curves + perm)...")
+    try:
+        from compact_model_suite import main as compact_main
+        compact_main()
+    except Exception as e:
+        print(f"  ERROR running compact model suite: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n16. Explanatory Model: Mixed-Effects (athlete random effects)...")
     try:
         from mixed_effects_explanatory_model import main as mixed_main
         mixed_main(output_dir=rq1_output)
     except Exception as e:
         print(f"  ERROR running mixed-effects model: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n16b. Gender x race-count interaction mixed model...")
+    try:
+        from mixed_effects_interaction import main as interaction_main
+        interaction_main(output_dir=rq1_output)
+    except Exception as e:
+        print(f"  ERROR running interaction mixed model: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n17. Paper enrichment: dose-response, weather inflation, retention, early-window...")
+    try:
+        from paper_enrichment_analyses import main as enrichment_main
+        enrichment_main(output_dir=os.path.join(rq1_output, 'enrichment'))
+    except Exception as e:
+        print(f"  ERROR running enrichment analyses: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n18. Mathematical contributions: weather-path identity, SER, ERO...")
+    try:
+        from mathematical_contributions import main as math_main
+        math_main(output_dir=os.path.join(rq1_output, 'mathematical_contributions'))
+    except Exception as e:
+        print(f"  ERROR running mathematical contributions: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n19. Null-result diagnostics: noise ceiling, permutation-R^2, classification AUC...")
+    try:
+        from rq1_null_result_diagnostics import main as null_diag_main
+        null_diag_main(output_dir=rq1_output)
+    except Exception as e:
+        print(f"  ERROR running null-result diagnostics: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n20. CIKM vs analysis R^2 discrepancy audit (leakage mechanism)...")
+    try:
+        from cikm_r2_discrepancy_audit import main as cikm_audit_main
+        cikm_audit_main(output_dir=os.path.join(rq1_output, 'cikm_r2_discrepancy_audit'))
+    except Exception as e:
+        print(f"  ERROR running CIKM R^2 audit: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n21. Underexplored mechanisms: roster depth, peer density, quantile CATE...")
+    try:
+        from underexplored_mechanisms import main as mechanisms_main
+        mechanisms_main(output_dir=os.path.join(rq1_output, 'underexplored_mechanisms'))
+    except Exception as e:
+        print(f"  ERROR running underexplored mechanisms: {e}")
+        import traceback
+        traceback.print_exc()
+
+    print("\n22. Robustness / sensitivity checks (matched volume, team confounders, reliability, weather holdout)...")
+    try:
+        from robustness_checks import main as gap_main
+        gap_main(output_dir=os.path.join(rq1_output, 'robustness_checks'))
+    except Exception as e:
+        print(f"  ERROR running robustness checks: {e}")
         import traceback
         traceback.print_exc()
     
@@ -192,11 +284,17 @@ def main():
     print(f"  - {rq1_output}/race_results_by_state_2023_2024_2025.pdf")
     print(f"  - {rq1_output}/raw_data_*.csv (ML model results)")
     print(f"  - {rq1_output}/raw_data_*.pdf (ML model visualizations)")
-    print(f"  - {rq1_output}/overlay_plots/combined_overlay_2023_2024_2025_mens.pdf")
-    print(f"  - {rq1_output}/overlay_plots/combined_overlay_2023_2024_2025_womens.pdf")
-    print(f"  - {rq1_output}/robustness_feature_ablation/ (*_men / *_women feature ablation)")
-    print(f"  - {rq1_output}/sensitivity_sweep/ (*_men / *_women sensitivity sweep)")
-    print(f"  - {rq1_output}/mixed_effects/ (mixed-effects explanatory model, men/women only)")
+    print(f"  - {rq1_output}/overlay_plots/")
+    print(f"  - {rq1_output}/feature_exclusion_audit/ (compact primary tables)")
+    print(f"  - {rq1_output}/mathematical_contributions/")
+    print(f"  - {rq1_output}/robustness_feature_ablation/")
+    print(f"  - {rq1_output}/sensitivity_sweep/")
+    print(f"  - {rq1_output}/null_result_diagnostics/")
+    print(f"  - {rq1_output}/cikm_r2_discrepancy_audit/")
+    print(f"  - {rq1_output}/underexplored_mechanisms/")
+    print(f"  - {rq1_output}/robustness_checks/")
+    print(f"  - {rq1_output}/prediction_diagnostics/")
+    print(f"  - {rq1_output}/mixed_effects/")
 
 if __name__ == "__main__":
     main()

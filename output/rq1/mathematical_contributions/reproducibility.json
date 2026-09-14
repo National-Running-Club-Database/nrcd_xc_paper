@@ -1,0 +1,24 @@
+{
+  "random_seed": 42,
+  "primary_r2": {
+    "M": 0.043,
+    "F": -0.029
+  },
+  "reliability": {
+    "M": 0.22822087419717996,
+    "F": 0.2787539600162913
+  },
+  "max_abs_identity_residual_sec": 0.0,
+  "outputs": [
+    "FORMULAS.md",
+    "ero_out_of_year_auc.csv",
+    "ero_pooled_or.csv",
+    "ero_vs_maxrace.pdf",
+    "reproducibility.json",
+    "signal_extraction_ratio.csv",
+    "team_ero.csv",
+    "weather_path_identity.pdf",
+    "weather_path_identity_paired.csv",
+    "weather_path_identity_summary.csv"
+  ]
+}

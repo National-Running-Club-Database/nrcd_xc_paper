@@ -29,24 +29,21 @@ output_dir = 'output/weekly_participation'
 # Directory creation moved to main() to avoid creating when imported
 
 def load_data():
-    """Load meet and result data."""
-    data_dir = 'data'
-    
-    meet_df = pd.read_csv(os.path.join(data_dir, 'meet.csv'))
-    result_df = pd.read_csv(os.path.join(data_dir, 'result.csv'))
-    athlete_df = pd.read_csv(os.path.join(data_dir, 'athlete.csv'))
-    
-    # Convert dates
-    meet_df['start_date'] = pd.to_datetime(meet_df['start_date'], errors='coerce')
-    meet_df['end_date'] = pd.to_datetime(meet_df['end_date'], errors='coerce')
-    
-    # Exclude nationals
-    meet_df = meet_df[meet_df['nationals'] == False].copy()
-    
-    # Filter results to only non-nationals meets
-    non_nationals_meet_ids = meet_df['meet_id'].unique()
-    result_df = result_df[result_df['meet_id'].isin(non_nationals_meet_ids)].copy()
-    
+    """Load comprehensive-era XC meets/results (nationals excluded)."""
+    from load_nrcd_data import load_analysis_tables
+
+    tables = load_analysis_tables(era="comprehensive")
+    meet_df = tables["meet"].copy()
+    result_df = tables["result"].copy()
+    athlete_df = tables["athlete"].copy()
+
+    meet_df["start_date"] = pd.to_datetime(meet_df["start_date"], errors="coerce")
+    meet_df["end_date"] = pd.to_datetime(meet_df["end_date"], errors="coerce")
+
+    meet_df = meet_df[meet_df["nationals"] == False].copy()
+    non_nationals_meet_ids = meet_df["meet_id"].unique()
+    result_df = result_df[result_df["meet_id"].isin(non_nationals_meet_ids)].copy()
+
     return meet_df, result_df, athlete_df
 
 def calculate_weekly_stats(meet_df, result_df, athlete_df):

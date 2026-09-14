@@ -1,0 +1,20 @@
+{
+  "random_seed": 42,
+  "primary_feature_set": "compact_primary",
+  "n_primary_features_within_sex": 17,
+  "redundancy_pruned": [
+    "worst_time",
+    "avg_time",
+    "time_std",
+    "time_range",
+    "best_to_avg_ratio",
+    "worst_to_avg_ratio",
+    "variability_score",
+    "consistency_score",
+    "best_race_timing_ratio"
+  ],
+  "compact_minus_legacy_r2_men": -0.007265688867998388,
+  "leakage_last_time_delta_r2_men": 0.437873079103155,
+  "drop_slope_delta_r2_men": -0.008723315153866817,
+  "conclusion": "Primary = compact set after redundancy prune; A/B leakage exclusions confirmed by add-back; compact\u2248legacy R\u00b2; null not from over-pruning."
+}

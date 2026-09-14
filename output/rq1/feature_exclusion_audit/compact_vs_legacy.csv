@@ -1,0 +1,7 @@
+gender,spec,n_features,test_r2
+Men,compact_primary,17,0.04324304853585281
+Men,legacy_full,26,0.0505087374038512
+Men,compact_minus_legacy,-9,-0.007265688867998388
+Women,compact_primary,17,-0.02861583490179198
+Women,legacy_full,26,-0.011190831193787387
+Women,compact_minus_legacy,-9,-0.017425003708004594

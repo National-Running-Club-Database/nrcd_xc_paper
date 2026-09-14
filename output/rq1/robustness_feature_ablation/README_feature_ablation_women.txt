@@ -6,17 +6,17 @@ Gender subset: F (gender_encoded / gender_year excluded)
 Model: RandomForestRegressor(n_estimators=100, random_state=42)
 Primary split: train 2023, test 2024
 
-Baseline (train 2023 → test 2024): R²=0.8883, RMSE=1.3876, MAE=0.5475
+Baseline (train 2023 → test 2024): R²=-0.3061, RMSE=7.5902, MAE=4.6680
 
 Largest performance drops (single-feature removal; sorted by ΔR² ascending):
-                    removed  delta_r2       r2     rmse      mae
-             bad_race_count -0.007295 0.881053 1.432267 0.551517
-           experience_level -0.006104 0.882245 1.425075 0.564326
-             race_frequency -0.005194 0.883154 1.419560 0.554848
-                  last_time -0.004656 0.883693 1.416285 0.560323
-            season_duration -0.004606 0.883743 1.415983 0.557302
-starting_percentile_squared -0.003785 0.884564 1.410973 0.552878
-        starting_percentile -0.003757 0.884592 1.410801 0.552824
-                       year -0.003473 0.884876 1.409065 0.549802
-     best_race_timing_ratio -0.002943 0.885405 1.405822 0.555378
-                   avg_time -0.002697 0.885652 1.404306 0.551450
+               removed  delta_r2        r2     rmse      mae
+     best_to_avg_ratio -0.002380 -0.308503 7.597083 4.667385
+               cv_time  0.003094 -0.303029 7.581175 4.664526
+     variability_score  0.003656 -0.302467 7.579540 4.668574
+   starting_percentile  0.004490 -0.301633 7.577114 4.656347
+              time_std  0.004630 -0.301493 7.576705 4.665465
+best_race_timing_ratio  0.004643 -0.301480 7.576667 4.651205
+    worst_to_avg_ratio  0.004949 -0.301175 7.575778 4.662300
+                 slope  0.005506 -0.300617 7.574156 4.671776
+            time_range  0.005901 -0.300222 7.573005 4.654407
+        bad_race_count  0.007162 -0.298961 7.569332 4.652464

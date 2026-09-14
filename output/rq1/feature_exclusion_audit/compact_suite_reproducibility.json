@@ -1,0 +1,7 @@
+{
+  "random_seed": 42,
+  "bootstrap": 2000,
+  "permutations": 1000,
+  "feature_set": "compact_primary",
+  "n_features_within_sex": 17
+}

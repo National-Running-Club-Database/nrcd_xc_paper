@@ -4,6 +4,7 @@ import sys
 # Setup paths for imports (works from main directory or scripts directory)
 from _setup_paths import setup_paths
 setup_paths()
+from load_nrcd_data import get_data_dir
 
 import pandas as pd
 import numpy as np
@@ -20,9 +21,9 @@ def analyze_team_participation():
     df['start_date'] = pd.to_datetime(df['start_date'], errors='coerce')
     
     # Load team and athlete-team association data
-    athlete_team_df = pd.read_csv('data/athlete_team_association.csv')
-    team_df = pd.read_csv('data/team.csv')
-    athlete_df = pd.read_csv('data/athlete.csv')
+    athlete_team_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete_team_association.csv'))
+    team_df = pd.read_csv(os.path.join(get_data_dir(), 'team.csv'))
+    athlete_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete.csv'))
     
     # Merge athlete gender information
     athlete_df = athlete_df[['athlete_id', 'gender']]

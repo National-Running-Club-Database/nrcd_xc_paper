@@ -39,7 +39,8 @@ from ml_improvement_prediction import (
     prepare_model_data,
     train_models,
     analyze_feature_importance,
-    bootstrap_confidence_interval
+    bootstrap_confidence_interval,
+    RANDOM_SEED,
 )
 from sklearn.metrics import r2_score
 
@@ -402,12 +403,13 @@ def analyze_rq2_gender_specific_feature_importance(X, y, features_df, output_dir
     y_train_women = y_train_all.iloc[women_mask.values] if hasattr(y_train_all, 'iloc') else y_train_all[women_mask.values]
     
     if len(X_train_men) >= 50 and len(X_train_women) >= 50:
+        rng = np.random.default_rng(RANDOM_SEED)
         print(f"  Running bootstrap test (n={n_bootstrap})...")
         
         # Bootstrap for men
         men_importances_boot = {f: [] for f in feature_names_list}
         for _ in range(n_bootstrap):
-            indices = np.random.choice(len(X_train_men), len(X_train_men), replace=True)
+            indices = rng.choice(len(X_train_men), len(X_train_men), replace=True)
             if hasattr(X_train_men, 'iloc'):
                 X_boot = X_train_men.iloc[indices]
                 y_boot = y_train_men.iloc[indices] if hasattr(y_train_men, 'iloc') else y_train_men[indices]
@@ -415,7 +417,9 @@ def analyze_rq2_gender_specific_feature_importance(X, y, features_df, output_dir
                 X_boot = X_train_men[indices]
                 y_boot = y_train_men[indices]
             
-            model = RandomForestRegressor(n_estimators=100, random_state=None)
+            model = RandomForestRegressor(
+                n_estimators=100, random_state=RANDOM_SEED
+            )
             model.fit(X_boot, y_boot)
             for i, feature in enumerate(feature_names_list):
                 men_importances_boot[feature].append(model.feature_importances_[i])
@@ -423,7 +427,9 @@ def analyze_rq2_gender_specific_feature_importance(X, y, features_df, output_dir
         # Bootstrap for women
         women_importances_boot = {f: [] for f in feature_names_list}
         for _ in range(n_bootstrap):
-            indices = np.random.choice(len(X_train_women), len(X_train_women), replace=True)
+            indices = rng.choice(
+                len(X_train_women), len(X_train_women), replace=True
+            )
             if hasattr(X_train_women, 'iloc'):
                 X_boot = X_train_women.iloc[indices]
                 y_boot = y_train_women.iloc[indices] if hasattr(y_train_women, 'iloc') else y_train_women[indices]
@@ -431,7 +437,9 @@ def analyze_rq2_gender_specific_feature_importance(X, y, features_df, output_dir
                 X_boot = X_train_women[indices]
                 y_boot = y_train_women[indices]
             
-            model = RandomForestRegressor(n_estimators=100, random_state=None)
+            model = RandomForestRegressor(
+                n_estimators=100, random_state=RANDOM_SEED
+            )
             model.fit(X_boot, y_boot)
             for i, feature in enumerate(feature_names_list):
                 women_importances_boot[feature].append(model.feature_importances_[i])
@@ -663,15 +671,13 @@ def run_rq2_ml_analysis(df_filtered, valid_athlete_ids, output_dir='output/rq2')
     features_df = create_advanced_features(athlete_features_df)
     
     # Prepare model data
-    # NOTE: prepare_model_data includes 'last_time' as a feature, which creates partial leakage
-    # since improvement_rate = (last_time - first_time) / season_duration
+    # Endpoint time is excluded upstream; keep this guard for compatibility
+    # with any legacy saved feature table.
     # For RQ2, we'll use the standard prepare_model_data but document this limitation
     # The leakage is minimal since the model must still learn the relationship
     X, y, features_df_filtered = prepare_model_data(features_df)
     
-    # CRITICAL: Remove 'last_time' from features to prevent data leakage
-    # improvement_rate = (last_time - first_time) / season_duration
-    # Having last_time as a feature allows model to reconstruct target
+    # Compatibility guard: legacy feature tables may still include last_time.
     if 'last_time' in X.columns:
         print("\n⚠️  DATA LEAKAGE PREVENTION: Removing 'last_time' from features")
         print("   (Target improvement_rate uses last_time, so including it leaks information)")

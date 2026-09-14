@@ -1,0 +1,4 @@
+holdout_year,n_train,n_test,features,corr_pred_vs_actual_a,mae_a_sec,rmse_a_sec,r2_a,mean_actual_a,mean_pred_a
+2023,4584,390,"temperature,dew_point,elevation_gain,elevation_loss,meet_elevation,barometric_pressure,doy",0.6590170087558599,4.296698179147004,4.99347762762222,0.04545364295794663,8.00625242495336,8.854524706321065
+2024,2060,2914,"temperature,dew_point,elevation_gain,elevation_loss,meet_elevation,barometric_pressure,doy",0.9145971248266175,8.296320240980036,9.764456431426883,0.8010696680453809,28.786742861918288,31.991037630629016
+2025,3304,1670,"temperature,dew_point,elevation_gain,elevation_loss,meet_elevation,barometric_pressure,doy",0.9218368199848415,9.966392610705757,11.348037121501651,0.663470934319371,23.60187808528044,17.69257695619365

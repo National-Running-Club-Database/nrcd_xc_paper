@@ -1,12 +1,53 @@
 # Python virtual environment
 venv/
 
-#OS
+# OS
 .DS_Store
 
-#Notebooks
+# Notebooks
 .ipynb_checkpoints/
 
 # Data directories
 data/
 data/**/*
+# Public NRCD export is a git submodule at data_public/ (see .gitmodules).
+# Do not ignore data_public/ — only ignore a non-submodule local dump if needed.
+
+# ---------------------------------------------------------------------------
+# Paper / manuscript artifacts (local only — not part of the analysis code)
+# Manuscript sources, Overleaf sync, CIKM copies, and figure dumps live here
+# or under the sibling data_paper repo. Do not commit them to this repo.
+# ---------------------------------------------------------------------------
+papers/
+figures_for_sloan/
+key_visualizations/
+
+# Stray LaTeX / manuscript files at repo root
+*.tex
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+texput.log
+
+# Manuscript / submission PDFs (analysis figure PDFs under output/ are fine)
+/*.pdf
+nrcd_cikm*.pdf
+*cikm*submission*.pdf
+*cikm*unpublished*.pdf
+
+# Python cache
+__pycache__/
+*.py[cod]
+.mplcache/
+**/.mplcache/
+
+# Analysis runtime caches (standardized frames, etc.)
+output/.cache/

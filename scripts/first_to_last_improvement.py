@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import os
-from utils import standardize_convert_exclude_nationals_df, convert_exclude_nationals
+from utils import standardize_both_tiers
 
 output_dir = 'output/NumberOfRacesQuestion'
 os.makedirs(output_dir, exist_ok=True)
@@ -115,11 +115,9 @@ def plot_comparison_grid(results_dict):
     plt.close()
 
 def main():
-    # 1. Full standardization (weather, terrain, etc.)
-    df_std = standardize_convert_exclude_nationals_df()
+    # Converted Only + Standardized in one prepared batch (nrcd 0.1.5+)
+    df_conv, df_std = standardize_both_tiers()
     df_std['start_date'] = pd.to_datetime(df_std['start_date'], errors='coerce')
-    # 2. Conversion only (no course details adjustment)
-    df_conv = convert_exclude_nationals()
     df_conv['start_date'] = pd.to_datetime(df_conv['start_date'], errors='coerce')
     results_dict = {}
     for year in [2023, 2024, 2025]:

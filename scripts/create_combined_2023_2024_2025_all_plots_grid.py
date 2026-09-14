@@ -15,15 +15,14 @@ import sys
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
 sys.path.insert(0, script_dir)
-from utils import convert_exclude_nationals, standardize_convert_exclude_nationals_df
+from utils import standardize_both_tiers
 
-workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-data_dir = os.path.join(workspace_root, 'data', 'data')
+from load_nrcd_data import get_data_dir
+data_dir = get_data_dir()
 
-# Set output directory
+# Default output (overridable via main(output_dir=...))
 base_dir = os.path.dirname(script_dir)
-output_dir = os.path.join(base_dir, 'key_visualizations', 'RQ1', 'combined_years_overlay')
-os.makedirs(output_dir, exist_ok=True)
+DEFAULT_OUTPUT_DIR = os.path.join(base_dir, 'output', 'rq1', 'overlay_plots')
 
 # Set matplotlib style
 plt.style.use('default')
@@ -69,145 +68,20 @@ def format_time_string(seconds):
         return f"{minutes}:{secs:05.2f}"
 
 def load_data_from_custom_path(data_dir, gender_filter=None):
-    """Load data files from the specified data directory."""
-    results_df = pd.read_csv(os.path.join(data_dir, 'result.csv'))
-    meet_df = pd.read_csv(os.path.join(data_dir, 'meet.csv'))
-    athlete_df = pd.read_csv(os.path.join(data_dir, 'athlete.csv'))
-    running_event_df = pd.read_csv(os.path.join(data_dir, 'running_event.csv'))
-    sport_df = pd.read_csv(os.path.join(data_dir, 'sport.csv'))
-    
-    # Get cross country sport ID
-    cross_country_sport_id = sport_df[
-        sport_df['sport_name'].str.contains('Cross Country', case=False, na=False)
-    ]['sport_id'].values[0]
-    
-    # Filter meets to only cross country
-    cross_country_meets = meet_df[meet_df['sport_id'] == cross_country_sport_id].copy()
-    
-    # Filter results to only cross country meets
-    results_df = results_df[results_df['meet_id'].isin(cross_country_meets['meet_id'])].copy()
-    
-    # Merge with running_event_df and athlete_df
-    results_df = results_df.merge(running_event_df[['running_event_id', 'event_name']], on='running_event_id', how='left')
-    results_df = results_df.merge(athlete_df[['athlete_id', 'gender']], on='athlete_id', how='left')
-    
-    # Filter to specific distances
-    if gender_filter == 'M':
-        valid_events = ['8000m', '5000m']
-        gender_results = results_df[(results_df['gender'] == 'M') & (results_df['event_name'].isin(valid_events))].copy()
-        target_event = '8000m'
-        target_event_id = running_event_df[running_event_df['event_name'] == '8000m']['running_event_id'].values[0]
-    elif gender_filter == 'F':
-        valid_events = ['6000m', '5000m']
-        gender_results = results_df[(results_df['gender'] == 'F') & (results_df['event_name'].isin(valid_events))].copy()
-        target_event = '6000m'
-        target_event_id = running_event_df[running_event_df['event_name'] == '6000m']['running_event_id'].values[0]
-    else:
-        # Both genders
-        valid_events_men = ['8000m', '5000m']
-        valid_events_women = ['6000m', '5000m']
-        men_results = results_df[(results_df['gender'] == 'M') & (results_df['event_name'].isin(valid_events_men))].copy()
-        women_results = results_df[(results_df['gender'] == 'F') & (results_df['event_name'].isin(valid_events_women))].copy()
-        
-        # Convert men's 5000m to 8000m
-        event_8000m_id = running_event_df[running_event_df['event_name'] == '8000m']['running_event_id'].values[0]
-        men_5000m = men_results[men_results['event_name'] == '5000m'].copy()
-        men_8000m = men_results[men_results['event_name'] == '8000m'].copy()
-        
-        if len(men_5000m) > 0:
-            from utils import parse_time
-            men_5000m['result_time_seconds'] = men_5000m['result_time'].apply(parse_time)
-            men_5000m['result_time_seconds'] = men_5000m.apply(
-                lambda row: convert_time_distance(row['result_time_seconds'], 5000, 8000, 'M'),
-                axis=1
-            )
-            men_5000m['event_name'] = '8000m'
-            men_5000m['running_event_id'] = event_8000m_id
-            men_5000m['result_time'] = men_5000m['result_time_seconds'].apply(format_time_string)
-            men_5000m = men_5000m.drop(columns=['result_time_seconds'], errors='ignore')
-        
-        # Convert women's 5000m to 6000m
-        event_6000m_id = running_event_df[running_event_df['event_name'] == '6000m']['running_event_id'].values[0]
-        women_5000m = women_results[women_results['event_name'] == '5000m'].copy()
-        women_6000m = women_results[women_results['event_name'] == '6000m'].copy()
-        
-        if len(women_5000m) > 0:
-            from utils import parse_time
-            women_5000m['result_time_seconds'] = women_5000m['result_time'].apply(parse_time)
-            women_5000m['result_time_seconds'] = women_5000m.apply(
-                lambda row: convert_time_distance(row['result_time_seconds'], 5000, 6000, 'F'),
-                axis=1
-            )
-            women_5000m['event_name'] = '6000m'
-            women_5000m['running_event_id'] = event_6000m_id
-            women_5000m['result_time'] = women_5000m['result_time_seconds'].apply(format_time_string)
-            women_5000m = women_5000m.drop(columns=['result_time_seconds'], errors='ignore')
-        
-        # Combine
-        men_list = [men_8000m] if len(men_8000m) > 0 else []
-        if len(men_5000m) > 0:
-            men_list.append(men_5000m)
-        men_final = pd.concat(men_list, ignore_index=True) if men_list else pd.DataFrame()
-        
-        women_list = [women_6000m] if len(women_6000m) > 0 else []
-        if len(women_5000m) > 0:
-            women_list.append(women_5000m)
-        women_final = pd.concat(women_list, ignore_index=True) if women_list else pd.DataFrame()
-        
-        results_list = []
-        if len(men_final) > 0:
-            results_list.append(men_final)
-        if len(women_final) > 0:
-            results_list.append(women_final)
-        
-        results_df = pd.concat(results_list, ignore_index=True) if results_list else pd.DataFrame()
-        
-        # Load course_details if available
-        course_details_path = os.path.join(data_dir, 'course_details.csv')
-        if os.path.exists(course_details_path):
-            course_details_df = pd.read_csv(course_details_path)
-        else:
-            course_details_df = pd.DataFrame()
-        
-        return results_df, meet_df, athlete_df, running_event_df, course_details_df
-    
-    # Single gender processing
-    gender_5000m = gender_results[gender_results['event_name'] == '5000m'].copy()
-    gender_target = gender_results[gender_results['event_name'] == target_event].copy()
-    
-    if len(gender_5000m) > 0:
-        from utils import parse_time
-        gender_5000m['result_time_seconds'] = gender_5000m['result_time'].apply(parse_time)
-        if gender_filter == 'M':
-            gender_5000m['result_time_seconds'] = gender_5000m.apply(
-                lambda row: convert_time_distance(row['result_time_seconds'], 5000, 8000, 'M'),
-                axis=1
-            )
-        else:
-            gender_5000m['result_time_seconds'] = gender_5000m.apply(
-                lambda row: convert_time_distance(row['result_time_seconds'], 5000, 6000, 'F'),
-                axis=1
-            )
-        gender_5000m['event_name'] = target_event
-        gender_5000m['running_event_id'] = target_event_id
-        gender_5000m['result_time'] = gender_5000m['result_time_seconds'].apply(format_time_string)
-        gender_5000m = gender_5000m.drop(columns=['result_time_seconds'], errors='ignore')
-    
-    gender_list = [gender_target] if len(gender_target) > 0 else []
-    if len(gender_5000m) > 0:
-        gender_list.append(gender_5000m)
-    gender_final = pd.concat(gender_list, ignore_index=True) if gender_list else pd.DataFrame()
-    
-    results_df = gender_final if len(gender_final) > 0 else pd.DataFrame()
-    
-    # Load course_details if available
-    course_details_path = os.path.join(data_dir, 'course_details.csv')
-    if os.path.exists(course_details_path):
-        course_details_df = pd.read_csv(course_details_path)
-    else:
-        course_details_df = pd.DataFrame()
-    
+    """Load comprehensive-era Cross Country results (optionally one gender)."""
+    from load_nrcd_data import load_analysis_tables
+    tables = load_analysis_tables(data_dir, era="comprehensive")
+    results_df = tables["result"].copy()
+    meet_df = tables["meet"].copy()
+    athlete_df = tables["athlete"].copy()
+    running_event_df = tables["running_event"].copy()
+    course_details_df = tables["course_details"].copy()
+    if "gender" not in results_df.columns:
+        results_df = results_df.merge(athlete_df[["athlete_id", "gender"]], on="athlete_id", how="left")
+    if gender_filter is not None:
+        results_df = results_df[results_df["gender"] == gender_filter].copy()
     return results_df, meet_df, athlete_df, running_event_df, course_details_df
+
 
 def calculate_first_to_fastest_diff(df):
     """Calculate time difference between first race and fastest other race for each athlete."""
@@ -419,12 +293,17 @@ def plot_subplot_from_year_averages(ax, year_data_dict, gender, mode):
     ax.set_title(title_text, fontsize=11, fontweight='normal')
     ax.legend(loc='best', fontsize=9, frameon=True, fancybox=False, edgecolor='black')
 
-def main():
+def main(output_dir=None):
     """Main function to create combined grid plot."""
+    if output_dir is None:
+        output_dir = DEFAULT_OUTPUT_DIR
+    os.makedirs(output_dir, exist_ok=True)
+
     print("="*80)
     print("CREATING 2x2 GRID OF COMBINED 2023-2025 PLOTS")
     print("="*80)
     print(f"Data directory: {data_dir}")
+    print(f"Output directory: {output_dir}")
     print(f"Date range: August 25 to November 27 for each year")
     print("="*80)
     
@@ -449,68 +328,52 @@ def main():
     # Process each year separately for both standardized and non-standardized
     print("\n2. Processing data for each year separately...")
     
-    # Non-standardized data
-    print("   Processing non-standardized data for each year...")
+    print("   Standardizing both tiers once...")
     year_data_dict_conv = {}
+    year_data_dict_std = {}
     try:
         original_dir = os.getcwd()
         data_parent = os.path.dirname(data_dir)
         try:
             os.chdir(data_parent)
-            df_conv = convert_exclude_nationals(
+            df_conv, df_std = standardize_both_tiers(
                 results_df=results_df,
+                course_details_df=course_details_df,
                 meet_df=meet_df,
                 athlete_df=athlete_df,
-                running_event_df=running_event_df
+                running_event_df=running_event_df,
+                use_cache=False,
             )
         finally:
             os.chdir(original_dir)
-        
-        df_conv['start_date'] = pd.to_datetime(df_conv['start_date'], errors='coerce')
-        
+
+        df_conv = df_conv.copy()
+        df_std = df_std.copy()
+        df_conv["start_date"] = pd.to_datetime(df_conv["start_date"], errors="coerce")
+        df_std["start_date"] = pd.to_datetime(df_std["start_date"], errors="coerce")
+
         for year in years:
             df_conv_year = filter_year_data(df_conv, year)
             if len(df_conv_year) > 0:
-                df_diff_conv = calculate_first_to_fastest_diff(df_conv_year)
-                year_data_dict_conv[year] = df_diff_conv
-                print(f"      {year}: Found {len(df_diff_conv)} athletes")
+                year_data_dict_conv[year] = calculate_first_to_fastest_diff(df_conv_year)
+                print(f"      {year} converted: {len(year_data_dict_conv[year])} athletes")
             else:
                 year_data_dict_conv[year] = pd.DataFrame()
-                print(f"      {year}: No data found")
+                print(f"      {year} converted: No data found")
+
+            df_std_year = filter_year_data(df_std, year)
+            if len(df_std_year) > 0:
+                year_data_dict_std[year] = calculate_first_to_fastest_diff(df_std_year)
+                print(f"      {year} standardized: {len(year_data_dict_std[year])} athletes")
+            else:
+                year_data_dict_std[year] = pd.DataFrame()
+                print(f"      {year} standardized: No data found")
     except Exception as e:
-        print(f"      ERROR processing non-standardized data: {e}")
+        print(f"      ERROR processing data: {e}")
         import traceback
         traceback.print_exc()
         for year in years:
             year_data_dict_conv[year] = pd.DataFrame()
-    
-    # Standardized data
-    print("   Processing standardized data for each year...")
-    year_data_dict_std = {}
-    try:
-        df_std = standardize_convert_exclude_nationals_df(
-            results_df=results_df,
-            course_details_df=course_details_df,
-            meet_df=meet_df,
-            athlete_df=athlete_df,
-            running_event_df=running_event_df
-        )
-        df_std['start_date'] = pd.to_datetime(df_std['start_date'], errors='coerce')
-        
-        for year in years:
-            df_std_year = filter_year_data(df_std, year)
-            if len(df_std_year) > 0:
-                df_diff_std = calculate_first_to_fastest_diff(df_std_year)
-                year_data_dict_std[year] = df_diff_std
-                print(f"      {year}: Found {len(df_diff_std)} athletes")
-            else:
-                year_data_dict_std[year] = pd.DataFrame()
-                print(f"      {year}: No data found")
-    except Exception as e:
-        print(f"      ERROR processing standardized data: {e}")
-        import traceback
-        traceback.print_exc()
-        for year in years:
             year_data_dict_std[year] = pd.DataFrame()
     
     # Create 2x2 grid plot

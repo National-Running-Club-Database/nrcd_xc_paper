@@ -66,6 +66,11 @@ def _prepare_df(
         sd = work[col].std(ddof=0) or 1.0
         work[f"z_{col}"] = (work[col] - mu) / sd
 
+    # Quadratic race-count term to capture the non-monotone (inverted-U) dose
+    # response seen in the descriptive analysis; built from the z-scored linear
+    # term so the two are on a comparable scale.
+    work["z_num_races_sq"] = work["z_num_races"] ** 2
+
     return work
 
 
@@ -76,9 +81,9 @@ def _fit_models(work: pd.DataFrame, include_gender_term: bool):
     # Fixed effects: basic training/experience proxies + gender + year trend
     # Random intercept for athlete_id captures repeated measures across years (if present).
     if include_gender_term:
-        formula = "improvement_rate ~ z_num_races + z_season_duration + z_starting_percentile + z_year + gender_M"
+        formula = "improvement_rate ~ z_num_races + z_num_races_sq + z_season_duration + z_starting_percentile + z_year + gender_M"
     else:
-        formula = "improvement_rate ~ z_num_races + z_season_duration + z_starting_percentile + z_year"
+        formula = "improvement_rate ~ z_num_races + z_num_races_sq + z_season_duration + z_starting_percentile + z_year"
 
     # OLS baseline (ignores repeated measures)
     ols = smf.ols(formula=formula, data=work).fit(cov_type="HC3")

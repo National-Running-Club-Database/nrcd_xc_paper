@@ -1,0 +1,14 @@
+{
+  "historical_results": 46930,
+  "comprehensive_results": 23355,
+  "historical_athletes": 15899,
+  "comprehensive_athletes": 7083,
+  "athletes_in_both_eras": 1352,
+  "historical_athlete_years": 24075,
+  "hist_median_races_per_athlete_year": 2.0,
+  "hist_mean_races_per_athlete_year": 1.94932502596054,
+  "hist_pct_athlete_years_with_exactly_1_race": 0.439460020768432,
+  "hist_course_details_rows": 134,
+  "hist_course_details_temp_coverage": 0.1791044776119403,
+  "decision": "skip_historical_experience_covariates"
+}

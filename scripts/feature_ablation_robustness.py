@@ -21,38 +21,7 @@ import seaborn as sns
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-
-DEFAULT_FEATURE_COLUMNS = [
-    "gender_encoded",
-    "year",
-    "num_races",
-    "season_duration",
-    "first_time",
-    "last_time",
-    "best_time",
-    "worst_time",
-    "avg_time",
-    "time_std",
-    "time_range",
-    "cv_time",
-    "race_frequency",
-    "starting_percentile",
-    "gender_year",
-    "starting_percentile_squared",
-    "num_races_squared",
-    "season_duration_squared",
-    "best_to_avg_ratio",
-    "worst_to_avg_ratio",
-    "variability_score",
-    "consistency_score",
-    "experience_level",
-    "slope",
-    "avg_days_between_races",
-    "race_to_race_improvement_std",
-    "best_race_timing",
-    "best_race_timing_ratio",
-    "bad_race_count",
-]
+from feature_policy import DEFAULT_FEATURE_COLUMNS, PRIMARY_FEATURES, features_for_gender_model
 
 
 @dataclass(frozen=True)
@@ -87,7 +56,7 @@ def _feature_columns_for_gender(
     g = str(gender_filter).upper()
     if g not in {"M", "F"}:
         return list(feature_columns)
-    return [c for c in feature_columns if c not in {"gender_encoded", "gender_year"}]
+    return features_for_gender_model(feature_columns)
 
 
 def _prepare_xy(

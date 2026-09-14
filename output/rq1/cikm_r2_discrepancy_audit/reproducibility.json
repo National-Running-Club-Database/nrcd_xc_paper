@@ -1,0 +1,8 @@
+{
+  "random_seed": 42,
+  "protocol": "train 2023 \u2192 test 2024, Standardized times",
+  "cikm_github": "https://github.com/National-Running-Club-Database/data_paper",
+  "cikm_script": "scripts/validation_ml_r2.py",
+  "verdict": "CIKM absolute R\u00b2 is not wrong as a paired Converted vs Standardized demonstration, but is not forecasting skill: y=(last-first)/duration is nearly recoverable from features that include last_time.",
+  "output_csv": "output/rq1/cikm_r2_discrepancy_audit/regime_comparison.csv"
+}

@@ -180,6 +180,17 @@ def main():
     
     # Run ML analysis (moved to separate file for organization)
     results = run_rq2_ml_analysis(df_filtered, valid_athlete_ids, output_dir=output_dir)
+
+    # Consolidated, gender-separated temporal-split diagnostic (all three splits
+    # with n and bootstrap CIs). Resolves the earlier figure/text inconsistency.
+    print("\nRunning consolidated RQ2 temporal-split diagnostic...")
+    try:
+        from rq2_temporal_splits import main as temporal_splits_main
+        temporal_splits_main(output_dir=output_dir)
+    except Exception as e:
+        print(f"  ERROR running RQ2 temporal-split diagnostic: {e}")
+        import traceback
+        traceback.print_exc()
     
     # Check if we got valid results
     valid_results = {k: v for k, v in results.items() 

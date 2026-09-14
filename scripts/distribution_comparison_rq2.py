@@ -17,6 +17,7 @@ import sys
 # Setup paths for imports
 from _setup_paths import setup_paths
 setup_paths()
+from load_nrcd_data import get_data_dir
 
 import pandas as pd
 import numpy as np
@@ -80,7 +81,7 @@ def analyze_gender_time_comparison(df, valid_athlete_ids, output_dir='output/rq2
     
     # Get athlete and gender info (only merge if gender column doesn't exist)
     if 'gender' not in df_filtered.columns:
-        athlete_df = pd.read_csv('data/athlete.csv')
+        athlete_df = pd.read_csv(os.path.join(get_data_dir(), 'athlete.csv'))
         df_filtered = df_filtered.merge(athlete_df[['athlete_id', 'gender']], on='athlete_id', how='left')
     
     # Ensure gender column exists

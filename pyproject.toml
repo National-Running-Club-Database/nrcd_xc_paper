@@ -1,0 +1,22 @@
+[project]
+name = "nrcd-xc-paper"
+version = "0.1.0"
+description = "Cross country analysis code for the National Running Club Database (NRCD)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas",
+  "scipy",
+  "ipython",
+  "notebook",
+  "matplotlib",
+  "seaborn",
+  "scikit-learn",
+  "plotly",
+  "tqdm",
+  "numpy",
+  "statsmodels",
+  "nrcd[data]>=0.1.5",
+]
+[project.optional-dependencies]
+dev = []

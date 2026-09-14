@@ -1,0 +1,9 @@
+{
+  "random_seed": 42,
+  "permutations": 1000,
+  "bootstrap_replicates": 2000,
+  "rate_range": [
+    -50.0,
+    50.0
+  ]
+}

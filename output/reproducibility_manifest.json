@@ -1,0 +1,8 @@
+{
+  "random_seed": 42,
+  "bootstrap_replicates": 2000,
+  "random_forest_random_state": 42,
+  "gradient_boosting_random_state": 42,
+  "svr_randomness": "deterministic for fixed inputs and parameters",
+  "temporal_split": "train 2023, test 2024"
+}

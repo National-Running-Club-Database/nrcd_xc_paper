@@ -1,4 +1,4 @@
-metric,pearson_r,pearson_p,pearson_p_bonferroni,r_squared,spearman_r,spearman_p,spearman_p_bonferroni,bonferroni_alpha,bonferroni_sig,n
-Season Duration (days),-0.046,0.6968,1.0,0.002116,0.016,0.8949,1.0,0.016666666666666666,False,74
-Max Races (any athlete),-0.232,0.0471,0.1413,0.053824000000000004,-0.248,0.0331,0.0993,0.016666666666666666,False,74
-Experience Level,-0.176,0.133,0.399,0.030975999999999997,-0.182,0.1201,0.3603,0.016666666666666666,False,74
+metric,pearson_r,pearson_p,permutation_p,permutation_replicates,random_seed,pearson_p_bonferroni,r_squared,spearman_r,spearman_p,spearman_p_bonferroni,bonferroni_alpha,bonferroni_sig,n
+Season Duration (days),-0.046,0.6968,0.6925307469253075,10000,42,1.0,0.002116,0.016,0.8949,1.0,0.016666666666666666,False,74
+Max Races (any athlete),-0.232,0.0471,0.047995200479952004,10000,42,0.1413,0.053824000000000004,-0.248,0.0331,0.0993,0.016666666666666666,False,74
+Experience Level,-0.176,0.133,0.1367863213678632,10000,42,0.399,0.030975999999999997,-0.182,0.1201,0.3603,0.016666666666666666,False,74

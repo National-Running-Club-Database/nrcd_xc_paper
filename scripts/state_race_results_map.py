@@ -16,50 +16,39 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def load_data():
-    """Load all CSV files from the data directory with error handling."""
-    directory_path = 'data'
-    required_files = [
-        'team.csv', 'athlete.csv', 'sport.csv', 'running_event.csv',
-        'meet.csv', 'result.csv', 'course_details.csv', 'athlete_team_association.csv'
-    ]
-    
-    # Check if directory exists
-    if not os.path.exists(directory_path):
-        raise FileNotFoundError(f"Data directory not found: {directory_path}")
-    
-    # Check if all required files exist
-    missing_files = [f for f in required_files if not os.path.exists(os.path.join(directory_path, f))]
-    if missing_files:
-        raise FileNotFoundError(f"Missing required files: {', '.join(missing_files)}")
-    
-    try:
-        # Load each CSV file into a pandas DataFrame
-        team_df = pd.read_csv(os.path.join(directory_path, 'team.csv'))
-        athlete_df = pd.read_csv(os.path.join(directory_path, 'athlete.csv'))
-        sport_df = pd.read_csv(os.path.join(directory_path, 'sport.csv'))
-        running_event_df = pd.read_csv(os.path.join(directory_path, 'running_event.csv'))
-        meet_df = pd.read_csv(os.path.join(directory_path, 'meet.csv'))
-        result_df = pd.read_csv(os.path.join(directory_path, 'result.csv'))
-        course_details_df = pd.read_csv(os.path.join(directory_path, 'course_details.csv'))
-        athlete_team_association_df = pd.read_csv(os.path.join(directory_path, 'athlete_team_association.csv'))
-        
-        # Convert date columns to datetime with error handling
-        meet_df['start_date'] = pd.to_datetime(meet_df['start_date'], format='%Y-%m-%d', errors='coerce')
-        meet_df['end_date'] = pd.to_datetime(meet_df['end_date'], format='%Y-%m-%d', errors='coerce')
-        
-        removedMeetIDs = [61, 62, 63, 64, 65, 66, 71, 675, 676, 769, 774, 776, 770, 822]
-        meet_df = meet_df[meet_df["regionals"] == False]
-        meet_df = meet_df[meet_df["nationals"] == False]
-        meet_df = meet_df.reset_index(drop=True)
-        
-        for id in removedMeetIDs:
-            result_df = result_df[result_df["meet_id"] != id]
-            result_df = result_df.reset_index(drop=True)
-        
-        return (team_df, athlete_df, sport_df, running_event_df, meet_df, 
-                result_df, course_details_df, athlete_team_association_df)
-    except Exception as e:
-        raise Exception(f"Error loading data: {str(e)}")
+    """Load comprehensive-era XC tables (regionals/nationals filtered later)."""
+    from load_nrcd_data import get_data_dir, load_analysis_tables
+
+    directory_path = get_data_dir()
+    tables = load_analysis_tables(directory_path, era="comprehensive")
+    team_df = pd.read_csv(os.path.join(directory_path, "team.csv"))
+    athlete_team_association_df = pd.read_csv(
+        os.path.join(directory_path, "athlete_team_association.csv")
+    )
+    meet_df = tables["meet"].copy()
+    result_df = tables["result"].copy()
+    meet_df["start_date"] = pd.to_datetime(meet_df["start_date"], errors="coerce")
+    meet_df["end_date"] = pd.to_datetime(meet_df["end_date"], errors="coerce")
+
+    removedMeetIDs = [61, 62, 63, 64, 65, 66, 71, 675, 676, 769, 774, 776, 770, 822]
+    meet_df = meet_df[meet_df["regionals"] == False]
+    meet_df = meet_df[meet_df["nationals"] == False]
+    meet_df = meet_df.reset_index(drop=True)
+
+    for mid in removedMeetIDs:
+        result_df = result_df[result_df["meet_id"] != mid]
+    result_df = result_df.reset_index(drop=True)
+
+    return (
+        team_df,
+        tables["athlete"],
+        tables["sport"],
+        tables["running_event"],
+        meet_df,
+        result_df,
+        tables["course_details"],
+        athlete_team_association_df,
+    )
 
 # Load the data
 try:

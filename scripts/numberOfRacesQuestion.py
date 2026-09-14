@@ -11,38 +11,25 @@ import pandas as pd
 output_dir = 'output/NumberOfRacesQuestion'
 
 def load_data():
-    """Load all CSV files from the data directory with error handling."""
-    # Use the full data including postseason meets
-    directory_path = 'data'  # Relative to main directory
-    required_files = [
-        'team.csv', 'athlete.csv', 'sport.csv', 'running_event.csv',
-        'meet.csv', 'result.csv', 'course_details.csv', 'athlete_team_association.csv'
-    ]
-    
-    # Check if directory exists
-    if not os.path.exists(directory_path):
-        raise FileNotFoundError(f"Data directory not found: {directory_path}")
-    
-    # Check if all required files exist
-    missing_files = [f for f in required_files if not os.path.exists(os.path.join(directory_path, f))]
-    if missing_files:
-        raise FileNotFoundError(f"Missing required files: {', '.join(missing_files)}")
-    
-    try:
-        # Load each CSV file into a pandas DataFrame
-        team_df = pd.read_csv(os.path.join(directory_path, 'team.csv'))
-        athlete_df = pd.read_csv(os.path.join(directory_path, 'athlete.csv'))
-        sport_df = pd.read_csv(os.path.join(directory_path, 'sport.csv'))
-        running_event_df = pd.read_csv(os.path.join(directory_path, 'running_event.csv'))
-        meet_df = pd.read_csv(os.path.join(directory_path, 'meet.csv'))
-        result_df = pd.read_csv(os.path.join(directory_path, 'result.csv'))
-        course_details_df = pd.read_csv(os.path.join(directory_path, 'course_details.csv'))
-        athlete_team_association_df = pd.read_csv(os.path.join(directory_path, 'athlete_team_association.csv'))
-        
-        return (team_df, athlete_df, sport_df, running_event_df, meet_df, 
-                result_df, course_details_df, athlete_team_association_df)
-    except Exception as e:
-        raise Exception(f"Error loading data: {str(e)}")
+    """Load NRCD tables; results/meets restricted to comprehensive-era Cross Country."""
+    from load_nrcd_data import get_data_dir, load_analysis_tables
+
+    directory_path = get_data_dir()
+    tables = load_analysis_tables(directory_path, era="comprehensive")
+    team_df = pd.read_csv(os.path.join(directory_path, "team.csv"))
+    athlete_team_association_df = pd.read_csv(
+        os.path.join(directory_path, "athlete_team_association.csv")
+    )
+    return (
+        team_df,
+        tables["athlete"],
+        tables["sport"],
+        tables["running_event"],
+        tables["meet"],
+        tables["result"],
+        tables["course_details"],
+        athlete_team_association_df,
+    )
 
 def save_dataframe_to_csv(df, filename, description="Save a dataframe to CSV file with optional description."):
     """Save a pandas DataFrame to a CSV file."""

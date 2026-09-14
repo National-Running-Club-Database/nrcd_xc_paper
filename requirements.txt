@@ -9,4 +9,5 @@ plotly
 tqdm
 numpy
 statsmodels
-
+# Requires Python >= 3.10 (pyproject.toml requires-python; nrcd itself too)
+nrcd[data]>=0.1.5

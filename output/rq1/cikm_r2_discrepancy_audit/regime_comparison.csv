@@ -1,0 +1,13 @@
+regime,gender,model,r2,train_n,test_n,notes
+A_algebraic_identity,Men,identity,1.0,1371,783,pct_best_equals_last=0.413
+A_algebraic_ols,Men,OLS,0.1901309776831761,1371,783,"features={first_time,last_time,season_duration}"
+A_algebraic_rf,Men,RandomForest,0.5941430111275234,1371,783,RF learns y≈(last-first)/duration from three inputs
+B_cikm_style_with_last_time,Men,RandomForest,0.8713291019207151,1371,783,full-season summaries + last_time in X
+C_drop_last_time_only,Men,RandomForest,0.8711292667320167,1371,783,full-season best/avg still include outcome race
+D_jqas_leakage_controlled,Men,RandomForest,-0.4154001532873657,1146,1162,pre-final races only; last_time excluded from X
+A_algebraic_identity,Women,identity,1.0,776,459,pct_best_equals_last=0.386
+A_algebraic_ols,Women,OLS,0.2597308706706236,776,459,"features={first_time,last_time,season_duration}"
+A_algebraic_rf,Women,RandomForest,0.3583155892668559,776,459,RF learns y≈(last-first)/duration from three inputs
+B_cikm_style_with_last_time,Women,RandomForest,0.7914264585481785,776,459,full-season summaries + last_time in X
+C_drop_last_time_only,Women,RandomForest,0.8054013869971477,776,459,full-season best/avg still include outcome race
+D_jqas_leakage_controlled,Women,RandomForest,-0.29816699782730294,631,666,pre-final races only; last_time excluded from X
