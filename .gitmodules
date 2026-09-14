@@ -1,0 +1,3 @@
+[submodule "data_public"]
+	path = data_public
+	url = https://github.com/National-Running-Club-Database/national_running_club_database_public_dataset.git
