@@ -7,6 +7,7 @@ Runs the core RQ1 stack into output/rq1/:
 - Leakage-controlled ML + feature exclusion / compact primary suite
 - Robustness (ablation, sensitivity, diagnostics), mixed effects
 - Enrichment, mathematical contributions (weather-path, SER, ERO)
+- Relative finish + club LACCTiC-style course factors
 - Null-result diagnostics, CIKM R² audit, underexplored mechanisms
 
 Team-association robustness lives in rq3.py (output/rq3/).
@@ -233,6 +234,15 @@ def main():
         import traceback
         traceback.print_exc()
 
+    print("\n18b. Relative finish + club LACCTiC-style course factors...")
+    try:
+        from relative_finish_course_factors import main as rel_finish_main
+        rel_finish_main(output_dir=os.path.join(rq1_output, 'relative_finish_course_factors'))
+    except Exception as e:
+        print(f"  ERROR running relative-finish / course-factor analyses: {e}")
+        import traceback
+        traceback.print_exc()
+
     print("\n19. Null-result diagnostics: noise ceiling, permutation-R^2, classification AUC...")
     try:
         from rq1_null_result_diagnostics import main as null_diag_main
@@ -287,6 +297,7 @@ def main():
     print(f"  - {rq1_output}/overlay_plots/")
     print(f"  - {rq1_output}/feature_exclusion_audit/ (compact primary tables)")
     print(f"  - {rq1_output}/mathematical_contributions/")
+    print(f"  - {rq1_output}/relative_finish_course_factors/")
     print(f"  - {rq1_output}/robustness_feature_ablation/")
     print(f"  - {rq1_output}/sensitivity_sweep/")
     print(f"  - {rq1_output}/null_result_diagnostics/")

@@ -1,0 +1,36 @@
+[
+  {
+    "gender": "M",
+    "time_col": "raw_time_sec",
+    "n_athletes": 2708,
+    "n_meets": 236,
+    "n_obs": 10766,
+    "converged": true,
+    "iters": 43,
+    "final_rel_delta_alpha": 0.0004914008095245184,
+    "min_field_size": 5,
+    "em_damp": 0.5,
+    "alpha_ratio_clip": [
+      0.5,
+      2.0
+    ],
+    "update": "median_damped"
+  },
+  {
+    "gender": "F",
+    "time_col": "raw_time_sec",
+    "n_athletes": 1606,
+    "n_meets": 191,
+    "n_obs": 6055,
+    "converged": true,
+    "iters": 41,
+    "final_rel_delta_alpha": 0.0004984795623488588,
+    "min_field_size": 5,
+    "em_damp": 0.5,
+    "alpha_ratio_clip": [
+      0.5,
+      2.0
+    ],
+    "update": "median_damped"
+  }
+]

@@ -1,0 +1,35 @@
+criterion,gender,method,value,better,is_best,detail
+next_race_mae_last,Men,converted,80.46066052076615,lower,False,"MAE=80.5s [76.1, 85.2]"
+next_race_mae_last,Men,field_alpha,50.086581964746166,lower,True,"MAE=50.1s [47.6, 52.6]"
+next_race_mae_last,Men,raw,121.15694493103796,lower,False,"MAE=121.2s [115.6, 127.0]"
+next_race_mae_last,Men,standardized,71.55891615052444,lower,False,"MAE=71.6s [67.4, 76.1]"
+next_race_mae_last,Women,converted,74.50133586034487,lower,False,"MAE=74.5s [69.9, 79.6]"
+next_race_mae_last,Women,field_alpha,45.713872993313615,lower,True,"MAE=45.7s [42.1, 49.8]"
+next_race_mae_last,Women,raw,92.63499542931766,lower,False,"MAE=92.6s [87.1, 98.6]"
+next_race_mae_last,Women,standardized,65.4322985744655,lower,False,"MAE=65.4s [61.0, 69.8]"
+holdout_within_athlete_sd,Men,field_alpha,73.69738353027222,lower,True,SD=73.7s
+holdout_within_athlete_sd,Men,standardized,98.7848924993932,lower,False,SD=98.8s
+holdout_within_athlete_sd,Men,converted,102.76545505465353,lower,False,SD=102.8s
+holdout_within_athlete_sd,Men,raw,171.82387502845458,lower,False,SD=171.8s
+holdout_within_athlete_sd,Women,field_alpha,61.32769471859821,lower,True,SD=61.3s
+holdout_within_athlete_sd,Women,standardized,79.21714929195423,lower,False,SD=79.2s
+holdout_within_athlete_sd,Women,converted,83.60207245578611,lower,False,SD=83.6s
+holdout_within_athlete_sd,Women,raw,122.12956680353659,lower,False,SD=122.1s
+split_half_reliability,Men,raw,0.6221951365593533,higher,False,ρ=0.622
+split_half_reliability,Men,converted,0.8878497613472881,higher,False,ρ=0.888
+split_half_reliability,Men,standardized,0.9000633572077483,higher,False,ρ=0.900
+split_half_reliability,Men,field_alpha,0.9400195085998702,higher,True,ρ=0.940
+split_half_reliability,Women,raw,0.757611121383474,higher,False,ρ=0.758
+split_half_reliability,Women,converted,0.8961635084089893,higher,False,ρ=0.896
+split_half_reliability,Women,standardized,0.9075691753188905,higher,False,ρ=0.908
+split_half_reliability,Women,field_alpha,0.9466149809695248,higher,True,ρ=0.947
+tracks_temperature,Women,field_alpha,0.1718947849800861,higher,False,|ρ|=0.172 vs temperature
+tracks_temperature,Women,standardized,0.8631162789025562,higher,True,|ρ|=0.863 vs temperature
+field_size_confound,Women,field_alpha,0.16259866238669238,lower,False,|ρ|=0.163 vs field_size (lower=less confound)
+field_size_confound,Women,standardized,0.14403122282507166,lower,True,|ρ|=0.144 vs field_size (lower=less confound)
+field_size_confound,Women,standardized_full,0.2006292358165085,lower,False,|ρ|=0.201 vs field_size (lower=less confound)
+tracks_temperature,Men,field_alpha,0.13891502806235792,higher,False,|ρ|=0.139 vs temperature
+tracks_temperature,Men,standardized,0.8881870805577363,higher,True,|ρ|=0.888 vs temperature
+field_size_confound,Men,field_alpha,0.03268498022264777,lower,False,|ρ|=0.033 vs field_size (lower=less confound)
+field_size_confound,Men,standardized,0.15260406678775432,lower,False,|ρ|=0.153 vs field_size (lower=less confound)
+field_size_confound,Men,standardized_full,0.024479357306200475,lower,True,|ρ|=0.024 vs field_size (lower=less confound)

@@ -1,0 +1,9 @@
+gender,method,within_athlete_resid_sd_sec,n_test_athletes,n_train_athletes,alpha_converged,alpha_n_meets
+Men,field_alpha_holdout,73.69738353027222,1317,2155,True,185
+Men,standardized,98.7848924993932,1360,2155,True,185
+Men,converted,102.76545505465353,1360,2155,True,185
+Men,raw,171.82387502845458,1360,2155,True,185
+Women,field_alpha_holdout,61.32769471859821,772,1374,True,145
+Women,standardized,79.21714929195423,815,1374,True,145
+Women,converted,83.60207245578611,815,1374,True,145
+Women,raw,122.12956680353659,815,1374,True,145

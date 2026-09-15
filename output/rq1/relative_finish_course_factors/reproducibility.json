@@ -1,0 +1,15 @@
+{
+  "random_seed": 42,
+  "bootstrap_replicates": 2000,
+  "min_field_size": 5,
+  "em_max_iters": 300,
+  "em_tol": 0.0005,
+  "em_damp": 0.5,
+  "alpha_ratio_clip": [
+    0.5,
+    2.0
+  ],
+  "min_athlete_races_for_fitness": 2,
+  "notes": "LACCTiC-motivated club course factors on raw times; no track-PR calibration. Place derived within meet\u00d7gender.",
+  "lacctic_url": "https://www.lacctic.com/"
+}

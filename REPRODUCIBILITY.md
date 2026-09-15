@@ -14,6 +14,7 @@ python scripts/run_all.py          # full stack (slow)
 # or targeted:
 python scripts/mathematical_contributions.py
 python scripts/paper_enrichment_analyses.py
+python scripts/relative_finish_course_factors.py
 python scripts/team_association_robustness.py
 python scripts/robustness_checks.py
 bash papers/sync_figures.sh        # copy PDFs into papers/figures/
@@ -39,6 +40,7 @@ Standardized frames are memoized under `output/.cache/` (gitignored). Set
 | Weather residual year-holdout | `robustness_checks.py` | `weather_holdout.csv` |
 | Why not historical experience | `robustness_checks.py` | `WHY_NOT_HISTORICAL_EXPERIENCE.md` |
 | Early-window coach estimand | `paper_enrichment_analyses.py` | `early_window_decision.csv`, `early_window_decision.pdf` |
+| Relative finish / club course α (LACCTiC-motivated) | `relative_finish_course_factors.py` | `output/rq1/relative_finish_course_factors/` (`SUMMARY.md`, `VERDICT.md`, `next_race_prediction_*.csv`, `field_adjusted_vs_standardized.*`) |
 | Sample sizes | `sample_summary` via `run_all.py` | `output/sample_summary.md` |
 
 ## Figure sync

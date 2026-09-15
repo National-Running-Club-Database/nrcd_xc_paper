@@ -209,6 +209,46 @@ not a full re-derivation of package coefficients).
 > Sources: `output/rq1/enrichment/weather_inflation.csv`,
 > `output/rq1/robustness_checks/weather_holdout.csv`.
 
+### Relative finish & club field-relative course factors (LACCTiC-motivated)
+
+Complement to metadata standardization: [LACCTiC](https://www.lacctic.com/)
+infers course difficulty from overlapping athletes’ times (no weather inputs).
+We derive within-meet place / finish percentile from clock times and fit a
+transparent club analogue (damped median EM for meet factor α on raw times;
+median α pinned to 1; no track-PR calibration). Field size ≥ 5 required.
+Head-to-head vs NRCD Standardized: `output/rq1/relative_finish_course_factors/VERDICT.md`.
+
+**Within-meet order:** Raw / Converted / Standardized preserve finish order
+almost perfectly (women: 100% exact place agreement across 193 meets; men:
+≈99.8% across 238) — as expected when env adjustments are mostly meet-level.
+
+**Time vs place season change** (n = 1,971 women / 3,484 men athlete-seasons):
+Standardized mean first→last time improvement ≈ **26 s / 28 s**, but mean
+finish-percentile change is slightly **negative** (−0.013 / −0.010); only
+~46% improve their relative place. Spearman(time Δ, place Δ) under
+Standardized is moderate (ρ ≈ 0.46 / 0.49). Place trajectories are essentially
+identical across Raw/Conv/Std (ρ ≈ 1).
+
+**Field-adjusted (α·raw) vs Standardized:** season Δ agrees in rank
+(Spearman ρ ≈ **0.70** women / **0.77** men) but field adjustment shrinks mean
+improvement to ~2–4 s (vs ~26–28 s Standardized). Meet α is only weakly related
+to the weather/elevation residual (men ρ ≈ −0.14, p ≈ 0.04; women n.s.).
+
+**Are actual course factors better than LACCTiC-style α?** For *this paper’s*
+improvement estimand: **yes — prefer Standardized.** Env residual tracks
+temperature at Spearman ρ ≈ **0.86 / 0.89**; field hardness only ≈ 0.17 / 0.14.
+Field α *does* win next-raw-time prediction (MAE ≈ 46–50 s vs Std ≈ 65–72 s)
+and split-half ability reliability — expected for a batch-effect correction on
+the clock you are predicting (LACCTiC’s ranking use case). It is a good
+**fallback / sensitivity** when weather is missing, not a replacement while
+comprehensive-era coverage stays ~98%.
+
+> Sources: `output/rq1/relative_finish_course_factors/SUMMARY.md`,
+> `VERDICT.md`, `next_race_prediction_summary.csv`,
+> `difficulty_metadata_alignment.csv`, `method_comparison_verdict.csv`,
+> `tier_improvement_summary.csv`, `field_adjusted_vs_standardized.csv`,
+> `course_factors.csv`, `within_meet_order_agreement.csv`.
+
 ### Early-window prediction check (coach estimand)
 
 **Performance-only** features available after meet 1 (or after meets 1–2 among

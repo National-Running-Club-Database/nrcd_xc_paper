@@ -1,0 +1,7 @@
+gender,comparison,n_meets,mean_exact_place_agree,agree_ci_low,agree_ci_high,mean_spearman,spearman_ci_low,spearman_ci_high,pct_meets_perfect_agree
+Women,raw_vs_conv,193,1.0,1.0,1.0,1.0,1.0,1.0,100.0
+Women,raw_vs_std,193,1.0,1.0,1.0,1.0,1.0,1.0,100.0
+Women,conv_vs_std,193,1.0,1.0,1.0,1.0,1.0,1.0,100.0
+Men,raw_vs_conv,238,0.9983558640847643,0.9950675922542931,1.0,0.999850533098615,0.9995515992958448,1.0,99.57983193277312
+Men,raw_vs_std,238,0.9983558640847643,0.9950675922542931,1.0,0.999850533098615,0.9995515992958448,1.0,99.57983193277312
+Men,conv_vs_std,238,1.0,1.0,1.0,1.0,1.0,1.0,100.0
