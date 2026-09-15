@@ -16,9 +16,7 @@ import matplotlib.pyplot as plt
 import os
 import sys
 
-# Change to scripts directory to match utils.py expectations
 script_dir = os.path.dirname(os.path.abspath(__file__))
-os.chdir(script_dir)
 sys.path.insert(0, script_dir)
 from utils import standardize_both_tiers
 from load_nrcd_data import get_data_dir

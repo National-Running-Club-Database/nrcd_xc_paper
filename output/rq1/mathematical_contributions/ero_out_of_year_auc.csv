@@ -1,6 +1,6 @@
 model,features,train_n,test_n,test_auc_2025,coef
 max_race_count,max_race_count,370,203,0.7415458937198068,max_race_count=0.897
-n_athletes_ge3,n_athletes_ge3,370,203,0.7816425120772947,n_athletes_ge3=0.918
-ERO,ERO,370,203,0.8369565217391305,ERO=0.978
-ERO_plus_maxrace,ERO+max_race_count,370,203,0.8268115942028985,ERO=0.807;max_race_count=0.363
-depth_plus_maxrace,n_athletes_ge3+max_race_count,370,203,0.7844202898550725,n_athletes_ge3=0.727;max_race_count=0.373
+n_athletes_ge3,n_athletes_ge3,370,203,0.7815217391304348,n_athletes_ge3=0.918
+ERO,ERO,370,203,0.8364734299516909,ERO=0.977
+ERO_plus_maxrace,ERO+max_race_count,370,203,0.8268115942028984,ERO=0.806;max_race_count=0.363
+depth_plus_maxrace,n_athletes_ge3+max_race_count,370,203,0.7842995169082126,n_athletes_ge3=0.726;max_race_count=0.373

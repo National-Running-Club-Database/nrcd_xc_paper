@@ -14,7 +14,7 @@ validation, a compact race-result feature set (17 within-sex predictors after
 excluding endpoint leakage and pruning near-duplicates; see
 `scripts/feature_policy.py`) does **not** support out-of-year forecasting of
 individual improvement: held-out R² is at or below zero almost everywhere
-(best SVR: men 0.043, women −0.029). Crucially, the
+(best SVR: men 0.044, women −0.018). Crucially, the
 improvement outcome is itself only weakly reliable — its split-half reliability
 is ~0.23 (men) / ~0.28 (women) — so this near-zero R² reflects an **intrinsic
 noise ceiling**, not merely six failed models. Adding `last_time` back raises
@@ -51,12 +51,12 @@ treated as a primary claim.
 
 ## 1. Sample and coverage
 
-- **23,355** race results, **7,083** athletes, **280** meets (2023–2025).
-- Course-details coverage **~97.7%**; weather coverage **~97.7%**.
-- By comparison, the excluded historical era (2004–Jul 2023) has only **~4.4%**
+- **23,360** race results, **7,056** athletes, **280** meets (2023–2025).
+- Course-details coverage **~99.9%**; weather coverage **~99.9%**.
+- By comparison, the excluded historical era (through July 2023) has only **~27.2%**
   weather coverage — too sparse for credible environmental standardization.
 - Analyses that define within-season improvement exclude national-championship
-  meets and require ≥ 2 regular-season races per athlete-season (leaving 19,742
+  meets and require ≥ 2 regular-season races per athlete-season (leaving 19,746
   results).
 
 > Sources: `output/sample_summary.md`, `output/sample_summary.csv`,
@@ -64,12 +64,12 @@ treated as a primary claim.
 
 | Year | Gender | Results | Athletes | Meets |
 |------|--------|---------|----------|-------|
-| 2023 | Women | 2,604 | 1,155 | 61 |
-| 2023 | Men | 4,592 | 1,929 | 73 |
-| 2024 | Women | 2,870 | 1,236 | 90 |
-| 2024 | Men | 4,960 | 2,124 | 101 |
-| 2025 | Women | 3,178 | 1,381 | 96 |
-| 2025 | Men | 5,151 | 2,097 | 104 |
+| 2023 | Women | 2,601 | 1,153 | 61 |
+| 2023 | Men | 4,595 | 1,927 | 73 |
+| 2024 | Women | 2,874 | 1,234 | 91 |
+| 2024 | Men | 4,960 | 2,115 | 101 |
+| 2025 | Women | 3,180 | 1,382 | 96 |
+| 2025 | Men | 5,150 | 2,091 | 104 |
 
 ---
 
@@ -111,8 +111,8 @@ near-duplicate pruning; see `scripts/feature_policy.py`):
 
 | Gender | Best model | Train n | Test n | Test R² | 95% CI | MAE |
 |--------|------------|---------|--------|---------|--------|-----|
-| Men | SVR | 1,146 | 1,162 | **0.043** | [−0.024, 0.102] | 3.75 |
-| Women | SVR | 631 | 666 | **−0.029** | [−0.105, 0.035] | 4.24 |
+| Men | SVR | 1,147 | 1,164 | **0.044** | [−0.021, 0.102] | 3.66 |
+| Women | SVR | 631 | 670 | **−0.018** | [−0.091, 0.041] | 4.14 |
 
 Neither confidence interval excludes zero. Thus these schedule and pre-final
 race-result features do **not** reliably forecast improvement out of year.
@@ -196,8 +196,8 @@ encode a systematically undercounted proxy.
 ### Weather inflation (why Standardized is primary)
 
 Paired athlete–seasons: Converted Only overstates mean first→last improvement
-by **21.0 s** for men (95% CI [20.2, 21.9]) and **15.1 s** for women
-([14.2, 15.9]); Wilcoxon p ≪ 0.001. This is the quantitative case for
+by **21.2 s** for men (95% CI [20.4, 22.0]) and **15.4 s** for women
+([14.5, 16.3]); Wilcoxon p ≪ 0.001. This is the quantitative case for
 Standardized key statistics.
 
 Leave-one-year-out re-fit of the environment residual
@@ -276,12 +276,12 @@ athlete-level early-season triage. Calibration plots are in
 
 - `last_time` is excluded by construction rather than tested after the fact.
 - **Learning curves (compact SVR):** from 20% to 100% of the 2023 training data,
-  mean test R² moves only 0.026→0.043 (men) and −0.039→−0.029 (women), flattening
+  mean test R² moves only 0.023→0.044 (men) and −0.022→−0.018 (women), flattening
   between 80% and 100%. GB improves with sample size but remains negative; RF
   remains negative throughout. This does not prove an irreducible ceiling, but
   weakens “the same features just need modestly more data” as an explanation.
 - **Outcome trimming (compact SVR):** remains near zero under ±20, ±50, ±100 s/day
-  and training-only 1.5-IQR rules (men R² −0.031 to 0.043; women −0.029 to 0.014).
+  and training-only 1.5-IQR rules (men R² −0.017 to 0.044; women −0.018 to 0.025).
   RF and GB remain negative under the primary suite.
 - Fixed Random Forest baselines are negative (men −0.422, women −0.289), so
   ablation rankings are instability diagnostics only.
@@ -320,7 +320,7 @@ athlete-level early-season triage. Calibration plots are in
   ceiling is unchanged (~0.19 / non-positive).
 - **Permutation null (compact SVR).** Shuffling the 2023 training outcome and
   refitting 1,000× (seed 42): observed R² sits above the shuffled null (men
-  0.043 vs null mean −0.077; women −0.029 vs −0.115; both permutation p ≈ 0.001).
+  0.044 vs null mean −0.067; women −0.018 vs −0.105; both permutation p ≈ 0.001).
   A tiny, statistically detectable but practically useless amount of information
   exists.
 - **Classification of the tail.** Predicting the top-quartile improver reaches

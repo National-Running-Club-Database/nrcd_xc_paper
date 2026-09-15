@@ -13,8 +13,8 @@
     "consistency_score",
     "best_race_timing_ratio"
   ],
-  "compact_minus_legacy_r2_men": -0.007265688867998388,
-  "leakage_last_time_delta_r2_men": 0.437873079103155,
-  "drop_slope_delta_r2_men": -0.008723315153866817,
+  "compact_minus_legacy_r2_men": -0.006861532087542588,
+  "leakage_last_time_delta_r2_men": 0.43352981327523554,
+  "drop_slope_delta_r2_men": -0.008939669960092878,
   "conclusion": "Primary = compact set after redundancy prune; A/B leakage exclusions confirmed by add-back; compact\u2248legacy R\u00b2; null not from over-pruning."
 }

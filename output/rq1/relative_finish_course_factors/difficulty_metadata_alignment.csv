@@ -1,35 +1,35 @@
 gender,proxy,proxy_name,target,spearman_rho,spearman_p,n_meets
-Women,field_hardness,LACCTiC-style field (1/α),temperature,0.1718947849800861,0.02253665549548689,176
+Women,field_hardness,LACCTiC-style field (1/α),temperature,0.16002533391902632,0.027420866211517007,190
 Women,field_hardness,LACCTiC-style field (1/α),elevation_gain,0.1832581823744441,0.4143110133344366,22
-Women,field_hardness,LACCTiC-style field (1/α),altitude,-0.043873114728238356,0.5467424771980398,191
-Women,field_hardness,LACCTiC-style field (1/α),field_size,0.16259866238669238,0.024615480716283913,191
-Women,mean_env_residual,NRCD env residual (conv−std),temperature,0.8631162789025562,4.185442340638973e-54,178
+Women,field_hardness,LACCTiC-style field (1/α),altitude,-0.04493667929177499,0.537054990267931,191
+Women,field_hardness,LACCTiC-style field (1/α),field_size,0.1641067737591601,0.023297850148492703,191
+Women,mean_env_residual,NRCD env residual (conv−std),temperature,0.873090951481553,3.5084710708289396e-61,192
 Women,mean_env_residual,NRCD env residual (conv−std),elevation_gain,0.33540772267915236,0.12701755767036896,22
-Women,mean_env_residual,NRCD env residual (conv−std),altitude,0.3171352540466811,6.999349115746495e-06,193
-Women,mean_env_residual,NRCD env residual (conv−std),field_size,-0.14403122282507166,0.045675537780313365,193
-Women,mean_distance_residual,NRCD distance residual (raw−conv),temperature,-0.05934874471469705,0.43132491583679583,178
+Women,mean_env_residual,NRCD env residual (conv−std),altitude,0.33076736650793304,2.6241396568503655e-06,193
+Women,mean_env_residual,NRCD env residual (conv−std),field_size,-0.3032914077680936,1.806841849097244e-05,193
+Women,mean_distance_residual,NRCD distance residual (raw−conv),temperature,-0.06648663203413048,0.35952831459822354,192
 Women,mean_distance_residual,NRCD distance residual (raw−conv),elevation_gain,-0.30174140594316323,0.17233471450372118,22
 Women,mean_distance_residual,NRCD distance residual (raw−conv),altitude,-0.11502020871479673,0.11120000613498328,193
-Women,mean_distance_residual,NRCD distance residual (raw−conv),field_size,0.34156187791044174,1.1661429563898472e-06,193
-Women,mean_full_residual,NRCD full residual (raw−std),temperature,0.41408813783932713,9.152894957181698e-09,178
+Women,mean_distance_residual,NRCD distance residual (raw−conv),field_size,0.3418461754009636,1.1410222205199453e-06,193
+Women,mean_full_residual,NRCD full residual (raw−std),temperature,0.4149761044429037,2.1694798901263245e-09,192
 Women,mean_full_residual,NRCD full residual (raw−std),elevation_gain,-0.059389225769495776,0.7929117198079043,22
-Women,mean_full_residual,NRCD full residual (raw−std),altitude,0.05359109604302506,0.4591743761026822,193
-Women,mean_full_residual,NRCD full residual (raw−std),field_size,0.2006292358165085,0.0051479491860848235,193
-Women,field_hardness,LACCTiC-style field (1/α),mean_env_residual,0.08371107743179938,0.2495932785035672,191
-Men,field_hardness,LACCTiC-style field (1/α),temperature,0.13891502806235792,0.04234606333344893,214
-Men,field_hardness,LACCTiC-style field (1/α),elevation_gain,0.20234008621753152,0.25112399400518337,34
-Men,field_hardness,LACCTiC-style field (1/α),altitude,-0.059502983932094675,0.3627933198820801,236
-Men,field_hardness,LACCTiC-style field (1/α),field_size,-0.03268498022264777,0.617368245802561,236
-Men,mean_env_residual,NRCD env residual (conv−std),temperature,0.8881870805577363,7.102129253159543e-74,215
+Women,mean_full_residual,NRCD full residual (raw−std),altitude,0.07650493092462501,0.2902894466628914,193
+Women,mean_full_residual,NRCD full residual (raw−std),field_size,0.11337982501394199,0.11642501152073988,193
+Women,field_hardness,LACCTiC-style field (1/α),mean_env_residual,0.10447781758060072,0.1503281445502062,191
+Men,field_hardness,LACCTiC-style field (1/α),temperature,0.14927903553343794,0.02207686115858873,235
+Men,field_hardness,LACCTiC-style field (1/α),elevation_gain,0.18781075274008216,0.2874852379776414,34
+Men,field_hardness,LACCTiC-style field (1/α),altitude,-0.06374293759356156,0.329545273687047,236
+Men,field_hardness,LACCTiC-style field (1/α),field_size,-0.032385523216377964,0.6205972047396604,236
+Men,mean_env_residual,NRCD env residual (conv−std),temperature,0.8962229878606418,6.41168529937045e-85,237
 Men,mean_env_residual,NRCD env residual (conv−std),elevation_gain,0.3093983328934742,0.07498007412056669,34
-Men,mean_env_residual,NRCD env residual (conv−std),altitude,0.274985189943632,1.683653263565652e-05,238
-Men,mean_env_residual,NRCD env residual (conv−std),field_size,-0.15260406678775432,0.018488834752631016,238
-Men,mean_distance_residual,NRCD distance residual (raw−conv),temperature,-0.07750334137471629,0.2578446949408521,215
+Men,mean_env_residual,NRCD env residual (conv−std),altitude,0.2559173682198058,6.495985353727679e-05,238
+Men,mean_env_residual,NRCD env residual (conv−std),field_size,-0.27131383401540926,2.2010450801275745e-05,238
+Men,mean_distance_residual,NRCD distance residual (raw−conv),temperature,-0.05709489386929882,0.3815567241073014,237
 Men,mean_distance_residual,NRCD distance residual (raw−conv),elevation_gain,-0.06796299407940423,0.7025295033549176,34
-Men,mean_distance_residual,NRCD distance residual (raw−conv),altitude,-0.07964298316069268,0.22089609178301034,238
-Men,mean_distance_residual,NRCD distance residual (raw−conv),field_size,0.14562466681169273,0.024655995032489574,238
-Men,mean_full_residual,NRCD full residual (raw−std),temperature,0.5646956330660362,1.6574902173536042e-19,215
+Men,mean_distance_residual,NRCD distance residual (raw−conv),altitude,-0.08017089911079325,0.21784104716579,238
+Men,mean_distance_residual,NRCD distance residual (raw−conv),field_size,0.13541713483514065,0.03682118671711225,238
+Men,mean_full_residual,NRCD full residual (raw−std),temperature,0.5559268053476217,1.2634514201216947e-20,237
 Men,mean_full_residual,NRCD full residual (raw−std),elevation_gain,0.15232859098462692,0.38977117029914815,34
-Men,mean_full_residual,NRCD full residual (raw−std),altitude,0.08635938990884387,0.18425893984703168,238
-Men,mean_full_residual,NRCD full residual (raw−std),field_size,-0.024479357306200475,0.7071271621698009,238
-Men,field_hardness,LACCTiC-style field (1/α),mean_env_residual,0.1368375885003218,0.03565240654212612,236
+Men,mean_full_residual,NRCD full residual (raw−std),altitude,0.11784104555813008,0.06956698208873144,238
+Men,mean_full_residual,NRCD full residual (raw−std),field_size,-0.09623385793554784,0.1388078810791755,238
+Men,field_hardness,LACCTiC-style field (1/α),mean_env_residual,0.1835548028685288,0.004670454117825845,236

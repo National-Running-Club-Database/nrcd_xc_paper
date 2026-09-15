@@ -24,8 +24,8 @@ $$
 So **weather inflation of apparent improvement equals the first-to-last
 drift of the environment residual** — an algebraic identity. Empirically,
 max $|(\Delta_c-\Delta_s)-(a_1-a_L)| = 0.00e+00$ s (machine noise).
-Mean inflation: men $20.1$ s, women
-$14.2$ s, matching $E[a_1-a_L]$.
+Mean inflation: men $21.2$ s, women
+$15.4$ s, matching $E[a_1-a_L]$.
 
 ## 2. Reliability bound and Signal Extraction Ratio
 
@@ -39,23 +39,23 @@ Define the **Signal Extraction Ratio**
 $$\mathrm{SER} := \frac{R^2_{\mathrm{heldout}}}{\rho_{yy'}}.$$
 
 SER is the fraction of *reliable* outcome variance captured.
-Men: $R^2=0.043$, $\rho=0.228$,
-$\mathrm{SER}=0.188$ (clipped $0.188$).
-Women: $R^2=-0.029$, $\rho=0.279$,
-$\mathrm{SER}=-0.104$ (negative $R^2$ ⇒ no reliable signal extracted).
+Men: $R^2=0.044$, $\rho=0.228$,
+$\mathrm{SER}=0.193$ (clipped $0.193$).
+Women: $R^2=-0.018$, $\rho=0.279$,
+$\mathrm{SER}=-0.065$ (negative $R^2$ ⇒ no reliable signal extracted).
 
 For two-race seasons, an endpoint-noise floor is
 
 $$\phi := \frac{2\hat\sigma_\varepsilon^2}{\widehat{\mathrm{Var}}(\Delta)},$$
 
 with $\hat\sigma_\varepsilon^2$ from within-season trend residuals.
-Men $\phi=0.47$;
+Men $\phi=0.46$;
 women $\phi=0.65$
 (large $\phi$ means two-race $\Delta$ is heavily measurement noise).
 
 Under a shared-mean + iid race-noise null,
 $\kappa_{\mathrm{null}}=\mathrm{Corr}(t_1,\Delta)=\sqrt{(1-\mathrm{ICC})/2}$.
-Observed $\kappa$ is 0.58 (men) /
+Observed $\kappa$ is 0.57 (men) /
 0.38 (women) vs null
 0.34 / 0.30
 — excess over null is the slower-starters-improve-more association beyond pure RTM.
@@ -72,16 +72,16 @@ $$
 
 ERO multiplies *effective depth* by *mean intensity* in one scalar.
 Out-of-year (train 2023–24 → test 2025) top-15 AUC:
-ERO $0.837$,
+ERO $0.836$,
 depth (#≥3 starts) $0.782$,
 max race count $0.742$.
 
 Pooled logistic OR per 1 SD:
 
-- ERO: OR=2.70 [2.12, 3.44], p=6.3e-16
-- n_athletes_ge3: OR=2.40 [1.91, 3.02], p=9.5e-14
+- ERO: OR=2.70 [2.12, 3.43], p=6.6e-16
+- n_athletes_ge3: OR=2.40 [1.90, 3.02], p=9.6e-14
 - max_race_count: OR=2.51 [1.89, 3.35], p=2.5e-10
-- effective_n_athletes: OR=2.55 [2.02, 3.22], p=5.4e-15
+- effective_n_athletes: OR=2.55 [2.02, 3.23], p=5.3e-15
 
 ## Interpretation for the paper
 

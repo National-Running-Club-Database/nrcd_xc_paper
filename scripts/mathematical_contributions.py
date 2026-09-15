@@ -62,7 +62,7 @@ OUTPUT_DIR = os.path.join(
 )
 
 # Primary held-out R² from gender-separated SVR (train 2023 → test 2024)
-PRIMARY_R2 = {"M": 0.043, "F": -0.029}
+PRIMARY_R2 = {"M": 0.044, "F": -0.018}
 # Split-half reliability of improvement slope (from null diagnostics)
 RELIABILITY = {"M": 0.22822087419717996, "F": 0.2787539600162913}
 SINGLE_RACE_ICC = {"M": 0.7751304229400794, "F": 0.8197451602502119}

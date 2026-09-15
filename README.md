@@ -15,9 +15,9 @@ of results is in [`findings.md`](findings.md).
 We analyze the **comprehensive (current) era** of the NRCD Cross Country subset
 (meet `start_date` on or after 2023-08-01), covering the 2023–2025 seasons:
 
-- **23,355** race results, **7,083** athletes, **280** meets
-- **~97.7%** course-details coverage and **~97.7%** weather coverage
-  (vs. only ~4% weather coverage in the historical 2004–Jul 2023 era)
+- **23,360** race results, **7,056** athletes, **280** meets
+- **~99.9%** course-details coverage and **~99.9%** weather coverage
+  (vs. only ~27% weather coverage in the historical era through July 2023)
 
 The historical era is excluded because credible environmental standardization
 requires the near-complete metadata that only the comprehensive era provides.
@@ -240,7 +240,7 @@ See [`findings.md`](findings.md) for the full write-up. Headline results
 
 1. **RQ1 — weak individual prediction; weather inflation is the robust
    descriptive finding.** Separately trained models remain weak (men SVR
-   R² = 0.043; women −0.029), near a split-half reliability ceiling of
+   R² = 0.044; women −0.018), near a split-half reliability ceiling of
    ~0.23–0.28. Converted Only overstates mean first→last gains by **21 s / 15 s**
    vs Standardized. Race-count cell means (e.g. men 14→47 s at 2→3 races) are
    exploratory/uncorrected — only the men's 4-vs-2 contrast survives

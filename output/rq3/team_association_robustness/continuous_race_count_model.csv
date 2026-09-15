@@ -1,3 +1,3 @@
 model,term,odds_ratio,or_ci_low,or_ci_high,p_value,n_obs,n_teams
 GEE logistic (cluster-robust by team),z_maxrace,2.556991957021791,1.7792584743324635,3.6746813139260794,3.891622478523146e-07,573,126
-Bayesian mixed GLM (team random intercept),z_maxrace,2.532859657075603,1.8823258056219287,3.4082187171213287,,573,126
+Bayesian mixed GLM (team random intercept),z_maxrace,2.532860581321508,1.8823263549850098,3.4082202097539125,,573,126

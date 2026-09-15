@@ -1,0 +1,6 @@
+{
+  "random_seed": 42,
+  "bootstrap_replicates": 2000,
+  "random_forest_random_state": 42,
+  "svr_randomness": "deterministic"
+}

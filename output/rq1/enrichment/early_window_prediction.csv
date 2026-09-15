@@ -1,25 +1,25 @@
 gender,window,features,model,n_train,n_test,r2,mae
-Men,first_race_only,with_schedule_length,Ridge,1146,1162,-0.010997113448601992,3.99044005363029
-Men,first_race_only,with_schedule_length,SVR,1146,1162,0.010202553685942695,3.912920091153191
-Men,first_race_only,with_schedule_length,Random Forest,1146,1162,-0.5092943343301983,4.737070893804224
-Men,first_race_only,performance_only,Ridge,1146,1162,0.004384843384633963,4.030650152686703
-Men,first_race_only,performance_only,SVR,1146,1162,0.023300422495642015,3.7471531511482126
-Men,first_race_only,performance_only,Random Forest,1146,1162,-0.3161470487169604,4.886445456553591
-Men,first_two_races,with_schedule_length,Ridge,607,622,0.18548206086987673,2.375710834169809
-Men,first_two_races,with_schedule_length,SVR,607,622,0.1303617941128118,2.2123880765379256
-Men,first_two_races,with_schedule_length,Random Forest,607,622,-0.012244507476276922,2.529616814107987
-Men,first_two_races,performance_only,Ridge,607,622,0.18534812442424065,2.358366726317571
-Men,first_two_races,performance_only,SVR,607,622,0.09770080815104454,2.3037751065242986
-Men,first_two_races,performance_only,Random Forest,607,622,0.01392670835622567,2.610160906879569
-Women,first_race_only,with_schedule_length,Ridge,631,666,-0.09335320813971393,4.468676902000197
-Women,first_race_only,with_schedule_length,SVR,631,666,-0.01556398691774441,4.2672642196395705
-Women,first_race_only,with_schedule_length,Random Forest,631,666,-0.3647688655692445,4.870868254551061
-Women,first_race_only,performance_only,Ridge,631,666,-0.017364875682107206,4.415708138132193
-Women,first_race_only,performance_only,SVR,631,666,-0.017556654065154387,4.2693135063198
-Women,first_race_only,performance_only,Random Forest,631,666,-0.342606812101351,5.17987330970516
-Women,first_two_races,with_schedule_length,Ridge,313,354,-0.01236798291470631,2.692809016289972
-Women,first_two_races,with_schedule_length,SVR,313,354,0.040451395734886986,2.5514339187105874
-Women,first_two_races,with_schedule_length,Random Forest,313,354,0.07633321116609737,2.6189753148624604
-Women,first_two_races,performance_only,Ridge,313,354,0.04457825255468528,2.631533610566155
-Women,first_two_races,performance_only,SVR,313,354,0.07691694690880257,2.531952282829444
-Women,first_two_races,performance_only,Random Forest,313,354,0.12250043036960401,2.6051635042092642
+Men,first_race_only,with_schedule_length,Ridge,1147,1164,-0.014903117561127832,3.9086406713954642
+Men,first_race_only,with_schedule_length,SVR,1147,1164,0.007169495803752146,3.8325877090586817
+Men,first_race_only,with_schedule_length,Random Forest,1147,1164,-0.5098996894147136,4.645048132225677
+Men,first_race_only,performance_only,Ridge,1147,1164,0.004658817796798553,3.938055661793875
+Men,first_race_only,performance_only,SVR,1147,1164,0.024958125585723634,3.659270753454449
+Men,first_race_only,performance_only,Random Forest,1147,1164,-0.35324700358560235,4.885763278318583
+Men,first_two_races,with_schedule_length,Ridge,609,627,0.20003919582067442,2.277113552809239
+Men,first_two_races,with_schedule_length,SVR,609,627,0.16325409368371802,2.131277822852044
+Men,first_two_races,with_schedule_length,Random Forest,609,627,0.0791774723876355,2.372619740596701
+Men,first_two_races,performance_only,Ridge,609,627,0.1992480149806295,2.2676564173279083
+Men,first_two_races,performance_only,SVR,609,627,0.12425794787264477,2.20468790723006
+Men,first_two_races,performance_only,Random Forest,609,627,0.0599917695767227,2.4864385792175505
+Women,first_race_only,with_schedule_length,Ridge,631,670,-0.09241025161566441,4.393196970975386
+Women,first_race_only,with_schedule_length,SVR,631,670,-0.008693216432093864,4.17264719973111
+Women,first_race_only,with_schedule_length,Random Forest,631,670,-0.3398976706168999,4.643924088238431
+Women,first_race_only,performance_only,Ridge,631,670,-0.010564985381171788,4.317171749795168
+Women,first_race_only,performance_only,SVR,631,670,-0.006340292389098057,4.156722174955637
+Women,first_race_only,performance_only,Random Forest,631,670,-0.31030086351571695,5.03580202750479
+Women,first_two_races,with_schedule_length,Ridge,313,355,0.005087009405064347,2.62611068823072
+Women,first_two_races,with_schedule_length,SVR,313,355,0.06223379689289654,2.494643756011357
+Women,first_two_races,with_schedule_length,Random Forest,313,355,0.08191217713242516,2.5831467081923942
+Women,first_two_races,performance_only,Ridge,313,355,0.0634421005510809,2.5703422369519773
+Women,first_two_races,performance_only,SVR,313,355,0.1099838143693056,2.4522832809603337
+Women,first_two_races,performance_only,Random Forest,313,355,0.11482665801614178,2.5824153534716086

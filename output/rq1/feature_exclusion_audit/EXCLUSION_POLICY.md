@@ -24,21 +24,21 @@ Redundancy-pruned (kept out of primary): `worst_time`, `avg_time`, `time_std`, `
 
 ## Compact vs legacy full
 
-Men compact R²=0.043 (n_feat=17); legacy R²=0.051 (n_feat=26); Δ=-0.007.
+Men compact R²=0.044 (n_feat=17); legacy R²=0.051 (n_feat=26); Δ=-0.007.
 
 ## Leakage / duplicate / prune add-back
 
-Primary (compact) R² men=0.043.
-`+last_time` ΔR²=+0.438 → leakage_confirmed.
-`+total_improvement` ΔR²=+0.651 → leakage_confirmed.
-`+races_duration_ratio` ΔR²=-0.004 → duplicate_ok.
+Primary (compact) R² men=0.044.
+`+last_time` ΔR²=+0.434 → leakage_confirmed.
+`+total_improvement` ΔR²=+0.652 → leakage_confirmed.
+`+races_duration_ratio` ΔR²=-0.003 → duplicate_ok.
 
 ## Over-exclusion
 
 - `drop_slope`: R²=0.035 (Δ=-0.009) — null_robust_to_dropping_block
-- `drop_absolute_times`: R²=0.043 (Δ=+0.000) — null_robust_to_dropping_block
-- `drop_schedule`: R²=0.039 (Δ=-0.004) — null_robust_to_dropping_block
-- `schedule_only`: R²=-0.056 (Δ=-0.099) — still_near_zero
-- `early_external_proxy`: R²=0.029 (Δ=-0.014) — still_near_zero
+- `drop_absolute_times`: R²=0.044 (Δ=-0.001) — null_robust_to_dropping_block
+- `drop_schedule`: R²=0.040 (Δ=-0.005) — null_robust_to_dropping_block
+- `schedule_only`: R²=-0.052 (Δ=-0.096) — still_near_zero
+- `early_external_proxy`: R²=0.032 (Δ=-0.012) — still_near_zero
 
 Reproduce: `python scripts/feature_exclusion_audit.py`

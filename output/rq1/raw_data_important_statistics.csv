@@ -1,40 +1,40 @@
 Category,Metric,Model,Value,CI_Lower,CI_Upper,Subgroup,Year,Gender,N,Additional_Info
-Dataset Summary,Mean Improvement Rate,N/A,-0.8724432309078027,,,Gender,All,Men,3525,Std: 6.7694 (filtered data)
-Dataset Summary,Mean Improvement Rate,N/A,-0.9199082430399241,,,Gender,All,Women,2030,Std: 6.4587 (filtered data)
-Dataset Summary,Mean Improvement Rate,N/A,-0.8897886808858776,,,Overall,All,All,5555,Std: 6.6570 (filtered data)
-Dataset Summary,Mean Improvement Rate,N/A,0.4284608994232168,,,Year,2023,All,1777,Std: 6.0763 (filtered data)
-Dataset Summary,Mean Improvement Rate,N/A,-1.7348460513724049,,,Year,2024,All,1828,Std: 6.4770 (filtered data)
-Dataset Summary,Mean Improvement Rate,N/A,-1.298898748044795,,,Year,2025,All,1950,Std: 7.1340 (filtered data)
-Dataset Summary,Total Athletes,N/A,5555.0,,,Overall,All,All,5555,"After filtering outliers (improvement_rate in [-50, 50] sec/day, season_duration >= 7 days)"
-Model Performance,CV R² Mean,Gradient Boosting,-0.2195208328481688,-0.4210327551526853,-0.018008910543652334,Overall,All,All,1828,Std: 0.2015
-Model Performance,CV R² Mean,Lasso Regression,-0.18633695353537544,-0.36627475553994404,-0.006399151530806835,Overall,All,All,1828,Std: 0.1799
-Model Performance,CV R² Mean,Linear Regression,-0.1468444312455547,-0.3581407264008082,0.06445186390969879,Overall,All,All,1828,Std: 0.2113
-Model Performance,CV R² Mean,Random Forest,-0.33621006471133186,-0.5227685758838958,-0.14965155353876786,Overall,All,All,1828,Std: 0.1866
-Model Performance,CV R² Mean,Ridge Regression,-0.14087962637345589,-0.35722124120581455,0.07546198845890276,Overall,All,All,1828,Std: 0.2163
-Model Performance,CV R² Mean,SVR,-0.04690082922548393,-0.29160009281529625,0.19779843436432842,Overall,All,All,1828,Std: 0.2447
-Model Performance,MAE,Gradient Boosting,4.155487607858824,,,Overall,All,All,1828,
-Model Performance,MAE,Lasso Regression,3.95290126845682,,,Overall,All,All,1828,
-Model Performance,MAE,Linear Regression,4.027195952194694,,,Overall,All,All,1828,
-Model Performance,MAE,Random Forest,4.434727388696602,,,Overall,All,All,1828,
-Model Performance,MAE,Ridge Regression,3.9884169989300817,,,Overall,All,All,1828,
-Model Performance,MAE,SVR,3.9001612204194935,,,Overall,All,All,1828,
-Model Performance,RMSE,Gradient Boosting,6.879800926158923,,,Overall,All,All,1828,
-Model Performance,RMSE,Lasso Regression,6.501519888254542,,,Overall,All,All,1828,
-Model Performance,RMSE,Linear Regression,6.53039704270966,,,Overall,All,All,1828,
-Model Performance,RMSE,Random Forest,7.4722490737107865,,,Overall,All,All,1828,
-Model Performance,RMSE,Ridge Regression,6.506214904193784,,,Overall,All,All,1828,
-Model Performance,RMSE,SVR,6.341963822292987,,,Overall,All,All,1828,
-Model Performance,R² Score,Gradient Boosting,-0.1288800965489696,-0.2314539389797057,-0.03930338137537695,Overall,All,All,1828,
-Model Performance,R² Score,Lasso Regression,-0.008151645807570551,-0.05272200865441674,0.03136042134745312,Overall,All,All,1828,
-Model Performance,R² Score,Linear Regression,-0.017127148290920324,-0.07573539939824876,0.03642285584337715,Overall,All,All,1828,
-Model Performance,R² Score,Random Forest,-0.33167655071558433,-0.4690004532204844,-0.2071136791302279,Overall,All,All,1828,
-Model Performance,R² Score,Ridge Regression,-0.00960822740048517,-0.06579046648037834,0.04179187874263635,Overall,All,All,1828,
-Model Performance,R² Score,SVR,0.04072396879505091,-0.006241814941081985,0.08476915292545903,Overall,All,All,1828,
-Subgroup Analysis,MAE,SVR,3.7358437335784673,,,Gender,All,Men,1162,
-Subgroup Analysis,MAE,SVR,4.186853292055038,,,Gender,All,Women,666,
-Subgroup Analysis,MAE,SVR,3.9001612204194935,,,Year,2024,All,1828,
-Subgroup Analysis,R² Score,SVR,0.03955553650481447,-0.01949876831626079,0.10300492698404874,Gender,All,Men,1162,
-Subgroup Analysis,R² Score,SVR,0.027091261770147868,-0.05736134384111266,0.08699774089291225,Gender,All,Women,666,
-Subgroup Analysis,R² Score,SVR,0.04072396879505091,-0.004930822387774735,0.08288934785010271,Year,2024,All,1828,
-Subgroup Analysis,R² Score,SVR,0.03955553650481447,-0.01949876831626079,0.10300492698404874,Year × Gender,2024,Men,1162,
-Subgroup Analysis,R² Score,SVR,0.027091261770147868,-0.05736134384111266,0.08699774089291225,Year × Gender,2024,Women,666,
+Dataset Summary,Mean Improvement Rate,N/A,-0.8826210042698919,,,Gender,All,Men,3531,Std: 6.7069 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-0.9144487829072463,,,Gender,All,Women,2035,Std: 6.4172 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-0.8942576427044977,,,Overall,All,All,5566,Std: 6.6019 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,0.41928034028256966,,,Year,2023,All,1778,Std: 6.0994 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-1.6137621939331301,,,Year,2024,All,1834,Std: 6.3686 (filtered data)
+Dataset Summary,Mean Improvement Rate,N/A,-1.4141651078005537,,,Year,2025,All,1954,Std: 7.0675 (filtered data)
+Dataset Summary,Total Athletes,N/A,5566.0,,,Overall,All,All,5566,"After filtering outliers (improvement_rate in [-50, 50] sec/day, season_duration >= 7 days)"
+Model Performance,CV R² Mean,Gradient Boosting,-0.21245829546970274,-0.4098839630601403,-0.015032627879265181,Overall,All,All,1834,Std: 0.1974
+Model Performance,CV R² Mean,Lasso Regression,-0.19251132732067355,-0.3669273491635747,-0.01809530547777241,Overall,All,All,1834,Std: 0.1744
+Model Performance,CV R² Mean,Linear Regression,-0.23497766302755138,-0.43901431950564274,-0.030941006549460054,Overall,All,All,1834,Std: 0.2040
+Model Performance,CV R² Mean,Random Forest,-0.33173574793151955,-0.5026709265679148,-0.1608005692951243,Overall,All,All,1834,Std: 0.1709
+Model Performance,CV R² Mean,Ridge Regression,-0.21608013934752135,-0.4152249148380233,-0.01693536385701938,Overall,All,All,1834,Std: 0.1991
+Model Performance,CV R² Mean,SVR,-0.04732939077119005,-0.28208089081188453,0.18742210926950442,Overall,All,All,1834,Std: 0.2348
+Model Performance,MAE,Gradient Boosting,4.102897975920568,,,Overall,All,All,1834,
+Model Performance,MAE,Lasso Regression,3.8955063509771732,,,Overall,All,All,1834,
+Model Performance,MAE,Linear Regression,3.9901331489994134,,,Overall,All,All,1834,
+Model Performance,MAE,Random Forest,4.312721510287338,,,Overall,All,All,1834,
+Model Performance,MAE,Ridge Regression,3.959922775309622,,,Overall,All,All,1834,
+Model Performance,MAE,SVR,3.827389501019489,,,Overall,All,All,1834,
+Model Performance,RMSE,Gradient Boosting,6.796160890023115,,,Overall,All,All,1834,
+Model Performance,RMSE,Lasso Regression,6.4107409603075105,,,Overall,All,All,1834,
+Model Performance,RMSE,Linear Regression,6.491840934658276,,,Overall,All,All,1834,
+Model Performance,RMSE,Random Forest,7.3280497284192885,,,Overall,All,All,1834,
+Model Performance,RMSE,Ridge Regression,6.4712760752269185,,,Overall,All,All,1834,
+Model Performance,RMSE,SVR,6.237790184778054,,,Overall,All,All,1834,
+Model Performance,R² Score,Gradient Boosting,-0.13940910181369226,-0.2493946803198938,-0.042058552662483935,Overall,All,All,1834,
+Model Performance,R² Score,Lasso Regression,-0.01383863775851113,-0.05946373248419554,0.02701256273567831,Overall,All,All,1834,
+Model Performance,R² Score,Linear Regression,-0.03965230588183721,-0.09827251984958156,0.012742605703535194,Overall,All,All,1834,
+Model Performance,R² Score,Random Forest,-0.32473556726045305,-0.4689597921845311,-0.19403507436284206,Overall,All,All,1834,
+Model Performance,R² Score,Ridge Regression,-0.03307591577289015,-0.09078167815752414,0.018260727304074343,Overall,All,All,1834,
+Model Performance,R² Score,SVR,0.040126711148867567,-0.0110254197344875,0.08587384154098196,Overall,All,All,1834,
+Subgroup Analysis,MAE,SVR,3.6691757208560998,,,Gender,All,Men,1164,
+Subgroup Analysis,MAE,SVR,4.102256426557081,,,Gender,All,Women,670,
+Subgroup Analysis,MAE,SVR,3.827389501019489,,,Year,2024,All,1834,
+Subgroup Analysis,R² Score,SVR,0.03759905530215102,-0.029765036260050722,0.10162276318964858,Gender,All,Men,1164,
+Subgroup Analysis,R² Score,SVR,0.027806181429706367,-0.058840271897225516,0.0905016589028172,Gender,All,Women,670,
+Subgroup Analysis,R² Score,SVR,0.040126711148867567,-0.004267624165970162,0.08491063067217461,Year,2024,All,1834,
+Subgroup Analysis,R² Score,SVR,0.03759905530215102,-0.029765036260050722,0.10162276318964858,Year × Gender,2024,Men,1164,
+Subgroup Analysis,R² Score,SVR,0.027806181429706367,-0.058840271897225516,0.0905016589028172,Year × Gender,2024,Women,670,

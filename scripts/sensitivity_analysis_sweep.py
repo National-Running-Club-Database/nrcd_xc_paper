@@ -16,6 +16,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 from feature_policy import DEFAULT_FEATURE_COLUMNS, LEGACY_FULL_FEATURES, PRIMARY_FEATURES, WITHIN_SEX_DROP, features_for_gender_model
 

@@ -27,7 +27,7 @@ Standardized frames are memoized under `output/.cache/` (gitignored). Set
 
 | Claim | Script | Artifact |
 |-------|--------|----------|
-| Compact null R² (SVR 0.043 / −0.029) | `compact_model_suite.py` via `rq1.py` | `output/rq1/feature_exclusion_audit/compact_six_models.csv` |
+| Compact null R² (SVR 0.044 / −0.018) | `compact_model_suite.py` via `rq1.py` | `output/rq1/feature_exclusion_audit/compact_six_models.csv` |
 | SER ≈ 0.19 (men) | `mathematical_contributions.py` | `output/rq1/mathematical_contributions/signal_extraction_ratio.csv`, `FORMULAS.md` |
 | Weather inflation identity | `mathematical_contributions.py` | `weather_path_identity*.csv`, `weather_path_identity.pdf` |
 | ERO AUC 0.84 vs max-race 0.74 | `mathematical_contributions.py` | `ero_out_of_year_auc.csv`, `ero_vs_maxrace.pdf` |

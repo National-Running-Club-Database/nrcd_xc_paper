@@ -3,35 +3,35 @@ Mixed-effects explanatory model
 
 Subset: Men
 Formula: improvement_rate ~ z_num_races + z_num_races_sq + z_season_duration + z_starting_percentile + z_year
-Rows used: 3525
-Unique athletes: 2506
+Rows used: 3531
+Unique athletes: 2509
 
 OLS (robust SE, HC3):
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:       improvement_rate   R-squared:                       0.116
-Model:                            OLS   Adj. R-squared:                  0.115
-Method:                 Least Squares   F-statistic:                     54.66
-Date:                Mon, 20 Jul 2026   Prob (F-statistic):           7.54e-55
-Time:                        23:45:33   Log-Likelihood:                -11526.
-No. Observations:                3525   AIC:                         2.306e+04
-Df Residuals:                    3519   BIC:                         2.310e+04
+Dep. Variable:       improvement_rate   R-squared:                       0.115
+Model:                            OLS   Adj. R-squared:                  0.114
+Method:                 Least Squares   F-statistic:                     53.82
+Date:                Tue, 15 Sep 2026   Prob (F-statistic):           5.15e-54
+Time:                        12:39:53   Log-Likelihood:                -11513.
+No. Observations:                3531   AIC:                         2.304e+04
+Df Residuals:                    3525   BIC:                         2.308e+04
 Df Model:                           5                                         
 Covariance Type:                  HC3                                         
 =========================================================================================
                             coef    std err          z      P>|z|      [0.025      0.975]
 -----------------------------------------------------------------------------------------
-Intercept                -1.0351      0.121     -8.573      0.000      -1.272      -0.798
-z_num_races              -0.5716      0.116     -4.945      0.000      -0.798      -0.345
-z_num_races_sq            0.1627      0.064      2.530      0.011       0.037       0.289
-z_season_duration         0.1851      0.140      1.324      0.186      -0.089       0.459
-z_starting_percentile    -2.1151      0.139    -15.263      0.000      -2.387      -1.843
-z_year                   -0.9468      0.111     -8.544      0.000      -1.164      -0.730
+Intercept                -1.0508      0.120     -8.764      0.000      -1.286      -0.816
+z_num_races              -0.5730      0.113     -5.049      0.000      -0.795      -0.351
+z_num_races_sq            0.1682      0.064      2.609      0.009       0.042       0.295
+z_season_duration         0.2136      0.139      1.536      0.125      -0.059       0.486
+z_starting_percentile    -2.0548      0.137    -14.992      0.000      -2.323      -1.786
+z_year                   -1.0059      0.110     -9.116      0.000      -1.222      -0.790
 ==============================================================================
-Omnibus:                      667.513   Durbin-Watson:                   1.676
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):            16456.589
-Skew:                          -0.202   Prob(JB):                         0.00
-Kurtosis:                      13.577   Cond. No.                         3.71
+Omnibus:                      699.055   Durbin-Watson:                   1.644
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            16710.384
+Skew:                          -0.303   Prob(JB):                         0.00
+Kurtosis:                      13.640   Cond. No.                         3.70
 ==============================================================================
 
 Notes:
@@ -41,20 +41,20 @@ MixedLM (random intercept by athlete_id, ML fit):
               Mixed Linear Model Regression Results
 =================================================================
 Model:             MixedLM  Dependent Variable:  improvement_rate
-No. Observations:  3525     Method:              ML              
-No. Groups:        2506     Scale:               36.4520         
-Min. group size:   1        Log-Likelihood:      -11522.2170     
+No. Observations:  3531     Method:              ML              
+No. Groups:        2509     Scale:               36.1850         
+Min. group size:   1        Log-Likelihood:      -11510.4773     
 Max. group size:   3        Converged:           Yes             
 Mean group size:   1.4                                           
 -----------------------------------------------------------------
                       Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 -----------------------------------------------------------------
-Intercept             -1.015    0.141  -7.218 0.000 -1.290 -0.739
-z_num_races           -0.548    0.157  -3.487 0.000 -0.856 -0.240
-z_num_races_sq         0.170    0.086   1.975 0.048  0.001  0.338
-z_season_duration      0.173    0.129   1.342 0.180 -0.080  0.427
-z_starting_percentile -2.173    0.114 -19.087 0.000 -2.396 -1.950
-z_year                -0.953    0.106  -8.995 0.000 -1.161 -0.746
-Group Var              4.121    0.297                            
+Intercept             -1.033    0.139  -7.438 0.000 -1.305 -0.761
+z_num_races           -0.550    0.155  -3.544 0.000 -0.855 -0.246
+z_num_races_sq         0.174    0.085   2.048 0.041  0.007  0.341
+z_season_duration      0.202    0.128   1.579 0.114 -0.049  0.453
+z_starting_percentile -2.106    0.112 -18.761 0.000 -2.325 -1.886
+z_year                -1.012    0.105  -9.628 0.000 -1.218 -0.806
+Group Var              3.648    0.279                            
 =================================================================
 

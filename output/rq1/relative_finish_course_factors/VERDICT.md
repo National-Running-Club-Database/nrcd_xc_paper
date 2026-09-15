@@ -22,8 +22,8 @@ indicator than metadata standardization when weather coverage is high.
 
 Naive wins overweight raw-time tasks (field α’s specialty):
 
-- **field_alpha**: 6 wins
-- **standardized**: 3 wins
+- **field_alpha**: 7 wins
+- **standardized**: 2 wins
 - **standardized_full**: 1 wins
 
 ## Bottom line for the manuscript
@@ -37,40 +37,40 @@ weather coverage remains ~98%.
 
 ## Criterion detail
 
-- Men / next_race_mae_last / converted: MAE=80.5s [76.1, 85.2]
-- Men / next_race_mae_last / field_alpha: MAE=50.1s [47.6, 52.6] ✓
-- Men / next_race_mae_last / raw: MAE=121.2s [115.6, 127.0]
-- Men / next_race_mae_last / standardized: MAE=71.6s [67.4, 76.1]
-- Women / next_race_mae_last / converted: MAE=74.5s [69.9, 79.6]
-- Women / next_race_mae_last / field_alpha: MAE=45.7s [42.1, 49.8] ✓
-- Women / next_race_mae_last / raw: MAE=92.6s [87.1, 98.6]
-- Women / next_race_mae_last / standardized: MAE=65.4s [61.0, 69.8]
-- Men / holdout_within_athlete_sd / field_alpha: SD=73.7s ✓
-- Men / holdout_within_athlete_sd / standardized: SD=98.8s
-- Men / holdout_within_athlete_sd / converted: SD=102.8s
-- Men / holdout_within_athlete_sd / raw: SD=171.8s
-- Women / holdout_within_athlete_sd / field_alpha: SD=61.3s ✓
-- Women / holdout_within_athlete_sd / standardized: SD=79.2s
-- Women / holdout_within_athlete_sd / converted: SD=83.6s
-- Women / holdout_within_athlete_sd / raw: SD=122.1s
-- Men / split_half_reliability / raw: ρ=0.622
-- Men / split_half_reliability / converted: ρ=0.888
-- Men / split_half_reliability / standardized: ρ=0.900
+- Men / next_race_mae_last / converted: MAE=80.3s [75.7, 85.4]
+- Men / next_race_mae_last / field_alpha: MAE=50.1s [47.7, 52.7] ✓
+- Men / next_race_mae_last / raw: MAE=121.0s [115.5, 126.9]
+- Men / next_race_mae_last / standardized: MAE=71.1s [67.0, 75.4]
+- Women / next_race_mae_last / converted: MAE=74.5s [69.8, 79.4]
+- Women / next_race_mae_last / field_alpha: MAE=45.7s [42.1, 49.7] ✓
+- Women / next_race_mae_last / raw: MAE=92.6s [87.2, 98.5]
+- Women / next_race_mae_last / standardized: MAE=65.4s [61.1, 70.0]
+- Men / holdout_within_athlete_sd / field_alpha: SD=77.1s ✓
+- Men / holdout_within_athlete_sd / standardized: SD=97.6s
+- Men / holdout_within_athlete_sd / converted: SD=101.7s
+- Men / holdout_within_athlete_sd / raw: SD=171.1s
+- Women / holdout_within_athlete_sd / field_alpha: SD=67.8s ✓
+- Women / holdout_within_athlete_sd / standardized: SD=78.7s
+- Women / holdout_within_athlete_sd / converted: SD=82.3s
+- Women / holdout_within_athlete_sd / raw: SD=120.1s
+- Men / split_half_reliability / raw: ρ=0.625
+- Men / split_half_reliability / converted: ρ=0.891
+- Men / split_half_reliability / standardized: ρ=0.903
 - Men / split_half_reliability / field_alpha: ρ=0.940 ✓
 - Women / split_half_reliability / raw: ρ=0.758
 - Women / split_half_reliability / converted: ρ=0.896
 - Women / split_half_reliability / standardized: ρ=0.908
 - Women / split_half_reliability / field_alpha: ρ=0.947 ✓
-- Women / tracks_temperature / field_alpha: |ρ|=0.172 vs temperature
-- Women / tracks_temperature / standardized: |ρ|=0.863 vs temperature ✓
-- Women / field_size_confound / field_alpha: |ρ|=0.163 vs field_size (lower=less confound)
-- Women / field_size_confound / standardized: |ρ|=0.144 vs field_size (lower=less confound) ✓
-- Women / field_size_confound / standardized_full: |ρ|=0.201 vs field_size (lower=less confound)
-- Men / tracks_temperature / field_alpha: |ρ|=0.139 vs temperature
-- Men / tracks_temperature / standardized: |ρ|=0.888 vs temperature ✓
-- Men / field_size_confound / field_alpha: |ρ|=0.033 vs field_size (lower=less confound)
-- Men / field_size_confound / standardized: |ρ|=0.153 vs field_size (lower=less confound)
-- Men / field_size_confound / standardized_full: |ρ|=0.024 vs field_size (lower=less confound) ✓
+- Women / tracks_temperature / field_alpha: |ρ|=0.160 vs temperature
+- Women / tracks_temperature / standardized: |ρ|=0.873 vs temperature ✓
+- Women / field_size_confound / field_alpha: |ρ|=0.164 vs field_size (lower=less confound)
+- Women / field_size_confound / standardized: |ρ|=0.303 vs field_size (lower=less confound)
+- Women / field_size_confound / standardized_full: |ρ|=0.113 vs field_size (lower=less confound) ✓
+- Men / tracks_temperature / field_alpha: |ρ|=0.149 vs temperature
+- Men / tracks_temperature / standardized: |ρ|=0.896 vs temperature ✓
+- Men / field_size_confound / field_alpha: |ρ|=0.032 vs field_size (lower=less confound) ✓
+- Men / field_size_confound / standardized: |ρ|=0.271 vs field_size (lower=less confound)
+- Men / field_size_confound / standardized_full: |ρ|=0.096 vs field_size (lower=less confound)
 
 ## Interpretation of the horse race
 

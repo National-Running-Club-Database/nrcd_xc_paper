@@ -18,13 +18,12 @@ import os
 import sys
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-os.chdir(script_dir)
 sys.path.insert(0, script_dir)
 from utils import standardize_both_tiers
 from load_nrcd_data import get_data_dir
 
 data_dir = get_data_dir()
-workspace_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+workspace_root = os.path.dirname(script_dir)
 default_output_dir = os.path.join(workspace_root, 'output', 'rq1', 'overlay_plots')
 
 # Gender-specific display / file naming metadata.
